@@ -10,7 +10,7 @@ dependencies:
   resolution_hints: {app_id: C6ZZPAPN4YYF5NVJ, name: Anvil Extras, package_name: anvil_extras}
 services:
 - source: /runtime/services/tables.yml
-  client_config: {}
+  client_config: {enable_v2: true}
   server_config: {}
 metadata: {title: ЧетеМе, description: CheteMe, logo_img: 'asset:chetemecover.webp'}
 startup: {type: form, module: _Form1}
