@@ -3,4 +3,22 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/settings.html'}
   event_bindings: {show: form_show}
-
+components:
+- name: tabs
+  properties:
+    tab_titles: [Настройки, Акаунт, Автор]
+  type: form:dep_p86ky6m5lr9fp:Tabs
+  layout_properties: {slot: default}
+  event_bindings: {tab_click: tabs_tab_click}
+- name: lp_gui
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: default}
+- name: lp_user
+  properties: {visible: false}
+  type: LinearPanel
+  layout_properties: {slot: default}
+- name: lp_author
+  properties: {visible: false}
+  type: LinearPanel
+  layout_properties: {slot: default}

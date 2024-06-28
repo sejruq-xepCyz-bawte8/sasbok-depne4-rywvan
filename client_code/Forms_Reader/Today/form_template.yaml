@@ -3,4 +3,3 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/today.html'}
   event_bindings: {show: form_show}
-

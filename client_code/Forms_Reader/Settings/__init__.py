@@ -16,3 +16,7 @@ class Settings(SettingsTemplate):
   def test(self, sender, **event):
     print('nac cl test')
 
+  def tabs_tab_click(self, tab_index, tab_title, **event_args):
+    """This method is called when a tab is clicked"""
+    pass
+
