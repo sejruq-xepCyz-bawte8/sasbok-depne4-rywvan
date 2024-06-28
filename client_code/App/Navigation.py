@@ -3,12 +3,12 @@ from anvil.js.window import jQuery as jQ
 
 
 class NavigationClass:
-    def __init__(self, assets):
+    def __init__(self, fn_asset_get):
         self.element = jQ('#navigation')
-        self.assets = assets
+        self.asset = fn_asset_get
 
     def set(self, file_path:str):
-        html:str = self.assets.get(file_path)
+        html:str = self.asset(file_path)
         self.element.html(html)
 
     def click(self, **event):
@@ -23,3 +23,6 @@ class NavigationClass:
 
     def form_event(self, event):
         pass
+
+    def test(self):
+        self.element.html('<span>test</span>')
