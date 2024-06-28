@@ -7,7 +7,7 @@ class Today(TodayTemplate):
     super().__init__(**properties)
     self.init_components(**properties)
     
-    NAVIGATION.set(file_path='html/nav_reader.html')
+    
     self.open_form = NAVIGATION.open_form
 
   def form_show(self, **event):

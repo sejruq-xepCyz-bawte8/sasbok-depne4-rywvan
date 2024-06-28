@@ -1,17 +1,21 @@
 from ._anvil_designer import SettingsTemplate
 from anvil import *
-from ...App import NAVIGATION
+from ...App import NAVIGATION, SETTINGS, ASSETS
+
 
 class Settings(SettingsTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
-    
+    self.settings = SETTINGS.get()
     
     self.open_form = NAVIGATION.open_form
 
   def form_show(self, **event):
-    pass
+    self.rt_settings_info.content = ASSETS.get(file_path='md/settings.md')
+    self.rt_user_info.content = ASSETS.get(file_path='md/settings_user.md')
+    self.slider_text_size.value = self.settings['text']
+    self.slider_nav_size.value = self.settings['navigation']
 
 
   def tabs_tab_click(self, tab_index, tab_title, **event_args):
@@ -29,5 +33,10 @@ class Settings(SettingsTemplate):
       self.lp_author.visible = True
 
   def gui_settings_change(self, handle, **event_args):
-    nav_size = self.slider_nav_size.value
-    pass
+    settings = {
+      'text':self.slider_text_size.value,
+      'navigation':self.slider_nav_size.value
+    }
+    SETTINGS.set(data=settings)
+   
+    

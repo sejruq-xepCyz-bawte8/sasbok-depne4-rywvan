@@ -13,7 +13,7 @@ body {
 }
 
 .anvil-root-container,
-#appGoesHere {
+#appGoesHere, #appGoesHere > .html-templated-panel{
     width: 100%;
     display: flex;
     flex: 1;

@@ -1,20 +1,113 @@
-
-
-
 #navigation{
     display: flex;
     justify-content: space-evenly;
 }
 
-#navigation .active{
-    background-color: pink;
-}
 
-.nav-fa{
-    font-size: 2rem;
+.nav-item{
+    font-size: var(--nav-size);
     display: flex;
     flex-direction: column;
 }
+.nav-fa{
+  
+}
+
 .nav-text{
     font-size: 10px;
 }
+
+
+/*DUOTONE NAVBAR*/
+
+  .active .fa-home {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(108, 108, 108);
+  }
+  .active .fa-books {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(254, 212, 1);
+  }
+  .active .fa-glasses {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(1, 170, 254);
+  }
+  .active .fa-bookmark {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(254, 47, 1);
+  }
+  .active .fa-sliders {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(1, 170, 254);
+  }
+  .active .fa-typewriter {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(1, 170, 254);
+  }
+  .active .fa-file-plus {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-address-card {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-chart-simple {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-filter {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-palette {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-user {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-circle-info {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-folder {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  
+  .active .fa-keyboard {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-tags {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-hexagon-image {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }
+  .active .fa-paper-plane {
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 235, 148);
+  }

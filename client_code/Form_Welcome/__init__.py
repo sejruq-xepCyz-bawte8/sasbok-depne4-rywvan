@@ -1,8 +1,6 @@
 from ._anvil_designer import Form_WelcomeTemplate
 from anvil import *
-from ..App import ASSETS
-from ..App import API
-from ..App import USER
+from ..App import ASSETS, API, USER, NAVIGATION
 
 class Form_Welcome(Form_WelcomeTemplate):
   def __init__(self, **properties):
@@ -23,6 +21,7 @@ class Form_Welcome(Form_WelcomeTemplate):
     print(response, status)
     if response:
       USER.set_user(response)
+      NAVIGATION.set(file_path='html/nav_reader.html')
       open_form('Forms_Reader.Today')
 
 

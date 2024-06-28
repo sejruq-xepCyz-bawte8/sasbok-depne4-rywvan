@@ -1,9 +1,11 @@
 #Cheteme Index Module
 from anvil import *
 from . import USER
+from . import NAVIGATION
 
 def main():
     print('main')
+    NAVIGATION.set(file_path='html/nav_reader.html')
     open_form('Forms_Reader.Today')
 def no_user():
     print('no user')
