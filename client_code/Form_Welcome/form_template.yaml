@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
+  properties: {html: '@theme:html/anvil.html'}
   event_bindings: {show: form_show}
 components:
 - name: linear_panel
@@ -19,11 +19,8 @@ components:
   - name: check_terms
     properties: {checked_color: '#77bb41', text_pre: Приемам Условията, align: right, spacing_below: medium}
     type: form:dep_p86ky6m5lr9fp:Switch
-  - name: outlined_button_1
-    properties: {text: outlined_button_1, role: outlined-button}
-    type: Button
   - name: button_enter
-    properties: {text: ВЛЕЗ, enabled: false, align: center}
+    properties: {text: ВЛЕЗ, enabled: false, align: center, role: outlined-button}
     type: Button
-    layout_properties: {slot: default}
     event_bindings: {click: button_enter_click}
+
