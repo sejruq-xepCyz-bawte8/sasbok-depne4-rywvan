@@ -41,18 +41,24 @@ components:
   type: LinearPanel
   layout_properties: {slot: default}
   components:
-  - name: b_code
+  - name: rt_user_info
+    properties: {}
+    type: RichText
+  - name: b_gen_code
     properties: {text: Генерирай код, role: outlined-button}
     type: Button
     layout_properties: {}
     event_bindings: {click: b_code_click}
   - name: tb_user_code
-    properties: {role: outlined, align: center, font_size: 32}
+    properties: {role: outlined, align: center, font_size: 28}
     type: TextBox
     layout_properties: {}
-  - name: rt_user_info
-    properties: {}
-    type: RichText
+  - name: b_activate_code
+    properties: {text: Активирай код, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_code_click}
+
 - name: lp_author
   properties: {visible: false}
   type: LinearPanel
@@ -61,3 +67,12 @@ components:
   - name: rt_author_info
     properties: {}
     type: RichText
+  - name: tb_author_code
+    properties: {role: outlined, align: center, font_size: 24}
+    type: TextBox
+    layout_properties: {}
+  - name: b_activate_author_code
+    properties: {text: Активирай код, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_code_click}

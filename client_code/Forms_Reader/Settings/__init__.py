@@ -14,6 +14,7 @@ class Settings(SettingsTemplate):
   def form_show(self, **event):
     self.rt_settings_info.content = ASSETS.get(file_path='md/settings.md')
     self.rt_user_info.content = ASSETS.get(file_path='md/settings_user.md')
+    self.rt_author_info.content = ASSETS.get(file_path='md/settings_author.md')
     self.slider_text_size.value = self.settings['text']
     self.slider_nav_size.value = self.settings['navigation']
 
