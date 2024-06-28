@@ -27,3 +27,7 @@ class Settings(SettingsTemplate):
       self.lp_gui.visible = False
       self.lp_user.visible = False
       self.lp_author.visible = True
+
+  def gui_settings_change(self, handle, **event_args):
+    nav_size = self.slider_nav_size.value
+    pass
