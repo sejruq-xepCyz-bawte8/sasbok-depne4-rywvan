@@ -27,7 +27,15 @@ components:
   properties: {visible: false}
   type: LinearPanel
   layout_properties: {slot: default}
+  components:
+  - name: rt_user_info
+    properties: {}
+    type: RichText
 - name: lp_author
   properties: {visible: false}
   type: LinearPanel
   layout_properties: {slot: default}
+  components:
+  - name: rt_author_info
+    properties: {}
+    type: RichText
