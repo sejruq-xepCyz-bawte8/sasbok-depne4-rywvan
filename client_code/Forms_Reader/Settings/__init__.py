@@ -13,10 +13,17 @@ class Settings(SettingsTemplate):
   def form_show(self, **event):
     pass
 
-  def test(self, sender, **event):
-    print('nac cl test')
 
   def tabs_tab_click(self, tab_index, tab_title, **event_args):
-    """This method is called when a tab is clicked"""
-    pass
-
+    if tab_index == 0:
+      self.lp_gui.visible = True
+      self.lp_user.visible = False
+      self.lp_author.visible = False
+    elif tab_index == 1:
+      self.lp_gui.visible = False
+      self.lp_user.visible = True
+      self.lp_author.visible = False
+    else:
+      self.lp_gui.visible = False
+      self.lp_user.visible = False
+      self.lp_author.visible = True
