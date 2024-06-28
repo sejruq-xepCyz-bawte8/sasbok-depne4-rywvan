@@ -13,15 +13,12 @@ components:
     properties: {}
     type: RichText
     layout_properties: {slot: default, align: center}
-  - name: check_age
-    properties: {text_pre: Пълнолетие, align: right, spacing_below: medium}
-    type: form:dep_e1dcqmnfcluccf:Switch
-    layout_properties: {slot: default}
-  - name: check_terms
-    properties: {checked_color: '#77bb41', text_pre: Приемам Условията, align: right, spacing_below: medium}
-    type: form:dep_e1dcqmnfcluccf:Switch
-    layout_properties: {slot: default}
-    event_bindings: {change: choise_change}
+  - name: switch_1
+    properties: {}
+    type: form:dep_p86ky6m5lr9fp:Switch
+  - name: switch_2
+    properties: {}
+    type: form:dep_p86ky6m5lr9fp:Switch
   - name: button_enter
     properties: {text: ВЛЕЗ, enabled: false, align: center}
     type: Button
