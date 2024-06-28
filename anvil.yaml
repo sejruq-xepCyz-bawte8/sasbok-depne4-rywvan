@@ -1,6 +1,6 @@
 allow_embedding: false
-package_name: sasbok_dePne4_rywvan
-name: sasbok-dePne4-rywvan
+package_name: CheteMe
+name: CheteMe
 startup_form: null
 renamed: true
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
@@ -12,5 +12,5 @@ services:
 - source: /runtime/services/tables.yml
   client_config: {}
   server_config: {}
-metadata: {title: ЧетеМе, description: Cheteme, logo_img: 'asset:chetemecover.webp'}
+metadata: {title: ЧетеМе, description: CheteMe, logo_img: 'asset:chetemecover.webp'}
 startup: {type: form, module: _Form1}
