@@ -19,6 +19,7 @@ components:
   - name: check_terms
     properties: {checked_color: '#77bb41', text_pre: Приемам Условията, align: right, spacing_below: medium}
     type: form:dep_p86ky6m5lr9fp:Switch
+    event_bindings: {change: choise_change}
   - name: button_enter
     properties: {text: ВЛЕЗ, enabled: false, align: center, role: outlined-button}
     type: Button

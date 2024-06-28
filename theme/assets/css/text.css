@@ -1,3 +1,18 @@
+@font-face {
+    font-family: adys;
+    src: url(/_/theme/fonts/ADYS.ttf) format('truetype')
+  }
+
 h1{
-    background-color: bisque;
+    font-size: 2rem;
+}
+h2{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+p{
+    font-size: 1.8rem;
+}
+h1, h2, p {
+    font-family: 'Adys';
 }

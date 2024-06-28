@@ -11,18 +11,13 @@ class NavigationClass:
         html:str = self.asset(file_path)
         self.element.html(html)
 
-    def click(self, **event):
-        sender = event['sender']
+
+    def open_form(self, sender, **event):
         sender_id = sender.attr('id')
-        self.element.children().removeClass('nav-clicked')
-        sender.toggleClass('nav-clicked')
-        self.open_form(sender_id)
+        self.element.children().removeClass('active')
+        sender.addClass('active')
+        open_form(sender_id)
 
-    def open_form(self, form_name):
-        open_form(form_name)
-
-    def form_event(self, event):
-        pass
 
     def test(self):
         self.element.html('<span>test</span>')

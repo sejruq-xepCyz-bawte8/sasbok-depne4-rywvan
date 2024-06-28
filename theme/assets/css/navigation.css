@@ -1,0 +1,20 @@
+
+
+
+#navigation{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#navigation .active{
+    background-color: pink;
+}
+
+.nav-fa{
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.nav-text{
+    font-size: 10px;
+}

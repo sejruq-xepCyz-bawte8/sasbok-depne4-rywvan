@@ -4,6 +4,7 @@ from . import USER
 
 def main():
     print('main')
+    open_form('Forms_Reader.Today')
 def no_user():
     print('no user')
     open_form('Form_Welcome')
