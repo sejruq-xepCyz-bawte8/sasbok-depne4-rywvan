@@ -41,6 +41,15 @@ components:
   type: LinearPanel
   layout_properties: {slot: default}
   components:
+  - name: b_code
+    properties: {text: Генерирай код, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_code_click}
+  - name: tb_user_code
+    properties: {role: outlined, align: center, font_size: 32}
+    type: TextBox
+    layout_properties: {}
   - name: rt_user_info
     properties: {}
     type: RichText

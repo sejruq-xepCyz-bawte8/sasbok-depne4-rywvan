@@ -38,5 +38,9 @@ class Settings(SettingsTemplate):
       'navigation':self.slider_nav_size.value
     }
     SETTINGS.set(data=settings)
+
+  def b_code_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
    
     
