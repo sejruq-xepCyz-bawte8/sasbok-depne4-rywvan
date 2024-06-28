@@ -14,4 +14,9 @@ services:
   server_config: {}
 metadata: {title: ЧетеМе, description: CheteMe, logo_img: 'asset:chetemecover.webp'}
 startup: {type: module, module: App.Index}
-native_deps: {head_html: <div class="ch-nav" id=navigation></div>}
+native_deps:
+  head_html: |-
+    <link rel="stylesheet" href="_/theme/css/text.css">
+    <link rel="stylesheet" href="_/theme/css/navigation.css">
+    <link rel="stylesheet" href="_/theme/css/work_card.css">
+    <div class="ch-nav" id=navigation></div>

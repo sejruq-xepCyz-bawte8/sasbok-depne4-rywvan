@@ -23,4 +23,3 @@ components:
     properties: {text: ВЛЕЗ, enabled: false, align: center, role: outlined-button}
     type: Button
     event_bindings: {click: button_enter_click}
-
