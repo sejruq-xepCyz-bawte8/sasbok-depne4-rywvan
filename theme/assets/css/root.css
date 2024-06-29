@@ -44,3 +44,6 @@ html {
   .anvil-spinner-svg{
     display: none;
   }
+  .anvil-spinner{
+    z-index: -10;
+  }
