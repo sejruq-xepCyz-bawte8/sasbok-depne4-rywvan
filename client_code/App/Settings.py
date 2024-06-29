@@ -7,7 +7,7 @@ class SettingsClass:
         self.store = indexed_db.create_store('cheteme-user')
         settings = self.store.get('settings')
         self.settings = settings if settings else {
-            'navigation':2,
+            'navigation':3,
             'text':2
             }
         self.apply()

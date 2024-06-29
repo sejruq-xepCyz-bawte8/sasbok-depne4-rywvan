@@ -1,4 +1,6 @@
 {
     "today":"navigation/today.html",
-    "settings":"navigation/settings.html"
+    "today_author":"navigation/today_author.html",
+    "settings":"navigation/settings.html",
+    "author":"navigation/author.html"
 }

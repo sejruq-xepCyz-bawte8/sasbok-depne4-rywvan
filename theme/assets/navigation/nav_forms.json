@@ -1,5 +1,11 @@
 {
     "today":"Forms_Today.Today",
+    "charts":"Forms_Today.Charts",
+    "authors":"Forms_Today.Authors",
+    "bookmarks":"Forms_Today.Bookmarks",
     "settings":"Forms_Settings.Settings",
-    "devices":"Forms_Settings.Devices"
+    "devices":"Forms_Settings.Devices",
+    "drafts":"Forms_Author.Drafts",
+    "profile":"Forms_Author.Profile",
+    "published":"Forms_Author.Published"
 }
