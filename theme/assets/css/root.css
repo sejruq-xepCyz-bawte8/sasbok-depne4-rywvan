@@ -41,6 +41,6 @@ html {
   #error-indicator {
     display: none !important;
   }
-  #loadingSpinner{
+  #loadingSpinner, #loadingSpinner *{
 z-index: -10 !important;
   }
