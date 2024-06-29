@@ -1,0 +1,33 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:html/settings.html'}
+  event_bindings: {show: form_show}
+components:
+- name: lp_gui
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: default}
+  components:
+  - name: info
+    properties: {}
+    type: RichText
+  - name: label_text_size
+    properties: {text: Размер Текст}
+    type: Label
+    layout_properties: {}
+  - name: slider_text_size
+    properties: {max: 4, min: 1, start: '2', step: 0.25}
+    type: form:dep_p86ky6m5lr9fp:Slider
+    layout_properties: {}
+    event_bindings: {change: gui_settings_change}
+  - name: label_nav_size
+    properties: {text: Размер Навигация}
+    type: Label
+    layout_properties: {}
+  - name: slider_nav_size
+    properties: {max: 4, min: 1, start: '2', step: 0.25}
+    type: form:dep_p86ky6m5lr9fp:Slider
+    layout_properties: {}
+    event_bindings: {change: gui_settings_change}
+

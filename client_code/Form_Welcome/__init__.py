@@ -18,7 +18,7 @@ class Form_Welcome(Form_WelcomeTemplate):
     print('enter')
     info = '1' if self.check_age.checked else '0'
     response, status = API.request(api='new_user', info=info)
-    print(response, status)
+    
     if response:
       USER.set_user(response)
       NAVIGATION.set(file_path='html/nav_reader.html')

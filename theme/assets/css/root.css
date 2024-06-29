@@ -5,17 +5,35 @@ html {
     display: flex;
   }
 
-body {
-    width: 100%;
-    display: flex;
-    flex: 1;
-    flex-direction: column-reverse;
-}
-
-.anvil-root-container,
-#appGoesHere, #appGoesHere > .html-templated-panel{
+  body,
+  .anvil-root-container,
+  #appGoesHere {
     width: 100%;
     display: flex;
     flex: 1;
     flex-direction: column;
-}
+  }
+
+  body{
+    flex-direction: column-reverse;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  body *{
+    overflow: hidden;
+  }
+  
+  #appGoesHere {
+    height: calc(100svh - var(--nav-size) * 2);
+    padding: 8px;
+  }
+  #appGoesHere > .html-templated-panel {
+    flex: 1;
+    display: flex;
+  }
+
+  /*-hiding-All-scroolbars-*/
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera*/
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }

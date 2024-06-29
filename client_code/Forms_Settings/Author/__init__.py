@@ -1,9 +1,9 @@
-from ._anvil_designer import SettingsTemplate
+from ._anvil_designer import AuthorTemplate
 from anvil import *
-from ...App import NAVIGATION, SETTINGS, ASSETS
+from ...App import NAVIGATION, SETTINGS, ASSETS, API, USER
 
 
-class Settings(SettingsTemplate):
+class Author(AuthorTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
@@ -41,7 +41,20 @@ class Settings(SettingsTemplate):
     SETTINGS.set(data=settings)
 
   def b_code_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    ticket_data, status = API.request(api='merge_users_ticket')
+    if ticket_data and status == 200:
+      self.tb_user_code.text = ticket_data['ticket']
+    else:
+      self.tb_user_code.text = 'Неуспешна активация'
+      
+  def b_activate_code_click(self, **event_args):
+    ticket = self.tb_user_code.text
+    master_user, status = API.request(api='merge_users', info=ticket)
+    if master_user and status == 200:
+      USER.set_user(user=master_user)
+      self.tb_user_code.text = 'Успешна активация'
+    else:
+      self.tb_user_code.text = 'Неуспешна активация'
    
-    
+  def b_clean_click(self, **event_args):
+      USER.delete_user()

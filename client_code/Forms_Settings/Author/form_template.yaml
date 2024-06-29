@@ -6,7 +6,7 @@ container:
 components:
 - name: tabs
   properties:
-    tab_titles: [Настройки, Акаунт, Автор]
+    tab_titles: [Настройки, Устройства, Автор]
   type: form:dep_p86ky6m5lr9fp:Tabs
   layout_properties: {slot: default}
   event_bindings: {tab_click: tabs_tab_click}
@@ -57,7 +57,13 @@ components:
     properties: {text: Активирай код, role: outlined-button}
     type: Button
     layout_properties: {}
-    event_bindings: {click: b_code_click}
+    event_bindings: {click: b_activate_code_click}
+  - name: b_clean_user
+    properties: {text: Изтрии всичко, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_clean_click}
+
 
 - name: lp_author
   properties: {visible: false}
@@ -75,4 +81,19 @@ components:
     properties: {text: Активирай код, role: outlined-button}
     type: Button
     layout_properties: {}
-    event_bindings: {click: b_code_click}
+    event_bindings: {click: b_author_code_click}
+  - name: b_signup_author
+    properties: {text: Регистрация, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_signup_click}
+  - name: b_login_author
+    properties: {text: Вход, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_login_click}
+  - name: b_logout_author
+    properties: {text: Изход, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_logout_click}

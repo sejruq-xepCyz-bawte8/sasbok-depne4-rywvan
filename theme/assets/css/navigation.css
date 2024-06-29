@@ -1,6 +1,7 @@
 #navigation{
     display: flex;
     justify-content: space-evenly;
+    font-size: var(--nav-size);
 }
 
 
@@ -8,6 +9,7 @@
     font-size: var(--nav-size);
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .nav-fa{
   
@@ -15,6 +17,7 @@
 
 .nav-text{
     font-size: 10px;
+    color: gray;
 }
 
 

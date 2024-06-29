@@ -5,8 +5,8 @@ from . import NAVIGATION
 
 def main():
     print('main')
-    NAVIGATION.set(file_path='html/nav_reader.html')
-    open_form('Forms_Reader.Today')
+    NAVIGATION.set(nav_bar='today')
+    open_form('Forms_Today.Today')
 def no_user():
     print('no user')
     open_form('Form_Welcome')

@@ -16,6 +16,9 @@ class UserClass:
     def get_user(self):
         return self.user
     
+    def check_is_author(self):
+        return self.is_author
+
     def set_user(self, user:dict):
         if user and user.get('user_id'):
             self.user = user
@@ -25,3 +28,6 @@ class UserClass:
             self.age = user.get('age') if user else None
             self.is_author = user.get('is_author') if user else None
             self.store['user'] = user
+
+    def delete_user(self):
+        self.store.clear()
