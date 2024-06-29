@@ -5,7 +5,7 @@ from .Assets import AssetsClass
 from .User import UserClass
 from .Api import ChetemeApi
 from .Settings import SettingsClass
-print('init app')
+print('ЧетеМе')
 
 PRODUCTION = True
 VERSION = 1
