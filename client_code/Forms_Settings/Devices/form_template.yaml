@@ -63,8 +63,6 @@ components:
     type: Button
     layout_properties: {}
     event_bindings: {click: b_clean_click}
-
-
 - name: lp_author
   properties: {visible: false}
   type: LinearPanel

@@ -30,4 +30,3 @@ components:
     type: form:dep_p86ky6m5lr9fp:Slider
     layout_properties: {}
     event_bindings: {change: gui_settings_change}
-
