@@ -9,7 +9,7 @@ class NavigationClass:
         self.forms:dict = self.asset(file_path='navigation/nav_forms.json')
         self.navbars = self.asset(file_path='navigation/nav_bars.json')
         self.is_author = fn_is_author
-        print(self.navbars, self.forms)
+       
 
     def set(self, nav_bar:str):
         if self.is_author and self.navbars.get(f'{nav_bar}_author'):

@@ -20,7 +20,7 @@ class Form_Welcome(Form_WelcomeTemplate):
       self.button_enter.enabled = False
 
   def button_enter_click(self, **event):
-    print('enter')
+ 
     age = '1' if self.check_age.checked else '0'
     response, status = API.request_new_user(code=self.tb_code.text, age=age)
     
