@@ -2,11 +2,12 @@ import anvil.http
 
 class AssetsClass:
     def __init__(self, origin):
-        self.origin:str = origin
+        self.origin:str = origin if origin else 'https://chete.me'
         self.assets:dict = {}
+        
 
     def fetch(self, file_path:str, json:bool):
-        url = f'/_/theme/{file_path}'
+        url = f'{self.origin}/_/theme/{file_path}'
         try:
             response = anvil.http.request(url=url,method='GET',json=json)
         except:
