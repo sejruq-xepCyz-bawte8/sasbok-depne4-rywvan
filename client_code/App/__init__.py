@@ -7,7 +7,7 @@ from .Api import ChetemeApi
 from .Settings import SettingsClass
 print('init app')
 
-PRODUCTION = False
+PRODUCTION = True
 VERSION = 1
 SETTINGS = SettingsClass()
 
