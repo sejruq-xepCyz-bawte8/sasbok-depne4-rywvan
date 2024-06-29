@@ -6,7 +6,7 @@ class AssetsClass:
         self.assets:dict = {}
 
     def fetch(self, file_path:str, json:bool):
-        url = f'./_/theme/{file_path}'
+        url = f'/_/theme/{file_path}'
         try:
             response = anvil.http.request(url=url,method='GET',json=json)
         except:
