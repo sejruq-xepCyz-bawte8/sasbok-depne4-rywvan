@@ -2,7 +2,7 @@ import anvil.http
 
 class AssetsClass:
     def __init__(self, origin):
-        self.origin:str = origin if origin else 'https://chete.me'
+        self.origin:str = origin
         self.assets:dict = {}
         
 
