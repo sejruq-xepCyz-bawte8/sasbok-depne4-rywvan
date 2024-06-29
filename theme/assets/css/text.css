@@ -3,17 +3,17 @@
     src: url(/_/theme/fonts/ADYS.ttf) format('truetype')
   }
 
-h1{
+.reader h1{
     font-size: var(--h1-size);
     font-weight: bold;
+    font-family: 'Adys';
 }
-h2{
+.reader h2{
     font-size: var(--h2-size);
     font-weight: bold;
+    font-family: 'Adys';
 }
-p{
+.reader p{
     font-size: var(--p-size);
-}
-h1, h2, p {
     font-family: 'Adys';
 }

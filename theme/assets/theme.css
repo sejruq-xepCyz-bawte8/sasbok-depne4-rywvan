@@ -1,7 +1,3 @@
-/**
- This CSS implements the Material Design 3 look and feel for Anvil apps.
- **/
-
 /* Stop panel-cols cutting off drop shadows */
 .anvil-panel-col {
   padding-bottom: 10px;
@@ -99,18 +95,12 @@ a>.anvil-component-icon.right_edge-icon,
 /* Typography */
 body {
   font-family: Roboto, Noto, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 2rem;
   line-height: 1.4286;
   color: %color:On Surface%;
   background-color: %color:Background%;
-  min-height: calc(100vh - 56px)
 }
 
-@media print {
-  body {
-    background-color: white;
-  }
-}
 
 a, a:focus {
   text-decoration: none;
@@ -155,43 +145,6 @@ color: %color:On Primary Container%;
   padding-bottom: 0;
 }
 
-/* Page structure: App bar with optional left nav */
-.structure {
-/*   display: flex;
-  flex-direction: column; */
-  min-height: 100vh;
-  min-height: calc(100vh - %anvil-banner-height%);
-/*   height: 0; /* To make flex-grow work in IE */
-}
-
-/* However, this breaks the designer's height measurement. IE isn't supported for the designer, so set it back. */
-.designer .structure {
-  height: initial;
-}
-
-.app-bar {
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  top: %anvil-banner-height%;
-  right: 0;
-  left: 0;
-/*   flex: 0 0;
-  flex-basis: auto;
-  flex-basis: content; */
-}
-
-.nav-holder {
-  display: flex;
-/*   flex-grow: 1;
-  overflow-y: initial; */
-}
-
-@media print {
-  .nav-holder {
-    overflow-y: initial;
-  }
-}
 
 
 /* Mobile and desktop margins for content */
@@ -215,288 +168,6 @@ color: %color:On Primary Container%;
 .anvil-container-overflow {
   overflow-x: visible;
   overflow-y: visible;
-}
-
-/* Desktop: Nav bar pinned */
-
-.nav-holder {
-  display: flex;
-  flex-direction: row;
-}
-
-.nav-holder .left-nav {
-  position: fixed;
-/*   top: 0; */
-  left: 0;
-  flex-shrink: 0;
-  min-width: 240px;
-  max-width: 400px;
-}
-
-.nav-shield {
-  display: none;
-}
-
-/* Mobile: Nav bar is a modal overlay */
-
-@media(max-width:998px) {
-  html:not(.designer) .nav-holder {
-    display: block;
-  }
-  html:not(.designer) .nav-holder .left-nav {
-    top: 0;
-    bottom: 0;
-    width: calc(100% - 56px);
-    max-width: 360px;
-    z-index: 3;
-    border-right: none;
-    border-radius: 0 20px 20px 0;
-  /* 16dp */ box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-
-    display: none;
-    transition: right 0.5s;
-    height: 100%;
-  }
-  
-  html:not(.designer) .nav-holder .left-nav.shown {
-    display: block;
-  }
-  .nav-shield.shown {
-    display: block;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    background-color: rgba(0,0,0,0.2);
-  }
- }
-
-.nav-holder .left-nav, .left-nav-placeholder {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(0deg, %color:Primary Overlay 1%, %color:Primary Overlay 1%), %color:Background%;
-/*   border-right: 1px solid #e0e0e0; */
-  font-size: 14px;
-  font-weight: 500;
-  color: %color:On Surface Variant%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
-/*   top: 54px; */
-  height: calc(100% - 54px); /*todo: fix on mobile*/
-}
-
-
-.left-nav-placeholder {
-  display: block;
-  padding: 8px;
-  line-height: 1;
-  width: 58px;
-}
-.left-nav-placeholder .prompt {
-  display: inline-block;
-  white-space: nowrap;
-  transform: translate(-50%,0) rotate(-90deg) translate(-50%,0) translate(15px,16px);
-  padding: 16px 16px;
-  color: #888;
-  outline: 1px dotted #888;
-  visibility: hidden;
-}
-.anvil-highlight .left-nav-placeholder .prompt {
-  visibility: visible;
-}
-
-.left-nav > .column-panel {
-  padding: 24px 0;
-}
-.left-nav > .column-panel > .anvil-panel-section > .anvil-panel-section-container:not(.full-width-row) {
-  margin: 0 16px;
-  width: initial;
-  max-width: initial;
-  overflow-x: visible;
-}
-.left-nav > .column-panel > .anvil-panel-section:first-child > .anvil-panel-section-container.full-width-row {
-  margin-top: -24px;
-}
-.left-nav > .column-panel > .anvil-panel-section > .anvil-panel-section-container > .anvil-panel-section-gutter > .anvil-panel-row > .anvil-panel-col {
-  overflow-x: visible;
-}
-
-/* Make all the sidebar icons look nice */
-
-.left-nav .anvil-component-icon.left-icon {
-  width: 0;
-  margin-right: 24px;
-  position: relative;
-}
-
-.left-nav .anvil-component-icon.left_edge-icon, .left-nav .anvil-component-icon.right_edge-icon {
-  left: 16px;
-  padding-top: 2px;
-  width: 0;
-}
-
-.left-nav .anvil-component-icon.right_edge-icon {
-  left: initial;
-  right: 16px;
-  top: 0;
-  padding-top: 2px;
-}
-
-/* Sidebar links (and labels with edge icons) go +16px wider
-   (Top-level columns in ColumnPanels get overflow-x visible [see above]to enable this)
-*/
-
-.left-nav a, .left-nav .anvil-label, .left-nav .anvil-label.left_edge-icon, .left-nav .anvil-label.right_edge-icon {
-  color: %color:On Surface Variant%;
-  margin: 0 -8px;
-  padding: 4px 16px;
-  border-radius: 100px;
-}
-
-.left-nav .anvil-component.left_edge-icon {
-  padding-left: 72px;
-}
-
-.left-nav a:hover, .app-bar a:hover, .app-bar a:active {
-  background: linear-gradient(0deg, %color:Dark Overlay 1%, %color:Dark Overlay 1%), linear-gradient(0deg, %color:Primary Overlay 1%, %color:Primary Overlay 1%), %color:Background%;
-  opacity: 100%;
-}
-
-.left-nav a.anvil-role-selected, .app-bar a.anvil-role-selected  {
-  background-color: %color:Secondary Container%;
-  color: %color:On Secondary Container%;
-}
-
-.left-nav a.anvil-role-selected:hover, .app-bar a.anvil-role-selected:hover {
-  background: linear-gradient(0deg, %color:Dark Overlay 1%, %color:Dark Overlay 1%), %color:Secondary Container%;
-}
-
-.designer .nav-holder .left-nav {
-  min-width: 56px;
-}
-
-.designer .nav-holder .left-nav > .anvil-component {
-  min-width: 160px;
-}
-
-.nav-holder .left-nav > .anvil-component {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.nav-holder {
-  flex: 1;
-}
-
-.content {
-  flex: 1;
-  overflow-x: hidden;
-}
-
-/* Components: App Bar */
-.app-bar {
-  min-height: 56px;
-  padding: 0 16px 0 72px;
-  position: fixed;
-  width: 100%;
-  
-  line-height: 40px;
-  font-size: 20px;
-
-  background-color: %color:Surface%;
-  transition: background-color 250ms;
-  -webkit-transition: background-color 250ms;
-  -moz-transition: background-color 250ms;
-  -o-transition: background-color 250ms;
-  
-  z-index: 1;
-}
-
-.app-bar.scrolled {
-  background: linear-gradient(0deg, %color:Primary Overlay 2%, %color:Primary Overlay 2%), %color:Background%;
-  transition: background 250ms;
-  -webkit-transition: background 250ms;
-  -moz-transition: background 250ms;
-  -o-transition: background 250ms;
-}
-
-.app-bar .anvil-component {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.app-bar > .sidebar-toggle { display:block; float:left;  margin-left: -61px; }
-.app-bar > .top-left-btn { float: left; margin-left: -60px; margin-right: -40px; }
-.app-bar > .title { float: left; }
-.app-bar > .title > .placeholder { outline: 1px dotted; padding-left: 16px; padding-right: 16px; margin: 8px 8px 0; display:none; }
-.app-bar > .app-bar-nav { float: right; font-weight: normal; }
-.app-bar > .app-bar-nav .placeholder { margin-top: 8px; padding: 0 8px; }
-.anvil-highlight .app-bar > .app-bar-nav .placeholder { outline: 1px dotted #ccc; }
-.anvil-highlight .app-bar > .title > .placeholder { display:block; }
-
-.app-bar a, .app-bar .anvil-component {
-  display: block;
-  color: %color:On Surface%;
-  line-height: 30px;
-  min-width: 30px;
-  min-height: 30px;
-  margin: 5px 4px 0;
-}
-
-.app-bar .title .anvil-component {
-  margin-left: 0;
-}
-
-.app-bar input.anvil-component, .app-bar .anvil-component input {
-  line-height: 30px;
-  color: white;
-}
-
-.app-bar select.form-control {
-  height: 43px; /* 30px line height + 12px padding + 1px border */
-}
-
-.app-bar .anvil-component-icon-present .anvil-component-icon, .app-bar .sidebar-toggle .fa {
-  width: 30px;
-  text-align: center;
-}
-
-/* Don't put spacing on the top-level container (eg FlowPanel) */
-.app-bar-nav > .anvil-container {
-  margin: 0;
-  padding: 0;
-  min-height: 56px;
-}
-
-.anvil-highlight .app-bar-nav > .anvil-container:not(.has-components):not(a) {
-  outline: 1px dotted #fff;
-  margin-top: 8px;
-  min-height: 40px;
-  padding: 5px 8px;
-}
-
-.anvil-highlight .app-bar-nav > .anvil-container:not(.has-components):not(a)::after {  
-  content: "Drop Links here"
-}
-
-/* Rejig margin vs padding to give links the halo */
-.app-bar a, .app-bar a.anvil-component {
-  padding: 5px;
-  margin: 8px 0 0;
-  border-radius: 20px;
-}
-
-.app-bar a .link-text {
-  padding: 0 4px;
-}
-.app-bar a.has-text .anvil-component-icon.left {
-  margin-right: 4px;
-}
-.app-bar a.has-text .anvil-component-icon.right {
-  margin-left: 4px;
 }
 
 
@@ -586,8 +257,8 @@ button.close > span, button.close {
 /* Component: Button */
 
 .btn, .btn-default, .file-loader>label {
-  border-radius: 100px;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 2rem;
   font-weight: 500;
   padding: 10px 24px;
   min-height: 40px;

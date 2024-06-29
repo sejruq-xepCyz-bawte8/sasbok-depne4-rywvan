@@ -1,4 +1,5 @@
 {
     "today":"Forms_Today.Today",
-    "settings":"Forms_Settings.Settings"
+    "settings":"Forms_Settings.Settings",
+    "devices":"Forms_Settings.Devices"
 }

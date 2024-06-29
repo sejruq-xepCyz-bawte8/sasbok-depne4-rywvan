@@ -1,6 +1,7 @@
 from ._anvil_designer import Form_WelcomeTemplate
 from anvil import *
 from ..App import ASSETS, API, USER, NAVIGATION
+from ..Helpers import zod_code
 
 class Form_Welcome(Form_WelcomeTemplate):
   def __init__(self, **properties):
@@ -11,17 +12,25 @@ class Form_Welcome(Form_WelcomeTemplate):
   def form_show(self, **event):
     self.rich_welcome.content = ASSETS.get('md/welcome.md')
 
-  def choise_change(self, **event):
-    self.button_enter.enabled = self.check_terms.checked
+  def input_change(self, **event):
+    zod_code(self.tb_code)
+    if self.check_terms.checked and self.tb_code.valid:
+      self.button_enter.enabled = True
+    else:
+      self.button_enter.enabled = False
 
   def button_enter_click(self, **event):
     print('enter')
-    info = '1' if self.check_age.checked else '0'
-    response, status = API.request(api='new_user', info=info)
+    age = '1' if self.check_age.checked else '0'
+    response, status = API.request_new_user(code=self.tb_code.text, age=age)
     
     if response:
+      Notification("Успешен вход 🥳", style='success').show()
+
       USER.set_user(response)
-      NAVIGATION.set(file_path='html/nav_reader.html')
-      open_form('Forms_Reader.Today')
+      NAVIGATION.set(nav_bar='today')
+      open_form('Forms_Today.Today')
+    else:
+      Notification("Неуспешен вход 😭", style='danger').show()
 
 

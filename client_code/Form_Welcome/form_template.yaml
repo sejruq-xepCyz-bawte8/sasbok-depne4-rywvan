@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/welcome.html'}
+  properties: {html: '@theme:html/form.html'}
   event_bindings: {show: form_show}
 components:
 - name: rich_welcome
@@ -14,11 +14,12 @@ components:
 - name: check_terms
   properties: {checked_color: '#77bb41', text_pre: Приемам Условията, align: right, spacing_below: medium}
   type: form:dep_p86ky6m5lr9fp:Switch
-  event_bindings: {change: choise_change}
+  event_bindings: {change: input_change}
 - name: tb_code
   properties: {role: outlined, placeholder: регистрационен код}
   type: TextBox
   layout_properties: {slot: default}
+  event_bindings: {change: input_change}
 - name: button_enter
   properties: {text: ВЛЕЗ, enabled: false, align: center, role: outlined-button}
   type: Button

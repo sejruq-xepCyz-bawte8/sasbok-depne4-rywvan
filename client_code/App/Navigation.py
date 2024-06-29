@@ -36,5 +36,5 @@ class NavigationClass:
 
 
 
-    def test(self):
-        self.element.html('<span>test</span>')
+    def delete(self):
+        self.element.html('')

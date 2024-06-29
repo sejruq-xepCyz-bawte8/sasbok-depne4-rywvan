@@ -1,44 +1,18 @@
 from ._anvil_designer import DevicesTemplate
 from anvil import *
-from ...App import NAVIGATION, SETTINGS, ASSETS, API, USER
-
+from ...App import NAVIGATION, ASSETS, API, USER
+from ...Helpers import zod_device_code
 
 class Devices(DevicesTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
-    self.settings = SETTINGS.get()
-    
+ 
     self.open_form = NAVIGATION.open_form
 
   def form_show(self, **event):
-    self.rt_settings_info.content = ASSETS.get(file_path='md/settings.md')
-    self.rt_user_info.content = ASSETS.get(file_path='md/settings_user.md')
-    self.rt_author_info.content = ASSETS.get(file_path='md/settings_author.md')
-    self.slider_text_size.value = self.settings['text']
-    self.slider_nav_size.value = self.settings['navigation']
+    self.rt_user_info.content = ASSETS.get(file_path='md/settings_devices.md')
 
-
-  def tabs_tab_click(self, tab_index, tab_title, **event_args):
-    if tab_index == 0:
-      self.lp_gui.visible = True
-      self.lp_user.visible = False
-      self.lp_author.visible = False
-    elif tab_index == 1:
-      self.lp_gui.visible = False
-      self.lp_user.visible = True
-      self.lp_author.visible = False
-    else:
-      self.lp_gui.visible = False
-      self.lp_user.visible = False
-      self.lp_author.visible = True
-
-  def gui_settings_change(self, handle, **event_args):
-    settings = {
-      'text':self.slider_text_size.value,
-      'navigation':self.slider_nav_size.value
-    }
-    SETTINGS.set(data=settings)
 
   def b_code_click(self, **event_args):
     ticket_data, status = API.request(api='merge_users_ticket')
@@ -57,4 +31,19 @@ class Devices(DevicesTemplate):
       self.tb_user_code.text = 'Неуспешна активация'
    
   def b_clean_click(self, **event_args):
-      USER.delete_user()
+      delete = alert(content="Това ще изчисти устройството от вашите данни.",
+               title="Изтриване устройство",
+               large=True,
+               buttons=[
+                 ("Изтрии", True),
+                 ("Откажи", False)
+               ])
+      if delete:
+        USER.delete_user()
+        NAVIGATION.delete()
+        open_form('Form_Welcome')
+
+  def tb_user_code_change(self, **event_args):
+    zod_device_code(self.tb_user_code)
+    self.b_activate_code.enabled = self.tb_user_code.valid
+    
