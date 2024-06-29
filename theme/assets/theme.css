@@ -508,8 +508,8 @@ input.anvil-component::placeholder, textarea.anvil-component::placeholder  {
 
 input.anvil-component:hover, input.anvil-component:focus, textarea.anvil-component:hover, textarea.anvil-component:focus, 
 .anvil-component select:hover, .anvil-component select:focus, .anvil-datepicker input:hover, .anvil-datepicker input:focus {
-  border-bottom: 2px solid %color:Primary%;
-  padding-bottom: 7px;
+  /*border-bottom: 1px solid %color:Primary%;
+  padding-bottom: 7px;*/
   box-shadow: none;
 }
 
@@ -523,9 +523,10 @@ textarea.anvil-component.anvil-role-input-error[disabled], input.anvil-component
   padding-bottom: 8px;
 }
 
+/*
 .anvil-component select:hover, .anvil-component select:focus {
   padding-bottom: 3px;
-}
+}*/
 
 /* Outlined role for text areas, text boxes, drop downs and date pickers */
 textarea.anvil-component.anvil-role-outlined, input.anvil-component.anvil-role-outlined, 
@@ -536,20 +537,21 @@ textarea.anvil-component.anvil-role-outlined, input.anvil-component.anvil-role-o
   color: %color:On Surface%;
 }
 
+
 textarea.anvil-component.anvil-role-outlined:hover, textarea.anvil-component.anvil-role-outlined:focus, 
 input.anvil-component.anvil-role-outlined:hover, input.anvil-component.anvil-role-outlined:focus,
 .anvil-component.anvil-role-outlined select:hover, .anvil-component.anvil-role-outlined select:focus,
 .anvil-datepicker.anvil-role-outlined input:hover, .anvil-datepicker.anvil-role-outlined input:focus{
-  border: 2px solid %color:Primary%;
-  padding: 7px 15px;
+  border: 1px solid %color:Primary%;
+  
 }
 
 textarea.anvil-component.anvil-role-outlined-error:hover, textarea.anvil-component.anvil-role-outlined-error:focus, 
 input.anvil-component.anvil-role-outlined-error:hover, input.anvil-component.anvil-role-outlined-error:focus,
 .anvil-component.anvil-role-outlined-error select:hover, .anvil-component.anvil-role-outlined-error select:focus,
 .anvil-datepicker.anvil-role-outlined-error input:hover, .anvil-datepicker.anvil-role-outlined-error input:focus{
-  border: 2px solid %color:Error%;
-  padding-bottom: 6px;
+  border: 1px solid %color:Error%;
+  
 }
 
 textarea.anvil-component.anvil-role-outlined[disabled], input.anvil-component.anvil-role-outlined[disabled], 

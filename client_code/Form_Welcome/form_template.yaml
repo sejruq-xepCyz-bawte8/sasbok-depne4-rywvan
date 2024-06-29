@@ -12,11 +12,11 @@ components:
   properties: {text_pre: Пълнолетие, align: right, spacing_below: medium}
   type: form:dep_p86ky6m5lr9fp:Switch
 - name: check_terms
-  properties: {checked_color: '#77bb41', text_pre: Приемам Условията, align: right, spacing_below: medium}
+  properties: {checked_color: '#77bb41', text_pre: Приемам Условията, align: right, spacing_below: medium, foreground: salmon}
   type: form:dep_p86ky6m5lr9fp:Switch
   event_bindings: {change: input_change}
 - name: tb_code
-  properties: {role: outlined, placeholder: код за вход}
+  properties: {role: outlined, placeholder: код за вход, border: 1px solid LightSalmon}
   type: TextBox
   layout_properties: {slot: default}
   event_bindings: {change: input_change}

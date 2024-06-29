@@ -14,6 +14,9 @@ class Form_Welcome(Form_WelcomeTemplate):
 
   def input_change(self, **event):
     zod_code(self.tb_code)
+    self.check_terms.foreground = '' if self.check_terms.checked else 'salmon'
+    self.tb_code.border = '' if self.tb_code.valid else '1px solid LightSalmon'
+    
     if self.check_terms.checked and self.tb_code.valid:
       self.button_enter.enabled = True
     else:
