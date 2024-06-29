@@ -38,7 +38,9 @@ html {
   /*clean anvil*/
   #anvil-badge,
   #anvil-header,
-  #loadingSpinner,
   #error-indicator {
     display: none !important;
+  }
+  #loadingSpinner{
+
   }
