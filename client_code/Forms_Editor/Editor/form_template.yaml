@@ -3,3 +3,8 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/editor.html'}
   event_bindings: {show: form_show}
+components:
+- name: quill_1
+  properties: {}
+  type: form:dep_p86ky6m5lr9fp:Quill
+  layout_properties: {slot: default}
