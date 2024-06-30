@@ -3,3 +3,28 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/cover.html'}
   event_bindings: {show: form_show}
+components:
+- name: chip_1
+  properties: {}
+  type: form:dep_p86ky6m5lr9fp:Chip
+  layout_properties: {slot: default}
+- name: autocomplete_1
+  properties: {}
+  type: form:dep_p86ky6m5lr9fp:Autocomplete
+  layout_properties: {slot: default}
+- name: outlined_1
+  properties: {role: outlined}
+  type: TextBox
+  layout_properties: {slot: default}
+- name: file_loader_1
+  properties: {}
+  type: FileLoader
+  layout_properties: {slot: default}
+- name: button_1
+  properties: {text: button_1}
+  type: Button
+  layout_properties: {slot: default}
+- name: drop_down_1
+  properties: {}
+  type: DropDown
+  layout_properties: {slot: default}

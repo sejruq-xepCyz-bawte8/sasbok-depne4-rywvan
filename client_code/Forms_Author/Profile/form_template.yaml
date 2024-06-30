@@ -3,3 +3,12 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/author_profile.html'}
   event_bindings: {show: form_show}
+components:
+- name: outlined_1
+  properties: {role: outlined}
+  type: TextBox
+  layout_properties: {slot: default}
+- name: outlined_button_1
+  properties: {text: outlined_button_1, role: outlined-button}
+  type: Button
+  layout_properties: {slot: default}

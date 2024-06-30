@@ -3,3 +3,12 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/genres.html'}
   event_bindings: {show: form_show}
+components:
+- name: chip_1
+  properties: {}
+  type: form:dep_p86ky6m5lr9fp:Chip
+  layout_properties: {slot: default}
+- name: autocomplete_1
+  properties: {}
+  type: form:dep_p86ky6m5lr9fp:Autocomplete
+  layout_properties: {slot: default}
