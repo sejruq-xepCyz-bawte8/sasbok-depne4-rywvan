@@ -85,3 +85,7 @@ class Editor(EditorTemplate):
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()
 
+  def form_hide(self, **event_args):
+    """This method is called when the form is removed from the page"""
+    pass
+

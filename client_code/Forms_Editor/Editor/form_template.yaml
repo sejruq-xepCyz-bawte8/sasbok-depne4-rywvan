@@ -2,7 +2,7 @@ is_package: true
 container:
   type: HtmlTemplate
   properties: {html: '@theme:html/editor.html'}
-  event_bindings: {show: form_show}
+  event_bindings: {show: form_show, hide: form_hide}
 components:
 - name: quill
   properties: {}
