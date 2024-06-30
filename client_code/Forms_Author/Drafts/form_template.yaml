@@ -5,7 +5,11 @@ container:
   event_bindings: {show: form_show}
 components:
 - name: b_editor
-  properties: {text: Редактор, role: outlined-button}
+  properties: {text: Нова творба, role: outlined-button}
   type: Button
-  layout_properties: {slot: default}
+  layout_properties: {slot: new_work}
   event_bindings: {click: b_editor_click}
+- name: delete_choise
+  properties: {text_pre: Изтрии, align: right, spacing_below: medium, checked_color: '#E74C3C'}
+  type: form:dep_p86ky6m5lr9fp:Switch
+  layout_properties: {slot: delete_work}

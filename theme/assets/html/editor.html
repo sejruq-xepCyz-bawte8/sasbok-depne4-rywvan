@@ -1,4 +1,75 @@
-<div class="ch-form">
-    <div>Редактор</div>
-    <div anvil-slot-repeat="default" class="anvil"></div>
+<div class="editor-form reader">
+    <div anvil-slot-repeat="quill" class="editor"></div>
 </div>
+
+<style>
+    .editor-form{
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        flex: 1;
+        overflow: hidden !important;
+    }
+    .editor-form *{
+        overflow: hidden !important;
+    }
+    .editor{
+        display: flex;
+        flex: 1;
+        overflow: hidden !important;
+    }
+
+    .editor > div {
+        display: flex;
+        flex: 1;
+        flex-direction: row-reverse !important;
+        overflow: hidden !important;
+    }
+
+
+
+    .ql-container{
+        border: 0px solid transparent !important;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden !important;
+    
+    }
+    .ql-toolbar{
+        border: 0px solid transparent !important;
+        display: flex;
+        padding: 0px !important;
+        margin: 0px !important;
+        overflow: hidden !important;
+  
+    }
+
+
+    .ql-editor{
+        width: 100%;
+        max-width: 100ch !important;
+        align-self: center !important;
+        overflow-y: scroll !important;
+
+    }
+    .ql-formats{
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between !important;
+        margin: 0px !important;
+    }
+    .editor-form svg{
+        transform: scale(1.4);
+        overflow: hidden !important;
+    }
+
+    .editor-form p {
+border-bottom: 0.5px dashed rgb(185, 185, 185);
+    }
+
+    #info.saved{
+        color: green;
+        font-size: bold;
+    }
+</style>

@@ -8,7 +8,7 @@ class Devices(DevicesTemplate):
     super().__init__(**properties)
     self.init_components(**properties)
  
-    self.open_form = NAVIGATION.open_form
+    self.open_form = NAVIGATION.nav_open_form
 
   def form_show(self, **event):
     self.rt_user_info.content = ASSETS.get(file_path='md/settings_devices.md')

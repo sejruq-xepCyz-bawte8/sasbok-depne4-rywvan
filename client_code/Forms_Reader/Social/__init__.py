@@ -7,7 +7,7 @@ class Social(SocialTemplate):
     super().__init__(**properties)
     self.init_components(**properties)
     
-    self.open_form = NAVIGATION.open_form
+    self.open_form = NAVIGATION.nav_open_form
 
   def form_show(self, **event):
     pass

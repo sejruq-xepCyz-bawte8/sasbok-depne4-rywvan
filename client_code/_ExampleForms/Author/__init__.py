@@ -9,7 +9,7 @@ class Author(AuthorTemplate):
     self.init_components(**properties)
     self.settings = SETTINGS.get()
     
-    self.open_form = NAVIGATION.open_form
+    self.open_form = NAVIGATION.nav_open_form
 
   def form_show(self, **event):
     self.rt_settings_info.content = ASSETS.get(file_path='md/settings.md')

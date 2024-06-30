@@ -1,4 +1,15 @@
 <div class="ch-form">
-    <div>Чернови</div>
-    <div anvil-slot-repeat="default" class="anvil"></div>
+    <div id="editor-toolbar">
+        <div anvil-slot-repeat="new_work" class="anvil"></div>
+        <div anvil-slot-repeat="delete_work" class="anvil"></div>
+    </div>
+
+    <div id="editor-drafts"></div>
 </div>
+
+<style>
+    #editor-toolbar{
+        display: flex;
+        justify-content: space-around;
+    }
+</style>

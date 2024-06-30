@@ -14,11 +14,11 @@ class WorksClass:
 
     def get_example_cover(self):
         example_data = self.get_asset('json/work_data_example.json')
-        html = self.make_html(example_data)
+        html = self.make_cover(example_data)
         return html
     
     
-    def make_html(self, data:dict)->str:
+    def make_cover(self, data:dict)->str:
         data['mask'] = self.parse_mask_bg(data)
         data['image'] = '' if not data['image'] else data['image']
         genres:list = data['genres']
@@ -26,10 +26,11 @@ class WorksClass:
         icons:list = genres[1:] + keywords
         
         for i in range(6):
-            if len(icons) >= i:
+            if icons and len(icons) >= i:
                 fa = self.get_icon(icons[i])
                 data[f'icon{i+1}'] = fa if fa else ''
-
+            else:
+                data[f'icon{i+1}'] = ''
         html = self.cover_template.format(**data)
         return html
 

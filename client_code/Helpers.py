@@ -1,5 +1,6 @@
 from anvil_extras import zod as z
 import re
+from anvil_extras.hashlib import sha256
 
 schema_url = z.coerce.string().min(3).regex(re.compile(r"^[a-zA-Z\d\-_~]+$")) #@$!%*?&#
 schema_title = z.coerce.string().min(3)
@@ -21,3 +22,15 @@ def zod_code(sender):
 
 def zod_device_code(sender):
     sender.valid = schema_device_code.safe_parse(sender.text).success
+
+
+
+
+
+def hash_args(*args)->str:
+    string = ''
+    for arg in args:
+        string += str(arg)
+    hash_hex = sha256(string)
+
+    return hash_hex

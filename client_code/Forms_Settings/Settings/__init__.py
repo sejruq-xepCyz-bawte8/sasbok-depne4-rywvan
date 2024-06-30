@@ -8,7 +8,7 @@ class Settings(SettingsTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
-    self.open_form = NAVIGATION.open_form
+    self.open_form = NAVIGATION.nav_open_form
 
     self.settings = SETTINGS.get()
     

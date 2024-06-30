@@ -29,3 +29,14 @@
     margin-inline-start: var(--p-size);
     margin-inline-end: 0px;
 }
+.reader blockquote{
+    font-size: var(--p-size);
+    font-weight: bold;
+    line-height:var(--p-line);
+    font-family: 'Adys';
+    margin: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: var(--p-size);
+    margin-inline-end: 0px; 
+}

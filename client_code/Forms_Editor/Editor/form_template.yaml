@@ -4,7 +4,8 @@ container:
   properties: {html: '@theme:html/editor.html'}
   event_bindings: {show: form_show}
 components:
-- name: quill_1
+- name: quill
   properties: {}
   type: form:dep_p86ky6m5lr9fp:Quill
-  layout_properties: {slot: default}
+  layout_properties: {slot: quill}
+  event_bindings: {text_change: quill_change}
