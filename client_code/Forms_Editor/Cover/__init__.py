@@ -3,7 +3,7 @@ from anvil import *
 from ...App import NAVIGATION, EDITOR
 
 class Cover(CoverTemplate):
-  def __init__(self, work_id, **properties):
+  def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
     
@@ -17,5 +17,9 @@ class Cover(CoverTemplate):
 
 
 
+  def save_buffer(self):
+    EDITOR.save_work(self.work)
+    self.info.addClass('saved')
+  
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()

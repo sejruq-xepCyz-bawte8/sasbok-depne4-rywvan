@@ -39,6 +39,7 @@ class EditorClass:
 
     def save_work(self, work:dict):
         work_id = work['data']['work_id']
+        work['data']['mtime'] = time()
         self.store[work_id] = work
         self.all_work_ids = list(self.store)
 

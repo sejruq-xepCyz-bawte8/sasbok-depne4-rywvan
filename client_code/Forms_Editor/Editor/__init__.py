@@ -79,11 +79,9 @@ class Editor(EditorTemplate):
     
 
   def save_buffer(self):
-  
     EDITOR.save_work(self.work)
     self.info.addClass('saved')
     
-
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()
 
