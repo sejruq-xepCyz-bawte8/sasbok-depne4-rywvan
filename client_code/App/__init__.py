@@ -5,6 +5,8 @@ from .Assets import AssetsClass
 from .User import UserClass
 from .Api import ChetemeApi
 from .Settings import SettingsClass
+from .Works import WorksClass
+from .Awesome import AwesomeClass
 print('ЧетеМе')
 
 PRODUCTION = True
@@ -21,5 +23,7 @@ NAVIGATION = NavigationClass(fn_asset_get=ASSETS.get, fn_is_author=USER.check_is
 
 API = ChetemeApi(get_user=USER.get_user, origin=ORIGIN_API)
 
+AW = AwesomeClass(fn_asset_get=ASSETS.get)
+WORKS = WorksClass(fn_asset_get=ASSETS.get, fn_awesome_get=AW.get)
 
     

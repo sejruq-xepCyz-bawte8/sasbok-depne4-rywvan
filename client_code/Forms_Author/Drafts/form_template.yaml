@@ -3,3 +3,9 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/drafts.html'}
   event_bindings: {show: form_show}
+components:
+- name: b_editor
+  properties: {text: Редактор, role: outlined-button}
+  type: Button
+  layout_properties: {slot: default}
+  event_bindings: {click: b_editor_click}

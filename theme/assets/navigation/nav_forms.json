@@ -7,5 +7,9 @@
     "devices":"Forms_Settings.Devices",
     "drafts":"Forms_Author.Drafts",
     "profile":"Forms_Author.Profile",
-    "published":"Forms_Author.Published"
+    "published":"Forms_Author.Published",
+    "cover":"Forms_Editor.Cover",
+    "genres":"Forms_Editor.Genres",
+    "editor":"Forms_Editor.Editor",
+    "publish":"Forms_Editor.Publish"
 }

@@ -1,0 +1,5 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:html/reader.html'}
+  event_bindings: {show: form_show}

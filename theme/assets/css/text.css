@@ -7,13 +7,25 @@
     font-size: var(--h1-size);
     font-weight: bold;
     font-family: 'Adys';
+    margin: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
 }
 .reader h2{
     font-size: var(--h2-size);
     font-weight: bold;
     font-family: 'Adys';
+    margin: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
 }
 .reader p{
     font-size: var(--p-size);
+    line-height:var(--p-line);
     font-family: 'Adys';
+    margin: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: var(--p-size);
+    margin-inline-end: 0px;
 }

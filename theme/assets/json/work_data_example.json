@@ -1,0 +1,20 @@
+{
+    "work_id": "1000",
+    "author_id":"1000",
+    "words": 0,
+    "size":0,
+    "title":"Заглавие",
+    "image":0, 
+    "font":"Adys",
+    "color":"#17202A",
+    "bg_color":"#FEF9E7",
+    "m_color":"#FFFFFF",
+    "m_opacity":0,
+    "genres":["проза", "разказ", "фантастика", "научна"],
+    "keywords":["донир", "дракон", "база"],
+    "ctime":0,
+    "mtime":0,
+    "ptime":0,
+    "version":0,
+    "uri":""
+  }

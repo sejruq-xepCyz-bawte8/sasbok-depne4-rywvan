@@ -1,0 +1,40 @@
+<div class="ch-form reader">
+    <div>
+        <div>Текст</div>
+        <div anvil-slot-repeat="text" class="anvil"></div>
+    </div>
+    <div>
+        <div>Междуредие</div>
+        <div anvil-slot-repeat="line" class="anvil"></div>
+    </div>
+    <div>
+        <div>Навигация</div>
+        <div anvil-slot-repeat="navigation" class="anvil"></div>
+    </div>
+    <div>
+        <div>Корици</div>
+        <div anvil-slot-repeat="cover" class="anvil"></div>
+    </div>
+    
+    <div class="example">
+        <div class="example-text">
+            <h1>Заглавие 1</h1>
+            <h1>Заглавие 2</h1>
+            <p>Параграф1</p>
+            <p>Параграф2</p>
+            <p>Параграф3</p>
+        </div>
+        <div id="cover"></div>
+    </div>
+    
+    
+</div>
+<style>
+    .example{
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+</style>

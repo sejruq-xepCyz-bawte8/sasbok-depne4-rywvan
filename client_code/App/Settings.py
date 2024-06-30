@@ -6,9 +6,11 @@ class SettingsClass:
     def __init__(self):
         self.store = indexed_db.create_store('cheteme-user')
         settings = self.store.get('settings')
-        self.settings = settings if settings else {
+        self.settings = settings if settings and settings.get('line') else {
             'navigation':3,
-            'text':2
+            'text':2,
+            'cover': 150,
+            'line':1.1,
             }
         self.apply()
 
@@ -18,10 +20,16 @@ class SettingsClass:
     def apply(self):
         style = f"""
         :root {{
-  --h1-size: {self.settings['text'] * 1.5}rem;
-  --h2-size: {self.settings['text'] * 1.25}rem;
-  --p-size: {self.settings['text']}rem;
-  --nav-size: {self.settings['navigation']}rem;
+    --h1-size: {self.settings['text'] * 1.2}rem;
+    --h2-size: {self.settings['text'] * 1.1}rem;
+    --p-size: {self.settings['text']}rem;
+    --p-line: {self.settings['line']};
+    --nav-size: {self.settings['navigation']}rem;
+    --cover-size: {self.settings['cover']}px;
+    --cover-radius: {self.settings['cover'] / 20}px;
+    --cover-font-size: {self.settings['cover'] / 7}px;
+    --cover-icon-size: {self.settings['cover'] / 10}px;
+    --cover-gap: {self.settings['cover'] / 30}px
 }}
 """
         element = document.getElementById('user-settings')
