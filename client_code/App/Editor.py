@@ -6,8 +6,8 @@ from random import randint
 
 
 class EditorClass:
-    def __init__(self, fn_asset_get, fn_user_get, production:bool=True):
-        self.production = production
+    def __init__(self, fn_asset_get, fn_user_get):
+        #self.production = production
         self.store = indexed_db.create_store('cheteme-editor')
         self.user = fn_user_get()
         self.author_id = self.user.get('author_id') if self.user and self.user.get('is_author') else None

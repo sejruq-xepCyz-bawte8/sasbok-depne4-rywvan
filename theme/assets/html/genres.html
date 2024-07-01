@@ -1,4 +1,25 @@
-<div class="ch-form">
-    <div>Жанрове</div>
-    <div anvil-slot-repeat="default" class="anvil"></div>
+<div class="ch-form editor-genres">
+    <div id="editor-genres-pane">
+        <div anvil-slot-repeat="default" class="anvil"></div>
+    </div>
+    <div id="keywords"></div>
 </div>
+<style>
+.editor-genres{
+    display: flex;
+    flex-direction: row;
+}
+#editor-genres-pane{
+    flex: 1;
+}
+#keywords{
+    overflow-y: scroll;
+}
+
+.keyword-icon{
+    font-size: 16px;
+}
+.keyword-text{
+    font-size: 12px;
+}
+</style>

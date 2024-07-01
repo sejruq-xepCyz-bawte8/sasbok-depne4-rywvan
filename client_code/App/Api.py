@@ -61,7 +61,7 @@ class ChetemeApi:
         'Cheteme-Code': code,
         'Cheteme-Age': age,
     }
-        
+        print(headers)
         try:
             response = anvil.http.request(
                                     url=self.origin,

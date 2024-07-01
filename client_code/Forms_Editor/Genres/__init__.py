@@ -1,6 +1,7 @@
 from ._anvil_designer import GenresTemplate
 from anvil import *
-from ...App import NAVIGATION, EDITOR
+from anvil.js.window import jQuery as jQ
+from ...App import NAVIGATION, EDITOR, ASSETS, AW
 
 class Genres(GenresTemplate):
   def __init__(self, **properties):
@@ -11,9 +12,23 @@ class Genres(GenresTemplate):
     self.open_form = NAVIGATION.nav_open_form
 
   def form_show(self, **event):
-    pass
+    self.info = jQ('#info')
+    self.info.text('Икони')
+    self.sidebar = jQ('#keywords')
+    self.sidebar.toggle()
+    self.buld_sidebar()
+
+  def buld_sidebar(self):
+    keywords = ASSETS.get('json/awesome.json')
+    icon = ASSETS.get('html/icon.html')
+    for key, value in keywords.items():
+      fa = AW.get(key)
+      icon_html = icon.format(bg=key, fa=value)
+      self.sidebar.append(icon_html)
 
 
+  def form_hide(self, **event_args):
+    self.save_buffer()
 
   def save_buffer(self):
     EDITOR.save_work(self.work)

@@ -2,13 +2,25 @@ is_package: true
 container:
   type: HtmlTemplate
   properties: {html: '@theme:html/genres.html'}
-  event_bindings: {show: form_show}
+  event_bindings: {show: form_show, hide: form_hide}
 components:
+- name: genres_1
+  properties: {}
+  type: DropDown
+  layout_properties: {slot: default , placeholder: жанр1}
+- name: genres_2
+  properties: {}
+  type: DropDown
+  layout_properties: {slot: default}
+- name: genres_3
+  properties: {}
+  type: DropDown
+  layout_properties: {slot: default}
+- name: keywords
+  properties: {}
+  type: form:dep_p86ky6m5lr9fp:Autocomplete
+  layout_properties: {slot: default, placeholder: ключови думи}
 - name: chip_1
   properties: {}
   type: form:dep_p86ky6m5lr9fp:Chip
-  layout_properties: {slot: default}
-- name: autocomplete_1
-  properties: {}
-  type: form:dep_p86ky6m5lr9fp:Autocomplete
   layout_properties: {slot: default}

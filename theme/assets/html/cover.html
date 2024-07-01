@@ -1,4 +1,17 @@
-<div class="ch-form">
-    <div>Корица</div>
-    <div anvil-slot-repeat="default" class="anvil"></div>
+<div class="ch-form editor-cover">
+    <div id="editor-cover-pane">
+        <div>Корица</div>
+        <div anvil-slot-repeat="default" class="anvil"></div>
+    </div>
+    <div id="fonts">Шрифтове</div>
 </div>
+<style>
+.editor-cover{
+    display: flex;
+    flex-direction: row;
+}
+#editor-cover-pane{
+    flex: 1;
+}
+
+</style>

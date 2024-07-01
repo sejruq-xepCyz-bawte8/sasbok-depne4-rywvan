@@ -9,7 +9,6 @@ class Editor(EditorTemplate):
     super().__init__(**properties)
     self.init_components(**properties)
 
-    
     self.work = EDITOR.get_current_work()
     
     NAVIGATION.set(nav_bar='editor')
@@ -39,6 +38,7 @@ class Editor(EditorTemplate):
   def form_show(self, **event):
     self.info = jQ('#info')
     self.sidebar = jQ('.ql-toolbar')
+    self.sidebar.toggle()
     self.editor_nav_text = jQ('#editor .nav-text')
     self.info.text(f"{self.work['data']['words']}д. {self.work['data']['size']}kb")
     self.editor_nav_text.text(self.work['data']['title'][0:10])
@@ -67,7 +67,7 @@ class Editor(EditorTemplate):
     self.work['data']['size'] = size
     self.work['html'] = html
 
-    self.info.text(f"д:{self.work['data']['words']} / кб:{self.work['data']['size']}")
+    self.info.text(f"{self.work['data']['words']}д. {self.work['data']['size']}kb")
     
     if size > 1_111_111:
       
@@ -78,6 +78,10 @@ class Editor(EditorTemplate):
       Notification('Надвишихте 5Мб размер на творбата', style='danger').show()
     
 
+
+  def form_hide(self, **event_args):
+    self.save_buffer()
+
   def save_buffer(self):
     EDITOR.save_work(self.work)
     self.info.addClass('saved')
@@ -85,7 +89,5 @@ class Editor(EditorTemplate):
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()
 
-  def form_hide(self, **event_args):
-    """This method is called when the form is removed from the page"""
-    pass
+
 
