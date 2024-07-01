@@ -5,21 +5,23 @@ container:
   event_bindings: {show: form_show, hide: form_hide}
 components:
 - name: genres_1
-  properties: {}
+  properties: {placeholder: жанр1, include_placeholder: true}
   type: DropDown
-  layout_properties: {slot: default , placeholder: жанр1}
+  layout_properties: {slot: default, placeholder: жанр1}
+  event_bindings: {change: genres_1_change}
 - name: genres_2
-  properties: {}
+  properties: {include_placeholder: true, placeholder: жанр2}
   type: DropDown
   layout_properties: {slot: default}
 - name: genres_3
-  properties: {}
+  properties: {include_placeholder: true, placeholder: поджанр}
   type: DropDown
   layout_properties: {slot: default}
 - name: keywords
-  properties: {}
+  properties: {placeholder: ключови думи}
   type: form:dep_p86ky6m5lr9fp:Autocomplete
   layout_properties: {slot: default, placeholder: ключови думи}
+  event_bindings: {pressed_enter: keywords_pressed_enter, change: keywords_change}
 - name: chip_1
   properties: {}
   type: form:dep_p86ky6m5lr9fp:Chip

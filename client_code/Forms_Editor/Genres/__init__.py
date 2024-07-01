@@ -36,3 +36,13 @@ class Genres(GenresTemplate):
   
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()
+
+  def keywords_pressed_enter(self, **event_args):
+    pass
+
+  def keywords_change(self, **event_args):
+    pass
+
+  def genres_1_change(self, **event_args):
+    """This method is called when an item is selected"""
+    pass
