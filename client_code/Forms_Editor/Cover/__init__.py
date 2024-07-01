@@ -1,7 +1,7 @@
 from ._anvil_designer import CoverTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
-from ...App import NAVIGATION, EDITOR, ASSETS
+from ...App import NAVIGATION, EDITOR, ASSETS, WORKS
 
 class Cover(CoverTemplate):
   def __init__(self, **properties):
@@ -16,6 +16,22 @@ class Cover(CoverTemplate):
     self.info.text('Шрифтове')
     self.sidebar = jQ('#fonts')
     self.sidebar.toggle()
+    self.cover = jQ('#cover-container')
+
+    self.title.text = self.work['data']['title']
+    self.prelink.text = f"chete.me/author_uri/{self.work['data']['uri']}"
+    self.font.selected_value = self.work['data']['font']
+    self.font.items = ASSETS.get('json/fonts.json')
+    
+    self.paint_cover()
+
+
+  def paint_cover(self):
+    self.cover.html('')
+    cover = WORKS.make_cover(self.work['data'])
+    self.cover.append(cover)
+
+
 
 
   def buld_sidebar(self):

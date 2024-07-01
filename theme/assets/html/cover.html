@@ -1,8 +1,22 @@
 <div class="ch-form editor-cover">
     <div id="editor-cover-pane">
-      <div id="cover"></div>
+      <div style="display: flex;">
+        <div id="cover-container"></div>
+        <div>
+          <div anvil-slot-repeat="files" class="anvil"></div>
+        </div>
+      </div>
+      
       <div anvil-slot-repeat="default" class="anvil"></div>
-      <div anvil-slot-repeat="title" class="anvil"></div>
+      <div>Маска</div>
+      <div anvil-slot-repeat="mask" class="anvil"></div>
+      <div class="color-pane">
+        <span>Текст</span>
+        <input type="color" id="colorPicker">
+        <span>Фон</span>
+        <input type="color" id="colorPicker2">
+      </div>
+
     </div>
     <div id="fonts">Fonts</div>
 </div>
