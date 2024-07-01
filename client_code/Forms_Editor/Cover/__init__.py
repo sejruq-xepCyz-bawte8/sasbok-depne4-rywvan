@@ -47,4 +47,10 @@ class Cover(CoverTemplate):
   
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()
+
+  def copy_permalink_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+
   

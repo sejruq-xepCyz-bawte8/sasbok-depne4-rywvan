@@ -8,27 +8,25 @@ components:
   properties: {role: outlined, placeholder: Заглавие}
   type: TextBox
   layout_properties: {slot: default}
-
 - name: word_uri
   properties: {role: outlined, placeholder: Пермалинк}
   type: TextBox
-  layout_properties: {expand: true}
   layout_properties: {slot: default}
-
 - name: fp_permalink
   properties: {}
   type: FlowPanel
   layout_properties: {slot: default}
   components:
   - name: prelink
-    properties: {text: chete.me/author/}
+    properties: {text: 'пермалинк: chete.me/author/'}
     type: Label
+    layout_properties: {expand: false}
   - name: copy_permalink
-    properties: {text: Копирай}
+    properties: {text: '', icon: 'fa:copy'}
     type: Button
-
-
-
+    event_bindings: {click: copy_permalink_click}
+    layout_properties: {}
+  event_bindings: {show: fp_permalink_show}
 - name: file_loader
   properties: {text: Зареди}
   type: FileLoader
