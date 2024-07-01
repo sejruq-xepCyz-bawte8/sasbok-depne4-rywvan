@@ -4,23 +4,28 @@ container:
   properties: {html: '@theme:html/cover.html'}
   event_bindings: {show: form_show, hide: form_hide}
 components:
-- name: chip_1
-  properties: {}
-  type: form:dep_p86ky6m5lr9fp:Chip
-  layout_properties: {slot: default}
-- name: autocomplete_1
-  properties: {}
-  type: form:dep_p86ky6m5lr9fp:Autocomplete
-  layout_properties: {slot: default}
-- name: outlined_1
-  properties: {role: outlined}
+
+
+- name: title
+  properties: {role: outlined, placeholder: Заглавие}
   type: TextBox
-  layout_properties: {slot: default}
-- name: file_loader_1
+  layout_properties: {slot: title}
+- name: word_uri
+  properties: {role: outlined, placeholder: Пермалинк}
+  type: TextBox
+  layout_properties: {slot: permalink}
+- name: file_loader
   properties: {}
   type: FileLoader
-  layout_properties: {slot: default}
-- name: button_1
-  properties: {text: button_1}
+  layout_properties: {slot: file, text: Изображение}
+  event_bindings: {click: image_change}
+- name: clean
+  properties: {text: Изтрии, role: outlined-button}
   type: Button
-  layout_properties: {slot: default}
+  layout_properties: {slot: file, text: Изображение}
+  event_bindings: {click: image_change}
+- name: font
+  properties: {include_placeholder: true, placeholder: поджанр}
+  type: DropDown
+  layout_properties: {slot: fonts}
+  event_bindings: {change: font_change}

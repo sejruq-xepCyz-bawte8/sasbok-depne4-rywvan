@@ -1,7 +1,23 @@
 <div class="ch-form editor-cover">
     <div id="editor-cover-pane">
-        <div>Корица</div>
-        <div anvil-slot-repeat="default" class="anvil"></div>
+        <div id="cover"></div>
+        <div anvil-slot-repeat="title" class="anvil"></div>
+        <div class="flex-row">
+            <span id="pre_link">chete.me/author/</span>
+            <div anvil-slot-repeat="permalink" class="anvil"></div>
+        </div>
+        <div class="flex-row">
+            <div anvil-slot-repeat="file" class="anvil"></div>
+            <div anvil-slot-repeat="clean" class="anvil"></div>
+        </div>
+        
+        <div anvil-slot-repeat="fonts" class="anvil"></div>
+        <div class="flex-row">
+            <input type="color" id="background">
+            <input type="color" id="color">
+        </div>
+
+        
     </div>
     <div id="fonts">Шрифтове</div>
 </div>
@@ -12,6 +28,10 @@
 }
 #editor-cover-pane{
     flex: 1;
+}
+
+.flex-row{
+    display: flex;
 }
 
 </style>

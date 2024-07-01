@@ -7,22 +7,24 @@ components:
 - name: genres_1
   properties: {placeholder: жанр1, include_placeholder: true}
   type: DropDown
-  layout_properties: {slot: default, placeholder: жанр1}
-  event_bindings: {change: genres_1_change}
+  layout_properties: {slot: genres_1, placeholder: жанр1}
+  event_bindings: {change: genres_change}
 - name: genres_2
   properties: {include_placeholder: true, placeholder: жанр2}
   type: DropDown
-  layout_properties: {slot: default}
+  layout_properties: {slot: genres_2}
+  event_bindings: {change: genres_change}
 - name: genres_3
   properties: {include_placeholder: true, placeholder: поджанр}
   type: DropDown
-  layout_properties: {slot: default}
+  layout_properties: {slot: genres_3}
+  event_bindings: {change: genres_change}
 - name: keywords
   properties: {placeholder: ключови думи}
   type: form:dep_p86ky6m5lr9fp:Autocomplete
-  layout_properties: {slot: default, placeholder: ключови думи}
-  event_bindings: {pressed_enter: keywords_pressed_enter, change: keywords_change}
+  layout_properties: {slot: keywords, placeholder: ключови думи}
+  event_bindings: {pressed_enter: keywords_change, change: keywords_change}
 - name: chip_1
   properties: {}
   type: form:dep_p86ky6m5lr9fp:Chip
-  layout_properties: {slot: default}
+  layout_properties: {slot: chips}
