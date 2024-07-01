@@ -4,28 +4,42 @@ container:
   properties: {html: '@theme:html/cover.html'}
   event_bindings: {show: form_show, hide: form_hide}
 components:
-
-
 - name: title
   properties: {role: outlined, placeholder: Заглавие}
   type: TextBox
-  layout_properties: {slot: title}
-- name: word_uri
-  properties: {role: outlined, placeholder: Пермалинк}
-  type: TextBox
-  layout_properties: {slot: permalink}
-- name: file_loader
+  layout_properties: {slot: default}
+- name: fp_permalink
   properties: {}
-  type: FileLoader
-  layout_properties: {slot: file, text: Изображение}
-  event_bindings: {click: image_change}
-- name: clean
-  properties: {text: Изтрии, role: outlined-button}
-  type: Button
-  layout_properties: {slot: file, text: Изображение}
-  event_bindings: {click: image_change}
+  type: FlowPanel
+  layout_properties: {slot: default}
+  components:
+  - name: prelink
+    properties: {text: chete.me/author/}
+    type: Label
+  - name: word_uri
+    properties: {role: outlined, placeholder: Пермалинк}
+    type: TextBox
+    layout_properties: {expand: true}
+- name: flow_panel_1
+  properties: {}
+  type: FlowPanel
+  layout_properties: {slot: default}
+  components:
+  - name: file_loader
+    properties: {text: Зареди}
+    type: FileLoader
+    layout_properties: {expand: true}
+    event_bindings: {click: image_change}
+  - name: button_1
+    properties: {text: Изчисти}
+    type: Button
+    layout_properties: {expand: true}
 - name: font
-  properties: {include_placeholder: true, placeholder: поджанр}
+  properties: {include_placeholder: true, placeholder: шрифт}
   type: DropDown
   layout_properties: {slot: fonts}
   event_bindings: {change: font_change}
+- name: mask
+  properties: {start: '50'}
+  type: form:dep_p86ky6m5lr9fp:Slider
+  layout_properties: {slot: fonts}
