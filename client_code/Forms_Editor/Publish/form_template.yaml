@@ -75,7 +75,7 @@ components:
   layout_properties: {slot: default}
   components:
   - name: publish
-    properties: {text: Публикувай, role: outlined-button, icon: 'fa:send', align: full}
+    properties: {text: Публикувай, role: outlined-button, icon: 'fa:send', align: full, enabled: false}
     type: Button
     layout_properties: {expand: true}
     event_bindings: {click: publish_click}

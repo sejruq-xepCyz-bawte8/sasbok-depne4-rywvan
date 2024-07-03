@@ -4,7 +4,9 @@ import anvil.server
 import anvil.google.auth, anvil.google.drive
 import anvil.users
 from anvil.js.window import jQuery as jQ
-from ...App import NAVIGATION, EDITOR, USER
+from anvil.js.window import Quill, JSON
+import json
+from ...App import NAVIGATION, EDITOR, USER, ASSETS
 
 class Publish(PublishTemplate):
   def __init__(self, **properties):
@@ -38,12 +40,42 @@ class Publish(PublishTemplate):
     self.info.text('Сървър')
     self.sidebar = jQ('#editor-option-sidebar')
     self.sidebar.toggle()
-    self.build_sidebar()
 
 
+    self.quill = Quill('#quill', ASSETS.get('json/quill_publish.json'))
+    delta = json.loads(EDITOR.content)
+    self.quill.setContents(delta)
+    self.content = self.quill.getSemanticHTML()
+    
+    self.check_conditions()
 
-  def build_sidebar(self):
-    pass
+
+  def check_conditions(self):
+    conditions = ''
+    if not self.anvil_user:
+      conditions += 'няма логин, '
+    if not EDITOR.data['uri']:
+      conditions += 'няма пермалинк, '
+    if not EDITOR.data['title']:
+      conditions += 'няма заглавие, '
+    if (EDITOR.data['work_id'] != EDITOR.data['author_id']) and (not EDITOR.data['genres'][0] or not EDITOR.data['genres'][1] or not EDITOR.data['genres'][2]):
+      conditions += 'няма жанрове, '
+    if not EDITOR.data['uri']:
+      conditions += 'няма пермалинк, '
+    if not self.content:
+      conditions += 'няма текст, '
+    if EDITOR.data['size'] > 5_000:
+      conditions += f"много голям файл {EDITOR.data['size']}kb, "
+
+    if not conditions:
+      self.publish.enabled = True
+      self.info_text.text = conditions
+    else:
+      self.publish.enabled = False
+      self.info_text.text = conditions
+      self.info_text.foreground = "LightSalmon"
+
+
 
   def save_buffer(self):
     EDITOR.save_work()
