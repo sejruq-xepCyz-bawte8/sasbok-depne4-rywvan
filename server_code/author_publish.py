@@ -21,7 +21,7 @@ import anvil.server
 
 @anvil.server.callable
 def execute_ticket(ticket:str):
-  pass
+  return True
 
 
 @anvil.server.callable

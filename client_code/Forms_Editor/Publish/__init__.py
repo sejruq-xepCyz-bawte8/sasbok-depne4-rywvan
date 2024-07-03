@@ -106,7 +106,7 @@ class Publish(PublishTemplate):
     result, status = API.request(api='publish_work', data=data, info=ticket)
     if result and status == 200:
       ticket = result['ticket']
-      
+      anvil_result = anvil.server.call('execute_ticket', ticket=ticket)
       print(result, status)
     
 
