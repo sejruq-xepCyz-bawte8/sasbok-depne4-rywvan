@@ -10,22 +10,26 @@ components:
   layout_properties: {slot: sidebar}
   components:
   - name: anvil_email
-    properties: {align: right}
+    properties: {align: center}
     type: Label
+    layout_properties: {}
   - name: b_login
-    properties: {text: Вход, role: outlined-button, icon: 'fa:user-circle-o', align: full}
+    properties: {text: Вход, role: outlined-button, icon: 'fa:user-circle-o', align: center}
     type: Button
     event_bindings: {click: b_login_click}
+    layout_properties: {}
   - name: b_logout
-    properties: {text: Изход, role: outlined-button, icon: '', align: full}
+    properties: {text: Изход, role: outlined-button, icon: '', align: center}
     type: Button
     event_bindings: {click: b_logout_click}
+    layout_properties: {}
   - name: spacer_1
     properties: {height: 32}
     type: Spacer
   - name: label_1
-    properties: {text: 'Пермалинк автор:', bold: false, align: right}
+    properties: {text: 'Пермалинк автор:', bold: false, align: center}
     type: Label
+    layout_properties: {}
   - name: label_3
     properties: {text: chete.me/}
     type: Label
@@ -34,9 +38,10 @@ components:
     type: TextBox
     event_bindings: {change: author_uri_change}
   - name: b_author_uri
-    properties: {text: Запиши, role: outlined-button, align: full, icon: 'fa:save'}
+    properties: {text: Запиши, role: outlined-button, align: center, icon: 'fa:save'}
     type: Button
     event_bindings: {click: b_author_uri_click}
+    layout_properties: {}
   - name: label_4
     properties: {text: Изчакайте резултата.}
     type: Label
