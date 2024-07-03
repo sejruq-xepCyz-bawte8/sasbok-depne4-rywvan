@@ -6,11 +6,11 @@ from random import randint
 
 
 class EditorClass:
-    def __init__(self, fn_asset_get, author_id):
+    def __init__(self, fn_asset_get, fn_user_get):
         #self.production = production
         self.store = indexed_db.create_store('cheteme-editor')
-        self.author_id = author_id
         self.get_asset = fn_asset_get
+        self.get_user = fn_user_get
         self.data_template = self.get_asset('json/work_data.json')
         
         #current
@@ -29,7 +29,8 @@ class EditorClass:
             return None
 
     def set_new_work(self):
-        if not self.author_id:
+        user = self.get_user()
+        if not user['author_id']:
             return False
         
         ctime = time()
@@ -43,7 +44,7 @@ class EditorClass:
         data['title'] = now.strftime("%d-%b-%Y")
         data['ctime'] = ctime
         data['work_id'] = work_id
-        data['author_id'] = self.author_id
+        data['author_id'] = user['author_id']
 
         self.store[work_id] = {
             'data':data,
@@ -84,23 +85,24 @@ class EditorClass:
 
 
     def set_profile_work(self):
-        if not self.author_id: return False
+        user = self.get_user()
+        if not user['author_id']: return False
 
-        if self.store.get(self.author_id):
-            return self.set_current(work_id=self.author_id)
+        if self.store.get(user['author_id']):
+            return self.set_current(work_id=user['author_id'])
         else:
             ctime = time()
             data = self.data_template
             data['title'] = "Автор"
             data['ctime'] = ctime
-            data['work_id'] = self.author_id
-            data['author_id'] = self.author_id
-
-            self.store[self.author_id] = {
+            data['work_id'] = user['author_id']
+            data['author_id'] = user['author_id']
+            data['uri'] = user['author_uri']
+            self.store[user['author_id']] = {
                 'data':data,
                 'content':'{}'
             }
 
-            self.set_current(self.author_id)
+            self.set_current(user['author_id'])
 
             return True

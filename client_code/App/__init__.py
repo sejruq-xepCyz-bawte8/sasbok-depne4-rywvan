@@ -54,5 +54,5 @@ def init_app():
     WORKS = WorksClass(fn_asset_get=ASSETS.get, fn_awesome_get=AW.get)
 
     if USER.is_author:
-        EDITOR = EditorClass(fn_asset_get=ASSETS.get, author_id=USER.author_id)
+        EDITOR = EditorClass(fn_asset_get=ASSETS.get, fn_user_get=USER.get_user)
     

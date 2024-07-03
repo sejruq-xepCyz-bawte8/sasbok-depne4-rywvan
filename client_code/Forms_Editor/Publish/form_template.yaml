@@ -13,17 +13,7 @@ components:
   type: FlowPanel
   layout_properties: {slot: default}
   components:
-  - name: pre_link
-    properties: {text: chete.me/}
-    type: Label
-    layout_properties: {}
-  - name: author_uri
-    properties: {role: outlined, text: '', placeholder: автор}
-    type: TextBox
-    layout_properties: {expand: true}
-    event_bindings: {change: author_uri_change}
-  - name: label_slash
-    properties: {text: /}
+  - name: prelink
     type: Label
     layout_properties: {}
   - name: work_uri
@@ -31,7 +21,7 @@ components:
     type: TextBox
     layout_properties: {expand: true}
     event_bindings: {change: work_uri_change}
-- name: info
+- name: info_text
   properties: {}
   type: Label
   layout_properties: {slot: default}

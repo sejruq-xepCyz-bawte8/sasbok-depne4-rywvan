@@ -27,13 +27,14 @@ class Editor(EditorTemplate):
     self.quill.on('text-change', self.quill_change)
     content = json.loads(EDITOR.content)
     self.quill.setContents(content)
+    
     #update visuals
     self.sidebar.toggle()
-    self.info.text(f"{EDITOR.data['words']}д. {EDITOR.data['size']}kb")
-    self.editor_nav_text.text(EDITOR.data['title'][0:10])
+    self.info.text("Формат")
+    self.editor_nav_text.text(f"{EDITOR.data['words']}д. {EDITOR.data['size']}kb")
     
   def quill_change(self, *event):
-    self.info.removeClass('saved')
+    self.editor_nav_text.removeClass('saved')
     non_blocking.cancel(self.deferred_change)
     self.deferred_change = non_blocking.defer(self.parse_changes, 2)
    
@@ -51,15 +52,15 @@ class Editor(EditorTemplate):
     
     if first_line_format.get('header') and first_line_format['header'] == 1:
       EDITOR.data['title'] = lines[0]
-      self.editor_nav_text.text(EDITOR.data['title'][0:10])
+      
 
     
     
     #saving
     EDITOR.save_work()
     #display info
-    self.info.addClass('saved')
-    self.info.text(f"{EDITOR.data['words']}д. {EDITOR.data['size']}kb")
+    self.editor_nav_text.addClass('saved')
+    self.editor_nav_text.text(f"{EDITOR.data['words']}д. {EDITOR.data['size']}kb")
 
     if EDITOR.data['size'] > 1_111_111:
       Notification('Надвишихте 1Мб размер на творбата', style='danger').show()
