@@ -99,5 +99,12 @@ class Publish(PublishTemplate):
     user = anvil.users.logout()
     if not user:
       self.anvil_email.text = "За публикуване е необходим вход :)"
+
+
+
+
+
+
+
     
     

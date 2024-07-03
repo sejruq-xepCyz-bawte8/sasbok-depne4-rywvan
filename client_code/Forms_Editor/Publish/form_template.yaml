@@ -4,6 +4,42 @@ container:
   properties: {html: '@theme:html/publish.html'}
   event_bindings: {show: form_show}
 components:
+- name: server
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: sidebar}
+  components:
+  - name: anvil_email
+    properties: {align: right}
+    type: Label
+  - name: b_login
+    properties: {text: Вход, role: outlined-button, icon: 'fa:user-circle-o', align: full}
+    type: Button
+    event_bindings: {click: b_login_click}
+  - name: b_logout
+    properties: {text: Изход, role: outlined-button, icon: '', align: full}
+    type: Button
+    event_bindings: {click: b_logout_click}
+  - name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+  - name: label_1
+    properties: {text: 'Пермалинк автор:', bold: false, align: right}
+    type: Label
+  - name: label_3
+    properties: {text: chete.me/}
+    type: Label
+  - name: author_uri
+    properties: {role: outlined, text: '', placeholder: частта след chete.me, align: left}
+    type: TextBox
+    event_bindings: {change: author_uri_change}
+  - name: b_author_uri
+    properties: {text: Запиши, role: outlined-button, align: full, icon: 'fa:save'}
+    type: Button
+    event_bindings: {click: b_author_uri_click}
+  - name: label_4
+    properties: {text: Изчакайте резултата.}
+    type: Label
 - name: title
   properties: {}
   type: Label
@@ -60,56 +96,17 @@ components:
     properties: {text: '', role: outlined-button, enabled: false, icon: 'fa:close'}
     type: Button
     event_bindings: {click: unpublish_click}
-- name: anvil_email
-  properties: {align: right}
-  type: Label
-  layout_properties: {slot: sidebar}
-- name: b_login
-  properties: {text: Вход, role: outlined-button, icon: 'fa:user-circle-o', align: full}
-  type: Button
-  layout_properties: {slot: sidebar}
-  event_bindings: {click: b_login_click}
-- name: b_logout
-  properties: {text: Изход, role: outlined-button, icon: '', align: full}
-  type: Button
-  layout_properties: {slot: sidebar}
-  event_bindings: {click: b_logout_click}
-- name: spacer_1
-  properties: {height: 32}
-  type: Spacer
-  layout_properties: {slot: sidebar}
-- name: label_1
-  properties: {text: 'Пермалинк автор:', bold: false, align: right}
-  type: Label
-  layout_properties: {slot: sidebar}
-- name: label_3
-  properties: {text: chete.me/}
-  type: Label
-  layout_properties: {slot: sidebar}
-- name: author_uri
-  properties: {role: outlined, text: '', placeholder: частта след chete.me, align: left}
-  type: TextBox
-  layout_properties: {slot: sidebar}
-  event_bindings: {change: author_uri_change}
-- name: b_author_uri
-  properties: {text: Запиши, role: outlined-button, align: full, icon: 'fa:save'}
-  type: Button
-  layout_properties: {slot: sidebar}
-  event_bindings: {click: b_author_uri_click}
-- name: label_4
-  properties: {text: Изчакайте резултата.}
-  type: Label
-  layout_properties: {slot: sidebar}
-- name: switch_1
-  properties: {}
-  type: form:dep_p86ky6m5lr9fp:Switch
-  layout_properties: {slot: sidebar}
 - name: terms
   properties: {}
   type: LinearPanel
   layout_properties: {slot: sidebar}
   components:
-  - name: rich_text_1
+  - name: accept_terms
+    properties: {text_pre: '', text_post: Приемам условията}
+    type: form:dep_p86ky6m5lr9fp:Switch
+    layout_properties: {}
+    event_bindings: {change: switch_1_change}
+  - name: terms_info
     properties: {font_size: 12}
     type: RichText
     layout_properties: {}
