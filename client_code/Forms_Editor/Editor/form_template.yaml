@@ -3,5 +3,4 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/editor.html'}
   event_bindings: {show: form_show, hide: form_hide}
-components:
-
+components: null

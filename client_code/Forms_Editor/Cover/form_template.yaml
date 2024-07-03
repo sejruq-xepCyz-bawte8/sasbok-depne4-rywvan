@@ -4,7 +4,6 @@ container:
   properties: {html: '@theme:html/cover.html'}
   event_bindings: {show: form_show, hide: form_hide}
 components:
-
 - name: file_loader
   properties: {text: Зареди}
   type: FileLoader
@@ -14,7 +13,6 @@ components:
   properties: {text: Изчисти}
   type: Button
   layout_properties: {slot: files}
-
 - name: mask
   properties: {start: '50'}
   type: form:dep_p86ky6m5lr9fp:Slider

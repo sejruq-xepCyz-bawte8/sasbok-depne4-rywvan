@@ -1,6 +1,7 @@
 from ._anvil_designer import GenresTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
+from anvil_extras.Chip import Chip
 from ...App import NAVIGATION, EDITOR, ASSETS, AW
 
 class Genres(GenresTemplate):
@@ -107,6 +108,9 @@ class Genres(GenresTemplate):
   def keywords_change(self, sender, **event_args):
     EDITOR.data['keywords'].append(sender.text)
     EDITOR.save_work()
+    chip = Chip()
+    chip.add_event_handler('close_click', self.delete_keyword)
+    self.fp_keywords.add_component(chip)
 
   def genres_1_change(self, sender, **event_args):
     g1 = self.genres_1.selected_value
