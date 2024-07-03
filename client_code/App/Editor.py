@@ -83,3 +83,24 @@ class EditorClass:
             return False
 
 
+    def set_profile_work(self):
+        if not self.author_id: return False
+
+        if self.store.get(self.author_id):
+            return self.set_current(work_id=self.author_id)
+        else:
+            ctime = time()
+            data = self.data_template
+            data['title'] = "Автор"
+            data['ctime'] = ctime
+            data['work_id'] = self.author_id
+            data['author_id'] = self.author_id
+
+            self.store[self.author_id] = {
+                'data':data,
+                'content':'{}'
+            }
+
+            self.set_current(self.author_id)
+
+            return True

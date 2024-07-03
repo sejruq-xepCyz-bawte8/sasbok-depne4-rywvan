@@ -30,6 +30,11 @@ class Drafts(DraftsTemplate):
     if new:
       open_form('Forms_Editor.Editor')
 
+  def b_profile_click(self, **event):
+    new = EDITOR.set_profile_work()
+    if new:
+      open_form('Forms_Editor.Editor')
+
 
   def open_work(self, sender, **event):
     if not self.delete_choise.checked:

@@ -23,12 +23,9 @@ components:
   properties: {placeholder: ключови думи}
   type: form:dep_p86ky6m5lr9fp:Autocomplete
   layout_properties: {slot: keywords, placeholder: ключови думи}
-  event_bindings: {pressed_enter: keywords_change, change: keywords_change}
+  event_bindings: {pressed_enter: keywords_change, suggestion_clicked: keywords_change}
 - name: fp_keywords
   properties: {}
   type: FlowPanel
   layout_properties: {slot: keywords}
-- name: chip_1
-  properties: {}
-  type: form:dep_p86ky6m5lr9fp:Chip
-  layout_properties: {slot: chips}
+

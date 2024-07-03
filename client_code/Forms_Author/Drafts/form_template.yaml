@@ -9,6 +9,11 @@ components:
   type: Button
   layout_properties: {slot: new_work}
   event_bindings: {click: b_new_work_click}
+- name: b_profile
+  properties: {text: Страница, role: outlined-button}
+  type: Button
+  layout_properties: {slot: new_work}
+  event_bindings: {click: b_profile_click}
 - name: delete_choise
   properties: {text_pre: Изтрии, align: right, spacing_below: medium, checked_color: '#E74C3C'}
   type: form:dep_p86ky6m5lr9fp:Switch

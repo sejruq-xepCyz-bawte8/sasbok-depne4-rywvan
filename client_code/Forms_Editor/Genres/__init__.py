@@ -14,17 +14,27 @@ class Genres(GenresTemplate):
     self.g_all = ASSETS.get('json/genres.json')
     self.g1 = self.g_all['g1']
     self.g2 = self.g_all['g2']
+    if EDITOR.data['work_id'] == EDITOR.data['author_id']:
+      self.genres_1.visible = False
+      self.genres_2.visible = False
+      self.genres_3.visible = False
 
   def form_show(self, **event):
+
     self.info = jQ('#info')
     self.info.text('Икони')
     self.sidebar = jQ('#editor-option-sidebar')
     self.sidebar.toggle()
 
-
     keywords = ASSETS.get('json/awesome.json')
     self.buld_sidebar(keywords=keywords)
     self.keywords.suggestions = keywords
+    for k in EDITOR.data['keywords']:
+      chip = Chip(text=k)
+      icon = AW.get_4_anv(k)
+      chip.icon = icon if icon else ''
+      chip.add_event_handler('close_click', self.delete_keyword)
+      self.fp_keywords.add_component(chip)
 
 
     genres = EDITOR.data['genres']
@@ -106,11 +116,22 @@ class Genres(GenresTemplate):
     self.sidebar.toggle()
 
   def keywords_change(self, sender, **event_args):
-    EDITOR.data['keywords'].append(sender.text)
+    keyword = sender.text
+    EDITOR.data['keywords'].append(keyword)
     EDITOR.save_work()
-    chip = Chip()
+    chip = Chip(text=keyword)
+    icon = AW.get_4_anv(keyword)
+    chip.icon = icon if icon else ''
     chip.add_event_handler('close_click', self.delete_keyword)
     self.fp_keywords.add_component(chip)
+
+  def delete_keyword(self, sender, **event_args):
+    keyword = sender.text
+    EDITOR.data['keywords'] = [x for x in EDITOR.data['keywords'] if x != keyword]
+    EDITOR.save_work()
+    sender.remove_from_parent()
+
+
 
   def genres_1_change(self, sender, **event_args):
     g1 = self.genres_1.selected_value
@@ -138,9 +159,6 @@ class Genres(GenresTemplate):
         self.genres_3.items = []
 
       EDITOR.save_work()
-
-
-
 
 
   def genres_3_change(self, sender, **event_args):

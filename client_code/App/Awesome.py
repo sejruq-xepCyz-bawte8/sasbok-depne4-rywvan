@@ -8,3 +8,10 @@ class AwesomeClass:
         en = self.icons.get(bg)
         fa = f'fa-{style} fa-{en}' if en else ''
         return fa
+    
+    def get_4_anv(self, bg:str, style:str='regular'):
+        en = self.icons.get(bg)
+        fa = f'fa:{en}' if en else ''
+        return fa
+    
+    

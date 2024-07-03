@@ -21,27 +21,40 @@ class WorksClass:
     def make_cover(self, data:dict)->str:
         if not data:
             return None
-        data['mask'] = self.parse_mask_bg(data)
-        data['image'] = '' if not data['image'] else data['image']
+    
+        html_data = {
+            "work_id":data["work_id"],
+            "bg_color":data["bg_color"],
+            "image":'' if not data['image'] else data['image'],
+            "mask":self.parse_mask_bg(data),
+            "font":data["font"],
+            "color":data["color"],
+            "title":data["title"],
+            "icons":['', '', '', '', '', '']
+        }
+
+
         genres:list = data['genres']
         icons = []
         for g in genres[1:]:
             if g: icons.append(g)
 
         keywords:list = data['keywords']
+        
         icons.extend(keywords)
         
+        
+        k = 0
         for i in range(len(icons)):
-            if i < 6:
+            if k < 6:
                 fa = self.get_icon(icons[i])
                 if fa:
-                    data[f'icon{i+1}'] = fa
-        for i in range(6):
-            if not data.get(f'icon{i+1}'):
-                data[f'icon{i+1}'] = ''
+                    html_data['icons'][k] = fa
+                    k += 1
+        
 
 
-        html = self.cover_template.format(**data)
+        html = self.cover_template.format(**html_data)
         return html
 
     @staticmethod
