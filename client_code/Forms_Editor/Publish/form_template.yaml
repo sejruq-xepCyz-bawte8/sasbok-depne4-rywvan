@@ -21,6 +21,7 @@ components:
     properties: {role: outlined, text: '', placeholder: автор}
     type: TextBox
     layout_properties: {expand: true}
+    event_bindings: {change: author_uri_change}
   - name: label_slash
     properties: {text: /}
     type: Label
@@ -29,6 +30,7 @@ components:
     properties: {role: outlined, text: '', placeholder: творба}
     type: TextBox
     layout_properties: {expand: true}
+    event_bindings: {change: work_uri_change}
 - name: info
   properties: {}
   type: Label
@@ -42,14 +44,17 @@ components:
     properties: {text: Публикувай, role: outlined-button}
     type: Button
     layout_properties: {expand: true}
-  - name: button_1
+    event_bindings: {click: publish_click}
+  - name: copy_permalink
     properties: {text: Копирай}
     type: Button
     layout_properties: {expand: true}
+    event_bindings: {click: copy_permalink_click}
   - name: unpublish
     properties: {text: Премахни, role: outlined-button, enabled: false}
     type: Button
     layout_properties: {}
+    event_bindings: {click: unpublish_click}
   - name: unpublish_confirm
     properties: {}
     type: form:dep_p86ky6m5lr9fp:Switch

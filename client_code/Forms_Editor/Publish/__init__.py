@@ -46,3 +46,23 @@ class Publish(PublishTemplate):
   def unpublish_confirm_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     pass
+
+  def author_uri_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def work_uri_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def publish_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def copy_permalink_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def unpublish_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
