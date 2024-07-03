@@ -105,7 +105,7 @@ components:
     properties: {text_pre: '', text_post: Приемам условията}
     type: form:dep_p86ky6m5lr9fp:Switch
     layout_properties: {}
-    event_bindings: {change: switch_1_change}
+    event_bindings: {change: accept_terms_change}
   - name: terms_info
     properties: {font_size: 12}
     type: RichText

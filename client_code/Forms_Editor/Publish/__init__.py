@@ -100,6 +100,11 @@ class Publish(PublishTemplate):
     if not user:
       self.anvil_email.text = "За публикуване е необходим вход :)"
 
+  def accept_terms_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    pass
+
+
 
 
 
