@@ -12,6 +12,7 @@ class Publish(PublishTemplate):
     
     self.open_form = NAVIGATION.nav_open_form
     self.user = USER.get_user()
+    
 
     self.prelink.text = f"chete.me/{self.user['author_uri']}/"
     self.author_uri.text = self.user['author_uri']
@@ -21,6 +22,15 @@ class Publish(PublishTemplate):
       self.work_uri.visible = False
 
     self.title.text = EDITOR.data['title']
+
+
+    self.anvil_user = anvil.users.get_user()
+    if self.anvil_user:
+      self.b_login.visible = False
+      self.anvil_email.text = self.anvil_user['email']
+    else:
+      self.b_logout.visible = False
+      self.anvil_email.text = "За публикуване е необходим вход :)"
 
   def form_show(self, **event):
     self.info = jQ('#info')
@@ -81,12 +91,13 @@ class Publish(PublishTemplate):
 
   def b_login_click(self, **event_args):
     user = anvil.users.login_with_form()
+    if user:
+      self.anvil_email.text = self.anvil_user['email']
     
 
   def b_logout_click(self, **event_args):
     user = anvil.users.logout()
+    if not user:
+      self.anvil_email.text = "За публикуване е необходим вход :)"
     
-
-  def b_signup_click(self, **event_args):
-    user = anvil.users.signup_with_form()
     
