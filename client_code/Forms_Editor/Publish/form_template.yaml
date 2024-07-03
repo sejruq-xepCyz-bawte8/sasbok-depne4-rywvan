@@ -36,7 +36,6 @@ components:
   - name: author_uri
     properties: {role: outlined, text: '', placeholder: частта след chete.me, align: left}
     type: TextBox
-    event_bindings: {change: author_uri_change}
   - name: b_author_uri
     properties: {text: Запиши, role: outlined-button, align: center, icon: 'fa:save'}
     type: Button

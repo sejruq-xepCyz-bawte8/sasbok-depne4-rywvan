@@ -6,7 +6,8 @@ import anvil.users
 from anvil.js.window import jQuery as jQ
 from anvil.js.window import Quill, JSON
 import json
-from ...App import NAVIGATION, EDITOR, USER, ASSETS
+from ...App import NAVIGATION, EDITOR, USER, ASSETS, ORIGIN_APP, API
+
 
 class Publish(PublishTemplate):
   def __init__(self, **properties):
@@ -75,6 +76,8 @@ class Publish(PublishTemplate):
       self.info_text.text = conditions
       self.info_text.foreground = "LightSalmon"
 
+    if ORIGIN_APP == "http://192.168.0.101:3030":
+      self.publish.enabled = True
 
 
   def save_buffer(self):
@@ -87,14 +90,6 @@ class Publish(PublishTemplate):
     """This method is called when this checkbox is checked or unchecked"""
     pass
 
-  def author_uri_change(self, sender, **event_args):
-    
-    if EDITOR.data['work_id'] == EDITOR.data['author_id']:
-      EDITOR.data['uri'] = sender.text
-      EDITOR.save_work()
-    
-    self.user['author_uri'] = sender.text
-    USER.set_user(user=self.user)
 
   def work_uri_change(self, sender, **event_args):
     if EDITOR.data['work_id'] != EDITOR.data['author_id']:
@@ -103,8 +98,17 @@ class Publish(PublishTemplate):
 
 
   def publish_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    data = {
+      "data":EDITOR.data,
+      "content":self.content
+    }
+    ticket = "ttt"
+    result, status = API.request(api='publish_work', data=data, info=ticket)
+    if result and status == 200:
+      ticket = result['ticket']
+      
+      print(result, status)
+    
 
   def copy_permalink_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -119,8 +123,22 @@ class Publish(PublishTemplate):
     self.sidebar.toggle()
 
   def b_author_uri_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    result, status = API.request(api='author_uri', info=self.author_uri.text)
+    
+    if result and status == 200:
+      author_uri = result['author_uri']
+      self.user['author_uri'] = author_uri
+      USER.set_user(self.user)
+      self.author_uri.text = author_uri
+      self.prelink.text = f"chete.me/{author_uri}/"
+      if EDITOR.data['work_id'] == EDITOR.data['author_id']:
+        EDITOR.data['uri'] = author_uri
+        EDITOR.save_work()
+      Notification(f"Успешна промяна 🥳 chete.me/{author_uri}/", style='success').show()
+      self.check_conditions()
+    else:
+      Notification("Възникна грешка :(", style='danger').show()
+    
 
   def b_login_click(self, **event_args):
     user = anvil.users.login_with_form()
