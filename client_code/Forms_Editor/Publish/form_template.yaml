@@ -8,6 +8,10 @@ components:
   properties: {}
   type: Label
   layout_properties: {slot: default}
+- name: label_2
+  properties: {text: 'Пермалинк:'}
+  type: Label
+  layout_properties: {slot: default}
 - name: flow_panel_1
   properties: {spacing: none}
   type: FlowPanel
@@ -26,40 +30,44 @@ components:
   type: Label
   layout_properties: {slot: default}
 - name: flow_panel_2
-  properties: {align: center}
+  properties: {align: left}
   type: FlowPanel
   layout_properties: {slot: default}
   components:
   - name: publish
-    properties: {text: Публикувай, role: outlined-button}
+    properties: {text: Публикувай, role: outlined-button, icon: 'fa:send', align: full}
     type: Button
     layout_properties: {expand: true}
     event_bindings: {click: publish_click}
   - name: copy_permalink
-    properties: {text: Копирай}
+    properties: {text: Копирай, icon: 'fa:copy', align: full}
     type: Button
-    layout_properties: {expand: true}
+    layout_properties: {expand: false}
     event_bindings: {click: copy_permalink_click}
-  - name: unpublish
-    properties: {text: Премахни, role: outlined-button, enabled: false}
-    type: Button
-    layout_properties: {}
-    event_bindings: {click: unpublish_click}
+- name: flow_panel_3
+  properties: {}
+  type: FlowPanel
+  layout_properties: {slot: default}
+  components:
   - name: unpublish_confirm
-    properties: {}
+    properties: {checked_color: 'theme:Error', text_post: Премахни}
     type: form:dep_p86ky6m5lr9fp:Switch
     event_bindings: {change: unpublish_confirm_change}
+  - name: unpublish
+    properties: {text: '', role: outlined-button, enabled: false, icon: 'fa:close'}
+    type: Button
+    event_bindings: {click: unpublish_click}
 - name: anvil_email
-  properties: {}
+  properties: {align: right}
   type: Label
   layout_properties: {slot: sidebar}
 - name: b_login
-  properties: {text: Вход, role: outlined-button}
+  properties: {text: Вход, role: outlined-button, icon: 'fa:user-circle-o', align: full}
   type: Button
   layout_properties: {slot: sidebar}
   event_bindings: {click: b_login_click}
 - name: b_logout
-  properties: {text: Изход, role: outlined-button}
+  properties: {text: Изход, role: outlined-button, icon: '', align: full}
   type: Button
   layout_properties: {slot: sidebar}
   event_bindings: {click: b_logout_click}
@@ -68,16 +76,21 @@ components:
   type: Spacer
   layout_properties: {slot: sidebar}
 - name: label_1
-  properties: {text: 'Частта след "chete.me/" от пермалинка на автора:'}
+  properties:
+    text: |-
+      Частта след "chete.me/"
+      от пермалинка на автора:
+    bold: false
+    align: right
   type: Label
   layout_properties: {slot: sidebar}
 - name: author_uri
-  properties: {role: outlined, text: '', placeholder: пермалинк автор}
+  properties: {role: outlined, text: '', placeholder: пермалинк автор, align: left}
   type: TextBox
   layout_properties: {slot: sidebar}
   event_bindings: {change: author_uri_change}
 - name: b_author_uri
-  properties: {text: Запиши, role: outlined-button}
+  properties: {text: Запиши, role: outlined-button, align: full, icon: 'fa:save'}
   type: Button
   layout_properties: {slot: sidebar}
   event_bindings: {click: b_author_uri_click}
