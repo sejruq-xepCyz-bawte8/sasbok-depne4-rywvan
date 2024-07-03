@@ -12,6 +12,7 @@ class Publish(PublishTemplate):
     self.user = USER.get_user()
 
     self.prelink.text = f"chete.me/{self.user['author_uri']}/"
+    self.author_uri.text = self.user['author_uri']
     self.work_uri.text = EDITOR.data['uri']
 
     if EDITOR.data['work_id'] == EDITOR.data['author_id']:
