@@ -3,13 +3,13 @@ from anvil.js.window import jQuery as jQ
 
 
 class NavigationClass:
-    def __init__(self, fn_asset_get, fn_is_author):
+    def __init__(self, fn_asset_get, is_author):
         self.element = jQ('#navigation')
         self.asset = fn_asset_get
         self.forms:dict = self.asset(file_path='navigation/nav_forms.json')
         self.navbars = self.asset(file_path='navigation/nav_bars.json')
-        self.is_author = fn_is_author
-       
+        self.is_author = is_author
+        self.set(nav_bar='today')
 
     def set(self, nav_bar:str):
         if self.is_author and self.navbars.get(f'{nav_bar}_author'):

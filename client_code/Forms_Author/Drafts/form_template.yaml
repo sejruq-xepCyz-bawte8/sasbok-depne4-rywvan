@@ -4,11 +4,11 @@ container:
   properties: {html: '@theme:html/drafts.html'}
   event_bindings: {show: form_show}
 components:
-- name: b_editor
+- name: b_new_work
   properties: {text: Нова творба, role: outlined-button}
   type: Button
   layout_properties: {slot: new_work}
-  event_bindings: {click: b_editor_click}
+  event_bindings: {click: b_new_work_click}
 - name: delete_choise
   properties: {text_pre: Изтрии, align: right, spacing_below: medium, checked_color: '#E74C3C'}
   type: form:dep_p86ky6m5lr9fp:Switch

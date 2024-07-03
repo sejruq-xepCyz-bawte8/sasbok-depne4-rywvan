@@ -21,6 +21,14 @@
     color: gray;
 }
 
+#sidebar_container{
+  height: 100%;
+  width: fit-content;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-left: 1rem;
+  margin-bottom: 24px;
+}
 
 /*DUOTONE NAVBAR*/
 

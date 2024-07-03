@@ -1,37 +1,23 @@
-<div class="ch-form editor-cover">
-    <div id="editor-cover-pane">
-      <div style="display: flex;">
-        <div id="cover-container"></div>
-        <div>
-          <div anvil-slot-repeat="files" class="anvil"></div>
-        </div>
-      </div>
-      
+<div class="ch-form editor-option-form">
+    <div id="editor-option-main">
+      <div id="cover-container"></div>
+    
       <div anvil-slot-repeat="default" class="anvil"></div>
       <div>Маска</div>
       <div anvil-slot-repeat="mask" class="anvil"></div>
-      <div class="color-pane">
-        <span>Текст</span>
-        <input type="color" id="colorPicker">
-        <span>Фон</span>
-        <input type="color" id="colorPicker2">
+     
+      <div style="margin-top: 1rem;"><input type="color" id="color" oninput='anvil.call($("#appGoesHere > div"), "chose_color", $(this))'> Текст</div>
+      <div style="margin-top: 1rem;"><input type="color" id="bg_color" oninput='anvil.call($("#appGoesHere > div"), "chose_color", $(this))'> Фон</div>
+   
+      <div class="flex-row">
+        <div style="margin-top: 1rem;" anvil-slot-repeat="files" class="anvil"></div>
       </div>
+      
+      
 
     </div>
-    <div id="fonts">Fonts</div>
+    <div id="editor-option-sidebar"></div>
 </div>
-
 <style>
-.editor-cover{
-    display: flex;
-    flex-direction: row;
-}
-#editor-cover-pane{
-    flex: 1;
-}
-
-.flex-row{
-    display: flex;
-}
 
 </style>

@@ -19,18 +19,28 @@ class WorksClass:
     
     
     def make_cover(self, data:dict)->str:
+        if not data:
+            return None
         data['mask'] = self.parse_mask_bg(data)
         data['image'] = '' if not data['image'] else data['image']
         genres:list = data['genres']
+        icons = []
+        for g in genres[1:]:
+            if g: icons.append(g)
+
         keywords:list = data['keywords']
-        icons:list = genres[1:] + keywords
+        icons.extend(keywords)
         
-        for i in range(6):
-            if icons and len(icons) >= i:
+        for i in range(len(icons)):
+            if i < 6:
                 fa = self.get_icon(icons[i])
-                data[f'icon{i+1}'] = fa if fa else ''
-            else:
+                if fa:
+                    data[f'icon{i+1}'] = fa
+        for i in range(6):
+            if not data.get(f'icon{i+1}'):
                 data[f'icon{i+1}'] = ''
+
+
         html = self.cover_template.format(**data)
         return html
 

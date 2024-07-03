@@ -8,41 +8,71 @@ class Cover(CoverTemplate):
     super().__init__(**properties)
     self.init_components(**properties)
     
-    self.work = EDITOR.get_current_work()
     self.open_form = NAVIGATION.nav_open_form
+    self.fonts = ASSETS.get('json/fonts.json')
 
   def form_show(self, **event):
     self.info = jQ('#info')
     self.info.text('Шрифтове')
-    self.sidebar = jQ('#fonts')
+    self.sidebar = jQ('#editor-option-sidebar')
+    self.editor_nav_text = jQ('#editor .nav-text')
     self.sidebar.toggle()
+    self.buld_sidebar()
+
+
     self.cover = jQ('#cover-container')
 
-    self.title.text = self.work['data']['title']
-    self.prelink.text = f"chete.me/author_uri/{self.work['data']['uri']}"
-    self.font.selected_value = self.work['data']['font']
-    self.font.items = ASSETS.get('json/fonts.json')
+    self.color = jQ('#color')
+    self.bg_color = jQ('#bg_color')
+
+
+
+    self.color.val(EDITOR.data['color'])
+    self.bg_color.val(EDITOR.data['bg_color'])
+
     
+
     self.paint_cover()
 
 
   def paint_cover(self):
     self.cover.html('')
-    cover = WORKS.make_cover(self.work['data'])
+    cover = WORKS.make_cover(EDITOR.data)
+ 
     self.cover.append(cover)
+    self.title = jQ('.ch-work-title')
+    self.title.attr('contenteditable', 'true')
+    self.title.on('input', self.title_change)
 
 
 
 
   def buld_sidebar(self):
-    fonts = ASSETS.get()
+    font = ASSETS.get('html/font.html')
+    for f in self.fonts:
+      font_html = font.format(font=f, text="Заглавие")
+      self.sidebar.append(font_html)
 
+
+  def title_change(self, sender, **event_args):
+    EDITOR.data['title'] = self.title.text()
+    self.editor_nav_text.text(EDITOR.data['title'][0:10])
+    print(EDITOR.data['title'])
+    
+
+  def chose_font(self, sender, **event_args):
+    EDITOR.data['font'] = sender.attr('id')
+    self.paint_cover()
+
+  def chose_color(self, sender, **event_args):
+    EDITOR.data[sender.attr('id')] = sender.val()
+    self.paint_cover()
 
   def form_hide(self, **event_args):
-    self.save_buffer()
+    EDITOR.save_work()
 
   def save_buffer(self):
-    EDITOR.save_work(self.work)
+    EDITOR.save_work()
     self.info.addClass('saved')
   
   def sidebar_toggle(self, sender, **event):
@@ -53,4 +83,5 @@ class Cover(CoverTemplate):
     pass
 
 
-  
+  def open_work(self, sender, **event):
+    pass

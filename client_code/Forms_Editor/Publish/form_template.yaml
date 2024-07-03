@@ -16,3 +16,23 @@ components:
   properties: {text: button_1}
   type: Button
   layout_properties: {slot: default}
+- name: uri
+  properties: {role: outlined, placeholder: Пермалинк}
+  type: TextBox
+  layout_properties: {slot: default}
+  event_bindings: {change: uri_change}
+- name: fp_permalink
+  properties: {}
+  type: FlowPanel
+  layout_properties: {slot: default}
+  components:
+  - name: prelink
+    properties: {text: 'пермалинк: chete.me/author/'}
+    type: Label
+    layout_properties: {expand: false}
+  - name: copy_permalink
+    properties: {text: '', icon: 'fa:copy'}
+    type: Button
+    event_bindings: {click: copy_permalink_click}
+    layout_properties: {}
+    event_bindings: {show: fp_permalink_show}

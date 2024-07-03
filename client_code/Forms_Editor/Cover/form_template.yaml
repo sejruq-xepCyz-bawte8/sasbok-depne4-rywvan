@@ -4,29 +4,7 @@ container:
   properties: {html: '@theme:html/cover.html'}
   event_bindings: {show: form_show, hide: form_hide}
 components:
-- name: title
-  properties: {role: outlined, placeholder: Заглавие}
-  type: TextBox
-  layout_properties: {slot: default}
-- name: word_uri
-  properties: {role: outlined, placeholder: Пермалинк}
-  type: TextBox
-  layout_properties: {slot: default}
-- name: fp_permalink
-  properties: {}
-  type: FlowPanel
-  layout_properties: {slot: default}
-  components:
-  - name: prelink
-    properties: {text: 'пермалинк: chete.me/author/'}
-    type: Label
-    layout_properties: {expand: false}
-  - name: copy_permalink
-    properties: {text: '', icon: 'fa:copy'}
-    type: Button
-    event_bindings: {click: copy_permalink_click}
-    layout_properties: {}
-  event_bindings: {show: fp_permalink_show}
+
 - name: file_loader
   properties: {text: Зареди}
   type: FileLoader
@@ -36,11 +14,7 @@ components:
   properties: {text: Изчисти}
   type: Button
   layout_properties: {slot: files}
-- name: font
-  properties: {include_placeholder: true, placeholder: шрифт}
-  type: DropDown
-  layout_properties: {slot: default}
-  event_bindings: {change: font_change}
+
 - name: mask
   properties: {start: '50'}
   type: form:dep_p86ky6m5lr9fp:Slider

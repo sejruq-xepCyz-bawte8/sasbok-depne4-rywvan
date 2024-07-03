@@ -8,17 +8,17 @@ components:
   properties: {placeholder: жанр1, include_placeholder: true}
   type: DropDown
   layout_properties: {slot: genres_1, placeholder: жанр1}
-  event_bindings: {change: genres_change}
+  event_bindings: {change: genres_1_change}
 - name: genres_2
   properties: {include_placeholder: true, placeholder: жанр2}
   type: DropDown
   layout_properties: {slot: genres_2}
-  event_bindings: {change: genres_change}
+  event_bindings: {change: genres_2_change}
 - name: genres_3
   properties: {include_placeholder: true, placeholder: поджанр}
   type: DropDown
   layout_properties: {slot: genres_3}
-  event_bindings: {change: genres_change}
+  event_bindings: {change: genres_3_change}
 - name: keywords
   properties: {placeholder: ключови думи}
   type: form:dep_p86ky6m5lr9fp:Autocomplete

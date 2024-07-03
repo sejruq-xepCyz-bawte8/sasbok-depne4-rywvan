@@ -1,0 +1,40 @@
+.font-template{
+    --cover-size: 150px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+
+.keyword-icon{
+    font-size: 16px !important;
+}
+.keyword-text{
+    font-size: 12px !important;
+}
+
+.flex-row{
+    display: flex;
+}
+.flex-column{
+    display: flex;
+}
+
+
+input{
+    box-shadow: none !important;
+  }
+  
+  .btn, .btn-default{
+    color: %color:Primary%;
+    border: solid 1px %color:Outline%;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+  }
+  
+  
+  
+  .anvil-role-outlined-button > .btn[disabled]{
+    border-color: %color:On Disabled%;
+    background-color: transparent;
+  }

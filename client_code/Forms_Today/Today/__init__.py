@@ -3,6 +3,8 @@ from anvil import *
 from ...App import NAVIGATION, ASSETS, WORKS
 from anvil.js.window import jQuery as jQ
 
+
+
 class Today(TodayTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)

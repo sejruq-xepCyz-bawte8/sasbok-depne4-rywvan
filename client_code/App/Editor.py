@@ -6,21 +6,38 @@ from random import randint
 
 
 class EditorClass:
-    def __init__(self, fn_asset_get, fn_user_get):
+    def __init__(self, fn_asset_get, author_id):
         #self.production = production
         self.store = indexed_db.create_store('cheteme-editor')
-        self.user = fn_user_get()
-        self.author_id = self.user.get('author_id') if self.user and self.user.get('is_author') else None
+        self.author_id = author_id
         self.get_asset = fn_asset_get
         self.data_template = self.get_asset('json/work_data.json')
-        self.all_work_ids = list(self.store)
-        self.current_id = None
+        
+        #current
+        self.data = None
+        self.content = None
+        self.work_id = None
+
+    def get_draft_ids(self):
+        return list(self.store)
+
+    def get_work_data(self, work_id:str):
+        work = self.store.get(work_id)
+        if work:
+            return work['data']
+        else:
+            return None
 
     def set_new_work(self):
-        if not self.author_id: return None
+        if not self.author_id:
+            return False
         
         ctime = time()
-        work_id = hash_args(randint(1, 1_000_000), ctime, self.author_id) if self.production else str(ctime)
+        try:
+            work_id = hash_args(randint(1, 1_000_000), ctime, self.author_id)
+        except:
+            work_id = str(ctime)
+
         data = self.data_template
         now = datetime.datetime.now()
         data['title'] = now.strftime("%d-%b-%Y")
@@ -28,35 +45,41 @@ class EditorClass:
         data['work_id'] = work_id
         data['author_id'] = self.author_id
 
-        work = {
+        self.store[work_id] = {
             'data':data,
-            'html':'<p></p>'
+            'content':'{}'
         }
 
-        self.save_work(work=work)
-        self.set_current_id(work_id)
-        return work
+        self.set_current(work_id)
 
-    def save_work(self, work:dict):
-        work_id = work['data']['work_id']
-        work['data']['mtime'] = time()
-        self.store[work_id] = work
-        self.all_work_ids = list(self.store)
+        return True
 
-    def get_work(self, work_id:str):
-        work = self.store.get(work_id)
-        return work
+    def save_work(self):
+        if self.work_id and self.data and self.content:
+            self.data['mtime'] = time()
+            self.store[self.work_id] = {
+                'data':self.data,
+                'content': self.content}
+            return True
+        else:
+            return False
+
     
     def del_work(self, work_id:str):
         del self.store[work_id]
-        self.all_work_ids = list(self.store)
+       
 
-    def set_current_id(self, work_id):
-        self.current_id = work_id
+    def set_current(self, work_id):
+        work = self.store.get(work_id)
+        if work:
+            self.work_id = work_id
+            self.data = work['data']
+            self.content = work['content']
+            return True
+        else:
+            self.work_id = None
+            self.data = None
+            self.content = None
+            return False
 
-    def get_current_id(self):
-        return self.current_id
-    
-    def get_current_work(self):
-        work = self.get_work(self.current_id)
-        return work
+

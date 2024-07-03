@@ -2,7 +2,7 @@ import anvil.http
 import json
 
 
-class ChetemeApi:
+class ApiClass:
     def __init__(self, get_user, origin:str):
         self.origin = origin
         self.user = get_user
@@ -54,26 +54,6 @@ class ChetemeApi:
         return response, status
     
     
-    def request_new_user(self, code:str, age:str):
-        headers:dict = {
-        'Cheteme':'new_user',
-        'Cheteme-User': 'new_user',
-        'Cheteme-Code': code,
-        'Cheteme-Age': age,
-    }
-        print(headers)
-        try:
-            response = anvil.http.request(
-                                    url=self.origin,
-                                    headers = headers,
-                                    method='GET',
-                                    json=True
-                                    )
-            status = 200
-        except anvil.http.HttpError as e:
-            response = None
-            status = e.status
-        
-        return response, status
+
     
     

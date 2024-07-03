@@ -26,10 +26,6 @@ class SettingsClass:
     --p-line: {self.settings['line']};
     --nav-size: {self.settings['navigation']}rem;
     --cover-size: {self.settings['cover']}px;
-    --cover-radius: {self.settings['cover'] / 20}px;
-    --cover-font-size: {self.settings['cover'] / 7}px;
-    --cover-icon-size: {self.settings['cover'] / 10}px;
-    --cover-gap: {self.settings['cover'] / 30}px
 }}
 """
         element = document.getElementById('user-settings')

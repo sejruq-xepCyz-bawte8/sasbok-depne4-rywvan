@@ -10,7 +10,7 @@
     "bg_color":"#FEF9E7",
     "m_color":"#FFFFFF",
     "m_opacity":0,
-    "genres":[],
+    "genres":[null, null, null, null],
     "keywords":[],
     "ctime":0,
     "mtime":0,

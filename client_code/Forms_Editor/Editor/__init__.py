@@ -1,93 +1,76 @@
 from ._anvil_designer import EditorTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
+from anvil.js.window import Quill, JSON
 from anvil_extras import non_blocking
-from ...App import NAVIGATION, EDITOR
+from ...App import NAVIGATION, EDITOR, ASSETS
+import json
 
 class Editor(EditorTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
-
-    self.work = EDITOR.get_current_work()
     
     NAVIGATION.set(nav_bar='editor')
+
     self.open_form = NAVIGATION.nav_open_form
-
-
-    toolbarOptions:list = [
-      [{ 'header': 1 },
-      { 'header': 2 },
-      { 'align': 'center' },
-      { 'align': 'right' },
-      { 'list': 'bullet' },
-        'blockquote',
-        'bold',
-        'italic',
-        'image',
-        'link',
-        'clean'
-      ],
-    ]
-
-    self.quill.toolbar=toolbarOptions
-    self.quill.sanitize=False
     self.deferred_change = None
-    self.deferred_save = None
 
   def form_show(self, **event):
+    #elements by order exec
     self.info = jQ('#info')
-    self.sidebar = jQ('.ql-toolbar')
-    self.sidebar.toggle()
     self.editor_nav_text = jQ('#editor .nav-text')
-    self.info.text(f"{self.work['data']['words']}д. {self.work['data']['size']}kb")
-    self.editor_nav_text.text(self.work['data']['title'][0:10])
-
-    self.quill.set_html(self.work['html'], sanitize=False)
-
-  def quill_change(self, **event):
-    non_blocking.cancel(self.deferred_change)
-    non_blocking.cancel(self.deferred_save)
-    self.deferred_change = non_blocking.defer(self.changes_calc, 1)
-    self.deferred_save = non_blocking.defer(self.save_buffer, 3)
-    
-
-  def sidebar_toggle(self, sender, **event):
+    self.quill = Quill('#quill', ASSETS.get('json/quill_options.json'))
+    self.sidebar = jQ('.ql-toolbar')
+    self.editor = jQ('#quill')
+    #set quill
+    self.quill.on('text-change', self.quill_change)
+    content = json.loads(EDITOR.content)
+    self.quill.setContents(content)
+    #update visuals
     self.sidebar.toggle()
-
+    self.info.text(f"{EDITOR.data['words']}д. {EDITOR.data['size']}kb")
+    self.editor_nav_text.text(EDITOR.data['title'][0:10])
     
-  def changes_calc(self):
+  def quill_change(self, *event):
     self.info.removeClass('saved')
-    html = self.quill.get_html()
-    text = self.quill.get_text()
-    words = len(text.split())
-    size = int(len(html.encode('utf-8')) / 1024) #bytes->kb
+    non_blocking.cancel(self.deferred_change)
+    self.deferred_change = non_blocking.defer(self.parse_changes, 2)
+   
+  def parse_changes(self):
+    #calc words
+    text:str = self.quill.getText()
+    lines = text.splitlines()
+    EDITOR.data['words'] = len(text.split())
+    #delta
+    EDITOR.content = JSON.stringify(self.quill.getContents())
+    EDITOR.data['size'] = int(len(EDITOR.content.encode('utf-8')) / 1024) #bytes->kb
     
-    self.work['data']['words'] = words
-    self.work['data']['size'] = size
-    self.work['html'] = html
 
-    self.info.text(f"{self.work['data']['words']}д. {self.work['data']['size']}kb")
+    first_line_format = dict(self.quill.getFormat(0, 2))
     
-    if size > 1_111_111:
-      
+    if first_line_format.get('header') and first_line_format['header'] == 1:
+      EDITOR.data['title'] = lines[0]
+      self.editor_nav_text.text(EDITOR.data['title'][0:10])
+
+    
+    
+    #saving
+    EDITOR.save_work()
+    #display info
+    self.info.addClass('saved')
+    self.info.text(f"{EDITOR.data['words']}д. {EDITOR.data['size']}kb")
+
+    if EDITOR.data['size'] > 1_111_111:
       Notification('Надвишихте 1Мб размер на творбата', style='danger').show()
-    
-    elif size > 5_111_111:
-      
+    elif EDITOR.data['size'] > 5_111_111:
       Notification('Надвишихте 5Мб размер на творбата', style='danger').show()
     
 
-
   def form_hide(self, **event_args):
-    self.save_buffer()
+    EDITOR.save_work()
 
-  def save_buffer(self):
-    EDITOR.save_work(self.work)
-    self.info.addClass('saved')
-    
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()
-
 
 

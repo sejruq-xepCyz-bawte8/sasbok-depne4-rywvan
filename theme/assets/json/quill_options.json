@@ -1,0 +1,23 @@
+{
+"theme": "snow",
+"modules":
+            {
+            "toolbar": [
+                            [
+                            { "header": 1 },
+                            { "header": 2 },
+                            { "align": "center" },
+                            { "align": "right" },
+                            { "list": "bullet" },
+                            "blockquote",
+                            "bold",
+                            "italic",
+                            "image",
+                            "link",
+                            "clean"
+                            ]
+                        ]
+            }
+}
+
+
