@@ -21,7 +21,7 @@ components:
     properties: {role: outlined, text: '', placeholder: автор}
     type: TextBox
     layout_properties: {expand: true}
-  - name: label_2
+  - name: label_slash
     properties: {text: /}
     type: Label
     layout_properties: {}

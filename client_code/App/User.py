@@ -12,6 +12,7 @@ class UserClass:
             self.is_registred = user['is_registred']
             self.is_author = user['is_author']
             self.author_id = user['author_id']
+            self.author_uri = user['author_uri']
         else:
             self.is_user = False
 
@@ -33,6 +34,7 @@ class UserClass:
             self.is_author = user['is_author']
             self.is_registred = user['is_registred']
             self.author_id = user['author_id']
+            self.author_uri = user['author_uri']
         
         self.store['user'] = user
 

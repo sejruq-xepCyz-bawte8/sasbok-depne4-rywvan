@@ -10,6 +10,17 @@ class Publish(PublishTemplate):
     
     self.open_form = NAVIGATION.nav_open_form
 
+    self.author_uri.text = EDITOR.data['author_uri']
+    self.work_uri.text = EDITOR.data['work_uri']
+
+    if EDITOR.data['work_id'] == EDITOR.data['author_id']:
+      self.label_slash.visible = False
+      self.work_uri.visible = False
+    else:
+      self.work_uri.enabled = False
+
+
+
   def form_show(self, **event):
     self.info = jQ('#info')
     self.info.text('Логин')
@@ -20,9 +31,7 @@ class Publish(PublishTemplate):
     self.uri.text = EDITOR.data['uri']
     self.prelink.text = f"chete.me/author_uri/{EDITOR.data['uri']}"
 
-  def uri_change(self, sender, **event_args):
-    EDITOR.data['uri'] = sender.text
-    self.prelink.text = f"chete.me/author_uri/{EDITOR.data['uri']}"
+
 
 
   def build_sidebar():
