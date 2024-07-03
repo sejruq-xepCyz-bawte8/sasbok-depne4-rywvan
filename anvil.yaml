@@ -18,7 +18,7 @@ services:
 - source: /runtime/services/google.yml
   client_config: {}
   server_config: {}
-metadata: {title: ЧетеМе, description: CheteMe, logo_img: 'asset:chetemecover.webp'}
+metadata: {title: ЧетеМе, description: ЧетеМе, logo_img: 'asset:chetemecover.webp'}
 startup: {type: module, module: App.Index}
 native_deps:
   head_html: |-
