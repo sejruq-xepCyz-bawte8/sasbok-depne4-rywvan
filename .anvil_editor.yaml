@@ -39,7 +39,8 @@ unique_ids:
     Forms_Today: Q5EOD4S3LOC3SDVGHGHZWUTLSAEXP465
     _ExampleForms: '1719573334345578319361221.5146'
     Forms_Editor: J6NH76QDP6R6BYZFRT6WYDBGXLBY6KMR
-  server_modules: {}
+  server_modules:
+    author_publish: '1720023220512751307582866.7388'
   assets:
     html/work_cover.html: NFM35REOS5DPLOZBFWMUWKFJ326BRBWP
     html/genres.html: 6GBDLQQIYT5TD3FZ3RAAJOYH5JTJTSPJ

@@ -1,5 +1,6 @@
 from ._anvil_designer import PublishTemplate
 from anvil import *
+import anvil.server
 import anvil.google.auth, anvil.google.drive
 import anvil.users
 from anvil.js.window import jQuery as jQ
