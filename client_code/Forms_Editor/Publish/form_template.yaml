@@ -8,30 +8,49 @@ components:
   properties: {}
   type: Label
   layout_properties: {slot: default}
-- name: outlined_button_1
-  properties: {text: outlined_button_1, role: outlined-button}
-  type: Button
-  layout_properties: {slot: default}
-- name: button_1
-  properties: {text: button_1}
-  type: Button
-  layout_properties: {slot: default}
-- name: uri
-  properties: {role: outlined, placeholder: Пермалинк}
-  type: TextBox
-  layout_properties: {slot: default}
-  event_bindings: {change: uri_change}
-- name: fp_permalink
-  properties: {}
+- name: flow_panel_1
+  properties: {spacing: none}
   type: FlowPanel
   layout_properties: {slot: default}
   components:
-  - name: prelink
-    properties: {text: 'пермалинк: chete.me/author/'}
+  - name: pre_link
+    properties: {text: chete.me/}
     type: Label
-    layout_properties: {expand: false}
-  - name: copy_permalink
-    properties: {text: '', icon: 'fa:copy'}
+    layout_properties: {}
+  - name: author_uri
+    properties: {role: outlined, text: '', placeholder: автор}
+    type: TextBox
+    layout_properties: {expand: true}
+  - name: label_2
+    properties: {text: /}
+    type: Label
+    layout_properties: {}
+  - name: work_uri
+    properties: {role: outlined, text: '', placeholder: творба}
+    type: TextBox
+    layout_properties: {expand: true}
+- name: info
+  properties: {}
+  type: Label
+  layout_properties: {slot: default}
+- name: flow_panel_2
+  properties: {align: center}
+  type: FlowPanel
+  layout_properties: {slot: default}
+  components:
+  - name: publish
+    properties: {text: Публикувай, role: outlined-button}
+    type: Button
+    layout_properties: {expand: true}
+  - name: button_1
+    properties: {text: Копирай}
+    type: Button
+    layout_properties: {expand: true}
+  - name: unpublish
+    properties: {text: Премахни, role: outlined-button, enabled: false}
     type: Button
     layout_properties: {}
-    event_bindings: {show: fp_permalink_show}
+  - name: unpublish_confirm
+    properties: {}
+    type: form:dep_p86ky6m5lr9fp:Switch
+    event_bindings: {change: unpublish_confirm_change}

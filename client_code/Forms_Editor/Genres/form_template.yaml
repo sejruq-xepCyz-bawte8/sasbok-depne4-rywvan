@@ -28,4 +28,3 @@ components:
   properties: {}
   type: FlowPanel
   layout_properties: {slot: keywords}
-

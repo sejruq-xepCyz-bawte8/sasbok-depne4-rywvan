@@ -32,5 +32,8 @@ class Publish(PublishTemplate):
     EDITOR.save_work()
     self.info.addClass('saved')
   
-  def sidebar_toggle(self, sender, **event):
-    self.sidebar.toggle()
+
+
+  def unpublish_confirm_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    pass
