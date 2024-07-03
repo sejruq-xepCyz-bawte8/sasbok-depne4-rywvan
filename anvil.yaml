@@ -12,6 +12,12 @@ services:
 - source: /runtime/services/tables.yml
   client_config: {enable_v2: true}
   server_config: {}
+- source: /runtime/services/anvil/users.yml
+  client_config: {remember_me_days: 30, use_email: true, use_google: true, confirm_email: true, use_token: true, allow_remember_me: true, enable_automatically: true, allow_signup: true, require_secure_passwords: true}
+  server_config: {user_table: users}
+- source: /runtime/services/google.yml
+  client_config: {}
+  server_config: {}
 metadata: {title: ЧетеМе, description: CheteMe, logo_img: 'asset:chetemecover.webp'}
 startup: {type: module, module: App.Index}
 native_deps:
@@ -35,3 +41,33 @@ native_deps:
 
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+db_schema:
+  users:
+    client: none
+    server: full
+    columns:
+    - name: email
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {order: 1, width: 200}
+      type: bool
+    - name: last_login
+      admin_ui: {order: 2, width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {order: 3, width: 200}
+      type: string
+    - name: n_password_failures
+      admin_ui: {order: 4, width: 200}
+      type: number
+    - name: confirmed_email
+      admin_ui: {order: 5, width: 200}
+      type: bool
+    - name: remembered_logins
+      admin_ui: {order: 6, width: 200}
+      type: simpleObject
+    - name: signed_up
+      admin_ui: {order: 7, width: 200}
+      type: datetime
+    title: Users

@@ -1,5 +1,7 @@
 from ._anvil_designer import PublishTemplate
 from anvil import *
+import anvil.google.auth, anvil.google.drive
+import anvil.users
 from anvil.js.window import jQuery as jQ
 from ...App import NAVIGATION, EDITOR, USER
 
@@ -72,3 +74,19 @@ class Publish(PublishTemplate):
 
   def sidebar_toggle(self, sender, **event):
     self.sidebar.toggle()
+
+  def b_author_uri_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def b_login_click(self, **event_args):
+    user = anvil.users.login_with_form()
+    
+
+  def b_logout_click(self, **event_args):
+    user = anvil.users.logout()
+    
+
+  def b_signup_click(self, **event_args):
+    user = anvil.users.signup_with_form()
+    

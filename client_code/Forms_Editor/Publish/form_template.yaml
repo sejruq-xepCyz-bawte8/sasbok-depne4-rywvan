@@ -52,25 +52,25 @@ components:
 - name: author_uri
   properties: {role: outlined, text: '', placeholder: пермалинк автор}
   type: TextBox
-  layout_properties: {slot: sidebar, expand: true}
+  layout_properties: {slot: sidebar}
   event_bindings: {change: author_uri_change}
 - name: b_author_uri
   properties: {text: Запиши, role: outlined-button, enabled: false}
   type: Button
-  layout_properties: {slot: sidebar, expand: true}
+  layout_properties: {slot: sidebar}
   event_bindings: {click: b_author_uri_click}
 - name: b_login
   properties: {text: Вход, role: outlined-button, enabled: false}
   type: Button
-  layout_properties: {slot: sidebar, expand: true}
-  event_bindings: {click: b_author_uri_click}
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: b_login_click}
 - name: b_logout
   properties: {text: Изход, role: outlined-button, enabled: false}
   type: Button
-  layout_properties: {slot: sidebar, expand: true}
-  event_bindings: {click: b_author_uri_click}
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: b_logout_click}
 - name: b_signup
   properties: {text: Регистрация, role: outlined-button, enabled: false}
   type: Button
-  layout_properties: {slot: sidebar, expand: true}
-  event_bindings: {click: b_author_uri_click}
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: b_signup_click}
