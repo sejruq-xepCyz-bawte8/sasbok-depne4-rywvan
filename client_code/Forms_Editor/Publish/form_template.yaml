@@ -8,26 +8,25 @@ components:
   properties: {}
   type: Label
   layout_properties: {slot: default}
-- name: label_2
-  properties: {text: 'Пермалинк:'}
-  type: Label
-  layout_properties: {slot: default}
 - name: flow_panel_1
   properties: {spacing: none}
   type: FlowPanel
   layout_properties: {slot: default}
   components:
+  - name: label_2
+    properties: {text: 'Пермалинк:'}
+    type: Label
   - name: prelink
     type: Label
     layout_properties: {}
-  - name: work_uri
-    properties: {role: outlined, text: '', placeholder: творба}
-    type: TextBox
-    layout_properties: {expand: true}
-    event_bindings: {change: work_uri_change}
-- name: info_text
-  properties: {}
-  type: Label
+- name: work_uri
+  properties: {role: outlined, text: '', placeholder: частта накрая на линка}
+  type: TextBox
+  layout_properties: {slot: default}
+  event_bindings: {change: work_uri_change}
+- name: age
+  properties: {text_pre: '', text_post: Неподходящо за непълнолетни}
+  type: form:dep_p86ky6m5lr9fp:Switch
   layout_properties: {slot: default}
 - name: flow_panel_2
   properties: {align: left}
@@ -44,6 +43,10 @@ components:
     type: Button
     layout_properties: {expand: false}
     event_bindings: {click: copy_permalink_click}
+- name: info_text
+  properties: {}
+  type: Label
+  layout_properties: {slot: default}
 - name: flow_panel_3
   properties: {}
   type: FlowPanel
@@ -76,16 +79,15 @@ components:
   type: Spacer
   layout_properties: {slot: sidebar}
 - name: label_1
-  properties:
-    text: |-
-      Частта след "chete.me/"
-      от пермалинка на автора:
-    bold: false
-    align: right
+  properties: {text: 'Пермалинк автор:', bold: false, align: right}
+  type: Label
+  layout_properties: {slot: sidebar}
+- name: label_3
+  properties: {text: chete.me/}
   type: Label
   layout_properties: {slot: sidebar}
 - name: author_uri
-  properties: {role: outlined, text: '', placeholder: пермалинк автор, align: left}
+  properties: {role: outlined, text: '', placeholder: частта след chete.me, align: left}
   type: TextBox
   layout_properties: {slot: sidebar}
   event_bindings: {change: author_uri_change}
@@ -94,3 +96,20 @@ components:
   type: Button
   layout_properties: {slot: sidebar}
   event_bindings: {click: b_author_uri_click}
+- name: label_4
+  properties: {text: Изчакайте резултата.}
+  type: Label
+  layout_properties: {slot: sidebar}
+- name: switch_1
+  properties: {}
+  type: form:dep_p86ky6m5lr9fp:Switch
+  layout_properties: {slot: sidebar}
+- name: terms
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: sidebar}
+  components:
+  - name: rich_text_1
+    properties: {font_size: 12}
+    type: RichText
+    layout_properties: {}
