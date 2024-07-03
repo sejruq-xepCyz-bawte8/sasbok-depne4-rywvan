@@ -70,4 +70,16 @@ db_schema:
     - name: signed_up
       admin_ui: {order: 7, width: 200}
       type: datetime
+    - name: user_id
+      admin_ui: {width: 200, order: 8}
+      type: string
+    - name: is_author
+      admin_ui: {width: 200, order: 9}
+      type: bool
+    - name: author_id
+      admin_ui: {width: 200, order: 10}
+      type: string
+    - name: data
+      admin_ui: {width: 200, order: 11}
+      type: simpleObject
     title: Users
