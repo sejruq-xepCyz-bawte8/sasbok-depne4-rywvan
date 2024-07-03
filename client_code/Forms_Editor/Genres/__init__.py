@@ -123,6 +123,7 @@ class Genres(GenresTemplate):
 
   def keywords_change(self, sender, **event_args):
     keyword = sender.text
+    sender.text = ''
     EDITOR.data['keywords'].append(keyword)
     EDITOR.save_work()
     chip = Chip(text=keyword)

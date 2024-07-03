@@ -34,7 +34,7 @@ class Publish(PublishTemplate):
 
   def form_show(self, **event):
     self.info = jQ('#info')
-    self.info.text('Профил')
+    self.info.text('Сървър')
     self.sidebar = jQ('#editor-option-sidebar')
     self.sidebar.toggle()
     self.build_sidebar()
