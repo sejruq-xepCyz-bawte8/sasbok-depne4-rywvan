@@ -15,6 +15,7 @@ from .Settings import SettingsClass
 from .Works import WorksClass
 from .Awesome import AwesomeClass
 from .Editor import EditorClass
+from .Reader import ReaderClass
 
 print('ЧетеМе')
 
@@ -31,6 +32,7 @@ AW:AwesomeClass = None
 WORKS:WorksClass = None
 USER:UserClass = None
 EDITOR:EditorClass = None
+READER:ReaderClass = None
 
 def init_app():
     global BROWSER
@@ -44,11 +46,12 @@ def init_app():
     global USER
     global EDITOR
     global ASSETS
+    global READER
 
     BROWSER = BrowserClass()
     SETTINGS = SettingsClass()
 
-    ORIGIN_API = 'https://api.chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:8787'
+    ORIGIN_API = 'https://chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:8787'
     ORIGIN_APP = 'https://chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:3030'
 
     USER = UserClass()
@@ -63,3 +66,4 @@ def init_app():
     if USER.is_author:
         EDITOR = EditorClass(fn_asset_get=ASSETS.get, fn_user_get=USER.get_user)
     
+    READER = ReaderClass(fn_api=API.request)

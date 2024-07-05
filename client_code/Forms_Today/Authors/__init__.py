@@ -1,13 +1,7 @@
 from ._anvil_designer import AuthorsTemplate
 from anvil import *
-import anvil.server
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.users
-from ...App import NAVIGATION
+from anvil.js.window import jQuery as jQ
+from ...App import NAVIGATION, READER, WORKS
 
 class Authors(AuthorsTemplate):
   def __init__(self, **properties):
@@ -16,10 +10,23 @@ class Authors(AuthorsTemplate):
     
     
     self.open_form = NAVIGATION.nav_open_form
+    
 
   def form_show(self, **event):
-    pass
+    self.authors_panel = jQ('#authors-panel')
+    print(READER.authors)
+    for work in READER.authors:
+      work_id = work['work_id']
+      
+      data = READER.get_work_data(work_id)
+   
+      cover = WORKS.make_cover(data)
+      self.authors_panel.append(cover)
 
-  def test(self, sender, **event):
-    print('nac cl test')
+
+  def open_work(self, sender, **event):
+    print(sender.attr('id'))
+    current = READER.set_current(sender.attr('id'))
+    if current:
+      open_form('Forms_Reader.Reader')
 

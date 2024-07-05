@@ -20,7 +20,7 @@ class ApiClass:
         secret = user['secret'] if user else 'new_user'
         age = user['age'] if user else '0'
 
-        info = info if info and isinstance(info, str) and len(info) < 20 else 'info'
+        info = info if info and isinstance(info, str) and len(info) < 100 else 'info'
         headers:dict = {
         'Cheteme':api,
         'Cheteme-User': user_id,
@@ -33,7 +33,9 @@ class ApiClass:
     def request(self, api:str, data:dict=None, info:str=None):
         headers = self.parse_headers(api=api, info=info)
         if data:
-            payload = json.dumps(data) if data else ''
+            headers['Content-Type'] = 'application/json'
+            #payload = json.dumps(data) if data else ''
+            payload = data
             try:
                 response = anvil.http.request(
                                         url=self.origin,
@@ -58,7 +60,19 @@ class ApiClass:
             except anvil.http.HttpError as e:
                 response = None
                 status = e.status
-        return response, status
+        
+        
+
+        if isinstance(response, list):
+            return response, status
+        elif isinstance(response, dict):
+            message = response.get('message')
+            if message:
+                return message, status
+            else:
+                return response, status
+        else:
+            return response, status
     
     
 

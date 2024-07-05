@@ -67,6 +67,10 @@ class Publish(PublishTemplate):
       conditions += 'няма текст, '
     if EDITOR.data['size'] > 5_000:
       conditions += f"много голям файл {EDITOR.data['size']}kb, "
+    if len(EDITOR.data['title']) > 40:
+      conditions += "прекалено дълго заглавие (макс 40)"
+    if len(EDITOR.data['uri']) > 40:
+      conditions += "прекалено дълъг линк (макс 40)"
 
     if not conditions:
       self.publish.enabled = True
@@ -107,8 +111,13 @@ class Publish(PublishTemplate):
     if result and status == 200:
       ticket = result['ticket']
       anvil_result = anvil.server.call('execute_ticket', ticket=ticket)
-      print(result, status)
-    
+      print(anvil_result)
+      if anvil_result:
+        Notification(f"Успешна публикация 🥳", style='success').show()
+      else:
+        Notification(f"Неуспешна публикация :(", style='danger').show()
+    else:
+      Notification(f"Неуспешна публикация :(", style='danger').show()
 
   def copy_permalink_click(self, **event_args):
     """This method is called when the button is clicked"""

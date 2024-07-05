@@ -1,0 +1,41 @@
+<div class="editor-form reader">
+    <div id="cheteme_reader"></div>
+</div>
+
+<style>
+    #cheteme_reader, .reader{
+        width: 100% !important;
+        height: 100% !important;
+    }
+    #cheteme_reader{
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+
+/*READER*/
+#cheteme_reader{
+  width: 100%;
+  height: calc(100% - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  inset: 0rem;
+  margin: auto;
+  padding: 10px 10px 10px 10px;
+
+}
+
+.page{
+  scroll-snap-align: start;
+  min-height: 100%;
+  width: 100%;
+  border-top: 1px dotted gray;
+  inset: 0rem;
+  margin: auto;
+  padding-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+
+</style>

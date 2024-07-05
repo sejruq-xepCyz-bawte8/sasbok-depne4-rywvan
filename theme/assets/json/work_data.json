@@ -4,6 +4,7 @@
     "words": 0,
     "size":0,
     "title":"",
+    "descr":"",
     "image":0, 
     "font":"Adys",
     "color":"#17202A",
@@ -15,6 +16,6 @@
     "ctime":0,
     "mtime":0,
     "ptime":0,
-    "version":0,
+    "ver":0,
     "uri":""
   }
