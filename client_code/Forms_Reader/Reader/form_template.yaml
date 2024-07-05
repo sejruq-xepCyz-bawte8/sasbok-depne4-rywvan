@@ -21,6 +21,9 @@ components:
     properties: {}
     type: FlowPanel
     components:
+    - name: l_likes
+      type: Label
+      layout_properties: {}
     - name: b_like
       properties: {text: '', icon: 'fa:heart-o', enabled: false}
       type: Button
