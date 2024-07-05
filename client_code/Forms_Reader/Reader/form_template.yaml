@@ -3,5 +3,5 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/reader_work.html'}
   event_bindings: {show: form_show}
-components:
+
 
