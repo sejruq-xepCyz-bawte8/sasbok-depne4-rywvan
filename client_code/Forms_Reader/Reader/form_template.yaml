@@ -3,5 +3,33 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/reader_work.html'}
   event_bindings: {show: form_show}
-
-
+components:
+- name: social_others
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: social}
+- name: social_me
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: social}
+  components:
+  - name: label_1
+    properties: {text: 'Не е прочетено :)'}
+    type: Label
+    layout_properties: {}
+  - name: tb_comment
+    properties: {placeholder: коментар, enabled: false}
+    type: TextArea
+    layout_properties: {}
+  - name: flow_panel_1
+    properties: {}
+    type: FlowPanel
+    components:
+    - name: button_1
+      properties: {text: '', icon: 'fa:heart-o', enabled: false}
+      type: Button
+      layout_properties: {}
+    - name: button_2
+      properties: {text: '', icon: 'fa:comment', enabled: false}
+      type: Button
+      layout_properties: {}
