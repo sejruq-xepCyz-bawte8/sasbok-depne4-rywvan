@@ -30,3 +30,7 @@ class Authors(AuthorsTemplate):
     if current:
       open_form('Forms_Reader.Reader')
 
+  def b_search_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
