@@ -39,7 +39,7 @@ class Reader(ReaderTemplate):
     self.last_scroll = time()
     self.mostVisible = 1
     self.pages = []
-
+    self.toc = []
     self.currentPage = None
     self.currentParagraph = None
     self.pageNumber = 0
@@ -50,7 +50,7 @@ class Reader(ReaderTemplate):
     #START PAGINATION
     self.distribute()
 
-
+    print(self.toc)
     
   def distribute(self):
         self.reader.innerHTML = ''
@@ -90,10 +90,13 @@ class Reader(ReaderTemplate):
                     self.createNewPage()
                     clone = element.cloneNode('true')
                     self.currentPage.appendChild(clone)
+                    self.toc.append({element.textContent:self.pageNumber})
                 
                 
                 else:
-                    if element.tagName.lower() == 'h1' : self.headingsCount += 1
+                    if element.tagName.lower() == 'h1' :
+                        self.headingsCount += 1
+                        self.toc.append({element.textContent:self.pageNumber})
                     clone = element.cloneNode('true')
                     self.currentPage.appendChild(clone)
                     if self.currentPage.offsetHeight > self.targetHeigth:
@@ -145,17 +148,13 @@ class Reader(ReaderTemplate):
         
 
 
-  def click_cover(self):
-    print('clic_cover')
+  def bookmark_click(self, sender, *event):
+    print('bookmark_click')
 
-  def click_toc(self):
-    print('clic_toc')
+  def toc_click(self, sender, *event):
+    print('toc_click')
 
-  def click_bookmark(self):
-    print('clic_bookmark')
-
-  def click_like(self):
-    print('clic_like')
-
+  def social_click(self, sender, *event):
+    print('social_click')
 
 

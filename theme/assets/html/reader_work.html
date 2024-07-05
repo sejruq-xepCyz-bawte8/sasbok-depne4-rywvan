@@ -1,12 +1,33 @@
-<div class="editor-form reader">
+<div class="ch-form reader">
     <div id="cheteme_reader"></div>
+    <div id="reader-sidebar">
+      <div anvil-slot-repeat="toc" class="anvil"></div>
+    </div>
 </div>
 
 <style>
+
+#reader-sidebar{
+  background-color: aqua;
+  height: 50%;
+  width: 50%;
+  z-index: 1000;
+  top: 0px;
+  right: 0px;
+  position: absolute;
+}
+
+
+
     #cheteme_reader, .reader{
         width: 100% !important;
         height: 100% !important;
     }
+
+.reader{
+  display: flex;
+}
+
     #cheteme_reader{
         overflow-y: scroll;
         overflow-x: hidden;

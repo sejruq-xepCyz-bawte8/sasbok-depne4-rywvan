@@ -10,7 +10,7 @@ components:
   layout_properties: {slot: default}
   components:
   - name: search_for
-    properties: {role: outlined, placeholder: търси творба}
+    properties: {role: outlined, placeholder: +/- пред думата за И/Не; 10думи макс.}
     type: TextBox
     layout_properties: {expand: true}
     event_bindings: {pressed_enter: b_search_click, change: search_for_change}
