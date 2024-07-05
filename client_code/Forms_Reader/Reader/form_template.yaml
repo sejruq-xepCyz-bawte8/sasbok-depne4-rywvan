@@ -13,23 +13,19 @@ components:
   type: LinearPanel
   layout_properties: {slot: social}
   components:
-  - name: label_1
-    properties: {text: 'Не е прочетено :)'}
-    type: Label
-    layout_properties: {}
   - name: tb_comment
-    properties: {placeholder: коментар, enabled: false}
+    properties: {placeholder: не е прочетено :), enabled: false}
     type: TextArea
     layout_properties: {}
   - name: flow_panel_1
     properties: {}
     type: FlowPanel
     components:
-    - name: button_1
+    - name: b_like
       properties: {text: '', icon: 'fa:heart-o', enabled: false}
       type: Button
       layout_properties: {}
-    - name: button_2
+    - name: b_comment
       properties: {text: '', icon: 'fa:comment', enabled: false}
       type: Button
       layout_properties: {}

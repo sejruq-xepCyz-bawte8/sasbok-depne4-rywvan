@@ -104,19 +104,21 @@ class Reader(ReaderTemplate):
                     self.createNewPage()
                     clone = element.cloneNode('true')
                     self.currentPage.appendChild(clone)
-                    self.toc.append({'h1':element.textContent, 'page':self.pageNumber})
+                    self.toc.append({'h':1, 'text':element.textContent, 'page':self.pageNumber})
                 
                 
                 else:
                     if element.tagName.lower() == 'h1' :
                         self.headingsCount += 1
-                        self.toc.append({'h1':element.textContent, 'page':self.pageNumber})
+                        self.toc.append({'h':1, 'text':element.textContent, 'page':self.pageNumber})
                     clone = element.cloneNode('true')
                     self.currentPage.appendChild(clone)
                     if self.currentPage.offsetHeight > self.targetHeigth:
                         self.currentPage.removeChild(clone)
                         self.createNewPage()
                         self.currentPage.appendChild(clone)
+                    if element.tagName.lower() == 'h2' :
+                        self.toc.append({'h':2, 'text':element.textContent, 'page':self.pageNumber})
   
   def createNewPage(self):
         
@@ -158,9 +160,7 @@ class Reader(ReaderTemplate):
       if int(self.mostVisible) == int(self.pageNumber):
          self.readed_pages = True
       if self.time_reading > self.min_time and self.readed_pages:
-         print('READED')
          self.readed = True
-      print(time() - self.open_time, self.min_time, self.mostVisible, self.pageNumber, self.readed_pages)
 
   #def scrollTo(self, **event):
   #      print('scroll_reader')
@@ -183,22 +183,23 @@ class Reader(ReaderTemplate):
 
 
   def social_click(self, sender, *event):
+    self.check_readed()
     self.sidebar_toc.hide()
     self.sidebar_social.toggle()
-
-
+    if self.readed:
+       self.tb_comment.enabled = True
+       self.tb_comment.placeholder = 'коментар...'
+       self.b_comment.enabled = True
+       self.b_like.enabled = True
 
   def build_toc(self):
-    
-    
     for t in self.toc:
-      link = Link(text=f"{t['h1']} стр.{t['page']}")
-
-      heading = t['h1']
-      if len(heading) > 17 : heading = heading[:17]
+      link = Link()
+      text = t['text'] if t['h'] == 1 else f"  {t['text']}"
+      if len(text) > 20 : text = text[:19] + "+"
       pagen = str(t['page'])
-      dots = '.' * (20 - len(heading) - len(pagen))
-      link.text = '{}{}{}'.format(heading, dots, pagen)
+      dots = '.' * (24 - len(text) - len(pagen))
+      link.text = '{}{}{}'.format(text, dots, pagen)
       link.font = 'Courier New, monospace'
       link.page = t['page']
       link.add_event_handler('click', self.toc_h1_click)
@@ -217,5 +218,9 @@ class Reader(ReaderTemplate):
 
 
   def build_social(self):
-    pass
+    comments = ['asd asdjalksd', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ']
+    for comment in comments:
+       label = Label(text=comment)
+       
+       self.add_component(label, slot='social-comments')
     

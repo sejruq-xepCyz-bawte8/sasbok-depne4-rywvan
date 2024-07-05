@@ -30,18 +30,22 @@
 #reader-sidebar-toc, #reader-sidebar-social{
     height: 75%;
     width: fit-content;
+    min-width: 25ch;
     z-index: 1000;
     bottom: calc(var(--nav-size) * 2);
     right: 0px;
     position: absolute;
     padding: 8px;
     font-size: 2rem;
-    border-top: 1px solid transparent;
-    border-left: 1px solid transparent;
-    border-image: linear-gradient(#616161, #ffffff) 10;
+    border-top: 0px solid transparent;
+    border-left: 0px solid transparent;
+    border-image: linear-gradient(gray, #ffffff) 10;
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: white;
+    box-shadow: -3px -3px 10px gray;
+    margin-right: 1rem;
+    border-radius: 8px;
   }
   
   
