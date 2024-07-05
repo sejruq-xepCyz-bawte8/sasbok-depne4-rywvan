@@ -13,8 +13,9 @@ components:
     properties: {role: outlined, placeholder: търси творба}
     type: TextBox
     layout_properties: {expand: true}
+    event_bindings: {pressed_enter: b_search_click, change: search_for_change}
   - name: b_search
-    properties: {text: '', role: outlined-button, icon: 'fa:search'}
+    properties: {text: '', role: outlined-button, icon: 'fa:search', border: 0px solid transparent}
     type: Button
     layout_properties: {}
     event_bindings: {click: b_search_click}

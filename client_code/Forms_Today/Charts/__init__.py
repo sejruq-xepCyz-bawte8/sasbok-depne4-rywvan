@@ -27,3 +27,8 @@ class Charts(ChartsTemplate):
       
       cover = WORKS.make_cover(data)
       self.charts_panel.append(cover)
+
+  def search_for_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
