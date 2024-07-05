@@ -6,68 +6,12 @@
     </div>
     <div id="reader-sidebar-social">
         <div >Сocial</div>
-        
+        <div anvil-slot-repeat="social" class="anvil"></div>
     </div>
 </div>
 
 <style>
 
-#reader-sidebar-toc, #reader-sidebar-social{
-  height: 75%;
-  width: fit-content;
-  z-index: 1000;
-  bottom: calc(var(--nav-size) * 2);
-  right: 0px;
-  position: absolute;
-  padding: 8px;
-  font-size: 2rem;
-  border-top: 1px solid transparent;
-  border-left: 1px solid transparent;
-  border-image: linear-gradient(#616161, #ffffff) 10;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background-color: white;
-}
-
-
-
-.reader{
-        width: 100% !important;
-        height: 100% !important;
-    }
-
-.reader{
-  display: flex;
-}
-
-
-
-/*READER*/
-#cheteme_reader{
-  width: 100%;
-  max-width: 100ch;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  scroll-snap-type: y mandatory;
-  inset: 0rem;
-  margin: auto;
-  padding: 0px;
-
-}
-
-.page{
-  scroll-snap-align: start;
-  min-height: 100%;
-  width: 100%;
-  border-top: 1px dotted gray;
-  inset: 0rem;
-  margin: 0px;
-  padding-top: 1rem;
-  outline: 1px solid red;
-  outline-offset: -1px;
-}
 
 
 </style>
