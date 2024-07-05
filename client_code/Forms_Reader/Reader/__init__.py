@@ -159,6 +159,7 @@ class Reader(ReaderTemplate):
 
 
   def build_toc(self):
+    self.toc_title.text = READER.data['title']
     for t in self.toc:
       link = Link(text=t)
       link.add_event_handler('click', self.toc_click)
