@@ -1,13 +1,7 @@
 from ._anvil_designer import ChartsTemplate
 from anvil import *
-import anvil.server
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.users
-from ...App import NAVIGATION
+from anvil.js.window import jQuery as jQ
+from ...App import NAVIGATION, READER, WORKS
 
 class Charts(ChartsTemplate):
   def __init__(self, **properties):
@@ -18,8 +12,18 @@ class Charts(ChartsTemplate):
     self.open_form = NAVIGATION.nav_open_form
 
   def form_show(self, **event):
-    pass
+    self.charts_panel = jQ('#charts-panel')
+    print('цхартс')
 
-  def test(self, sender, **event):
-    print('nac cl test')
-
+  def b_search_click(self, sender, **event):
+    self.charts_panel.html('')
+    search = self.search_for.text
+    found = READER.search(search)
+    
+    for work in found:
+      work_id = work['work_id']
+      
+      data = READER.get_work_data(work_id)
+      
+      cover = WORKS.make_cover(data)
+      self.charts_panel.append(cover)

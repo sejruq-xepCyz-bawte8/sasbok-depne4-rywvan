@@ -63,3 +63,14 @@ class ReaderClass:
             return content
         else:
             return None
+        
+    def search(self, search, is_author:bool=None):
+        data = {
+            'search':search,
+            'is_author':is_author
+        }
+        content, success = self.api(api='search', data=data)
+        if success:
+            return content
+        else:
+            return None

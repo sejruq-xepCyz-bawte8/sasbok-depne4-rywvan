@@ -17,3 +17,4 @@ components:
     properties: {text: '', role: outlined-button, icon: 'fa:search'}
     type: Button
     layout_properties: {}
+    event_bindings: {click: b_search_click}
