@@ -158,3 +158,11 @@ class Reader(ReaderTemplate):
     print('social_click')
 
 
+  def build_toc(self):
+    for t in self.toc:
+      link = Link(text=t)
+      link.add_event_handler('click', self.toc_click)
+      self.add_component(link, slot='toc')
+
+  def toc_click(self, sender, *event):
+    pass

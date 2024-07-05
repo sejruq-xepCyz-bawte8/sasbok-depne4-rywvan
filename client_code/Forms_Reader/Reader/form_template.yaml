@@ -3,3 +3,12 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/reader_work.html'}
   event_bindings: {show: form_show}
+components:
+- name: toc_title
+  properties: {}
+  type: Label
+  layout_properties: {slot: toc}
+- name: spacer_1
+  properties: {height: 32}
+  type: Spacer
+  layout_properties: {slot: toc}
