@@ -30,6 +30,7 @@ class Settings(SettingsTemplate):
     self.slider_line_size.value = self.settings['line']
     self.slider_nav_size.value = self.settings['navigation']
     self.slider_cover_size.value = self.settings['cover']
+    self.slider_words_distance.value = self.settings['words']
 
 
   def gui_settings_change(self, handle, **event_args):
@@ -37,7 +38,8 @@ class Settings(SettingsTemplate):
       'text':self.slider_text_size.value,
       'line':self.slider_line_size.value,
       'navigation':self.slider_nav_size.value,
-      'cover':self.slider_cover_size.value
+      'cover':self.slider_cover_size.value,
+      'words':int(self.slider_words_distance.value)
     }
     SETTINGS.set(data=settings)
 

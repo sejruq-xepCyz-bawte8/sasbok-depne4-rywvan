@@ -9,6 +9,11 @@ components:
   type: form:dep_p86ky6m5lr9fp:Slider
   event_bindings: {change: gui_settings_change}
   layout_properties: {slot: text}
+- name: slider_words_distance
+  properties: {max: 40, min: 1, start: 10, step: 2}
+  type: form:dep_p86ky6m5lr9fp:Slider
+  event_bindings: {change: gui_settings_change}
+  layout_properties: {slot: words}
 - name: slider_line_size
   properties: {max: 2, min: 1, start: 1.1, step: 0.1}
   type: form:dep_p86ky6m5lr9fp:Slider

@@ -18,6 +18,7 @@ class SettingsClass:
             'text':2,
             'cover': 150,
             'line':1.1,
+            'words':10,
             }
         self.apply()
 
@@ -33,6 +34,7 @@ class SettingsClass:
     --p-line: {self.settings['line']};
     --nav-size: {self.settings['navigation']}rem;
     --cover-size: {self.settings['cover']}px;
+    --words-distance: {self.settings['words']}px;
 }}
 """
         element = document.getElementById('user-settings')

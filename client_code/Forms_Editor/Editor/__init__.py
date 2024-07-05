@@ -54,15 +54,6 @@ class Editor(EditorTemplate):
     EDITOR.content = JSON.stringify(self.quill.getContents())
     EDITOR.data['size'] = int(len(EDITOR.content.encode('utf-8')) / 1024) #bytes->kb
     
-
-    first_line_format = dict(self.quill.getFormat(0, 2))
-    
-    if first_line_format.get('header') and first_line_format['header'] == 1:
-      EDITOR.data['title'] = lines[0]
-      
-
-    
-    
     #saving
     EDITOR.save_work()
     #display info

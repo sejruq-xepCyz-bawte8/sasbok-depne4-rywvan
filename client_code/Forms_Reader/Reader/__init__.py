@@ -2,6 +2,7 @@ from ._anvil_designer import ReaderTemplate
 from anvil import *
 from ...App import NAVIGATION, API, READER
 from anvil.js.window import document
+from anvil.js.window import jQuery as jQ
 from anvil_extras import non_blocking
 from time import time, sleep
 
@@ -13,17 +14,21 @@ class Reader(ReaderTemplate):
     NAVIGATION.set(nav_bar='reader')
     self.open_form = NAVIGATION.nav_open_form
 
-
+    self.open_time = time()
+    self.time_reading = 0.0
+    self.readed_pages = False
+    self.readed = False
+    self.min_time = 1 + READER.data['words'] / 100
     
-
+    
 
   def form_show(self, **event):
 
     self.scroling_pages_info = None
     self.source = document.createElement("div")
     self.source.innerHTML = READER.content
-    for node in self.source.childNodes:
-        print(node)
+    #for node in self.source.childNodes:
+    #    print(node)
     #App.READER CONTAINER 
     
     self.reader =  document.getElementById("cheteme_reader")
@@ -50,7 +55,16 @@ class Reader(ReaderTemplate):
     #START PAGINATION
     self.distribute()
 
-    print(self.toc)
+    #Sidebars
+    self.sidebar_toc = jQ('#reader-sidebar-toc')
+    self.sidebar_toc.toggle()
+    self.sidebar_social = jQ('#reader-sidebar-social')
+    self.sidebar_social.toggle()
+
+    self.build_toc()
+    self.build_social()
+
+    
     
   def distribute(self):
         self.reader.innerHTML = ''
@@ -90,13 +104,13 @@ class Reader(ReaderTemplate):
                     self.createNewPage()
                     clone = element.cloneNode('true')
                     self.currentPage.appendChild(clone)
-                    self.toc.append({element.textContent:self.pageNumber})
+                    self.toc.append({'h1':element.textContent, 'page':self.pageNumber})
                 
                 
                 else:
                     if element.tagName.lower() == 'h1' :
                         self.headingsCount += 1
-                        self.toc.append({element.textContent:self.pageNumber})
+                        self.toc.append({'h1':element.textContent, 'page':self.pageNumber})
                     clone = element.cloneNode('true')
                     self.currentPage.appendChild(clone)
                     if self.currentPage.offsetHeight > self.targetHeigth:
@@ -126,6 +140,7 @@ class Reader(ReaderTemplate):
         self.currentPage.appendChild(self.currentParagraph)
 
   def parse_most_visible(self):
+      print('parse_most_visible')
       pages = document.querySelectorAll('.page')
       for page in pages:
           rect = page.getBoundingClientRect()
@@ -136,34 +151,71 @@ class Reader(ReaderTemplate):
               break
               
       self.pagesLabel.textContent = f"{self.mostVisible}/{self.pageNumber}"
+      self.check_readed()
 
-  def scrollTo(self, **event):
-        element = document.getElementById(event['sender'].page)
-        if element:
-            element.scrollIntoView({'behavior': 'smooth', 'block': 'start'})
+  def check_readed(self):
+      self.time_reading = time() - self.open_time
+      if int(self.mostVisible) == int(self.pageNumber):
+         self.readed_pages = True
+      if self.time_reading > self.min_time and self.readed_pages:
+         print('READED')
+         self.readed = True
+      print(time() - self.open_time, self.min_time, self.mostVisible, self.pageNumber, self.readed_pages)
+
+  #def scrollTo(self, **event):
+  #      print('scroll_reader')
+  #      element = document.getElementById(event['sender'].page)
+  #      if element:
+  #          element.scrollIntoView({'behavior': 'smooth', 'block': 'start'})
             
   def scroll_reader(self, page, *event):
         non_blocking.cancel(self.scroling_pages_info)
         self.scroling_pages_info = non_blocking.defer(self.parse_most_visible, 0.2)
-        
+        print('scroll_reader')
 
 
   def bookmark_click(self, sender, *event):
     print('bookmark_click')
 
   def toc_click(self, sender, *event):
-    print('toc_click')
+    self.sidebar_social.hide()
+    self.sidebar_toc.toggle()
+
 
   def social_click(self, sender, *event):
-    print('social_click')
+    self.sidebar_toc.hide()
+    self.sidebar_social.toggle()
+
 
 
   def build_toc(self):
-    self.toc_title.text = READER.data['title']
+    
+    
     for t in self.toc:
-      link = Link(text=t)
-      link.add_event_handler('click', self.toc_click)
+      link = Link(text=f"{t['h1']} стр.{t['page']}")
+
+      heading = t['h1']
+      if len(heading) > 17 : heading = heading[:17]
+      pagen = str(t['page'])
+      dots = '.' * (20 - len(heading) - len(pagen))
+      link.text = '{}{}{}'.format(heading, dots, pagen)
+      link.font = 'Courier New, monospace'
+      link.page = t['page']
+      link.add_event_handler('click', self.toc_h1_click)
       self.add_component(link, slot='toc')
 
-  def toc_click(self, sender, *event):
+    self.add_component(Spacer(), slot='toc')
+    words = Label(text=f"{READER.data['words']} думи")
+    words.font = 'Courier New, monospace'
+    self.add_component(words, slot='toc')
+
+
+  def toc_h1_click(self, **event):
+    sender = event['sender']
+    document.getElementById(sender.page).scrollIntoView({ 'behavior': 'smooth', 'block': 'start' })
+
+
+
+  def build_social(self):
     pass
+    

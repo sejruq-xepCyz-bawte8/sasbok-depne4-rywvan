@@ -1,25 +1,37 @@
 <div class="ch-form reader">
     <div id="cheteme_reader"></div>
-    <div id="reader-sidebar">
+    <div id="reader-sidebar-toc">
+      <div style="font-family: 'Courier New', Courier, monospace;">Съдържание:</div>
       <div anvil-slot-repeat="toc" class="anvil"></div>
+    </div>
+    <div id="reader-sidebar-social">
+      <div >Сocial</div>
+      <div anvil-slot-repeat="social" class="anvil"></div>
     </div>
 </div>
 
 <style>
 
-#reader-sidebar{
-  background-color: aqua;
-  height: 50%;
-  width: 50%;
+#reader-sidebar-toc, #reader-sidebar-social{
+  height: 75%;
+  width: fit-content;
   z-index: 1000;
-  top: 0px;
+  bottom: calc(var(--nav-size) * 2);
   right: 0px;
   position: absolute;
+  padding: 8px;
+  font-size: 2rem;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-image: linear-gradient(#616161, #ffffff) 10;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
 }
 
 
 
-    #cheteme_reader, .reader{
+.reader{
         width: 100% !important;
         height: 100% !important;
     }
@@ -28,22 +40,20 @@
   display: flex;
 }
 
-    #cheteme_reader{
-        overflow-y: scroll;
-        overflow-x: hidden;
-    }
 
 
 /*READER*/
 #cheteme_reader{
   width: 100%;
-  height: calc(100% - 2rem);
-  overflow-y: auto;
+  max-width: 100ch;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   overscroll-behavior: contain;
   scroll-snap-type: y mandatory;
   inset: 0rem;
   margin: auto;
-  padding: 10px 10px 10px 10px;
+  padding: 0px;
 
 }
 
@@ -53,9 +63,10 @@
   width: 100%;
   border-top: 1px dotted gray;
   inset: 0rem;
-  margin: auto;
+  margin: 0px;
   padding-top: 1rem;
-  margin-bottom: 3rem;
+  outline: 1px solid red;
+  outline-offset: -1px;
 }
 
 
