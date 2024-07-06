@@ -15,7 +15,7 @@ class Charts(ChartsTemplate):
 
   def form_show(self, **event):
     
-    fill_panel(panel_id='charts-panel', works=READER.chart(chart='liked', days=3))
+    fill_panel(panel_id='charts-panel', works=READER.get_chart(time="today"))
 
 
   def b_search_click(self, sender, **event):
@@ -49,3 +49,9 @@ class Charts(ChartsTemplate):
   def clean_filters(self):
     self.filters.clear()
     jQ('.filter-fa').removeClass('fa-duotone')
+
+
+  def open_work(self, sender, **event):
+    current = READER.set_current(sender.attr('id'))
+    if current:
+      open_form('Forms_Reader.Reader')

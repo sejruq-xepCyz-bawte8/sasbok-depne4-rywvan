@@ -29,7 +29,7 @@ class Cover(CoverTemplate):
 
     self.color.val(EDITOR.data['color'])
     self.bg_color.val(EDITOR.data['bg_color'])
-    self.mask.value = EDITOR.data['mask']
+    self.mask.value = EDITOR.data['m_opacity']
     
 
     self.paint_cover()
@@ -70,15 +70,19 @@ class Cover(CoverTemplate):
     if id == 'color':
       color = sender.val()
       bg_color = EDITOR.data['bg_color']
+      m_color = EDITOR.data['m_color']
+      m_color = adjust_color_for_contrast(base_color=color, second_color=m_color, target_contrast=100)
       bg_color = adjust_color_for_contrast(base_color=color, second_color=bg_color, target_contrast=11)
     else:
       color = EDITOR.data['color']
       bg_color = sender.val()
       color = adjust_color_for_contrast(base_color=bg_color, second_color=color, target_contrast=11)
-      
+      m_color = EDITOR.data['m_color']
+      m_color = adjust_color_for_contrast(base_color=color, second_color=m_color, target_contrast=100)
 
     EDITOR.data['color'] = color
     EDITOR.data['bg_color'] = bg_color
+    EDITOR.data['m_color'] = m_color
 
     self.paint_cover()
 
@@ -115,5 +119,6 @@ class Cover(CoverTemplate):
     EDITOR.save_work()
 
   def mask_change(self, handle, **event_args):
-    """This method is called when the slider has finished sliding"""
-    pass
+    EDITOR.data['m_opacity'] = self.mask.value
+    self.paint_cover()
+    EDITOR.save_work()

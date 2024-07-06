@@ -19,7 +19,7 @@ from .Reader import ReaderClass
 
 print('ЧетеМе')
 
-VERSION:int = 1
+VERSION = 1
 
 BROWSER:BrowserClass = None
 ASSETS:AssetsClass = None
@@ -55,10 +55,10 @@ def init_app():
     ORIGIN_APP = 'https://chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:3030'
 
     USER = UserClass()
-    ASSETS = AssetsClass(origin=ORIGIN_APP)
+    ASSETS = AssetsClass(origin=ORIGIN_APP, version=VERSION)
     NAVIGATION = NavigationClass(fn_asset_get=ASSETS.get, is_author=USER.is_author)
 
-    API = ApiClass(get_user=USER.get_user, origin=ORIGIN_API)
+    API = ApiClass(get_user=USER.get_user, origin=ORIGIN_API, version=VERSION)
 
     AW = AwesomeClass(fn_asset_get=ASSETS.get)
     WORKS = WorksClass(fn_asset_get=ASSETS.get, fn_awesome_get=AW.get)

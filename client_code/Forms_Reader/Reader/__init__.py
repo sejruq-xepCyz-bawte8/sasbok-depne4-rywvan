@@ -237,7 +237,12 @@ class Reader(ReaderTemplate):
         return None
      
      engage = engage if engage else event['sender'].name
-     eresult, success = API.request(api=engage, info=READER.current_id)
+    
+     data = {
+        'genre':READER.data['genres'][2],
+        'comment':self.tb_comment.text
+     }
+     eresult, success = API.request(api=engage, info=READER.current_id, data=data)
      print(eresult, success)
 
      if success == 200 and engage == 'engage_liked':

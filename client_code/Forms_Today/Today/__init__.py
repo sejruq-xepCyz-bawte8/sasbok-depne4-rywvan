@@ -15,9 +15,9 @@ class Today(TodayTemplate):
     
 
   def form_show(self, **event):
-    fill_panel(panel_id='published', works=READER.last)
-    fill_panel(panel_id='readed', works=READER.last)
-    fill_panel(panel_id='liked', works=READER.last)
+    fill_panel(panel_id='published', works=READER.get_last())
+    fill_panel(panel_id='readed', works=READER.get_last())
+    fill_panel(panel_id='liked', works=READER.get_last())
 
 
 

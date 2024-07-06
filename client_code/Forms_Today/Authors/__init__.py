@@ -13,10 +13,10 @@ class Authors(AuthorsTemplate):
     
 
   def form_show(self, **event):
-    fill_panel(panel_id='authors-panel', works=READER.authors)
+    fill_panel(panel_id='authors-panel', works=READER.get_authors())
 
   def open_work(self, sender, **event):
-    print(sender.attr('id'))
+
     current = READER.set_current(sender.attr('id'))
     if current:
       open_form('Forms_Reader.Reader')

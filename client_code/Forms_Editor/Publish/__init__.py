@@ -7,7 +7,7 @@ from anvil.js.window import jQuery as jQ
 from anvil.js.window import Quill, JSON
 import json
 from ...App import NAVIGATION, EDITOR, USER, ASSETS, ORIGIN_APP, API
-
+from time import time
 
 class Publish(PublishTemplate):
   def __init__(self, **properties):
@@ -102,6 +102,8 @@ class Publish(PublishTemplate):
 
 
   def publish_click(self, **event_args):
+    EDITOR.data['ver'] += 1
+    EDITOR.save_work()
     data = {
       "data":EDITOR.data,
       "content":self.content
