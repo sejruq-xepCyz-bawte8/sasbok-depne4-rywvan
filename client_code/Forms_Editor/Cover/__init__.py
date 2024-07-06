@@ -113,3 +113,7 @@ class Cover(CoverTemplate):
     EDITOR.data['image'] = 0
     self.paint_cover()
     EDITOR.save_work()
+
+  def mask_change(self, handle, **event_args):
+    """This method is called when the slider has finished sliding"""
+    pass
