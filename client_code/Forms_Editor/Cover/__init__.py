@@ -3,6 +3,7 @@ from anvil import *
 from anvil.js.window import jQuery as jQ
 from ...App import NAVIGATION, EDITOR, ASSETS, WORKS
 from .Contrast import adjust_color_for_contrast
+from .ImageCover import parse_cover_image
 
 class Cover(CoverTemplate):
   def __init__(self, **properties):
@@ -28,7 +29,7 @@ class Cover(CoverTemplate):
 
     self.color.val(EDITOR.data['color'])
     self.bg_color.val(EDITOR.data['bg_color'])
-
+    self.mask.value = EDITOR.data['mask']
     
 
     self.paint_cover()
@@ -101,9 +102,14 @@ class Cover(CoverTemplate):
     pass
 
   def file_loader_change(self, file, **event_args):
-    """This method is called when a new file is loaded into this FileLoader"""
-    pass
+    image = parse_cover_image(file)
+    if image:
+      EDITOR.data['image'] = image
+      self.paint_cover()
+      EDITOR.save_work()
+   
 
   def file_clean_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    EDITOR.data['image'] = 0
+    self.paint_cover()
+    EDITOR.save_work()

@@ -104,7 +104,7 @@ border-bottom: 0.5px dashed rgb(185, 185, 185);
 
 
 .form-editor-cover .ch-work-cover{
-    --cover-size: clamp(150px, 80vmin, 450px);
+    --cover-size: clamp(150px, 80vmin, 300px);
     margin: 16px;
 }
 
