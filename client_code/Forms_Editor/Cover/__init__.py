@@ -99,3 +99,11 @@ class Cover(CoverTemplate):
 
   def open_work(self, sender, **event):
     pass
+
+  def file_loader_change(self, file, **event_args):
+    """This method is called when a new file is loaded into this FileLoader"""
+    pass
+
+  def file_clean_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
