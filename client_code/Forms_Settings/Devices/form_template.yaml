@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/form.html'}
+  properties: {html: '@theme:html/settings/devices.html'}
   event_bindings: {show: form_show}
 components:
 - name: lp_user

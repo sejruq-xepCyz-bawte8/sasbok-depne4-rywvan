@@ -1,0 +1,45 @@
+.ch-work-cover{
+    overflow: hidden;
+    height: var(--cover-size);
+    width: var(--cover-size);
+    margin: calc(var(--cover-size) / 30);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: cover;
+    border-radius: calc(var(--cover-size) / 30);
+    box-shadow: 0px 0px calc(var(--cover-size) / 30) rgba(0, 0, 0, 0.5);
+}
+
+.editor-option-form .ch-work-cover{
+    --cover-size: clamp(100px, 65vmin, 450px);
+}
+
+.ch-work-mask{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.ch-work-title{
+    z-index: 20;
+    padding: calc(var(--cover-size) / 30);
+    width: 100%;
+}
+
+.ch-work-icons{
+    z-index: 20;
+    padding: calc(var(--cover-size) / 30);
+    display: flex;
+    justify-content: flex-start;
+    gap: calc(var(--cover-size) / 30);
+    width: 100%;
+}
+
+.ch-work-icon{
+    font-size: calc(var(--cover-size) / 10);
+}

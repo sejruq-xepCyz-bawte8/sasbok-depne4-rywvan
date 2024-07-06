@@ -1,15 +1,7 @@
 from ._anvil_designer import TodayTemplate
 from anvil import *
-import anvil.server
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.users
-from ...App import NAVIGATION, ASSETS, WORKS, READER
-from anvil.js.window import jQuery as jQ
-
+from ...App import NAVIGATION, READER
+from ...Covers_Builder import fill_panel
 
 
 class Today(TodayTemplate):
@@ -19,22 +11,14 @@ class Today(TodayTemplate):
 
     self.open_form = NAVIGATION.nav_open_form
 
-    self.work_template:str = ASSETS.get('html/work_cover.html')
-    
+    #self.work_template:str = ASSETS.get('html/work_cover.html') 
     
 
   def form_show(self, **event):
-    self.published_panel = jQ('#published-works')
-    
-   
-    for work in READER.last:
-      work_id = work['work_id']
-      
-      data = READER.get_work_data(work_id)
-      
-      cover = WORKS.make_cover(data)
-      self.published_panel.append(cover)
-      
+    fill_panel(panel_id='published', works=READER.last)
+    fill_panel(panel_id='readed', works=READER.last)
+    fill_panel(panel_id='liked', works=READER.last)
+
 
 
   def b_work_click(self, **event):
@@ -42,7 +26,6 @@ class Today(TodayTemplate):
 
 
   def open_work(self, sender, **event):
-    print(sender.attr('id'))
     current = READER.set_current(sender.attr('id'))
     if current:
       open_form('Forms_Reader.Reader')

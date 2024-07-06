@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/genres.html'}
+  properties: {html: '@theme:html/editor/genres.html'}
   event_bindings: {show: form_show, hide: form_hide}
 components:
 - name: genres_1

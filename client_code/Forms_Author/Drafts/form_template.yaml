@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/drafts.html'}
+  properties: {html: '@theme:html/author/drafts.html'}
   event_bindings: {show: form_show}
 components:
 - name: b_new_work

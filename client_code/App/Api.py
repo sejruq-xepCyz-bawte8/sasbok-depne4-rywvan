@@ -20,7 +20,10 @@ class ApiClass:
         secret = user['secret'] if user else 'new_user'
         age = user['age'] if user else '0'
 
-        info = info if info and isinstance(info, str) and len(info) < 100 else 'info'
+
+        if isinstance(info, str) and len(info) > 100:
+            info = 'info'
+            
         headers:dict = {
         'Cheteme':api,
         'Cheteme-User': user_id,

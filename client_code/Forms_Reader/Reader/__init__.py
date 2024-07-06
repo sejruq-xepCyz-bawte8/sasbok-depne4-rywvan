@@ -189,8 +189,8 @@ class Reader(ReaderTemplate):
     if self.readed:
        self.tb_comment.enabled = True
        self.tb_comment.placeholder = 'коментар...'
-       self.b_comment.enabled = True
-       self.b_like.enabled = True
+       self.engage_comment.enabled = True
+       self.engage_liked.enabled = True
 
   def build_toc(self):
     for t in self.toc:
@@ -221,6 +221,26 @@ class Reader(ReaderTemplate):
     comments = ['asd asdjalksd', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ']
     for comment in comments:
        label = Label(text=comment)
-       
        self.add_component(label, slot='social-comments')
-    
+    self.l_likes.text = 10
+
+
+
+  def engage(self, engage:str=None, **event):
+     if event['sender'] == self.engage_liked:
+        engage = 'engage_liked'
+     elif event['sender'] == self.engage_comment:
+        engage = 'engage_comment'
+  
+     print('engage', engage)
+     if engage not in ['engage_ostay', 'engage_readed', 'engage_liked', 'engage_comment']:
+        return None
+     
+     engage = engage if engage else event['sender'].name
+     eresult, success = API.request(api=engage, info=READER.current_id)
+     print(eresult, success)
+
+     if success == 200 and engage == 'engage_liked':
+        self.engage_liked.icon = "fa:heart"
+     elif success == 200 and engage == 'engage_comment':
+        self.engage_comment.icon = "fa:comment"

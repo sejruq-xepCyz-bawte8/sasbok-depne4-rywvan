@@ -1,7 +1,7 @@
 from ._anvil_designer import AuthorsTemplate
 from anvil import *
-from anvil.js.window import jQuery as jQ
-from ...App import NAVIGATION, READER, WORKS
+from ...App import NAVIGATION, READER
+from ...Covers_Builder import fill_panel
 
 class Authors(AuthorsTemplate):
   def __init__(self, **properties):
@@ -13,16 +13,7 @@ class Authors(AuthorsTemplate):
     
 
   def form_show(self, **event):
-    self.authors_panel = jQ('#authors-panel')
-    print(READER.authors)
-    for work in READER.authors:
-      work_id = work['work_id']
-      
-      data = READER.get_work_data(work_id)
-   
-      cover = WORKS.make_cover(data)
-      self.authors_panel.append(cover)
-
+    fill_panel(panel_id='authors-panel', works=READER.authors)
 
   def open_work(self, sender, **event):
     print(sender.attr('id'))

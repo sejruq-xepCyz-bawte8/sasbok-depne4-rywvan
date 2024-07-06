@@ -3,13 +3,18 @@
     "charts":"Forms_Today.Charts",
     "authors":"Forms_Today.Authors",
     "bookmarks":"Forms_Today.Bookmarks",
+
+    "reader":"Forms_Reader.Reader",
+
     "settings":"Forms_Settings.Settings",
     "devices":"Forms_Settings.Devices",
+
     "drafts":"Forms_Author.Drafts",
-    "profile":"Forms_Author.Profile",
+    "stats":"Forms_Author.Stats",
     "published":"Forms_Author.Published",
+
     "cover":"Forms_Editor.Cover",
     "genres":"Forms_Editor.Genres",
-    "editor":"Forms_Editor.Editor",
-    "publish":"Forms_Editor.Publish"
+    "publish":"Forms_Editor.Publish",
+    "editor":"Forms_Editor.Editor"
 }

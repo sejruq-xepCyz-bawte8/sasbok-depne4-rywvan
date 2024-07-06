@@ -1,5 +1,5 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/published.html'}
+  properties: {html: '@theme:html/author/published.html'}
   event_bindings: {show: form_show}

@@ -1,6 +1,6 @@
-
 from anvil_extras.storage import indexed_db
-
+from time import time
+from datetime import datetime, timedelta
 
 class ReaderClass:
     def __init__(self, fn_api):
@@ -18,7 +18,7 @@ class ReaderClass:
     def set_current(self, work_id):
         work = self.store.get(work_id)
         if work:
-            self.work_id = work_id
+            self.current_id = work_id
             self.data = work['data']
             self.content = work['content']
             return True
@@ -27,7 +27,7 @@ class ReaderClass:
         content = self.get_work_content(work_id)
 
         if data and content:
-            self.work_id = work_id
+            self.current_id = work_id
             self.data = data
             self.content = content
             return True
@@ -70,6 +70,18 @@ class ReaderClass:
             'is_author':is_author
         }
         content, success = self.api(api='search', data=data)
+        if success:
+            return content
+        else:
+            return None
+        
+
+    def chart(self, chart:str, days:int, is_author:bool=None):
+        #chart_liked time
+        api = f'chart_{chart}'
+        days_from_now = datetime.now() - timedelta(days=days)
+        TIME = days_from_now.timestamp()
+        content, success = self.api(api=api, info=TIME)
         if success:
             return content
         else:

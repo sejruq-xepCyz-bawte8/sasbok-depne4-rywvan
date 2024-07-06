@@ -1,11 +1,5 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/today.html'}
+  properties: {html: '@theme:html/today/today.html'}
   event_bindings: {show: form_show}
-components:
-- name: b_work
-  properties: {text: Творба, role: outlined-button}
-  type: Button
-  layout_properties: {slot: default}
-  event_bindings: {click: b_work_click}

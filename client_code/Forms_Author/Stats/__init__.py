@@ -1,8 +1,8 @@
-from ._anvil_designer import BookmarksTemplate
+from ._anvil_designer import StatsTemplate
 from anvil import *
 from ...App import NAVIGATION
 
-class Bookmarks(BookmarksTemplate):
+class Stats(StatsTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
@@ -13,6 +13,5 @@ class Bookmarks(BookmarksTemplate):
   def form_show(self, **event):
     pass
 
-  def test(self, sender, **event):
-    print('nac cl test')
+
 

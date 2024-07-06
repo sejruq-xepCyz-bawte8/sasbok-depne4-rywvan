@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/author_profile.html'}
+  properties: {html: '@theme:html/stats.html'}
   event_bindings: {show: form_show}
 components:
 - name: outlined_1

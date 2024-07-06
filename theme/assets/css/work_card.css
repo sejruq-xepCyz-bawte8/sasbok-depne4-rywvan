@@ -1,18 +1,52 @@
+/*containers*/
+.works-panel{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+.works-panel-title{
+    height: var(--nav-size);
+    font-size: calc(var(--nav-size) * 0.5);
+    font-family: 'Adys';
+    align-content: center;
+}
+.works-container{
+    display: flex;
+    padding-right: calc(var(--cover-size) / 15);
+    padding-left: calc(var(--cover-size) / 30);
+}
+.works-container-horisontal{
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.works-container-vertical{
+    width: 100%;
+    
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    flex: 1;
+  
+}
 
-/*
---cover-radius: {self.settings['cover'] / 20}px;
---cover-font-size: {self.settings['cover'] / 7}px;
---cover-icon-size: {self.settings['cover'] / 10}px;
---cover-gap: {self.settings['cover'] / 30}px
-*/
+@media (min-width: 769px) {
+    .works-container{
+        flex-wrap: wrap;
+    }
+    
+}
 
-
-
+/*card*/
 .ch-work-cover{
     overflow: hidden;
-    height: var(--cover-size);
-    width: var(--cover-size);
+    height: calc(var(--cover-size) - var(--cover-size) / 15);
+    width: calc(var(--cover-size) - var(--cover-size) / 15);
+    min-height: calc(var(--cover-size) - var(--cover-size) / 15);
+    min-width: calc(var(--cover-size) - var(--cover-size) / 15);
     margin: calc(var(--cover-size) / 30);
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,9 +55,6 @@
     box-shadow: 0px 0px calc(var(--cover-size) / 30) rgba(0, 0, 0, 0.5);
 }
 
-.editor-option-form .ch-work-cover{
-    --cover-size: clamp(100px, 65vmin, 450px);
-}
 
 .ch-work-mask{
     height: 100%;

@@ -1,6 +1,6 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/editor.html'}
+  properties: {html: '@theme:html/editor/editor.html'}
   event_bindings: {show: form_show, hide: form_hide}
 components: null

@@ -1,90 +1,38 @@
 .ch-form{
-    flex: 1;
-    padding: 8px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 100%;
-  }
-
-/*editor forms*/
-.editor-option-form{
-    overflow-y: hidden;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-}
-#editor-option-main{
- flex: 1;
-}
-#editor-option-sidebar{
     flex: 1;
-    height: 100%;
-    overflow-y: scroll;
-    display: flex;
     flex-direction: column;
-    margin-left: 1rem;
-    width: fit-content;
 }
 
-/*reader*/
-#reader-sidebar-toc, #reader-sidebar-social{
-    height: 75%;
-    width: fit-content;
-    min-width: 25ch;
-    z-index: 1000;
-    bottom: calc(var(--nav-size) * 2);
-    right: 0px;
-    position: absolute;
-    padding: 8px;
-    font-size: 2rem;
-    border-top: 0px solid transparent;
-    border-left: 0px solid transparent;
-    border-image: linear-gradient(gray, #ffffff) 10;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background-color: white;
-    box-shadow: -3px -3px 10px gray;
-    margin-right: 1rem;
-    border-radius: 8px;
-  }
-  
-  
-  
-  .reader{
-          width: 100% !important;
-          height: 100% !important;
-      }
-  
-  .reader{
-    display: flex;
-  }
-  
-  
-  
-  /*READER*/
-  #cheteme_reader{
-    width: 100%;
-    max-width: 100ch;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-    scroll-snap-type: y mandatory;
-    inset: 0rem;
-    margin: auto;
-    padding: 0px;
-  
-  }
-  
-  .page{
-    scroll-snap-align: start;
-    min-height: 100%;
-    width: 100%;
-    border-top: 1px dotted gray;
-    inset: 0rem;
-    margin: 0px;
-    padding-top: 1rem;
-    outline: 1px solid red;
-    outline-offset: -1px;
-  }
-  
+.form-today{
+    --cover-size: calc((99svh - var(--nav-size) * 4) / 3);
+    margin-bottom: 1svh;
+}
+
+.form-charts{
+    --cover-size: calc(100svw / 3.1);
+    margin-bottom: 1svh;
+}
+
+
+
+/* Styles for screens larger than small tablets */
+@media (min-width: 769px) {
+    .form-today{
+        --cover-size: unset;
+        overflow-y: scroll;
+    }
+    
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .form-today{
+        --cover-size: calc((100svh - env(safe-area-inset-bottom) - var(--nav-size) * 4) / 3); 
+    }
+    .form-charts{
+        --cover-size: calc(100svw / 6.1);
+        margin-bottom: 1svh;
+    }
+}
+

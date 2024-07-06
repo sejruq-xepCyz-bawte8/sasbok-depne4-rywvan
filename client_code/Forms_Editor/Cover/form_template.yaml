@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/cover.html'}
+  properties: {html: '@theme:html/editor/cover.html'}
   event_bindings: {show: form_show, hide: form_hide}
 components:
 - name: file_loader

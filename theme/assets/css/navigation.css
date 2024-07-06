@@ -1,20 +1,23 @@
 #navigation{
+    height:var(--nav-size);
     display: flex;
     justify-content: space-evenly;
-    font-size: var(--nav-size);
+    align-items: center;
+    font-size: calc(var(--nav-size) - 18px);
+    border-top: 1px solid gray;
+    margin: 0;
+    padding: 0;
 }
 
 
 .nav-item{
-    font-size: var(--nav-size);
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1
+    flex: 1;
+    gap: 0px;
 }
-.nav-fa{
-  
-}
+
 
 .nav-text{
     font-size: 10px;
