@@ -37,3 +37,11 @@ class Charts(ChartsTemplate):
       self.filters.add(filter)
     print(self.filters)
 
+  def clean_search_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def search_for_focus(self, **event_args):
+    """This method is called when the TextBox gets focus"""
+    pass
+
