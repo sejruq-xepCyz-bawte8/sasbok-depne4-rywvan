@@ -10,13 +10,14 @@ components:
   layout_properties: {slot: files}
   components:
   - name: file_loader
-    properties: {text: Зареди, file_types: '.png,.jpeg,'}
+    properties: {text: Зареди, file_types: '.png,.jpg,.jpeg,.gif,.webp'}
     type: FileLoader
     event_bindings: {click: image_change, change: file_loader_change}
     layout_properties: {expand: false}
   - name: file_clean
-    properties: {text: Изчисти}
+    properties: {text: Изчисти, icon: 'fa:image'}
     type: Button
+    layout_properties: {}
     event_bindings: {click: file_clean_click}
 - name: mask
   properties: {start: '50'}
