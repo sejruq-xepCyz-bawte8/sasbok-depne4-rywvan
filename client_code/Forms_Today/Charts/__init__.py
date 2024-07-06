@@ -1,5 +1,6 @@
 from ._anvil_designer import ChartsTemplate
 from anvil import *
+from anvil.js.window import jQuery as jQ
 from ...App import NAVIGATION, READER
 from ...Covers_Builder import fill_panel
 
@@ -38,10 +39,13 @@ class Charts(ChartsTemplate):
     print(self.filters)
 
   def clean_search_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    self.search_for.text = ''
+    self.clean_filters()
+    
 
   def search_for_focus(self, **event_args):
-    """This method is called when the TextBox gets focus"""
-    pass
+    self.clean_filters()
 
+  def clean_filters(self):
+    self.filters.clear()
+    jQ('.filter-fa').removeClass('fa-duotone')

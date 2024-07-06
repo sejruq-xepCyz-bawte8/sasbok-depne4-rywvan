@@ -11,10 +11,6 @@
     box-shadow: 0px 0px calc(var(--cover-size) / 30) rgba(0, 0, 0, 0.5);
 }
 
-.editor-option-form .ch-work-cover{
-    --cover-size: clamp(100px, 65vmin, 450px);
-}
-
 .ch-work-mask{
     height: 100%;
     width: 100%;

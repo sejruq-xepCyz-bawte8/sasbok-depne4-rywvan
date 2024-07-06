@@ -129,6 +129,7 @@ class Publish(PublishTemplate):
 
 
   def sidebar_toggle(self, sender, **event):
+    sender.toggleClass('active')
     self.sidebar.toggle()
 
   def b_author_uri_click(self, **event_args):

@@ -63,6 +63,7 @@ class Editor(EditorTemplate):
     EDITOR.save_work()
 
   def sidebar_toggle(self, sender, **event):
+    sender.toggleClass('active')
     self.sidebar.toggle()
 
 

@@ -2,6 +2,7 @@ from ._anvil_designer import CoverTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
 from ...App import NAVIGATION, EDITOR, ASSETS, WORKS
+from .Contrast import adjust_color_for_contrast
 
 class Cover(CoverTemplate):
   def __init__(self, **properties):
@@ -24,8 +25,6 @@ class Cover(CoverTemplate):
 
     self.color = jQ('#color')
     self.bg_color = jQ('#bg_color')
-
-
 
     self.color.val(EDITOR.data['color'])
     self.bg_color.val(EDITOR.data['bg_color'])
@@ -61,11 +60,25 @@ class Cover(CoverTemplate):
     
 
   def chose_font(self, sender, **event_args):
-    EDITOR.data['font'] = sender.attr('id')
+    EDITOR.data['font'] = sender.attr('font_cover')
     self.paint_cover()
 
   def chose_color(self, sender, **event_args):
-    EDITOR.data[sender.attr('id')] = sender.val()
+
+    id = sender.attr('id')
+    if id == 'color':
+      color = sender.val()
+      bg_color = EDITOR.data['bg_color']
+      bg_color = adjust_color_for_contrast(base_color=color, second_color=bg_color, target_contrast=11)
+    else:
+      color = EDITOR.data['color']
+      bg_color = sender.val()
+      color = adjust_color_for_contrast(base_color=bg_color, second_color=color, target_contrast=11)
+      
+
+    EDITOR.data['color'] = color
+    EDITOR.data['bg_color'] = bg_color
+
     self.paint_cover()
 
   def form_hide(self, **event_args):
@@ -76,6 +89,7 @@ class Cover(CoverTemplate):
     self.info.addClass('saved')
   
   def sidebar_toggle(self, sender, **event):
+    sender.toggleClass('active')
     self.sidebar.toggle()
 
   def copy_permalink_click(self, **event_args):

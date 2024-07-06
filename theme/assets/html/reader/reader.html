@@ -1,31 +1,13 @@
-<div class="ch-form reader">
+<div class="ch-form form-reader">
     <div id="cheteme_reader"></div>
     <div id="reader-sidebar-toc">
       <div style="font-family: 'Courier New', Courier, monospace;">Съдържание:</div>
       <div anvil-slot-repeat="toc" class="anvil"></div>
     </div>
-    <div id="reader-sidebar-social">
+    <div id="reader-sidebar-social" class="sidebar">
         <div class='comments-container'>
           <div class='comments-item' anvil-slot-repeat="social-comments" class="anvil"></div>
         </div>
         <div class='social-me' anvil-slot-repeat="social" class="anvil"></div>
     </div>
 </div>
-<style>
-  #reader-sidebar-social{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .comments-container{
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-  .comments-item{
-    border-bottom: 1px dotted gray;
-    font-size: 16px;
-    flex: 1;
-  }
-</style>

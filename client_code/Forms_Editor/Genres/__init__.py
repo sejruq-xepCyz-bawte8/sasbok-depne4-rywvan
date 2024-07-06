@@ -101,7 +101,7 @@ class Genres(GenresTemplate):
 
   def buld_sidebar(self, keywords):
     
-    icon = ASSETS.get('html/icon.html')
+    icon = ASSETS.get('html/keyword.html')
     for key, value in keywords.items():
       fa = AW.get(key)
       icon_html = icon.format(bg=key, fa=value)
@@ -113,6 +113,7 @@ class Genres(GenresTemplate):
 
   
   def sidebar_toggle(self, sender, **event):
+    sender.toggleClass('active')
     self.sidebar.toggle()
 
   def keywords_change(self, sender, **event_args):
@@ -167,3 +168,17 @@ class Genres(GenresTemplate):
     if g3:
       EDITOR.data['genres'][3] = g3
       EDITOR.save_work()
+
+
+
+  def click_keyword(self, sender, *event):
+    keyword = sender.attr('keyword')
+    print(keyword)
+    sender.text = ''
+    EDITOR.data['keywords'].append(keyword)
+    EDITOR.save_work()
+    chip = Chip(text=keyword)
+    icon = AW.get_4_anv(keyword)
+    chip.icon = icon if icon else ''
+    chip.add_event_handler('close_click', self.delete_keyword)
+    self.fp_keywords.add_component(chip)
