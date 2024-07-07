@@ -3,24 +3,4 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/today/charts.html'}
   event_bindings: {show: form_show}
-components:
-- name: flow_panel_1
-  properties: {spacing: none}
-  type: FlowPanel
-  layout_properties: {slot: default}
-  components:
-  - name: search_for
-    properties: {role: outlined, placeholder: +/- пред думата за И/Не; 10думи макс.}
-    type: TextBox
-    layout_properties: {expand: true}
-    event_bindings: {pressed_enter: b_search_click, change: search_for_change, focus: search_for_focus}
-  - name: b_search
-    properties: {text: '', role: outlined-button, icon: 'fa:magnifying-glass', border: 0px solid transparent}
-    type: Button
-    layout_properties: {}
-    event_bindings: {click: b_search_click}
-  - name: clean_search
-    properties: {text: '', role: outlined-button, icon: 'fa:magnifying-glass-minus'}
-    type: Button
-    layout_properties: {}
-    event_bindings: {click: clean_search_click}
+

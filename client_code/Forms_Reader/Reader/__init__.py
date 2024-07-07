@@ -12,17 +12,28 @@ class Reader(ReaderTemplate):
     self.init_components(**properties)
     
     NAVIGATION.set(nav_bar='reader')
+
     self.open_form = NAVIGATION.nav_open_form
 
     self.open_time = time()
-    self.time_reading = 0.0
-    self.readed_pages = False
-    self.readed = False
+
+    self.bookmark = READER.get_bookmark(READER.current_id)
+
+    self.time_reading = 0.0 if not self.bookmark else self.bookmark['time_reading']
+    self.readed_pages = False if not self.bookmark else self.bookmark['readed_pages']
+    self.readed = False if not self.bookmark else self.bookmark['readed']
     self.min_time = 1 + READER.data['words'] / 100
+    
     
     
 
   def form_show(self, **event):
+    back = jQ('#today')
+    back.attr('id', READER.get_back())
+
+    self.bookmark_icon = jQ('#bookmark')
+    if self.bookmark:
+       self.bookmark_icon.addClass('active')
 
     self.scroling_pages_info = None
     self.source = document.createElement("div")
@@ -171,10 +182,12 @@ class Reader(ReaderTemplate):
   def scroll_reader(self, page, *event):
         non_blocking.cancel(self.scroling_pages_info)
         self.scroling_pages_info = non_blocking.defer(self.parse_most_visible, 0.2)
-        print('scroll_reader')
+        if self.bookmark:
+           self.bookmark_click()
 
 
   def bookmark_click(self, sender, *event):
+    READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
     print('bookmark_click')
 
   def toc_click(self, sender, *event):

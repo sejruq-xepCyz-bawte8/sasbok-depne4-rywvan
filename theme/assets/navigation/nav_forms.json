@@ -3,6 +3,7 @@
     "charts":"Forms_Today.Charts",
     "authors":"Forms_Today.Authors",
     "bookmarks":"Forms_Today.Bookmarks",
+    "search":"Forms_Today.Search",
 
     "reader":"Forms_Reader.Reader",
 

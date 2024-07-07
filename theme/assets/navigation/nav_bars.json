@@ -1,7 +1,11 @@
 {
     "today":"navigation/today.html",
-    "today_author":"navigation/today_author.html",
+    "charts":"navigation/today.html",
+    "authors":"navigation/today.html",
+    "search":"navigation/today.html",
+    "bookmarks":"navigation/today.html",
     "settings":"navigation/settings.html",
+    "settings_author":"navigation/settings_author.html",
     "author":"navigation/author.html",
     "editor":"navigation/editor.html",
     "reader":"navigation/reader.html"

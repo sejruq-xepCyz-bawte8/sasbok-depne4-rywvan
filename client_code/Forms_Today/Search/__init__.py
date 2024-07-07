@@ -1,4 +1,4 @@
-from ._anvil_designer import ChartsTemplate
+from ._anvil_designer import SearchTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
 from ...App import NAVIGATION, READER
@@ -19,52 +19,50 @@ GENRES:set = {'фантастика',
 'исторически',
 'еротика'}
 
-PERIODS:set = {'днес', 'седмицата', 'месеца'}
 
-ENGAGEMENTS:set = {'харесани', 'публикувани', 'четени', 'коментирани'}
-
-
-class Charts(ChartsTemplate):
+class Search(SearchTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
     
-    self.filters = READER.get_filters()
+    self.filters:set = set()
     self.chart:list = []
     self.open_form = NAVIGATION.nav_open_form
-    READER.set_back("charts")
-    
+
+    READER.set_back("search")
 
   def form_show(self, **event):
-    
+  
     self.chart_name = jQ('#chart_name')
-    self.filter_toggle(sender=None)
+    self.chart_panel = jQ('#charts-panel')
     self.chart_name.text("Последни 100 публикувани ")
 
 
+  def b_search_click(self, sender, **event):
+    search = self.search_for.text
+    self.chart_panel.html('')
+    fill_panel(panel_id='charts-panel', works=READER.search(search))
+    
 
-  def filter_toggle(self, sender, *event):
-    filter = sender.attr('id') if sender else None
-    if filter in self.filters:
-      self.filters.remove(filter)
-    else:
-      if filter in PERIODS:
-        self.filters.difference_update(PERIODS)
-  
-      if filter in ENGAGEMENTS:
-        self.filters.difference_update(ENGAGEMENTS)
       
-      self.filters.add(filter)
 
+  def search_for_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+
+
+  def clean_search_click(self, **event_args):
+    self.search_for.text = ''
+    self.clean_filters()
+    
+
+  def search_for_focus(self, **event_args):
+    self.clean_filters()
+
+  def clean_filters(self):
+    self.filters.clear()
     jQ('.filter-fa').removeClass('fa-duotone')
-
-    for filter in self.filters:
-      jQ(f'#{filter}').find('.filter-fa').addClass('fa-duotone')
-   
-    print(self.filters)
-    READER.set_filters(self.filters)
-    self.make_chart()
-
 
 
   def open_work(self, sender, **event):
@@ -73,7 +71,6 @@ class Charts(ChartsTemplate):
       open_form('Forms_Reader.Reader')
 
 
-  def make_chart(self):
     if 'публикувани' in self.filters:
       self.chart = READER.get_last()
     elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
@@ -97,5 +94,5 @@ class Charts(ChartsTemplate):
     
 
     print('af', self.chart)
-    
+
     fill_panel(panel_id='charts-panel', works=self.chart)

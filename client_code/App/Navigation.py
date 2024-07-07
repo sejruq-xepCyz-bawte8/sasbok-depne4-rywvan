@@ -28,15 +28,21 @@ class NavigationClass:
 
 
     def nav_open_form(self, sender, **event):
-        self.element.children().removeClass('active')
+        jQ('.nav-item').removeClass('active')
+        #self.element.children().removeClass('active')
         sender_id:str = sender.attr('id')
+        
         form_name:str = self.forms[sender_id]
+
         if sender_id in self.navbars:
             #need to set navbar
             self.set(nav_bar=sender_id)
-        else:
+        #else:
             #just open form
-            sender.addClass('active')
+
+        jQ(f'#{sender_id}').addClass('active')
+        
+        print('BACK', sender_id)
         open_form(form_name)
 
 

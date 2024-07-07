@@ -1,20 +1,35 @@
 from anvil_extras.storage import indexed_db
 from time import time
-from datetime import datetime, timedelta
-from anvil_extras.storage import indexed_db
+from anvil_extras import non_blocking
+
 
 class ReaderClass:
     def __init__(self, fn_api):
         self.bookmarks = indexed_db.create_store('cheteme-bookmarks')
         self.api = fn_api
 
+        #current
         self.current_id = None
         self.data = None
         self.content = None
 
+
+        #state and back
+        self.filters:set = {'публикувани'}
+        self.back = 'today'
    
+        #cache
         self.works:dict = {}
         self.charts:dict = {}
+
+        self.freq = {
+            'get_chart_today': 600,
+            'get_chart_week': 3600,
+            'get_chart_month': 7200,
+            'search': 3600,
+        }
+
+        self.beats_update = non_blocking.repeat(self.update_charts, 60)
 
 
     def set_current(self, work_id):
@@ -40,12 +55,33 @@ class ReaderClass:
         return self.parse_chart(api='get_authors')
 
     def parse_chart(self, api, info=None, data=None):
+        if not data and not info:
+            chart_id = api
+        elif not data and info:   
+            chart_id = f'{api}{info}'
+        elif api=='search':
+            is_author = 1 if data['is_author'] else 0
+            chart_id = f"{api}{data['search'].strip()}{is_author}"
+    
+        else:
+            return []
 
-        chart_id = api if not info else f'{api}-{info}'
 
-        if self.charts.get(chart_id) and time() - self.charts[chart_id]['timestamp'] < 3600:
-            return self.charts[chart_id]['results']
+        freq = self.freq.get(chart_id)
+        if not freq: freq = 3600
+
+        print('calc', chart_id, freq)
+        print('cached', self.charts.get(chart_id))
+
+        chart = self.charts.get(chart_id)
+
+        if chart:
+            delta = time() - chart['timestamp']
+            if delta < freq:
+                return chart['results']
+        
         results, success = self.api(api=api, info=info, data=data)
+
         if results and success:
             self.charts[chart_id] = {
                 'results':results,
@@ -64,6 +100,7 @@ class ReaderClass:
             return work['data']
         
         work = self.bookmarks.get(work_id)
+
         if work and work.get('data'):
             return work['data']
 
@@ -84,6 +121,7 @@ class ReaderClass:
             return work['content']
 
         work = self.bookmarks.get(work_id)
+        
         if work and work.get('content'):
             return work['content']
         
@@ -108,14 +146,43 @@ class ReaderClass:
             'search':search,
             'is_author':is_author
         }
-
+        #results, success = self.api(api='search', data=data)
+        #return results
         return self.parse_chart(api='search', data=data)
 
         
 
     def get_chart(self, time):
-
         return self.parse_chart(api='get_chart', info=time)
 
-
+    def update_charts(self):
+        print('beats')
+        self.parse_chart(api='get_chart', info='month')
+        self.parse_chart(api='get_chart', info='week')
+        self.parse_chart(api='get_chart', info='today')
+        
+         
+    def set_filters(self, filters:set):
+        self.filters = filters
+    def get_filters(self):
+        return self.filters
     
+    def set_back(self, back):
+        self.back = back
+    def get_back(self):
+        return self.back
+    
+
+    def save_bookmark(self, page:int, time_reading:float=0, readed:bool=False, readed_pages:bool=False):
+        self.bookmarks[self.current_id] = {
+            'data':self.data,
+            'content':self.content,
+            'page':page,
+            'time_reading':time_reading,
+            'readed':readed,
+            'readed_pages':readed_pages,
+            'timestamp': time()
+        }
+
+    def get_bookmark(self, work_id):
+        return self.bookmarks.get(work_id)

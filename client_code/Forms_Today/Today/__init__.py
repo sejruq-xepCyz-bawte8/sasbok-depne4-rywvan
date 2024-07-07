@@ -2,7 +2,7 @@ from ._anvil_designer import TodayTemplate
 from anvil import *
 from ...App import NAVIGATION, READER
 from ...Covers_Builder import fill_panel
-
+from anvil.js.window import jQuery as jQ
 
 class Today(TodayTemplate):
   def __init__(self, **properties):
@@ -11,13 +11,36 @@ class Today(TodayTemplate):
 
     self.open_form = NAVIGATION.nav_open_form
 
-    #self.work_template:str = ASSETS.get('html/work_cover.html') 
+    READER.set_back("today")
     
 
   def form_show(self, **event):
-    fill_panel(panel_id='published', works=READER.get_last())
-    fill_panel(panel_id='readed', works=READER.get_last())
-    fill_panel(panel_id='liked', works=READER.get_last())
+
+    self.liked_title = jQ('#liked_title')
+    self.readed_title = jQ('#readed_title')
+
+    last:list = READER.get_last()
+    chart:list = READER.get_chart('today')
+    chart_name = "днес"
+    if len(chart) < 10:
+      chart = READER.get_chart('week')
+      chart_name = "през седмицата"
+    if len(chart) < 10:
+      chart = READER.get_chart('month')
+      chart_name = "този месец"
+
+    self.liked_title.text(f'Най-харесвани {chart_name}')
+    self.readed_title.text(f'Най-четени {chart_name}')
+
+    
+    #o': 0, 'r': 0, 'l': 1, 'c': 0}]
+    chart_liked = sorted(chart, key=lambda x: x['l'], reverse=True)
+    chart_readed = sorted(chart, key=lambda x: x['r'], reverse=True)
+    
+
+    fill_panel(panel_id='published', works=last[:10])
+    fill_panel(panel_id='readed', works=chart_readed[:10])
+    fill_panel(panel_id='liked', works=chart_liked[:10])
 
 
 
