@@ -14,13 +14,6 @@ components:
     type: TextBox
     layout_properties: {expand: true}
     event_bindings: {pressed_enter: b_search_click, change: search_for_change, focus: search_for_focus}
-  - name: b_search
-    properties: {text: '', role: outlined-button, icon: 'fa:magnifying-glass', border: 0px solid transparent}
-    type: Button
-    layout_properties: {}
-    event_bindings: {click: b_search_click}
-  - name: clean_search
-    properties: {text: '', role: outlined-button, icon: 'fa:magnifying-glass-minus'}
-    type: Button
-    layout_properties: {}
-    event_bindings: {click: clean_search_click}
+  - name: switch_1
+    properties: {text_post: Автори, text_pre: Творби}
+    type: form:dep_p86ky6m5lr9fp:Switch
