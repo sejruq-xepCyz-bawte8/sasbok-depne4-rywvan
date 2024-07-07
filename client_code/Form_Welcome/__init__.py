@@ -16,6 +16,7 @@ class Form_Welcome(Form_WelcomeTemplate):
     self.api = 'https://api.chete.me' if window.location.hostname == "chete.me" else 'http://192.168.0.101:8787'
   def form_show(self, **event):
     self.rich_welcome.content = WELCOME
+    self.terms.content = TERMS
     
   def zod_code(self, sender, **event):
       sender.valid = schema_code.safe_parse(sender.text).success
@@ -68,9 +69,20 @@ class Form_Welcome(Form_WelcomeTemplate):
             response = None
             #status = e.status
         return response
+
+  def b_terms_click(self, **event_args):
+    self.rich_welcome.visible = not self.rich_welcome.visible
+    self.terms.visible = not self.terms.visible
+    
   
 
 WELCOME = """
+# ЧетеМе 1.0 бета
+## ОБЩИ УСЛОВИЯ:
+Този уеб сайт използва "бисквитки/cookies".
+"""
+
+TERMS = """
 # ЧетеМе 1.0 бета
 ## ОБЩИ УСЛОВИЯ:
 Този уеб сайт използва "бисквитки/cookies".

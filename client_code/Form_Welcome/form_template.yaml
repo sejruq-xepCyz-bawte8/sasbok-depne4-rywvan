@@ -16,11 +16,25 @@ components:
   type: TextBox
   layout_properties: {slot: default}
   event_bindings: {change: input_change}
-- name: button_enter
-  properties: {text: ВЛЕЗ, enabled: false, align: center, role: outlined-button}
-  type: Button
-  event_bindings: {click: button_enter_click}
+- name: buttons
+  properties: {align: right}
+  type: FlowPanel
+  layout_properties: {slot: default}
+  components:
+  - name: b_terms
+    properties: {text: Условия за ползване, role: outlined-button}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: b_terms_click}
+  - name: button_enter
+    properties: {text: ВЛЕЗ, enabled: false, align: center, role: outlined-button}
+    type: Button
+    event_bindings: {click: button_enter_click}
 - name: rich_welcome
   properties: {}
   type: RichText
   layout_properties: {slot: default, align: center}
+- name: terms
+  properties: {visible: false}
+  type: RichText
+  layout_properties: {slot: default}
