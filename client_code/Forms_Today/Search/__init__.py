@@ -44,12 +44,9 @@ class Search(SearchTemplate):
     fill_panel(panel_id='charts-panel', works=READER.search(search))
     
 
-      
-
   def search_for_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
     pass
-
 
 
   def clean_search_click(self, **event_args):
