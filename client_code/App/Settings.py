@@ -14,7 +14,7 @@ class SettingsClass:
         self.store = indexed_db.create_store('cheteme-user')
         settings = self.store.get('settings')
         self.settings = settings if settings and settings.get('line') else {
-            'navigation':3,
+            'navigation':5,
             'text':2,
             'cover': 150,
             'line':1.1,

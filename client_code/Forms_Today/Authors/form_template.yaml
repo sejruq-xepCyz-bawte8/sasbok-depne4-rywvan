@@ -3,18 +3,4 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/today/authors.html'}
   event_bindings: {show: form_show}
-components:
-- name: flow_panel_1
-  properties: {spacing: none}
-  type: FlowPanel
-  layout_properties: {slot: default}
-  components:
-  - name: search_for
-    properties: {role: outlined, placeholder: търси автор}
-    type: TextBox
-    layout_properties: {expand: true}
-  - name: b_search
-    properties: {text: '', role: outlined-button, icon: 'fa:search'}
-    type: Button
-    layout_properties: {}
-    event_bindings: {click: b_search_click}
+

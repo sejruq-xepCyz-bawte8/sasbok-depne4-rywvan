@@ -4,7 +4,6 @@
     justify-content: space-evenly;
     align-items: center;
     font-size: calc(var(--nav-size) - 18px);
-    border-top: 1px solid gray;
     margin: 0;
     padding: 0;
 }

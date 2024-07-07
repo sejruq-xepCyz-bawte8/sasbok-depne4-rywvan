@@ -54,6 +54,14 @@ height: 60svh;
     flex: 1;
   }
 
+  /*АУТХОРС*/
+#authors-panel{
+    height: calc(100svh - var(--nav-size) * 2);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    padding: 4px;
+}
 
 /*EDITOR*/
 .form-editor{
@@ -152,7 +160,7 @@ border-bottom: 0.5px dashed rgb(185, 185, 185);
 
 /* Styles for screens larger than small tablets */
 @media (min-width: 769px) {
-    .form-today{
+    .form-today, .form-charts{
         --cover-size: unset;
         overflow-y: scroll;
     }

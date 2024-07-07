@@ -152,9 +152,6 @@ class ReaderClass:
             return None
 
 
-
-
-
     def search(self, search, is_author:bool=None):
         data = {
             'search':search,
@@ -193,9 +190,6 @@ class ReaderClass:
                 self.bookmarks[work_id] = work_b
 
             sleep(2)
-
-
-
 
 
     def set_filters(self, filters:set):
