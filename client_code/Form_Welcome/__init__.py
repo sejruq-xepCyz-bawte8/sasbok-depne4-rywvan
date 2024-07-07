@@ -71,4 +71,7 @@ class Form_Welcome(Form_WelcomeTemplate):
   
 
 WELCOME = """
+# ЧетеМе 1.0 бета
+## ОБЩИ УСЛОВИЯ:
+Този уеб сайт използва "бисквитки/cookies".
 """

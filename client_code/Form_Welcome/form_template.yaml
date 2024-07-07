@@ -1,13 +1,9 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:html/form_reader_css.html'}
+  properties: {html: '@theme:html/welcome.html'}
   event_bindings: {show: form_show}
 components:
-- name: rich_welcome
-  properties: {}
-  type: RichText
-  layout_properties: {slot: default, align: center}
 - name: check_age
   properties: {text_pre: Пълнолетие, align: right, spacing_below: medium}
   type: form:dep_p86ky6m5lr9fp:Switch
@@ -24,3 +20,7 @@ components:
   properties: {text: ВЛЕЗ, enabled: false, align: center, role: outlined-button}
   type: Button
   event_bindings: {click: button_enter_click}
+- name: rich_welcome
+  properties: {}
+  type: RichText
+  layout_properties: {slot: default, align: center}

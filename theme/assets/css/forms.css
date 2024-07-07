@@ -1,3 +1,9 @@
+/*welcome form */
+.form-welcome{
+    justify-content: flex-start;
+}
+
+
 /*GENERIC*/
 .ch-form{
     display: flex;

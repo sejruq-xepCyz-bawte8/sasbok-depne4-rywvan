@@ -1,6 +1,6 @@
 from ._anvil_designer import ReaderTemplate
 from anvil import *
-from ...App import NAVIGATION, API, READER
+from ...App import NAVIGATION, API, READER, WORKS
 from anvil.js.window import document
 from anvil.js.window import jQuery as jQ
 from anvil_extras import non_blocking
@@ -71,9 +71,12 @@ class Reader(ReaderTemplate):
     self.sidebar_toc.toggle()
     self.sidebar_social = jQ('#reader-sidebar-social')
     self.sidebar_social.toggle()
+    self.sidebar_cover = jQ('#reader-sidebar-cover')
+    self.sidebar_cover.toggle()
 
     self.build_toc()
     self.build_social()
+    self.build_cover()
 
     
     
@@ -192,12 +195,14 @@ class Reader(ReaderTemplate):
 
   def toc_click(self, sender, *event):
     self.sidebar_social.hide()
+    self.sidebar_cover.hide()
     self.sidebar_toc.toggle()
 
 
   def social_click(self, sender, *event):
     self.check_readed()
     self.sidebar_toc.hide()
+    self.sidebar_cover.hide()
     self.sidebar_social.toggle()
     if self.readed:
        self.tb_comment.enabled = True
@@ -231,11 +236,15 @@ class Reader(ReaderTemplate):
 
 
   def build_social(self):
-    comments = ['asd asdjalksd', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ', 'asdasd asd asd ']
-    for comment in comments:
-       label = Label(text=comment)
-       self.add_component(label, slot='social-comments')
-    self.l_likes.text = 10
+    social = READER.get_work_social(READER.current_id)
+    if social:
+      for comment in social['comments']:
+        label = Label(text=comment)
+        self.add_component(label, slot='social-comments')
+      self.l_likes.text = social.get('liked')
+      self.tb_comment.text = social.get('me')
+      if social.get('me_liked'):
+         self.engage_liked.icon = "fa:heart"
 
 
 
@@ -262,3 +271,32 @@ class Reader(ReaderTemplate):
         self.engage_liked.icon = "fa:heart"
      elif success == 200 and engage == 'engage_comment':
         self.engage_comment.icon = "fa:comment"
+
+
+
+  def build_cover(self):
+    data_work = READER.data
+    author_id = data_work['author_id']
+    data_author = READER.get_work_data(author_id)
+
+    jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
+    jQ('#reader-cover-genres').text(data_work['genres'])
+    jQ('#reader-cover-description').text(data_work['descr'])
+   
+    if data_author:
+       jQ('#reader-cover-author').text(data_author['title'])
+       jQ('#reader-cover-author-description').text(data_author['descr'])
+       jQ('#reader-cover-author-genres').text(data_author['genres'])
+
+
+  
+  def cover_click(self, sender, *event):
+    self.sidebar_toc.hide()
+    self.sidebar_social.hide()
+    self.sidebar_cover.toggle()
+
+
+
+    
+  def open_work(self, sender, *event):
+     pass

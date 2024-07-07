@@ -1,5 +1,5 @@
 from anvil_extras.storage import indexed_db
-from time import time
+from time import time, sleep
 from anvil_extras import non_blocking
 
 
@@ -23,13 +23,14 @@ class ReaderClass:
         self.charts:dict = {}
 
         self.freq = {
-            'get_chart_today': 600,
+            'get_chart_today': 2, #600
             'get_chart_week': 3600,
             'get_chart_month': 7200,
             'search': 3600,
         }
 
         self.beats_update = non_blocking.repeat(self.update_charts, 60)
+        self.bookmarks_update = non_blocking.defer(self.update_bookmarks, 0)
 
 
     def set_current(self, work_id):
@@ -70,9 +71,6 @@ class ReaderClass:
         freq = self.freq.get(chart_id)
         if not freq: freq = 3600
 
-        print('calc', chart_id, freq)
-        print('cached', self.charts.get(chart_id))
-
         chart = self.charts.get(chart_id)
 
         if chart:
@@ -107,9 +105,7 @@ class ReaderClass:
         data, success = self.api(api='get_work_data', info=work_id)
         
         if data and success:
-            self.works[work_id] = {
-                'data':data
-            }
+            self.works[work_id] = {'data':data}
             return data
         else:
             return None
@@ -126,21 +122,39 @@ class ReaderClass:
             return work['content']
         
         content, success = self.api(api='get_work_content', info=work_id)
+
+        if work:
+            work['content'] = content
+            self.works[work_id] = work
+        
         if success:
-            if not self.works.get(work_id):
-                data, success = self.api(api='get_work_data', info=work_id)
-            else:
-                data = self.works[work_id]['data']
-
-            self.works[work_id] = {
-                'data':data,
-                'content':content
-            }
-
             return content
         else:
             return None
         
+
+    def get_work_social(self, work_id):
+        work = self.works.get(work_id)
+        if work and work.get('social') and work.get('stimestamp'):
+            if time() - work['stimestamp'] < 600: #10 min cache
+                return work['social']
+
+        social, success = self.api(api='get_work_social', info=work_id)
+
+        if work:
+            work['social'] = social
+            work['stimestamp'] = time()
+            self.works[work_id] = work
+        
+        if success:
+            return social
+        else:
+            return None
+
+
+
+
+
     def search(self, search, is_author:bool=None):
         data = {
             'search':search,
@@ -153,15 +167,37 @@ class ReaderClass:
         
 
     def get_chart(self, time):
-        return self.parse_chart(api='get_chart', info=time)
+        #check bookmarks for new vers
+        chart = self.parse_chart(api='get_chart', info=time)
+        return chart
 
     def update_charts(self):
-        print('beats')
+     
+        self.parse_chart(api='get_last')
         self.parse_chart(api='get_chart', info='month')
         self.parse_chart(api='get_chart', info='week')
         self.parse_chart(api='get_chart', info='today')
+       
         
-         
+    def update_bookmarks(self):
+        bookmark_ids = list(self.bookmarks)
+        for work_id in bookmark_ids:
+            work_b = self.bookmarks.get(work_id)
+            data, success_d = self.api(api='get_work_data', info=work_id)
+            if data and data['ver'] > work_b['data']['ver']:
+                work_b['data'] = data
+                content, success_c = self.api(api='get_work_content', info=work_id)
+                if content:
+                    work_b['content'] = content
+                work_b['timestamp'] = time()
+                self.bookmarks[work_id] = work_b
+
+            sleep(2)
+
+
+
+
+
     def set_filters(self, filters:set):
         self.filters = filters
     def get_filters(self):
