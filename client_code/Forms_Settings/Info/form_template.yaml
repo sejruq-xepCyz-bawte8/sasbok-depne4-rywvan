@@ -1,0 +1,9 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:html/settings/info.html'}
+  event_bindings: {show: form_show}
+components:
+- name: info
+  properties: {}
+  type: RichText

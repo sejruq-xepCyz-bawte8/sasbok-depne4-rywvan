@@ -4,20 +4,6 @@ from anvil.js.window import jQuery as jQ
 from ...App import NAVIGATION, READER
 from ...Covers_Builder import fill_panel
 
-GENRES:set = {'фантастика',
-'фентъзи',
-'приключенски',
-'ужаси',
-'хумор',
-'трилър',
-'крими',
-'драма',
-'романс',
-'детски',
-'съвременни',
-'действителни',
-'исторически',
-'еротика'}
 
 
 class Search(SearchTemplate):
@@ -32,34 +18,15 @@ class Search(SearchTemplate):
     READER.set_back("search")
 
   def form_show(self, **event):
-  
-    self.chart_name = jQ('#chart_name')
     self.chart_panel = jQ('#charts-panel')
-    self.chart_name.text("Последни 100 публикувани ")
-
 
   def b_search_click(self, sender, **event):
     search = self.search_for.text
+    is_author = 1 if self.switch_1.checked else 0
     self.chart_panel.html('')
-    fill_panel(panel_id='charts-panel', works=READER.search(search))
+    if search != '':
+      fill_panel(panel_id='charts-panel', works=READER.search(search=search, is_author=is_author))
     
-
-  def search_for_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-
-  def clean_search_click(self, **event_args):
-    self.search_for.text = ''
-    self.clean_filters()
-    
-
-  def search_for_focus(self, **event_args):
-    self.clean_filters()
-
-  def clean_filters(self):
-    self.filters.clear()
-    jQ('.filter-fa').removeClass('fa-duotone')
 
 
   def open_work(self, sender, **event):

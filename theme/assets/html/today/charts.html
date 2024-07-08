@@ -1,138 +1,98 @@
-<div class="ch-form form-charts">
-    <div class="search" anvil-slot-repeat="default" class="anvil"></div>
-    <div class="works-panel-title">Филтри</div>
-    <div class="filters-container">
-        <span class="filter-item" id="фантастика" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-starship', ></span>
-            <span id="info" class="filter-text">фантастика</span>
-        </span>
-        <span class="filter-item" id="фентъзи" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-hat-wizard', ></span>
-            <span id="info" class="filter-text">фентъзи</span>
-        </span>
-        <span class="filter-item" id="приключенски" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-map-location', ></span>
-            <span id="info" class="filter-text">приключенски</span>
-        </span>
-        <span class="filter-item" id="ужаси" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-face-scream', ></span>
-            <span id="info" class="filter-text">ужаси</span>
-        </span>
-        <span class="filter-item" id="хумор" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-face-grin-squint-tears', ></span>
-            <span id="info" class="filter-text">хумор</span>
-        </span>
-        <span class="filter-item" id="трилър" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-gun', ></span>
-            <span id="info" class="filter-text">трилър</span>
-        </span>
-        <span class="filter-item" id="крими" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-handcuffs', ></span>
-            <span id="info" class="filter-text">крими</span>
-        </span>
-        <span class="filter-item" id="драма" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-masks-theater', ></span>
-            <span id="info" class="filter-text">драма</span>
-        </span>
-        <span class="filter-item" id="романс" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-shield-heart', ></span>
-            <span id="info" class="filter-text">романс</span>
-        </span>
-        <span class="filter-item" id="детски" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-teddy-bear', ></span>
-            <span id="info" class="filter-text">детски</span>
-        </span>
-        <span class="filter-item" id="съвременни" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-calendar-star', ></span>
-            <span id="info" class="filter-text">съвременни</span>
-        </span>
-        <span class="filter-item" id="действителни" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-badge-check', ></span>
-            <span id="info" class="filter-text">действителни</span>
-        </span>
-        <span class="filter-item" id="исторически" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-fort', ></span>
-            <span id="info" class="filter-text">исторически</span>
-        </span>
-        <span class="filter-item" id="еротика" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-venus-mars', ></span>
-            <span id="info" class="filter-text">еротика</span>
-        </span>
+<div class="ch-form ch-form-charts">
+    <div class="ch-filters-toolbar">
+        <div class="ch-filter">
+            <span class="filter-item" id="фантастика" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-starship', ></span>
+                <span id="info" class="filter-text">фантастика</span>
+            </span>
+            <span class="filter-item" id="фентъзи" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-hat-wizard', ></span>
+                <span id="info" class="filter-text">фентъзи</span>
+            </span>
+            <span class="filter-item" id="приключенски" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-map-location', ></span>
+                <span id="info" class="filter-text">приключенски</span>
+            </span>
+            <span class="filter-item" id="ужаси" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-face-scream', ></span>
+                <span id="info" class="filter-text">ужаси</span>
+            </span>
+            <span class="filter-item" id="хумор" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-face-grin-squint-tears', ></span>
+                <span id="info" class="filter-text">хумор</span>
+            </span>
+            <span class="filter-item" id="трилър" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-gun', ></span>
+                <span id="info" class="filter-text">трилър</span>
+            </span>
+            <span class="filter-item" id="крими" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-handcuffs', ></span>
+                <span id="info" class="filter-text">крими</span>
+            </span>
+            <span class="filter-item" id="драма" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-masks-theater', ></span>
+                <span id="info" class="filter-text">драма</span>
+            </span>
+            <span class="filter-item" id="романс" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-shield-heart', ></span>
+                <span id="info" class="filter-text">романс</span>
+            </span>
+            <span class="filter-item" id="детски" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-teddy-bear', ></span>
+                <span id="info" class="filter-text">детски</span>
+            </span>
+            <span class="filter-item" id="съвременни" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-calendar-star', ></span>
+                <span id="info" class="filter-text">съвременни</span>
+            </span>
+            <span class="filter-item" id="действителни" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-badge-check', ></span>
+                <span id="info" class="filter-text">действителни</span>
+            </span>
+            <span class="filter-item" id="исторически" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-fort', ></span>
+                <span id="info" class="filter-text">исторически</span>
+            </span>
+            <span class="filter-item" id="еротика" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-venus-mars', ></span>
+                <span id="info" class="filter-text">еротика</span>
+            </span>
+        </div>
+        <div class="ch-filter">
+            <span class="filter-item" id="публикувани" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-books', ></span>
+                <span id="info" class="filter-text">публикувани</span>
+            </span>
+            <span class="filter-item" id="харесани" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-heart', ></span>
+                <span id="info" class="filter-text">харесани</span>
+            </span>
+            <span class="filter-item" id="четени" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-book-open', ></span>
+                <span id="info" class="filter-text">четени</span>
+            </span>
+            <span class="filter-item" id="коментирани" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-comment', ></span>
+                <span id="info" class="filter-text">коментирани</span>
+            </span>
+            <span class="filter-item" id="днес" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-calendar-day', ></span>
+                <span id="info" class="filter-text">днес</span>
+            </span>
+            <span class="filter-item" id="седмицата" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-calendar-week', ></span>
+                <span id="info" class="filter-text">седмицата</span>
+            </span>
+            <span class="filter-item" id="месеца" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
+                <span class='filter-fa fa-light fa-calendar-days', ></span>
+                <span id="info" class="filter-text">месеца</span>
+            </span>
+            
+        </div>
     </div>
-    <div class="filters-container">
-        <span class="filter-item" id="публикувани" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-books', ></span>
-            <span id="info" class="filter-text">публикувани</span>
-        </span>
-        <span class="filter-item" id="харесани" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-heart', ></span>
-            <span id="info" class="filter-text">харесани</span>
-        </span>
-        <span class="filter-item" id="четени" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-book-open', ></span>
-            <span id="info" class="filter-text">четени</span>
-        </span>
-        <span class="filter-item" id="коментирани" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-comment', ></span>
-            <span id="info" class="filter-text">коментирани</span>
-        </span>
-        <span class="filter-item" id="днес" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-calendar-day', ></span>
-            <span id="info" class="filter-text">днес</span>
-        </span>
-        <span class="filter-item" id="седмицата" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-calendar-week', ></span>
-            <span id="info" class="filter-text">седмицата</span>
-        </span>
-        <span class="filter-item" id="месеца" onclick='anvil.call($("#appGoesHere > div"), "filter_toggle", $(this))'>
-            <span class='filter-fa fa-light fa-calendar-days', ></span>
-            <span id="info" class="filter-text">месеца</span>
-        </span>
+
+    <div class="ch-panel ch-panel-3-1">
         
+        <div id="charts-panel" class="ch-works"></div>
     </div>
-    <div id="chart_name" class="works-panel-title">Филтри</div>
-    <div id="charts-panel" class="works-container works-container-vertical"></div>
 </div>
-
-
-
- 
-
-
-
-
-
-<style>
-.form-charts .search{
-    height: var(--nav-size);
-}
-.filters-container{
-    display: flex;
-    width: 100%;
-    height: calc(10px + var(--nav-size) / 2);
-    overflow-x: scroll;
-    overflow-y: hidden;
-    padding: 5px;
-    gap: 4px;
-}
-.filter-item{
-    display: flex;
-    align-items: center;
-    height: calc(var(--nav-size) / 2);
-    font-size: calc(var(--nav-size) / 2);
-    width: fit-content;
-    box-shadow: 0px 0px 5px gray;
-    border-radius: calc(var(--nav-size) / 2);
-    padding-left: calc(var(--nav-size) / 4);
-    padding-right: calc(var(--nav-size) / 4);
-    gap: 4px;
-}
-.filter-fa{
-    font-size: calc((var(--nav-size) / 2) - 4px);
-}
-.filter-text{
-    font-size: calc(var(--nav-size) / 3);
-}
-
-
-</style>

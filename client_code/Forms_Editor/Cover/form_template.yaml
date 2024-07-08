@@ -12,7 +12,7 @@ components:
   - name: file_loader
     properties: {text: Зареди, file_types: '.png,.jpg,.jpeg,.gif,.webp'}
     type: FileLoader
-    event_bindings: {click: image_change, change: file_loader_change}
+    event_bindings: {change: file_loader_change}
     layout_properties: {expand: false}
   - name: file_clean
     properties: {text: Изчисти, icon: 'fa:image'}

@@ -1,6 +1,8 @@
 from ._anvil_designer import BookmarksTemplate
 from anvil import *
-from ...App import NAVIGATION, READER
+from anvil.js.window import jQuery as jQ
+from ...App import NAVIGATION, READER, WORKS
+
 
 class Bookmarks(BookmarksTemplate):
   def __init__(self, **properties):
@@ -12,8 +14,19 @@ class Bookmarks(BookmarksTemplate):
     self.open_form = NAVIGATION.nav_open_form
 
   def form_show(self, **event):
-    pass
+    panel = jQ('#bookmarks-container')
+    panel.html('')
 
-  def test(self, sender, **event):
-    print('nac cl test')
+    bookmarks_ids = list(READER.bookmarks)
+
+    for work_id in bookmarks_ids:
+    
+      work = READER.bookmarks.get(work_id)
+      cover = WORKS.make_cover(work['data'])
+      panel.append(cover)
+
+  def open_work(self, sender, **event):
+    current = READER.set_current(sender.attr('id'))
+    if current:
+      open_form('Forms_Reader.Reader')
 

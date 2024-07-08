@@ -65,9 +65,10 @@ components:
   layout_properties: {slot: default}
   event_bindings: {change: work_uri_change}
 - name: age
-  properties: {text_pre: '', text_post: Неподходящо за непълнолетни}
+  properties: {checked_color: 'theme:Error', text_post: Неподходящо за непълнолетни}
   type: form:dep_p86ky6m5lr9fp:Switch
   layout_properties: {slot: default}
+  event_bindings: {change: age_changed}
 - name: flow_panel_2
   properties: {align: left}
   type: FlowPanel
@@ -87,19 +88,8 @@ components:
   properties: {}
   type: Label
   layout_properties: {slot: default}
-- name: flow_panel_3
-  properties: {}
-  type: FlowPanel
-  layout_properties: {slot: default}
-  components:
-  - name: unpublish_confirm
-    properties: {checked_color: 'theme:Error', text_post: Премахни}
-    type: form:dep_p86ky6m5lr9fp:Switch
-    event_bindings: {change: unpublish_confirm_change}
-  - name: unpublish
-    properties: {text: '', role: outlined-button, enabled: false, icon: 'fa:close'}
-    type: Button
-    event_bindings: {click: unpublish_click}
+
+
 - name: terms
   properties: {}
   type: LinearPanel

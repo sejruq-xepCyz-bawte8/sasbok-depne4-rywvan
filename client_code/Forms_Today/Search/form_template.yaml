@@ -4,16 +4,10 @@ container:
   properties: {html: '@theme:html/today/search.html'}
   event_bindings: {show: form_show}
 components:
-- name: flow_panel_1
-  properties: {spacing: none}
-  type: FlowPanel
-  layout_properties: {slot: default}
-  components:
-  - name: search_for
-    properties: {role: outlined, placeholder: +/- пред думата за И/Не; 10думи макс.}
-    type: TextBox
-    layout_properties: {expand: true}
-    event_bindings: {pressed_enter: b_search_click, change: search_for_change, focus: search_for_focus}
-  - name: switch_1
-    properties: {text_post: Автори, text_pre: Творби}
-    type: form:dep_p86ky6m5lr9fp:Switch
+- name: search_for
+  properties: {role: outlined, placeholder: +/- за И/Не; за автор -->}
+  type: TextBox
+  layout_properties: {expand: true}
+  event_bindings: {pressed_enter: b_search_click}
+- name: switch_1
+  type: form:dep_p86ky6m5lr9fp:Switch

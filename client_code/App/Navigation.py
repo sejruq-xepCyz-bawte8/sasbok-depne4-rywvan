@@ -42,7 +42,7 @@ class NavigationClass:
 
         jQ(f'#{sender_id}').addClass('active')
         
-        print('BACK', sender_id)
+  
         open_form(form_name)
 
 

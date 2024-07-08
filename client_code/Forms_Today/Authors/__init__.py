@@ -7,7 +7,7 @@ class Authors(AuthorsTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
-    
+    READER.set_back("authors")
     
     self.open_form = NAVIGATION.nav_open_form
     

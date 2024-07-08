@@ -12,7 +12,7 @@ class Drafts(DraftsTemplate):
     self.open_form = NAVIGATION.nav_open_form
 
   def form_show(self, **event):
-    self.drafts_panel = jQ('#editor-drafts')
+    self.drafts_panel = jQ('#drafts-panel')
     self.parse_works()
 
   def parse_works(self):

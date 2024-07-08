@@ -9,6 +9,7 @@
 
     "settings":"Forms_Settings.Settings",
     "devices":"Forms_Settings.Devices",
+    "info":"Forms_Settings.Info",
 
     "drafts":"Forms_Author.Drafts",
     "stats":"Forms_Author.Stats",

@@ -63,8 +63,7 @@ class Reader(ReaderTemplate):
 #self.add_event_handler('show', self.createNewPage) 
 #self.targetHeigth = self.reader.offsetHeight
         
-    #START PAGINATION
-    self.distribute()
+
 
     #Sidebars
     self.sidebar_toc = jQ('#reader-sidebar-toc')
@@ -74,22 +73,36 @@ class Reader(ReaderTemplate):
     self.sidebar_cover = jQ('#reader-sidebar-cover')
     self.sidebar_cover.toggle()
 
-    self.build_toc()
-    self.build_social()
-    self.build_cover()
 
+    #build panels
+    toc = non_blocking.defer(self.build_toc, 0)
+    social = non_blocking.defer(self.build_social, 0)
+    cover = non_blocking.defer(self.build_cover, 0)
+
+
+    #START PAGINATION
+    if READER.data['words'] > 500:
+       jQ('.fa-book-open').addClass('fa-beat')
+       Notification("Приготвяне на страниците", style='info', timeout=0.1).show()
+       sleep(0.1)
+
+       self.distribute()
+       jQ('.fa-book-open').removeClass('fa-beat')
+    else:
+       self.distribute()
+
+
+    
     
     
   def distribute(self):
         self.reader.innerHTML = ''
-        self.last_scroll = time()
+        #self.last_scroll = time()
         self.pages = []
         self.currentPage = None
         self.currentParagraph = None
         self.pageNumber = 0
-        #self.add_event_handler('show', self.createNewPage)
-
-
+        
         self.createNewPage()
         for element in self.source.childNodes:
             if 'tagName' in element:
@@ -176,11 +189,6 @@ class Reader(ReaderTemplate):
       if self.time_reading > self.min_time and self.readed_pages:
          self.readed = True
 
-  #def scrollTo(self, **event):
-  #      print('scroll_reader')
-  #      element = document.getElementById(event['sender'].page)
-  #      if element:
-  #          element.scrollIntoView({'behavior': 'smooth', 'block': 'start'})
             
   def scroll_reader(self, page, *event):
         non_blocking.cancel(self.scroling_pages_info)
@@ -254,15 +262,11 @@ class Reader(ReaderTemplate):
      elif event['sender'] == self.engage_comment:
         engage = 'engage_comment'
   
-     print('engage', engage)
-     if engage not in ['engage_ostay', 'engage_readed', 'engage_liked', 'engage_comment']:
-        return None
-     
-     engage = engage if engage else event['sender'].name
-    
      data = {
         'genre':READER.data['genres'][2],
-        'comment':self.tb_comment.text
+        'comment':self.tb_comment.text,
+        'author_id': READER.data['author_id'],
+        'age': READER.data['age']
      }
      eresult, success = API.request(api=engage, info=READER.current_id, data=data)
      print(eresult, success)

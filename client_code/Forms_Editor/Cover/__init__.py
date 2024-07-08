@@ -50,14 +50,14 @@ class Cover(CoverTemplate):
   def buld_sidebar(self):
     font = ASSETS.get('html/font.html')
     for f in self.fonts:
-      font_html = font.format(font=f, text="Заглавие")
+      font_html = font.format(font=f, text=f)
       self.sidebar.append(font_html)
 
 
   def title_change(self, sender, **event_args):
     EDITOR.data['title'] = self.title.text()
     self.editor_nav_text.text(EDITOR.data['title'][0:10])
-    print(EDITOR.data['title'])
+   
     
 
   def chose_font(self, sender, **event_args):

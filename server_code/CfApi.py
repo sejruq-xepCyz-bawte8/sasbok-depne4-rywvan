@@ -8,7 +8,7 @@ def parse_headers(api:str, info=None):
         #secret = user['secret'] if user else 'new_user'
         #age = user['age'] if user else '0'
 
-        info = info if info and isinstance(info, str) and len(info) < 100 else ''
+        info = info if info and isinstance(info, str) and len(info) < 200 else ''
         headers:dict = {
         'Cheteme':api,
         'Cheteme-Anvil':'Cheteme-Anvil',

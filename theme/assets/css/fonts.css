@@ -8,8 +8,8 @@
     font-family: "Adys";
     font-weight: 400;
     font-style: normal;
-    font-size: calc(var(--cover-size) / 6);
-    line-height: calc(var(--cover-size) / 6);
+    font-size: calc(var(--cover-size) / 8);
+    line-height: calc(var(--cover-size) / 8);
   }
   
   .Alumni {
@@ -17,6 +17,7 @@
   font-weight: 500;
   font-style: normal;
   font-size: calc(var(--cover-size) / 6);
+  line-height: calc(var(--cover-size) / 6);
   }
   
   .Tektur {
@@ -24,45 +25,49 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .Rampat {
   font-family: "Rampart One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  letter-spacing : -2px;
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  letter-spacing : -4px;
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .Ruslan {
   font-family: "Ruslan Display";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 11);
+  line-height: calc(var(--cover-size) / 11);
   }
   
   .ProstoOne {
   font-family: "Prosto One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .Pattaya {
   font-family: "Pattaya";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .DaysOne {
   font-family: "Days One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .Sofia {
@@ -70,14 +75,16 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
   .RubikMoonrocks {
   font-family: "Rubik Moonrocks";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 14);
+  line-height: calc(var(--cover-size) / 14);
   
   }
   
@@ -86,8 +93,8 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .Messiri {
@@ -95,14 +102,16 @@
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .RussoOne {
   font-family: "Russo One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .Yanone {
@@ -110,29 +119,32 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
   .RubikMonoOne {
   font-family: "Rubik Mono One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .Seymour {
   font-family: "Seymour One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 12);
+  line-height: calc(var(--cover-size) / 12);
   }
   
   .Lobster {
   font-family: "Lobster";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
   .Exo {
@@ -140,36 +152,35 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .Playfair {
   font-family: "Playfair Display SC";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .PlayfairBold {
   font-family: "Playfair Display SC";
   font-weight: 700;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
-  .PlayfairBlack {
-  font-family: "Playfair Display SC";
-  font-weight: 900;
-  font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  }
+
   
   .Noto {
   font-family: "Noto Serif";
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .Vollkorn {
@@ -177,7 +188,8 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .Roboto {
@@ -185,69 +197,54 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .Yeseva {
   font-family: "Yeseva One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   .Gabriela {
   font-family: "Gabriela";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   .Orelega {
   font-family: "Orelega One";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
-  .Cormorant300 {
+  .Cormorant {
   font-family: "Cormorant Infant";
   font-weight: 300;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
-  .Cormorant400 {
-  font-family: "Cormorant Infant";
-  font-weight: 400;
-  font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  }
   
-  .CormorantInfantMedium {
-  font-family: "Cormorant Infant";
-  font-weight: 500;
-  font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  }
-  
-  .CormorantInfantSemiBold {
-  font-family: "Cormorant Infant";
-  font-weight: 600;
-  font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  }
-  
-  .CormorantInfantBold {
+  .CormorantBold {
   font-family: "Cormorant Infant";
   font-weight: 700;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
   .GreatVibes {
   font-family: "Great Vibes";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 7);
+  line-height: calc(var(--cover-size) / 7);
   }
   
   .Caveat {
@@ -255,15 +252,15 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 7);
+  line-height: calc(var(--cover-size) / 7);
   }
   .Pacifico {
   font-family: "Pacifico";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 9);
+  line-height: calc(var(--cover-size) / 9);
   }
   
   .SofiaSansExtraCondensed {
@@ -271,8 +268,8 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
   
@@ -281,7 +278,8 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  line-height: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
   .Comfortaa {
@@ -289,7 +287,8 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   }
   
   .Oswald {
@@ -297,5 +296,6 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 6);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }

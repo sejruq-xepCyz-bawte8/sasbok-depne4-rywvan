@@ -61,7 +61,7 @@ class Charts(ChartsTemplate):
     for filter in self.filters:
       jQ(f'#{filter}').find('.filter-fa').addClass('fa-duotone')
    
-    print(self.filters)
+   
     READER.set_filters(self.filters)
     self.make_chart()
 
@@ -89,13 +89,10 @@ class Charts(ChartsTemplate):
 
     
     genres =  GENRES & self.filters
-    print('genres', genres, self.filters, GENRES)
-    print('bef', self.chart)
+
 
     if genres:
       self.chart = [c for c in self.chart if c['g'] in genres]
     
-
-    print('af', self.chart)
     
     fill_panel(panel_id='charts-panel', works=self.chart)

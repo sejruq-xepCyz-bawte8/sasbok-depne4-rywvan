@@ -30,12 +30,14 @@ native_deps:
 
 
     <link rel="stylesheet" href="_/theme/css/root.css">
+    <link rel="stylesheet" href="_/theme/css/fonts.css">
     <link rel="stylesheet" href="_/theme/css/navigation.css">
     <link rel="stylesheet" href="_/theme/css/forms.css">
     <link rel="stylesheet" href="_/theme/css/text.css">
     <link rel="stylesheet" href="_/theme/css/work_card.css">
     <link rel="stylesheet" href="_/theme/css/elements.css">
-    <link rel="stylesheet" href="_/theme/css/fonts.css">
+    <link rel="stylesheet" href="_/theme/css/reader.css">
+    <link rel="stylesheet" href="_/theme/css/editor.css">
 
     <div class="ch-nav" id=navigation></div>
 

@@ -27,6 +27,9 @@ class Publish(PublishTemplate):
 
     self.title.text = EDITOR.data['title']
 
+    self.age.checked = False if not EDITOR.data.get('age') else True
+    
+    
 
     self.anvil_user = anvil.users.get_user()
     if self.anvil_user:
@@ -90,11 +93,6 @@ class Publish(PublishTemplate):
   
 
 
-  def unpublish_confirm_change(self, **event_args):
-    """This method is called when this checkbox is checked or unchecked"""
-    pass
-
-
   def work_uri_change(self, sender, **event_args):
     if EDITOR.data['work_id'] != EDITOR.data['author_id']:
       EDITOR.data['uri'] = sender.text
@@ -113,7 +111,7 @@ class Publish(PublishTemplate):
     if result and status == 200:
       ticket = result['ticket']
       anvil_result = anvil.server.call('execute_ticket', ticket=ticket)
-      print(anvil_result)
+     
       if anvil_result:
         Notification(f"Успешна публикация 🥳", style='success').show()
       else:
@@ -125,9 +123,6 @@ class Publish(PublishTemplate):
     """This method is called when the button is clicked"""
     pass
 
-  def unpublish_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
 
 
   def sidebar_toggle(self, sender, **event):
@@ -167,7 +162,9 @@ class Publish(PublishTemplate):
     """This method is called when this checkbox is checked or unchecked"""
     pass
 
-
+  def age_changed(self, **event):
+    EDITOR.data['age'] = 1 if self.age.checked else 0
+    EDITOR.save_work()
 
 
 
