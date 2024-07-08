@@ -54,9 +54,7 @@
     overflow: hidden !important;
 }
 
-.form-editor p {
-border-bottom: 0.5px dashed rgb(185, 185, 185);
-}
+
 
 #info.saved{
     color: green;
@@ -72,4 +70,9 @@ border-bottom: 0.5px dashed rgb(185, 185, 185);
 .editor-option-main{
     padding: 18px;
     
+}
+
+.ql-editor h1, .ql-editor h2, .ql-editor p{
+    line-height: 1.4;
+    border-bottom: 0.5px dashed rgb(185, 185, 185);
 }
