@@ -13,7 +13,7 @@ class Form_Welcome(Form_WelcomeTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
-    self.api = 'https://api.chete.me' if window.location.hostname == "chete.me" else 'http://192.168.0.101:8787'
+    self.api = 'https://chete.me' if window.location.hostname == "chete.me" else 'http://192.168.0.101:8787'
   def form_show(self, **event):
     self.rich_welcome.content = WELCOME
     self.terms.content = TERMS
