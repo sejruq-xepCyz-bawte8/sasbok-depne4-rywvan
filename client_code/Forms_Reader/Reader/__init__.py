@@ -24,6 +24,7 @@ class Reader(ReaderTemplate):
     self.readed = False if not self.bookmark else self.bookmark['readed']
     self.min_time = 1 + READER.data['words'] / 100
     
+  
     
     
 
