@@ -27,12 +27,9 @@ display: flex;
     scroll-snap-align: start;
     min-height: 100%;
     width: 100%;
-    border-top: 1px dotted gray;
     inset: 0rem;
     margin: 0px;
     padding-top: 1rem;
-    outline: 1px solid red;
-    outline-offset: -1px;
   }
   
 

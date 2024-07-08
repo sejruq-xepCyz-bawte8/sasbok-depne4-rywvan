@@ -199,7 +199,10 @@ class Reader(ReaderTemplate):
 
   def bookmark_click(self, sender, *event):
     READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
-    print('bookmark_click')
+    self.bookmark_icon.toggleClass('active')
+    if self.bookmark:
+      READER.delete_bookmark(READER.current_id)
+    
 
   def toc_click(self, sender, *event):
     self.sidebar_social.hide()

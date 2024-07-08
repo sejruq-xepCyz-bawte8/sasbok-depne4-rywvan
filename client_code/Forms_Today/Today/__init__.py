@@ -3,6 +3,7 @@ from anvil import *
 from ...App import NAVIGATION, READER
 from ...Covers_Builder import fill_panel
 from anvil.js.window import jQuery as jQ
+from anvil.js import window
 
 class Today(TodayTemplate):
   def __init__(self, **properties):
@@ -12,9 +13,24 @@ class Today(TodayTemplate):
     self.open_form = NAVIGATION.nav_open_form
 
     READER.set_back("today")
+
+
+
+
     
 
   def form_show(self, **event):
+    self.uri = get_url_hash()
+    
+    if self.uri and len(self.uri) > 3:
+      window.history.replaceState('null', '', '/')
+      work = READER.get_work_data(work_id=self.uri)
+      if work:
+        current = READER.set_current(work['work_id'])
+        if current:
+            open_form('Forms_Reader.Reader')
+
+            
 
     self.liked_title = jQ('#liked_title')
     self.readed_title = jQ('#readed_title')
@@ -52,3 +68,4 @@ class Today(TodayTemplate):
     current = READER.set_current(sender.attr('id'))
     if current:
       open_form('Forms_Reader.Reader')
+

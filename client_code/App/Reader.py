@@ -216,3 +216,6 @@ class ReaderClass:
 
     def get_bookmark(self, work_id):
         return self.bookmarks.get(work_id)
+    
+    def delete_bookmark(self, work_id):
+        del self.bookmarks[work_id]
