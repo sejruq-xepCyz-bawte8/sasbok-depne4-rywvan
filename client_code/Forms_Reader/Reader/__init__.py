@@ -170,7 +170,7 @@ class Reader(ReaderTemplate):
         self.currentPage.appendChild(self.currentParagraph)
 
   def parse_most_visible(self):
-      print('parse_most_visible')
+      
       pages = document.querySelectorAll('.page')
       for page in pages:
           rect = page.getBoundingClientRect()
@@ -273,7 +273,7 @@ class Reader(ReaderTemplate):
         'age': READER.data['age']
      }
      eresult, success = API.request(api=engage, info=READER.current_id, data=data)
-     print(eresult, success)
+     
 
      if success == 200 and engage == 'engage_liked':
         self.engage_liked.icon = "fa:heart"

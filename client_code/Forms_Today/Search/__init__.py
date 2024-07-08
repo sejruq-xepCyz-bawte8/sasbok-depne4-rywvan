@@ -34,29 +34,4 @@ class Search(SearchTemplate):
     if current:
       open_form('Forms_Reader.Reader')
 
-
-    if 'публикувани' in self.filters:
-      self.chart = READER.get_last()
-    elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
-          print('CHART')
-          if 'днес' in self.filters:
-            self.chart = READER.get_chart('today')
-          elif 'седмицата' in self.filters:
-            self.chart = READER.get_chart('week')
-          else:
-            self.chart = READER.get_chart('month')
-    else:
-      self.chart = READER.get_last()
-
     
-    genres =  GENRES & self.filters
-    print('genres', genres, self.filters, GENRES)
-    print('bef', self.chart)
-
-    if genres:
-      self.chart = [c for c in self.chart if c['g'] in genres]
-    
-
-    print('af', self.chart)
-
-    fill_panel(panel_id='charts-panel', works=self.chart)
