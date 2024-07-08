@@ -35,7 +35,7 @@
 /*DUOTONE NAVBAR*/
 
 
-.fa-sidebar-flip{
+.fa-duotone.fa-sidebar-flip{
   --fa-secondary-opacity: 1;
   --fa-primary-color: rgb(169, 169, 169);
   --fa-secondary-color: rgb(169, 169, 169);
@@ -150,3 +150,120 @@
     --fa-primary-color: rgb(0, 0, 0);
     --fa-secondary-color: rgb(255, 235, 148);
   }
+
+  .active .fa-magnifying-glass{
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(1, 170, 254);
+  }
+
+
+  /*genres*/
+.fa-duotone.fa-starship{
+
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(3, 175, 254);
+}
+.fa-duotone.fa-hat-wizard{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(14, 37, 169);
+    --fa-secondary-color: gold;
+}
+.fa-duotone.fa-face-scream{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(255, 0, 0);
+}
+.fa-duotone.fa-masks-theater {
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: gold;
+    --fa-secondary-color: rgb(25, 0, 0);
+}
+.fa-duotone.fa-gun{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color:  rgb(56, 90, 202);
+    --fa-secondary-color: rgb(0, 0, 0);
+}
+.fa-duotone.fa-handcuffs{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color:  rgb(56, 90, 202);
+    --fa-secondary-color: rgb(0, 0, 0);
+}
+.fa-duotone.fa-castle{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color:  rgb(255, 227, 189);
+    --fa-secondary-color: rgb(228, 162, 76);
+}
+.fa-duotone.fa-shield-heart{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color:  rgb(255, 41, 3);
+    --fa-secondary-color: rgb(204, 204, 204);
+}
+.fa-duotone.fa-teddy-bear{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color:  rgb(255, 154, 3);
+    --fa-secondary-color: rgb(0, 0, 0);
+}
+.fa-duotone.fa-calendar-star{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color:  rgb(0, 0, 0);
+    --fa-secondary-color: gold;
+}
+.fa-duotone.fa-face-grin-squint-tears{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color:  rgb(3, 108, 255);
+    --fa-secondary-color: rgb(246, 184, 143);
+}
+.fa-duotone.fa-map-location{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: tomato;
+    --fa-secondary-color: rgb(27, 211, 27);
+}
+.fa-duotone.fa-badge-check{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: gold;
+}
+.fa-duotone.fa-venus-mars{
+  --fa-secondary-opacity: 1;
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: rgb(246, 104, 127);
+}
+
+.fa-duotone.fa-calendar-day{
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: gold;
+}
+.fa-duotone.fa-calendar-week{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: gold;
+}
+.fa-duotone.fa-calendar-days{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: rgb(0, 0, 0);
+    --fa-secondary-color: gold;
+}
+.fa-duotone.fa-trophy{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: gold;
+    --fa-secondary-color: black;
+}
+.fa-duotone.fa-circle-heart{
+  --fa-secondary-opacity: 1;
+    --fa-primary-color: red;
+    --fa-secondary-color: gold;
+}
+
+.fa-duotone.fa-heart{
+  --fa-secondary-opacity: 1;
+  --fa-primary-color: red;
+  --fa-secondary-color: rgb(255, 0, 0);
+}
+.fa-duotone.fa-comment{
+  --fa-secondary-opacity: 1;
+  --fa-primary-color: rgb(225, 255, 0);
+  --fa-secondary-color: rgb(222, 229, 14);
+}
