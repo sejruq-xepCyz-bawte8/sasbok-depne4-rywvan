@@ -161,7 +161,7 @@ class Publish(PublishTemplate):
           self.author_uri.text = message_data['author_uri']
           self.b_login.visible = False
           self.b_logout.visible = True
-          self.user = USER.get_user()
+          self.anvil_user = anvil.users.get_user()
           self.check_conditions()
           
       
@@ -177,7 +177,7 @@ class Publish(PublishTemplate):
       self.anvil_email.text = "За публикуване е необходим вход :)"
       self.b_login.visible = True
       self.b_logout.visible = False
-      self.user = USER.get_user()
+      self.anvil_user = anvil.users.get_user()
       self.check_conditions()
 
   def accept_terms_change(self, **event_args):
