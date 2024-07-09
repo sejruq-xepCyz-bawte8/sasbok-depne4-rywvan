@@ -32,6 +32,11 @@ p{
   margin-top: var(--p-size);
 }
 
+.page p:first-of-type {
+  margin-top: 0px;
+}
+
+
 blockquote{
   font-size: var(--p-size);
   font-weight: bold;
