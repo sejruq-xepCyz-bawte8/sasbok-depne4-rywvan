@@ -157,6 +157,9 @@ class Publish(PublishTemplate):
         message_data = message.get('data')
         if message_data:
           USER.set_user(message_data)
+          self.prelink.text = f"chete.me/{message_data['author_uri']}/"
+          self.author_uri.text = message_data['author_uri']
+          
       
 
       
