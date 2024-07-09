@@ -36,3 +36,12 @@ def execute_ticket(ticket:str):
 @anvil.server.callable
 def new_author(data:dict):
   pass
+
+
+@anvil.server.callable
+def parse_user_author(data:dict):
+  user = anvil.users.get_user()
+  if user:
+    author_id = user.get('author_id')
+    if not author_id and data['author_id']:
+      user['author_id'] = author_id
