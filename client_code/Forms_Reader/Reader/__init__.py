@@ -81,6 +81,8 @@ class Reader(ReaderTemplate):
 
 
     #START PAGINATION
+
+
     if READER.data['words'] > 500:
        jQ('.fa-book-open').addClass('fa-beat')
        Notification("Приготвяне на страниците", style='info', timeout=0.1).show()
@@ -96,6 +98,9 @@ class Reader(ReaderTemplate):
     
     
   def distribute(self):
+        sleep(0.1)
+        self.targetHeigth = self.reader.offsetHeight
+        self.imagesHeigth:int = int(self.targetHeigth / 3)
         self.reader.innerHTML = ''
         #self.last_scroll = time()
         self.pages = []
