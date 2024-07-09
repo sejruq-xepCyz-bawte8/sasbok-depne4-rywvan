@@ -79,6 +79,8 @@ class Form_Welcome(Form_WelcomeTemplate):
 WELCOME = """
 # ЧетеМе 1.0 бета
 Онлайн читалище за творчеството на съвременни български писатели.
+
+код за читатели *Chete@me*
 """
 
 TERMS = """
