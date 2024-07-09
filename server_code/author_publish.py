@@ -53,7 +53,8 @@ def parse_user_author(data:dict):
       user['data'] = data
 
       message = {
-        'new':True
+        'new':True,
+        'data':data
       }
       
       return message

@@ -150,7 +150,16 @@ class Publish(PublishTemplate):
   def b_login_click(self, **event_args):
     user = anvil.users.login_with_form()
     if user:
-      anvil_data = anvil.server.call('parse_user_author', self.user)
+      message = anvil.server.call('parse_user_author', self.user)
+      if message:
+        message_new = message.get('new')
+        print('logged new', message_new)
+        message_data = message.get('data')
+        if message_data:
+          USER.set_user(data=message_data)
+      
+
+      
       self.anvil_email.text = "Успешен вход"
       Notification("Успешен вход :)").show()
 

@@ -12,17 +12,7 @@ class UserClass:
         self.store = indexed_db.create_store('cheteme-user')
         self.user:dict = self.store.get('user')
         self.is_author = self.user['is_author']
-        #if user:
-        #    self.is_user = True
-        #    self.user_id = user['user_id']
-        #    self.secret = user['secret']
-        #    self.age = user['age']
-        #    self.is_registred = user['is_registred']
-        #    self.is_author = user['is_author']
-        #    self.author_id = user['author_id']
-        #    self.author_uri = user['author_uri']
-        #else:
-        #    self.is_user = False
+
 
         
     def get_user(self):
@@ -35,16 +25,6 @@ class UserClass:
 
     def set_user(self, user:dict):
         
-        #if user and user.get('user_id'):
-            #self.user = user
-            #self.is_user = True
-            #self.user_id = user['user_id']
-            #self.secret = user['secret']
-            #self.age = user['age']
-            #self.is_author = user['is_author']
-            #self.is_registred = user['is_registred']
-            #self.author_id = user['author_id']
-            #self.author_uri = user['author_uri']
         if user:
             self.store['user'] = user
             return True
