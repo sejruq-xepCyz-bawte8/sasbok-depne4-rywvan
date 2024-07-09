@@ -83,8 +83,8 @@
   font-family: "Rubik Moonrocks";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 14);
-  line-height: calc(var(--cover-size) / 14);
+  font-size: calc(var(--cover-size) / 10);
+  line-height: calc(var(--cover-size) / 10);
   
   }
   
