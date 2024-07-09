@@ -159,9 +159,9 @@ class Publish(PublishTemplate):
           USER.set_user(message_data)
           self.prelink.text = f"chete.me/{message_data['author_uri']}/"
           self.author_uri.text = message_data['author_uri']
+          self.b_login.visible = False
+          self.b_logout.visible = True
           
-      
-
       
       self.anvil_email.text = "Успешен вход"
       Notification("Успешен вход :)").show()
@@ -173,6 +173,8 @@ class Publish(PublishTemplate):
     user = anvil.users.logout()
     if not user:
       self.anvil_email.text = "За публикуване е необходим вход :)"
+      self.b_login.visible = True
+      self.b_logout.visible = False
 
   def accept_terms_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
