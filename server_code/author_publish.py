@@ -49,13 +49,14 @@ def parse_user_author(data:dict):
     if not anvil_user_id and cheteme_user_id:
       user['author_id'] = data.get('author_id')
       user['user_id'] = data.get('user_id')
+      data['is_registred'] = 1
       user['data'] = data
 
       message = {
         'new':True
       }
       
-      return {'anvil':True}
+      return message
 
     #is cheteme user in anvil user
     if anvil_user_id:
