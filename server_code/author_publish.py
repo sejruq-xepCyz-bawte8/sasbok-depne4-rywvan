@@ -42,6 +42,16 @@ def new_author(data:dict):
 def parse_user_author(data:dict):
   user = anvil.users.get_user()
   if user:
-    author_id = user.get('author_id')
-    if not author_id and data['author_id']:
-      user['author_id'] = author_id
+    anvil_user_id = user.get('user_id')
+    cheteme_user_id = data.get('user_id')
+
+    #no author in that anvil user user case
+    if not anvil_user_id and cheteme_user_id:
+      user['author_id'] = data.get('author_id')
+      user['user_id'] = data.get('user_id')
+      user['data'] = data
+      return {'message':'new_saved'}
+
+    if anvil_user_id:
+      return user['data']
+      
