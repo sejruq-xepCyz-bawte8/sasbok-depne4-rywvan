@@ -222,7 +222,7 @@ class Reader(ReaderTemplate):
         non_blocking.cancel(self.scroling_pages_info)
         self.scroling_pages_info = non_blocking.defer(self.parse_most_visible, 0.2)
         if self.bookmark:
-           self.bookmark_click()
+           READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
 
 
   def bookmark_click(self, sender, *event):
