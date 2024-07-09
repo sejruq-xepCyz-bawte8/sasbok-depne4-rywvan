@@ -36,7 +36,7 @@ class EditorClass:
         
         ctime = time()
         try:
-            work_id = hash_args(randint(1, 1_000_000), ctime, self.author_id)
+            work_id = hash_args(str(ctime), user['author_id'])
         except:
             work_id = str(ctime)
 
