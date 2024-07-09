@@ -156,7 +156,7 @@ class Publish(PublishTemplate):
         print('logged new', message_new)
         message_data = message.get('data')
         if message_data:
-          USER.set_user(data=message_data)
+          USER.set_user(message_data)
       
 
       
