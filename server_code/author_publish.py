@@ -50,8 +50,18 @@ def parse_user_author(data:dict):
       user['author_id'] = data.get('author_id')
       user['user_id'] = data.get('user_id')
       user['data'] = data
-      return {'message':'new_saved'}
 
+      message = {
+        'new':True
+      }
+      
+      return {'anvil':True}
+
+    #is cheteme user in anvil user
     if anvil_user_id:
-      return user['data']
+      message = {
+        'new':False,
+        'data':user['data']
+      }
+      return message
       
