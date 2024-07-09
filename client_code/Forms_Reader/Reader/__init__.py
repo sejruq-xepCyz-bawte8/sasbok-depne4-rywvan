@@ -5,6 +5,7 @@ from anvil.js.window import document
 from anvil.js.window import jQuery as jQ
 from anvil_extras import non_blocking
 from time import time, sleep
+import re
 
 class Reader(ReaderTemplate):
   def __init__(self, **properties):
@@ -39,9 +40,7 @@ class Reader(ReaderTemplate):
     self.scroling_pages_info = None
     self.source = document.createElement("div")
     self.source.innerHTML = READER.content
-    #for node in self.source.childNodes:
-    #    print(node)
-    #App.READER CONTAINER 
+
     
     self.reader =  document.getElementById("cheteme_reader")
     self.reader.setAttribute('onscroll', 'anvil.call($("#appGoesHere > div"), "scroll_reader", $(this))')
@@ -104,28 +103,51 @@ class Reader(ReaderTemplate):
         self.currentParagraph = None
         self.pageNumber = 0
         
+        specials_pattern = r'<img[^>]*>|<a[^>]*>.*?</a>'
+
         self.createNewPage()
         for element in self.source.childNodes:
             if 'tagName' in element:
                 if element.tagName.lower() == 'p':
-                    words = element.innerHTML.split(' ')
+                    
+                    chunks = re.split(f'({specials_pattern})', element.innerHTML)
+                    #words = element.innerHTML.split(' ')
                     self.createNewParagraph(element)
-                    for word in words:
-                        if word.startswith('src="data:image'):
-                          wordSpan = document.createElement('img')
-                          wordSpan.src = word.split('"')[1]
+                    
+                    #words = element.innerHTML.split(' ')
+                    for chunk in chunks:
+                        if len(chunk) == 0:
+                          continue
+                        if not chunk.startswith('<img') and not chunk.startswith('<a '):
+                         
+                          words = chunk.split(' ')
+                          for word in words:
+                            if len(word) == 0:
+                               continue
+                            span = document.createElement('span')
+                            span.innerHTML = word
+                            self.currentParagraph.appendChild(span)
 
+                            if self.currentPage.offsetHeight > self.targetHeigth:
+                              self.currentParagraph.removeChild(span)
+                              self.createNewPage()
+                              self.createNewParagraph(element)
+                              self.currentParagraph.appendChild(span)
                         else:
-                          wordSpan = document.createElement('span')
-                          wordSpan.innerHTML = word
-                        
-                        self.currentParagraph.appendChild(wordSpan)
+                           
+                           container = document.createElement('div')
+                           container.innerHTML = chunk
+                           special = container.firstChild
 
-                        if self.currentPage.offsetHeight > self.targetHeigth:
-                          self.currentParagraph.removeChild(wordSpan)
-                          self.createNewPage()
-                          self.createNewParagraph(element)
-                          self.currentParagraph.appendChild(wordSpan)
+                           self.currentParagraph.appendChild(special)
+
+                           if self.currentPage.offsetHeight > self.targetHeigth:
+                              self.currentParagraph.removeChild(special)
+                              self.createNewPage()
+                              self.createNewParagraph(element)
+                              self.currentParagraph.appendChild(special)
+                           
+
                 
                 elif element.tagName.lower() == 'h1' and self.headingsCount > 0:
                     self.headingsCount += 1
