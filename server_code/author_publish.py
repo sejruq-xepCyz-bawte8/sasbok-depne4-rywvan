@@ -1,9 +1,5 @@
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
-from anvil.google.drive import app_files
 import anvil.users
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
 import anvil.server
 
 
@@ -27,6 +23,8 @@ def execute_ticket(ticket:str):
 
   if type == "browser" and ip != "192.168.65.1":
     print("production")
+    url = 'https://chete.me'
+    request(api='ticket', info=ticket, url=url)
   else:
     print("dev")
     url = 'http://192.168.0.101:8787'
