@@ -88,8 +88,6 @@ components:
   properties: {}
   type: Label
   layout_properties: {slot: default}
-
-
 - name: terms
   properties: {}
   type: LinearPanel

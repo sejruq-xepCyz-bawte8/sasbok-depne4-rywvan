@@ -150,7 +150,7 @@ class Publish(PublishTemplate):
   def b_login_click(self, **event_args):
     user = anvil.users.login_with_form()
     if user:
-      self.anvil_email.text = self.anvil_user['email']
+      Notification("Успешен вход :)").show()
     
 
   def b_logout_click(self, **event_args):

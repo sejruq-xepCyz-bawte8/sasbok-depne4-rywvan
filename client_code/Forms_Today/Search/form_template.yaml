@@ -9,5 +9,4 @@ components:
   type: TextBox
   layout_properties: {expand: true}
   event_bindings: {pressed_enter: b_search_click}
-- name: switch_1
-  type: form:dep_p86ky6m5lr9fp:Switch
+- {name: switch_1, type: 'form:dep_p86ky6m5lr9fp:Switch'}
