@@ -53,6 +53,8 @@ class Publish(PublishTemplate):
     delta = json.loads(EDITOR.content)
     self.quill.setContents(delta)
     self.content = self.quill.getSemanticHTML()
+
+    
     
     self.check_conditions()
 
