@@ -23,15 +23,9 @@ class AuthorCover(AuthorCoverTemplate):
     
  
 
-    self.open_time = time()
 
     self.bookmark = READER.get_bookmark(READER.current_id)
 
-    self.time_reading = 0.0 if not self.bookmark else self.bookmark['time_reading']
-    self.readed_pages = False if not self.bookmark else self.bookmark['readed_pages']
-    self.readed = False if not self.bookmark else self.bookmark['readed']
-    
-    self.min_time = 1 + READER.data['words'] / 100
 
 
   def open_work(self, sender, **event):
@@ -71,23 +65,14 @@ class AuthorCover(AuthorCoverTemplate):
     self.sidebar_social = jQ('#reader-sidebar-social')
     self.sidebar_social.toggle()
 
-
-
     #build panels
     toc = non_blocking.defer(self.build_toc, 0)
     social = non_blocking.defer(self.build_social, 0)
  
 
 
-   
-  def check_readed(self):
-      self.time_reading = time() - self.open_time
-      self.readed = True
-
-  
-
   def bookmark_click(self, sender, *event):
-    READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
+    READER.save_bookmark(page=1, time_reading=1, readed=True, readed_pages=1)
     self.bookmark_icon.toggleClass('active')
     if self.bookmark:
       READER.delete_bookmark(READER.current_id)
@@ -97,16 +82,11 @@ class AuthorCover(AuthorCoverTemplate):
     self.sidebar_social.hide()
     self.sidebar_toc.toggle()
 
-
+  #no full check for readed for author as works
   def social_click(self, sender, *event):
-    self.check_readed()
     self.sidebar_toc.hide()
     self.sidebar_social.toggle()
-    if self.readed:
-       self.tb_comment.enabled = True
-       self.tb_comment.placeholder = 'коментар...'
-       self.engage_comment.enabled = True
-       self.engage_liked.enabled = True
+
 
   def build_toc(self):
     for t in self.toc:
@@ -163,5 +143,3 @@ class AuthorCover(AuthorCoverTemplate):
         self.engage_liked.icon = "fa:heart"
      elif success == 200 and engage == 'engage_comment':
         self.engage_comment.icon = "fa:comment"
-
-

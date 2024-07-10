@@ -14,7 +14,7 @@ components:
   layout_properties: {slot: social}
   components:
   - name: tb_comment
-    properties: {placeholder: 'не е прочетено :)', enabled: false}
+    properties: {placeholder: 'коментар...'}
     type: TextArea
     layout_properties: {}
   - name: flow_panel_1
@@ -22,7 +22,7 @@ components:
     type: FlowPanel
     components:
     - name: engage_liked
-      properties: {text: '', icon: 'fa:heart fa-regular', enabled: false}
+      properties: {text: '', icon: 'fa:heart fa-regular'}
       type: Button
       layout_properties: {}
       event_bindings: {click: engage}
@@ -30,7 +30,7 @@ components:
       type: Label
       layout_properties: {}
     - name: engage_comment
-      properties: {text: '', icon: 'fa:comment fa-regular', enabled: false}
+      properties: {text: '', icon: 'fa:comment fa-regular'}
       type: Button
       layout_properties: {}
       event_bindings: {click: engage}
