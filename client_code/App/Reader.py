@@ -78,6 +78,7 @@ class ReaderClass:
             if delta < freq:
                 return chart['results']
         
+        print('chart api', api)
         results, success = self.api(api=api, info=info, data=data)
 
         if results and success:
