@@ -23,6 +23,7 @@ class Reader(ReaderTemplate):
     self.time_reading = 0.0 if not self.bookmark else self.bookmark['time_reading']
     self.readed_pages = False if not self.bookmark else self.bookmark['readed_pages']
     self.readed = False if not self.bookmark else self.bookmark['readed']
+    
     self.min_time = 1 + READER.data['words'] / 100
     
   
