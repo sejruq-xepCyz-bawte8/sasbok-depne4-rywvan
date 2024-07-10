@@ -84,7 +84,7 @@ class ApiClass:
     def check_cache(self, api:str, info:str=None):
         #api+info <-> response at time
         #self.store
-
+        return False, False
         cache_id = f'{api}_{info}' if info else api
         cache = self.store.get(cache_id)
         if not cache:
