@@ -16,3 +16,5 @@ if (viewportMetaTag) {
 
 
 
+document.documentElement.lang = "bg"
+
