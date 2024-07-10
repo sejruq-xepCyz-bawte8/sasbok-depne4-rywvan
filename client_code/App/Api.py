@@ -43,6 +43,9 @@ class ApiClass:
         if response and status:
             return response, status
 
+        response, status = self.http_request(api=api, info=info, data=data)
+        
+        old = """
         headers = self.parse_headers(api=api, info=info)
         if data:
             headers['Content-Type'] = 'application/json'
@@ -72,7 +75,7 @@ class ApiClass:
             except anvil.http.HttpError as e:
                 response = None
                 status = e.status
-        
+"""     
         
 
         if isinstance(response, list):
@@ -109,3 +112,37 @@ class ApiClass:
         #hash = hash_args(self.origin, version, api, info, data)
         #print(cache_id)
         
+
+
+    def http_request(self, api, info, data):
+        headers = self.parse_headers(api=api, info=info)
+        if data:
+            headers['Content-Type'] = 'application/json'
+            #payload = json.dumps(data) if data else ''
+            payload = data
+            try:
+                response = anvil.http.request(
+                                        url=self.origin,
+                                        headers = headers,
+                                        method='POST',
+                                        data=payload,
+                                        json=True
+                                        )
+                status = 200
+            except anvil.http.HttpError as e:
+                response = None
+                status = e.status
+        else:
+            try:
+                response = anvil.http.request(
+                                        url=self.origin,
+                                        headers = headers,
+                                        method='GET',
+                                        json=True
+                                        )
+                status = 200
+            except anvil.http.HttpError as e:
+                response = None
+                status = e.status
+
+        return response, status
