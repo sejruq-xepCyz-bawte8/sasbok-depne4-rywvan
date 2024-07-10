@@ -43,12 +43,12 @@ class ApiClass:
     def request(self, api:str, data:dict=None, info:str=None):
         response = None
         status = None
+        print(api, info)
         #if not data and api and api in CACHE_APIS:
         if api and api in CACHED:
             response, status = self.check_cache(api=api, info=info)
 
         if status != 200 :
-            print('api')
             response, status = self.http_request(api=api, info=info, data=data)
 
         #try again :)
