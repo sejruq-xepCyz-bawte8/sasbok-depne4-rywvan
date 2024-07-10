@@ -317,7 +317,8 @@ class Reader(ReaderTemplate):
 
 
     jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
-    jQ('#reader-cover-genres').text(data_work['genres'])
+    if data_work['genres'][0]:
+      jQ('#reader-cover-genres').text(data_work['genres'])
     jQ('#reader-cover-description').text(data_work['descr'])
    
     if data_author:
