@@ -80,7 +80,7 @@ components:
     layout_properties: {expand: true}
     event_bindings: {click: publish_click}
   - name: copy_permalink
-    properties: {text: Копирай, icon: 'fa:copy', align: full}
+    properties: {text: Копирай Перм., icon: 'fa:copy', align: full}
     type: Button
     layout_properties: {expand: false}
     event_bindings: {click: copy_permalink_click}

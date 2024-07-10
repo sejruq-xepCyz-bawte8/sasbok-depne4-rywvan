@@ -3,6 +3,7 @@ from anvil import *
 import anvil.server
 import anvil.google.auth, anvil.google.drive
 import anvil.users
+from anvil.js.window import navigator
 from anvil.js.window import jQuery as jQ
 from anvil.js.window import Quill, JSON
 import json
@@ -105,6 +106,7 @@ class Publish(PublishTemplate):
     if EDITOR.data['work_id'] != EDITOR.data['author_id']:
       EDITOR.data['uri'] = sender.text
       zod_uri(sender)
+      self.check_conditions()
       EDITOR.save_work()
 
 
@@ -129,8 +131,11 @@ class Publish(PublishTemplate):
       Notification(f"Неуспешна публикация :(", style='danger').show()
 
   def copy_permalink_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    if EDITOR.data['work_id'] == EDITOR.data['author_id']:
+      navigator.clipboard.writeText(f"https://chete.me/{self.user['author_uri']}")
+    else:
+      navigator.clipboard.writeText(f"https://chete.me/{self.user['author_uri']}/{EDITOR.data['uri']}")
+    
 
 
 
