@@ -129,7 +129,7 @@
     max-width: 90%;
     max-height: 75%;
     z-index: 1000;
-    bottom: calc(var(--nav-size) + 8px);
+    bottom: calc(var(--nav-size) + 24px);
     right: 0px;
     position: absolute;
     padding: 8px;
