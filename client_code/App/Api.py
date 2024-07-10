@@ -54,9 +54,11 @@ class ApiClass:
 
         #try again :)
         if not response and api and api in CACHED:
+            print('try1')
             sleep(1)
             response, status = self.http_request(api=api, info=info, data=data)
         if not response and api and api in CACHED:
+            print('try2')
             sleep(1)
             response, status = self.http_request(api=api, info=info, data=data)
 
