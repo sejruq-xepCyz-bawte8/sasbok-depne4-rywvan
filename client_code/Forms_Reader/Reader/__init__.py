@@ -316,7 +316,7 @@ class Reader(ReaderTemplate):
     author_id = data_work['author_id']
     data_author = READER.get_work_data(author_id)
 
-    if work_id:
+    if work_id != author_id:
 
       jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
       if data_work['genres'][0]:
@@ -324,19 +324,33 @@ class Reader(ReaderTemplate):
       jQ('#reader-cover-description').text(data_work['descr'])
     
       if data_author:
-        jQ('#reader-cover-author').text(data_author['title'])
-        jQ('#reader-cover-author-description').text(data_author['descr'])
-        #jQ('#reader-cover-author-genres').text(data_author['genres'])
-        
-        
         author_uri = data_author['uri']
         work_url = f'https://chete.me/{author_uri}' if data_work['work_id'] == author_id else f'https://chete.me/{author_uri}/{data_uri}'
-        
         jQ('#reader-cover-url').attr('href', work_url).text(work_url)
+        
+        
+        #onclick="anvil.call($("#appGoesHere > div"), "open_work", $(this))"
+
+        jQ('#reader-cover-author').text(data_author['title'])
+        jQ('#reader-cover-author-description').text(data_author['descr'])
+
+       
+        jQ('#reader-cover-author').attr('onclick', 'anvil.call($("#appGoesHere > div"), "open_work", $(this))')
+        jQ('#reader-cover-author').attr('id', data_author['author_id'])
+        
+        
+        
+        
+        
       
-    #else:
-    #    jQ('#cover').attr('id', "author_cover")
-    #    jQ('#cover').attr('onclick', 'anvil.call($("#appGoesHere > div"), "open_form", $(this))')
+    else:
+        
+        jQ('#cover').find('.nav-text').text('Творби')
+        jQ('#cover').attr('onclick', 'anvil.call($("#appGoesHere > div"), "open_form", $(this))')
+        jQ('#cover').find('.nav-fa').attr('class', 'nav-fa fa-duotone fa-books')
+        jQ('#cover').attr('id', "author_cover")
+        
+        
 
 
   
@@ -350,5 +364,7 @@ class Reader(ReaderTemplate):
 
 
     
-  def open_work(self, sender, *event):
-     pass
+  def open_work(self, sender, **event):
+    current = READER.set_current(sender.attr('id'))
+    if current:
+      open_form('Forms_Reader.Reader')

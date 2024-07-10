@@ -20,6 +20,7 @@ class AuthorCover(AuthorCoverTemplate):
     
   def form_show(self, **event):
     self.panel = jQ('#published-panel')
+    jQ('#title').text(READER.data['title'])
     self.parse_works()
     
     
@@ -35,21 +36,6 @@ class AuthorCover(AuthorCoverTemplate):
         self.panel.append(cover)
 
   def open_work(self, sender, **event):
-    work_id = sender.attr('id')
-    api = "get_work_stats"
-    results, _ = API.request(api=api, info=work_id)
-    stats = results[0]
-    panel = LinearPanel()
-    liked = Label(text=f"общо харесани: {stats['liked']}")
-    comment = Label(text=f"общо коментари: {stats['comment']}")
-    countries = Label(text=f"държави: {stats['countries']}")
-    panel.add_component(liked)
-    panel.add_component(comment)
-    panel.add_component(countries)
-
-    result = alert(content=panel,
-               title="Статистики:",
-               large=True,
-               buttons=[
-                 ("Затвори", "YES")
-               ])
+    current = READER.set_current(sender.attr('id'))
+    if current:
+      open_form('Forms_Reader.Reader')
