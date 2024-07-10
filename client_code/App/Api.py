@@ -48,6 +48,7 @@ class ApiClass:
             response, status = self.check_cache(api=api, info=info)
 
         if status != 200 :
+            print('api')
             response, status = self.http_request(api=api, info=info, data=data)
 
         #try again :)
