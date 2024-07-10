@@ -44,9 +44,8 @@ class Reader(ReaderTemplate):
 
     
     self.reader =  document.getElementById("cheteme_reader")
-    #self.reader.setAttribute('onscroll', 'anvil.call($("#appGoesHere > div"), "scroll_reader", $(this))')
     self.targetHeigth = self.reader.offsetHeight
-    self.imagesHeigth:int = int(self.targetHeigth / 3)
+    #self.imagesHeigth:int = int(self.targetHeigth / 3)
 
     #LABELS self.pagesLabel = self.add_label() #"#navl-ViewerW-ViewerW_Work"
     self.work_link = document.getElementById('reader')
@@ -84,7 +83,7 @@ class Reader(ReaderTemplate):
     #START PAGINATION
 
 
-    if READER.data['words'] > 500:
+    if READER.data['words'] > 300:
        jQ('.fa-book-open').addClass('fa-beat')
        Notification("Приготвяне на страниците", style='info', timeout=0.1).show()
        sleep(0.1)
@@ -101,7 +100,7 @@ class Reader(ReaderTemplate):
   def distribute(self):
         sleep(0.1)
         self.targetHeigth = self.reader.offsetHeight
-        self.imagesHeigth:int = int(self.targetHeigth / 3)
+        #self.imagesHeigth:int = int(self.targetHeigth / 3)
         self.reader.innerHTML = ''
         #self.last_scroll = time()
         self.pages = []
