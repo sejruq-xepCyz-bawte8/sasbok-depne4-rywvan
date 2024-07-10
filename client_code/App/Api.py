@@ -119,7 +119,7 @@ class ApiClass:
 
         cached_ids = list(self.store)
         if len(cached_ids) > 10:
-            ids_to_delete = cached_ids[:-10]
+            ids_to_delete = cached_ids[10:] #[:-10]
             for id in ids_to_delete:
                 del self.store[id]
 
