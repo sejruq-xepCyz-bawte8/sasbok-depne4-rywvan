@@ -311,8 +311,10 @@ class Reader(ReaderTemplate):
 
   def build_cover(self):
     data_work = READER.data
+    data_uri = data_work['uri']
     author_id = data_work['author_id']
     data_author = READER.get_work_data(author_id)
+
 
     jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
     jQ('#reader-cover-genres').text(data_work['genres'])
@@ -322,7 +324,12 @@ class Reader(ReaderTemplate):
        jQ('#reader-cover-author').text(data_author['title'])
        jQ('#reader-cover-author-description').text(data_author['descr'])
        jQ('#reader-cover-author-genres').text(data_author['genres'])
-
+       
+       
+       author_uri = data_author['uri']
+       work_url = f'https://chete.me/{author_uri}/{data_uri}'
+       
+       jQ('reader-cover-url').attr('href', work_url).text(work_url)
 
   
   def cover_click(self, sender, *event):
