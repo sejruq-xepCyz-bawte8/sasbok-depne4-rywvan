@@ -47,10 +47,8 @@ class ApiClass:
         if api and api in CACHED:
             response, status = self.check_cache(api=api, info=info)
 
-        if response and status:
-            return response, status
-
-        response, status = self.http_request(api=api, info=info, data=data)
+        if status != 200 :
+            response, status = self.http_request(api=api, info=info, data=data)
 
         #try again :)
         if status != 200 and api and api in CACHED:
@@ -84,7 +82,7 @@ class ApiClass:
     def check_cache(self, api:str, info:str=None):
         #api+info <-> response at time
         #self.store
-        return False, False
+        
         cache_id = f'{api}_{info}' if info else api
         cache = self.store.get(cache_id)
         if not cache:
@@ -102,7 +100,7 @@ class ApiClass:
             del self.store[cache_id]
             return False, False
         else:
-            print(response)
+            
             return response, 200
 
 
