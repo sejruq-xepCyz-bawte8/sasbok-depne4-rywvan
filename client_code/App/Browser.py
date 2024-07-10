@@ -1,10 +1,13 @@
 from anvil.js import window
+from anvil.js.window import document
 
 #"loadingSpinner"
 delete = ["anvil-header", "anvil-badge", "error-indicator"]
 
 class BrowserClass:
     def __init__(self):
+
+        script_to_head_load(src='_/theme/js/parse_back.js')
         self.origin = window.location.origin
         self.protocol = window.location.protocol
         self.host = window.location.host
@@ -20,3 +23,17 @@ class BrowserClass:
         else:
             window.document.body.classList.add('notouch')
   
+
+
+
+
+
+
+
+def script_to_head_load(src:str) -> None:
+    script = document.createElement('script')
+    script.src = src
+    document.head.appendChild(script)
+
+
+
