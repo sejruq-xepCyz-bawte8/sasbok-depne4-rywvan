@@ -327,7 +327,7 @@ class Reader(ReaderTemplate):
        
        
        author_uri = data_author['uri']
-       work_url = f'https://chete.me/{author_uri}/{data_uri}'
+       work_url = f'https://chete.me/{author_uri}' if data_work['work_id'] == author_id else f'https://chete.me/{author_uri}/{data_uri}'
        
        jQ('#reader-cover-url').attr('href', work_url).text(work_url)
       
