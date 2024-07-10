@@ -39,3 +39,10 @@ class AuthorCover(AuthorCoverTemplate):
     current = READER.set_current(sender.attr('id'))
     if current:
       open_form('Forms_Reader.Reader')
+
+
+  def bookmark_click(self, sender, *event):
+    READER.save_bookmark(page=1, time_reading=1, readed=True, readed_pages=1)
+    self.bookmark_icon.toggleClass('active')
+    if self.bookmark:
+      READER.delete_bookmark(READER.current_id)
