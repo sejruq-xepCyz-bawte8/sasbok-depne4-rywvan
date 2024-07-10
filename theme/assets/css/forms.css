@@ -172,21 +172,21 @@ height: 60svh;
         overflow-x: hidden;
     }
 
-    .ch-form-charts{
+    .notouch .ch-form-charts{
         flex-direction: row;
     }
 
-    .ch-form-charts .ch-panel{
+    .notouch .ch-form-charts .ch-panel{
         height: calc(100svh - var(--nav-size) * 1);
     }
 
 
-    .ch-filters-toolbar{
+    .notouch .ch-filters-toolbar{
         flex-direction: column;
         height: calc(100svh - var(--nav-size));
     }
 
-    .ch-filter{
+    .notouch .ch-filter{
         height: fit-content;
         width: fit-content;
         flex-direction: column;
