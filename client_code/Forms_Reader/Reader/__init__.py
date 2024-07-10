@@ -323,9 +323,9 @@ class Reader(ReaderTemplate):
     if data_author:
        jQ('#reader-cover-author').text(data_author['title'])
        jQ('#reader-cover-author-description').text(data_author['descr'])
-       jQ('#reader-cover-author-genres').text(data_author['genres'])
+       #jQ('#reader-cover-author-genres').text(data_author['genres'])
        
-       
+       print(author_uri)
        author_uri = data_author['uri']
        work_url = f'https://chete.me/{author_uri}/{data_uri}'
        
