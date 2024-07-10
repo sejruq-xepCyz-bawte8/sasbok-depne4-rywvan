@@ -330,7 +330,7 @@ class Reader(ReaderTemplate):
        work_url = f'https://chete.me/{author_uri}/{data_uri}'
        
        jQ('reader-cover-url').attr('href', work_url).text(work_url)
-       print(author_uri)
+       print(work_url)
 
   
   def cover_click(self, sender, *event):
