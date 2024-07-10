@@ -220,6 +220,7 @@ class Reader(ReaderTemplate):
 
             
   def scroll_reader(self, page, *event):
+        print('scroll')
         non_blocking.cancel(self.scroling_pages_info)
         self.scroling_pages_info = non_blocking.defer(self.parse_most_visible, 0.2)
         if self.bookmark:
