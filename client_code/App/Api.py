@@ -102,6 +102,7 @@ class ApiClass:
             del self.store[cache_id]
             return False, False
         else:
+            print(response)
             return response, 200
 
 
