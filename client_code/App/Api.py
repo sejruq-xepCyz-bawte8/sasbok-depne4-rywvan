@@ -13,12 +13,12 @@ NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket',
 #CACHE_WORKS = ['get_work_data', 'get_work_content', 'get_work_social']
 CACHED = ['get_last', 'get_chart', 'get_authors', 'get_work_data', 'get_work_content', 'get_work_social']
 
-CACHED_DELTA = {'get_last':1800,
-                'get_chart':1800,
-                'get_authors':3600,
-                'get_work_data':3600,
-                'get_work_content':3600,
-                'get_work_social':3600
+CACHED_DELTA = {'get_last':900,
+                'get_chart':900,
+                'get_authors':1800,
+                'get_work_data':1800,
+                'get_work_content':1800,
+                'get_work_social':600
                 }
 
 class ApiClass:
