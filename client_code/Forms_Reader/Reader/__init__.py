@@ -311,34 +311,41 @@ class Reader(ReaderTemplate):
 
   def build_cover(self):
     data_work = READER.data
+    work_id = READER.current_id
     data_uri = data_work['uri']
     author_id = data_work['author_id']
     data_author = READER.get_work_data(author_id)
 
+    if work_id:
 
-    jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
-    if data_work['genres'][0]:
-      jQ('#reader-cover-genres').text(data_work['genres'])
-    jQ('#reader-cover-description').text(data_work['descr'])
-   
-    if data_author:
-       jQ('#reader-cover-author').text(data_author['title'])
-       jQ('#reader-cover-author-description').text(data_author['descr'])
-       #jQ('#reader-cover-author-genres').text(data_author['genres'])
-       
-       
-       author_uri = data_author['uri']
-       work_url = f'https://chete.me/{author_uri}' if data_work['work_id'] == author_id else f'https://chete.me/{author_uri}/{data_uri}'
-       
-       jQ('#reader-cover-url').attr('href', work_url).text(work_url)
+      jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
+      if data_work['genres'][0]:
+        jQ('#reader-cover-genres').text(data_work['genres'])
+      jQ('#reader-cover-description').text(data_work['descr'])
+    
+      if data_author:
+        jQ('#reader-cover-author').text(data_author['title'])
+        jQ('#reader-cover-author-description').text(data_author['descr'])
+        #jQ('#reader-cover-author-genres').text(data_author['genres'])
+        
+        
+        author_uri = data_author['uri']
+        work_url = f'https://chete.me/{author_uri}' if data_work['work_id'] == author_id else f'https://chete.me/{author_uri}/{data_uri}'
+        
+        jQ('#reader-cover-url').attr('href', work_url).text(work_url)
       
-       
+    #else:
+    #    jQ('#cover').attr('id', "author_cover")
+    #    jQ('#cover').attr('onclick', 'anvil.call($("#appGoesHere > div"), "open_form", $(this))')
+
 
   
   def cover_click(self, sender, *event):
-    self.sidebar_toc.hide()
-    self.sidebar_social.hide()
-    self.sidebar_cover.toggle()
+    if READER.current_id:
+        self.sidebar_toc.hide()
+        self.sidebar_social.hide()
+        self.sidebar_cover.toggle()
+
 
 
 

@@ -6,6 +6,7 @@
     "search":"Forms_Today.Search",
 
     "reader":"Forms_Reader.Reader",
+    "author_cover":"Forms_Reader.AuthorCover",
 
     "settings":"Forms_Settings.Settings",
     "devices":"Forms_Settings.Devices",
