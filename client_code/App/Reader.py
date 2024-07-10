@@ -192,11 +192,14 @@ class ReaderClass:
             sleep(2)
 
 
+    #memory for the filter
     def set_filters(self, filters:set):
         self.filters = filters
     def get_filters(self):
         return self.filters
     
+
+    #for back in the interface mem for previos page
     def set_back(self, back):
         self.back = back
     def get_back(self):
