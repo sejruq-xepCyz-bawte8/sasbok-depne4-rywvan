@@ -44,7 +44,7 @@ class Reader(ReaderTemplate):
 
     
     self.reader =  document.getElementById("cheteme_reader")
-    self.reader.setAttribute('onscroll', 'anvil.call($("#appGoesHere > div"), "scroll_reader", $(this))')
+    #self.reader.setAttribute('onscroll', 'anvil.call($("#appGoesHere > div"), "scroll_reader", $(this))')
     self.targetHeigth = self.reader.offsetHeight
     self.imagesHeigth:int = int(self.targetHeigth / 3)
 
