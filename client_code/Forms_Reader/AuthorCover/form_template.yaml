@@ -3,3 +3,35 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:html/reader/author_cover.html'}
   event_bindings: {show: form_show}
+components:
+- name: social_others
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: social}
+- name: social_me
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: social}
+  components:
+  - name: tb_comment
+    properties: {placeholder: 'не е прочетено :)', enabled: false}
+    type: TextArea
+    layout_properties: {}
+  - name: flow_panel_1
+    properties: {align: justify}
+    type: FlowPanel
+    components:
+    - name: engage_liked
+      properties: {text: '', icon: 'fa:heart fa-regular', enabled: false}
+      type: Button
+      layout_properties: {}
+      event_bindings: {click: engage}
+    - name: l_likes
+      type: Label
+      layout_properties: {}
+    - name: engage_comment
+      properties: {text: '', icon: 'fa:comment fa-regular', enabled: false}
+      type: Button
+      layout_properties: {}
+      event_bindings: {click: engage}
+    layout_properties: {}

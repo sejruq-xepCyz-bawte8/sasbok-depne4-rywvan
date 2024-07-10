@@ -2,5 +2,15 @@
     <div class="ch-panel ch-panel-0-1">
         <div id="title" class="ch-label-1">Автор Корица</div>
         <div id="published-panel" class="ch-works"></div>
+        <div id="reader-sidebar-toc" class="sidebar">
+            <div style="font-family: 'Courier New', Courier, monospace;">Съдържание:</div>
+            <div anvil-slot-repeat="toc" class="anvil"></div>
+        </div>
+        <div id="reader-sidebar-social" class="sidebar">
+              <div class='comments-container'>
+                <div class='comments-item' anvil-slot-repeat="social-comments" class="anvil"></div>
+              </div>
+              <div class='social-me' anvil-slot-repeat="social" class="anvil"></div>
+        </div>
     </div>
 </div>
