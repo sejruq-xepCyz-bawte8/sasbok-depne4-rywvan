@@ -43,7 +43,7 @@ class ApiClass:
     def request(self, api:str, data:dict=None, info:str=None):
         response = None
         status = None
-        print(api, info)
+        
         #if not data and api and api in CACHE_APIS:
         if api and api in CACHED:
             response, status = self.check_cache(api=api, info=info)
@@ -53,11 +53,11 @@ class ApiClass:
 
         #try again :)
         if status != 200 and api and api in CACHED:
-            print('try1', response, api)
+            
             sleep(1)
             response, status = self.http_request(api=api, info=info, data=data)
         if status != 200 and api and api in CACHED:
-            print('try2')
+            
             sleep(1)
             response, status = self.http_request(api=api, info=info, data=data)
 
@@ -81,8 +81,6 @@ class ApiClass:
 
     
     def check_cache(self, api:str, info:str=None):
-        #api+info <-> response at time
-        #self.store
         
         cache_id = f'{api}_{info}' if info else api
         cache = self.store.get(cache_id)
@@ -120,8 +118,7 @@ class ApiClass:
         
         if len(self.store) > 5:
             cached_ids = list(self.store)
-            #sorted_list = sorted(cached_ids, key=lambda x: x['timestamp'])
-            ids_to_delete = cached_ids[30:] #[:-10] [5:]
+            ids_to_delete = cached_ids[50:] #[:-10] [5:]
             for id in ids_to_delete:
                 del self.store[id]
 
