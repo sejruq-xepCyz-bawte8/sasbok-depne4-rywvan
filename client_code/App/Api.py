@@ -11,7 +11,7 @@ NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket',
 #together with info if is
 #CACHE_LISTS = ['get_last', 'get_work_social', 'get_authors', 'get_chart']
 #CACHE_WORKS = ['get_work_data', 'get_work_content', 'get_work_social']
-CACHED = ['get_last', 'get_work_social', 'get_authors', 'get_chart', 'get_work_data', 'get_work_content', 'get_work_social']
+CACHED = ['get_last', 'get_chart', 'get_authors', 'get_work_data', 'get_work_content', 'get_work_social']
 
 class ApiClass:
     def __init__(self, get_user, version, origin:str):
