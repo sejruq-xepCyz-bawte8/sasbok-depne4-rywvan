@@ -25,6 +25,9 @@ class Publish(PublishTemplate):
     if EDITOR.data['work_id'] == EDITOR.data['author_id']:
       self.work_uri.visible = False
 
+    #del cache
+    API.delete_cashe_work(EDITOR.data['work_id'])
+
     self.title.text = EDITOR.data['title']
 
     self.age.checked = False if not EDITOR.data.get('age') else True

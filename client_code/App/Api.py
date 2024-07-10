@@ -123,7 +123,13 @@ class ApiClass:
                 del self.store[id]
 
         
-        
+    def delete_cashe_work(self, work_id):
+        cache_data_id = f'get_work_data_{work_id}'
+        cache_content_id = f'get_work_content_{work_id}'
+        if cache_data_id in self.store:
+            del self.store[cache_data_id]
+        if cache_content_id in self.store:
+            del self.store[cache_content_id]
 
 
     def http_request(self, api, info, data):
