@@ -17,4 +17,6 @@ class BrowserClass:
 
         if self.touch:
             window.document.body.classList.add('touch')
+        else:
+            window.document.body.classList.add('notouch')
   
