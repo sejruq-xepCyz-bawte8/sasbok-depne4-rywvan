@@ -8,6 +8,7 @@ from anvil.js.window import Quill, JSON
 import json
 from ...App import NAVIGATION, EDITOR, USER, ASSETS, ORIGIN_APP, API
 from time import time
+from ...Helpers import zod_uri
 
 class Publish(PublishTemplate):
   def __init__(self, **properties):
@@ -21,6 +22,8 @@ class Publish(PublishTemplate):
     self.prelink.text = f"chete.me/{self.user['author_uri']}/"
     self.author_uri.text = self.user['author_uri']
     self.work_uri.text = EDITOR.data['uri']
+
+    zod_uri(self.work_uri)
 
     if EDITOR.data['work_id'] == EDITOR.data['author_id']:
       self.work_uri.visible = False
@@ -69,8 +72,8 @@ class Publish(PublishTemplate):
       conditions += 'няма заглавие, '
     if (EDITOR.data['work_id'] != EDITOR.data['author_id']) and (not EDITOR.data['genres'][0] or not EDITOR.data['genres'][1] or not EDITOR.data['genres'][2]):
       conditions += 'няма жанрове, '
-    if not EDITOR.data['uri']:
-      conditions += 'няма пермалинк, '
+    if not self.work_uri.valid:
+      conditions += 'грешен пермалинк, '
     if not self.content:
       conditions += 'няма текст, '
     if EDITOR.data['size'] > 5_000:
@@ -101,6 +104,7 @@ class Publish(PublishTemplate):
   def work_uri_change(self, sender, **event_args):
     if EDITOR.data['work_id'] != EDITOR.data['author_id']:
       EDITOR.data['uri'] = sender.text
+      zod_uri(sender)
       EDITOR.save_work()
 
 
