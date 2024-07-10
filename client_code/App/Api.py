@@ -120,7 +120,7 @@ class ApiClass:
         if len(self.store) > 5:
             cached_ids = list(self.store)
             #sorted_list = sorted(cached_ids, key=lambda x: x['timestamp'])
-            ids_to_delete = cached_ids[:-8] #[:-10] [5:]
+            ids_to_delete = cached_ids[8:] #[:-10] [5:]
             for id in ids_to_delete:
                 del self.store[id]
 
