@@ -32,7 +32,7 @@ p{
   margin-block-end: unset;
   /*margin-inline-start: var(--p-size);
   margin-inline-end: 0px;*/
-  margin-top: var(--p-size);
+  margin-top: 8px;
 }
 
 .page p:first-of-type {
