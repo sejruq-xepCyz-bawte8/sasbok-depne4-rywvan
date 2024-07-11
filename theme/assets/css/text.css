@@ -1,6 +1,6 @@
 .page{
-  padding-left:8px;
-  padding-right: 8px;
+  padding-left:8px  !important;
+  padding-right: 8px !important;
 }
 h1{
     font-size: var(--h1-size);
@@ -58,38 +58,43 @@ blockquote{
 
 /*reader only*/
 .reader p{
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--words-distance);
+    display: flex !important;
+    flex-wrap: wrap !important;
+    
 }
 
 .reader blockquote{
-    display: flex;
-    flex-wrap: wrap;
+    display: flex !important;
+    flex-wrap: wrap !important;
     gap: var(--words-distance);
 }
 
 .reader p span:first-of-type{
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 
 h1.ql-align-right, h2.ql-align-right{
-  text-align: right;
+  text-align: right !important;
 }
 
 .reader h1.ql-align-center, .reader h2.ql-align-center{
-  text-align: center;
+  text-align: center !important;
 }
 
 .reader p.ql-align-right{
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 
 }
 .reader p.ql-align-center{
-justify-content: center;
+justify-content: center !important;
 }
 
 .reader img{
-  max-width: 100%;
-  max-height: 60%;
+  max-width: 100% !important;
+  max-height: 60% !important;
+}
+
+.reader span{
+  margin-left: 0px !important;
+  margin-right: var( --words-distance) !important;
 }
