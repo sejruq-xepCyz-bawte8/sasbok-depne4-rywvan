@@ -17,13 +17,10 @@ class Reader(ReaderTemplate):
     self.open_form = NAVIGATION.nav_open_form
 
     self.open_time = time()
-
     self.bookmark = READER.get_bookmark(READER.current_id)
-
     self.time_reading = 0.0 if not self.bookmark else self.bookmark['time_reading']
     self.readed_pages = False if not self.bookmark else self.bookmark['readed_pages']
     self.readed = False if not self.bookmark else self.bookmark['readed']
-    
     self.min_time = 1 + READER.data['words'] / 100
     
   
@@ -31,27 +28,17 @@ class Reader(ReaderTemplate):
     
 
   def form_show(self, **event):
-    back = jQ('#today')
-    back.attr('id', READER.get_back())
 
-    self.bookmark_icon = jQ('#bookmark')
-    if self.bookmark:
-       self.bookmark_icon.addClass('active')
-
+    #prep reader
     self.scroling_pages_info = None
     self.source = document.createElement("div")
     self.source.innerHTML = READER.content
-
-    
     self.reader =  document.getElementById("cheteme_reader")
     self.targetHeigth = self.reader.offsetHeight
-    #self.imagesHeigth:int = int(self.targetHeigth / 3)
 
-    #LABELS self.pagesLabel = self.add_label() #"#navl-ViewerW-ViewerW_Work"
     self.work_link = document.getElementById('reader')
     self.pagesLabel = self.work_link.querySelectorAll('.nav-text')[0]
 
-    #self.add_label(text=self.form_name)
     self.last_scroll = time()
     self.mostVisible = 1
     self.pages = []
@@ -60,10 +47,6 @@ class Reader(ReaderTemplate):
     self.currentParagraph = None
     self.pageNumber = 0
     self.headingsCount = 0
-#self.add_event_handler('show', self.createNewPage) 
-#self.targetHeigth = self.reader.offsetHeight
-        
-
 
     #Sidebars
     self.sidebar_toc = jQ('#reader-sidebar-toc')
@@ -73,16 +56,7 @@ class Reader(ReaderTemplate):
     self.sidebar_cover = jQ('#reader-sidebar-cover')
     self.sidebar_cover.toggle()
 
-
-    #build panels
-    toc = non_blocking.defer(self.build_toc, 0)
-    social = non_blocking.defer(self.build_social, 0)
-    cover = non_blocking.defer(self.build_cover, 0)
-
-
     #START PAGINATION
-
-
     if READER.data['words'] > 300:
        jQ('.fa-book-open').addClass('fa-beat')
        Notification("Приготвяне на страниците", style='info', timeout=0.1).show()
@@ -93,8 +67,20 @@ class Reader(ReaderTemplate):
     else:
        self.distribute()
 
+    #back button
+    back = jQ('#today')
+    back.attr('id', READER.get_back())
 
+
+    #bookmark
+    self.bookmark_icon = jQ('#bookmark')
+    if self.bookmark:
+       self.bookmark_icon.addClass('active')
     
+    #build panels
+    toc = non_blocking.defer(self.build_toc, 0)
+    social = non_blocking.defer(self.build_social, 0)
+    cover = non_blocking.defer(self.build_cover, 0)
     
     
   def distribute(self):
