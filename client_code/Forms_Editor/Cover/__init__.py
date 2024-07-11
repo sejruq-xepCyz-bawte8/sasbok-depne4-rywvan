@@ -85,6 +85,8 @@ class Cover(CoverTemplate):
     EDITOR.data['m_color'] = m_color
 
     self.paint_cover()
+    self.color.val(EDITOR.data['color'])
+    self.bg_color.val(EDITOR.data['bg_color'])
 
   def form_hide(self, **event_args):
     EDITOR.save_work()
