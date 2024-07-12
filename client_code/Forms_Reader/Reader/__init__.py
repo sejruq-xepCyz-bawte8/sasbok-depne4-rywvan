@@ -266,8 +266,9 @@ class Reader(ReaderTemplate):
     social = READER.get_work_social(READER.current_id)
     if social:
       for comment in social['comments']:
-        label = Label(text=comment)
-        self.add_component(label, slot='social-comments')
+        if len(comment) > 0:
+          label = Label(text=comment)
+          self.add_component(label, slot='social-comments')
       self.l_likes.text = social.get('liked')
       self.tb_comment.text = social.get('me')
       if social.get('me_readed'):
