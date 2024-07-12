@@ -1,6 +1,6 @@
 .page{
   padding-left:8px  !important;
-  padding-right: 8px !important;
+  padding-right: 0px !important;
 }
 h1{
     font-size: var(--h1-size);
@@ -90,8 +90,9 @@ justify-content: center !important;
 }
 
 .reader img{
+  padding-right: 8px !important;
   max-width: 100% !important;
-  max-height: 60% !important;
+  max-height: 70svh !important;
 }
 
 .reader span{
