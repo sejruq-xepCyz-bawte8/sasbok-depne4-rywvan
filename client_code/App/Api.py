@@ -18,7 +18,7 @@ CACHED_DELTA = {'get_last':900,
                 'get_authors':1800,
                 'get_work_data':1800,
                 'get_work_content':1800,
-                'get_work_social':60
+                'get_work_social':5
                 }
 
 class ApiClass:
