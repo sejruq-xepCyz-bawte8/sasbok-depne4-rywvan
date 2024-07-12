@@ -202,6 +202,9 @@ class Reader(ReaderTemplate):
          if not self.readed:
             self.engage(engage='readed')
             self.readed = True
+            self.tb_comment.enabled = True
+            self.engage_comment.enabled = True
+            self.engage_liked.enabled = True
          
          
 
@@ -268,22 +271,32 @@ class Reader(ReaderTemplate):
         if len(comment) > 0:
           label = Label(text=comment)
           self.add_component(label, slot='social-comments')
+      
       self.l_likes.text = social.get('liked')
-      my_comment = social.get('me')
+      
+
       
       if social.get('me_readed'):
          self.readed = True
+         self.tb_comment.enabled = True
+         self.engage_comment.enabled = True
+         self.engage_liked.enabled = True
+      else:
+         self.tb_comment.placeholder = 'не сте прочели творбата :)'
+    
+
       if social.get('me_liked'):
          self.engage_liked.icon = "fa:heart"
 
+      my_comment = social.get('me')
       if my_comment:
          self.tb_comment.text = social.get('me')
          self.engage_comment.icon = "fa:comment"
       else:
          if self.readed:
             self.tb_comment.placeholder = 'вашият коментар ...'
-         else:
-            self.tb_comment.placeholder = 'не сте прочели творбата :)'
+            
+
 
 
 
