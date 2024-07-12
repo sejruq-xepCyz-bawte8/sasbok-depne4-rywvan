@@ -205,6 +205,8 @@ class Reader(ReaderTemplate):
             self.tb_comment.enabled = True
             self.engage_comment.enabled = True
             self.engage_liked.enabled = True
+            if self.tb_comment.text == '':
+               self.tb_comment.placeholder = 'вашият коментар ...'
          
          
 
