@@ -233,7 +233,6 @@ class Reader(ReaderTemplate):
     self.sidebar_social.toggle()
     if self.readed:
        self.tb_comment.enabled = True
-       self.tb_comment.placeholder = 'коментар...'
        self.engage_comment.enabled = True
        self.engage_liked.enabled = True
 
@@ -270,7 +269,11 @@ class Reader(ReaderTemplate):
           label = Label(text=comment)
           self.add_component(label, slot='social-comments')
       self.l_likes.text = social.get('liked')
-      self.tb_comment.text = social.get('me')
+      my_comment = social.get('me')
+      if my_comment:
+         self.tb_comment.text = social.get('me')
+      else:
+         self.tb_comment.text = 'вашият коментар е тук ...'
       if social.get('me_readed'):
          self.readed = True
       if social.get('me_liked'):
