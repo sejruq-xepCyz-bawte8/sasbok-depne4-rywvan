@@ -199,7 +199,11 @@ class Reader(ReaderTemplate):
       if int(self.mostVisible) == int(self.pageNumber):
          self.readed_pages = True
       if self.time_reading > self.min_time and self.readed_pages:
-         self.readed = True
+         if not self.readed:
+            self.engage(engage='readed')
+            self.readed = True
+         
+         
 
             
   def scroll_reader(self, page, *event):
@@ -266,17 +270,24 @@ class Reader(ReaderTemplate):
         self.add_component(label, slot='social-comments')
       self.l_likes.text = social.get('liked')
       self.tb_comment.text = social.get('me')
+      if social.get('me_readed'):
+         self.readed = True
       if social.get('me_liked'):
          self.engage_liked.icon = "fa:heart"
 
 
 
   def engage(self, engage:str=None, **event):
-     if event['sender'] == self.engage_liked:
+     if event and event['sender'] == self.engage_liked:
         engage = 'engage_liked'
-     elif event['sender'] == self.engage_comment:
+     elif event and event['sender'] == self.engage_comment:
         engage = 'engage_comment'
-  
+     elif engage == 'readed':
+        engage = 'engage_readed'
+     elif engage == 'ostay':
+        engage = 'engage_ostay'
+
+
      data = {
         'genre':READER.data['genres'][2],
         'comment':self.tb_comment.text,
