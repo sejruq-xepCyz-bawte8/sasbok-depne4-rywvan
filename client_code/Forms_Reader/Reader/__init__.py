@@ -272,6 +272,7 @@ class Reader(ReaderTemplate):
       my_comment = social.get('me')
       if my_comment:
          self.tb_comment.text = social.get('me')
+         self.engage_comment.icon = "fa:comment"
       else:
          self.tb_comment.placeholder = 'вашият коментар ...'
       if social.get('me_readed'):
