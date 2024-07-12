@@ -56,11 +56,6 @@ class Reader(ReaderTemplate):
     self.sidebar_cover = jQ('#reader-sidebar-cover')
     self.sidebar_cover.toggle()
 
-    jQ('.fa-book-open').addClass('fa-beat')
-    self.distribute()
-    jQ('.fa-book-open').removeClass('fa-beat')
-
-
 
     #back button
     back = jQ('#today')
@@ -76,6 +71,10 @@ class Reader(ReaderTemplate):
     toc = non_blocking.defer(self.build_toc, 0)
     social = non_blocking.defer(self.build_social, 0)
     cover = non_blocking.defer(self.build_cover, 0)
+
+    jQ('.fa-book-open').addClass('fa-beat')
+    self.distribute()
+    jQ('.fa-book-open').removeClass('fa-beat')
     
     
   def distribute(self):
