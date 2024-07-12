@@ -273,7 +273,7 @@ class Reader(ReaderTemplate):
       if my_comment:
          self.tb_comment.text = social.get('me')
       else:
-         self.tb_comment.text = 'вашият коментар е тук ...'
+         self.tb_comment.text = 'вашият коментар ...'
       if social.get('me_readed'):
          self.readed = True
       if social.get('me_liked'):
