@@ -291,8 +291,10 @@ class Reader(ReaderTemplate):
   def engage(self, engage:str=None, **event):
      if event and event['sender'] == self.engage_liked:
         engage = 'engage_liked'
+        self.engage_liked.icon = "fa:heart"
      elif event and event['sender'] == self.engage_comment:
         engage = 'engage_comment'
+        self.engage_comment.icon = "fa:comment"
      elif engage == 'readed':
         engage = 'engage_readed'
      elif engage == 'ostay':
