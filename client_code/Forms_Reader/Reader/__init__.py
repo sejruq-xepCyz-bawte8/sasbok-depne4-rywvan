@@ -270,11 +270,12 @@ class Reader(ReaderTemplate):
           self.add_component(label, slot='social-comments')
       self.l_likes.text = social.get('liked')
       my_comment = social.get('me')
+      
       if social.get('me_readed'):
          self.readed = True
       if social.get('me_liked'):
          self.engage_liked.icon = "fa:heart"
-         
+
       if my_comment:
          self.tb_comment.text = social.get('me')
          self.engage_comment.icon = "fa:comment"
