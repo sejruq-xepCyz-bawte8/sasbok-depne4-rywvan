@@ -77,7 +77,7 @@ class Charts(ChartsTemplate):
     if 'публикувани' in self.filters:
       self.chart = READER.get_last()
     elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
-          print('CHART')
+          
           if 'днес' in self.filters:
             self.chart = READER.get_chart('today')
           elif 'седмицата' in self.filters:
@@ -93,6 +93,17 @@ class Charts(ChartsTemplate):
 
     if genres:
       self.chart = [c for c in self.chart if c['g'] in genres]
+
+
+
+    if 'публикувани' in self.filters:
+      self.chart = sorted(self.chart, key=lambda x: x['ptime'], reverse=True)
+    elif 'харесани' in self.filters:
+      self.chart = sorted(self.chart, key=lambda x: x['l'], reverse=True)
+    elif 'четени' in self.filters:
+      self.chart = sorted(self.chart, key=lambda x: x['r'], reverse=True)
+    elif 'коментирани' in self.filters:
+      self.chart = sorted(self.chart, key=lambda x: x['c'], reverse=True)
     
     
     fill_panel(panel_id='charts-panel', works=self.chart)
