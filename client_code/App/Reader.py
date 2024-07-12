@@ -23,6 +23,8 @@ class ReaderClass:
         self.charts:dict = {}
 
         self.freq = {
+            'get_last':600,
+            'get_authors': 1200,
             'get_chart_today': 600, #600
             'get_chart_week': 3600,
             'get_chart_month': 7200,
