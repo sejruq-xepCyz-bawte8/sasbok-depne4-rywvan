@@ -89,13 +89,13 @@ h1.ql-align-right, h2.ql-align-right{
 justify-content: center !important;
 }
 
-.reader img{
+.page img{
   padding-right: 8px !important;
   max-width: 100% !important;
   max-height: 70svh !important;
 }
 
-.reader span{
+.page span{
   margin-left: 0px !important;
   margin-right: var( --words-distance) !important;
 }
