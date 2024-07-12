@@ -10,7 +10,7 @@
     "color":"#17202A",
     "bg_color":"#FEF9E7",
     "m_color":"#FFFFFF",
-    "m_opacity":0,
+    "m_opacity":40,
     "genres":[null, null, null, null],
     "keywords":[],
     "ctime":0,
