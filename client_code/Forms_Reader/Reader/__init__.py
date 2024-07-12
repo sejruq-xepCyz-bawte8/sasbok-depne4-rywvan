@@ -56,16 +56,11 @@ class Reader(ReaderTemplate):
     self.sidebar_cover = jQ('#reader-sidebar-cover')
     self.sidebar_cover.toggle()
 
-    #START PAGINATION
-    if READER.data['words'] > 300:
-       jQ('.fa-book-open').addClass('fa-beat')
-       Notification("Приготвяне на страниците", style='info', timeout=0.1).show()
-       sleep(0.1)
+    jQ('.fa-book-open').addClass('fa-beat')
+    self.distribute()
+    jQ('.fa-book-open').removeClass('fa-beat')
 
-       self.distribute()
-       jQ('.fa-book-open').removeClass('fa-beat')
-    else:
-       self.distribute()
+
 
     #back button
     back = jQ('#today')
@@ -157,6 +152,7 @@ class Reader(ReaderTemplate):
                     if self.currentPage.offsetHeight > self.targetHeigth:
                         self.currentPage.removeChild(clone)
                         self.createNewPage()
+
                         self.currentPage.appendChild(clone)
                     if element.tagName.lower() == 'h2' :
                         self.toc.append({'h':2, 'text':element.textContent, 'page':self.pageNumber})
@@ -170,7 +166,9 @@ class Reader(ReaderTemplate):
         self.currentPage = page
         self.pages.append(page)
         self.reader.appendChild(self.currentPage)
-        self.pagesLabel.textContent = f"1/{self.pageNumber}"
+        sleep(0.1)
+        self.pagesLabel.textContent = f"{self.mostVisible}/{self.pageNumber}"
+        
         #self.goEnd.page = f"{self.pageNumber}"
 
   def createNewParagraph(self, sourceElement):
