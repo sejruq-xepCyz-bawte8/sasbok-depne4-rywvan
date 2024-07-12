@@ -137,7 +137,7 @@ class ReaderClass:
     def get_work_social(self, work_id):
         work = self.works.get(work_id)
         if work and work.get('social') and work.get('stimestamp'):
-            if time() - work['stimestamp'] < 600: #10 min cache
+            if time() - work['stimestamp'] < 60: #1 min cache
                 return work['social']
 
         social, success = self.api(api='get_work_social', info=work_id)
