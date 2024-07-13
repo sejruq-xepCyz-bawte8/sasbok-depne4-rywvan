@@ -59,9 +59,10 @@ blockquote{
 /*reader only*/
 .reader p{
     display: flex !important;
-    flex-wrap: wrap !important;
-    
+    flex-wrap: wrap !important;   
 }
+
+
 
 .reader blockquote{
     display: flex !important;
@@ -69,9 +70,7 @@ blockquote{
     gap: var(--words-distance);
 }
 
-.reader p span:first-of-type{
-  margin-left: 1rem !important;
-}
+
 
 h1.ql-align-right, h2.ql-align-right{
   text-align: right !important;
@@ -95,7 +94,27 @@ justify-content: center !important;
   max-height: 70svh !important;
 }
 
-.page span{
+
+
+
+.page span, .page p > em, .page strong{
   margin-left: 0px !important;
   margin-right: var( --words-distance) !important;
 }
+
+.page span em{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+
+.example-text span{
+  margin-left: 0px !important;
+  margin-right: var( --words-distance) !important;
+}
+
+
+.reader p span:first-child{
+  padding-left: 1rem !important;
+}
+ 

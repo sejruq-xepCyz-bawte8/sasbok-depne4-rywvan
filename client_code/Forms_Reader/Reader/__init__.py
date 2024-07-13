@@ -88,8 +88,8 @@ class Reader(ReaderTemplate):
         self.currentParagraph = None
         self.pageNumber = 0
         
-        specials_pattern = r'<img[^>]*>|<a[^>]*>.*?</a>'
-
+        specials_pattern = r'<img[^>]*>|<a[^>]*>.*?</a>|<strong[^>]*>.*?</strong>|<em[^>]*>.*?</em>'
+        
         self.createNewPage()
         for element in self.source.childNodes:
             if 'tagName' in element:
@@ -103,7 +103,7 @@ class Reader(ReaderTemplate):
                     for chunk in chunks:
                         if len(chunk) == 0:
                           continue
-                        if not chunk.startswith('<img') and not chunk.startswith('<a '):
+                        if not chunk.startswith('<img') and not chunk.startswith('<a ') and not chunk.startswith('<strong>') and not chunk.startswith('<em>'):
                          
                           words = chunk.split(' ')
                           for word in words:
