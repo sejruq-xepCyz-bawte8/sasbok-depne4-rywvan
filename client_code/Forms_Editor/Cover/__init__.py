@@ -61,7 +61,12 @@ class Cover(CoverTemplate):
     
 
   def chose_font(self, sender, **event_args):
-    EDITOR.data['font'] = sender.attr('font_cover')
+    font = sender.attr('font_cover')
+    if self.text_shadow.checked:
+      EDITOR.data['font'] = f'{font} text-shadow'
+    else:
+      EDITOR.data['font'] = font
+    EDITOR.save_work()
     self.paint_cover()
 
   def chose_color(self, sender, **event_args):
@@ -122,5 +127,18 @@ class Cover(CoverTemplate):
 
   def mask_change(self, handle, **event_args):
     EDITOR.data['m_opacity'] = self.mask.value
+    self.paint_cover()
+    EDITOR.save_work()
+
+
+  def text_shadow_change(self, sender, **event_args):
+    fonts = EDITOR.data['font'].split(' ')
+    font = fonts[0]
+
+    if self.text_shadow.checked:
+      EDITOR.data['font'] = f'{font} text-shadow'
+    else:
+      EDITOR.data['font'] = font
+    
     self.paint_cover()
     EDITOR.save_work()

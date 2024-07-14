@@ -21,15 +21,39 @@ class WorksClass:
     def make_cover(self, data:dict)->str:
         if not data:
             return None
-    
+
+        color = data["color"]
+        bg_color = data["bg_color"]
+        image = data['image'] if data['image'] else ''
+        mask = self.parse_mask_bg(data)
+        fonts = data["font"].split(' ')
+        font = fonts[0]
+
+
+        if image:
+            cover_style = f"""style="background-color: {bg_color}; background-image: url('{image}');" """
+        else:
+            cover_style = f"""style="background-color: {bg_color};" """ 
+        
+        mask_style = f"""style="background-image:{mask};" """
+
+        if len(fonts) == 1:
+            title_style = f"""style="color:{color};" """
+        else:
+            text_shadow = f"1px 1px 1px {bg_color}, -1px -1px 1px {bg_color}, -1px 1px 1px {bg_color}, 1px -1px 1px {bg_color}"
+            title_style = f"""style="color:{color}; text-shadow:{text_shadow};" """
+        
+        icons_style = f"""style="color:{color};" """
+
+
         html_data = {
             "work_id":data["work_id"],
-            "bg_color":data["bg_color"],
-            "image":'' if not data['image'] else data['image'],
-            "mask":self.parse_mask_bg(data),
-            "font":data["font"],
-            "color":data["color"],
+            "cover_style": cover_style,
+            "mask_style": mask_style,
+            "font":font,
+            "title_style":title_style,
             "title":data["title"],
+            "icons_style":icons_style,
             "icons":['', '', '', '', '', '']
         }
 
@@ -62,5 +86,6 @@ class WorksClass:
         opacity = int(data['m_opacity']) / 100
         hex_shadow = data['m_color'].lstrip('#')
         rgb = tuple(int(hex_shadow[i:i+2], 16) for i in (0, 2, 4))
-        background_image = f'linear-gradient(to top, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 0%, rgba({rgb[0]},{rgb[1]},{rgb[2]}, 0) 100%)'
+        background_image = f'linear-gradient(to top, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 0%, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 45%, rgba({rgb[0]},{rgb[1]},{rgb[2]}, 0) 65%, rgba({rgb[0]},{rgb[1]},{rgb[2]}, 0) 100%)'
         return background_image
+    
