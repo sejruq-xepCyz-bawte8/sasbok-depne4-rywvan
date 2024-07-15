@@ -51,7 +51,7 @@ def init_app():
     BROWSER = BrowserClass()
     SETTINGS = SettingsClass()
 
-    ORIGIN_API = 'https://chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:8787'
+    ORIGIN_API = 'https://chete.me/api' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:8787'
     ORIGIN_APP = 'https://chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:3030'
 
     USER = UserClass()

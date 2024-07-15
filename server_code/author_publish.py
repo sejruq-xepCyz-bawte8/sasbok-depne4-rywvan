@@ -23,7 +23,7 @@ def execute_ticket(ticket:str):
 
   if type == "browser" and ip != "192.168.65.1":
     print("production")
-    url = 'https://chete.me'
+    url = 'https://chete.me/api'
     request(api='ticket', info=ticket, url=url)
   else:
     print("dev")
