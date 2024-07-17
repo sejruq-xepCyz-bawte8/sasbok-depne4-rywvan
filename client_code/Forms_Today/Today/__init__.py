@@ -32,24 +32,48 @@ class Today(TodayTemplate):
     self.readed_title = jQ('#readed_title')
 
     last:list = READER.get_last()
-    chart:list = READER.get_chart('today')
+    chart_today:list = READER.get_chart('today')
     
-    chart_name = "днес"
-    if len(chart) < 3:
-      chart = READER.get_chart('week')
-      chart_name = "през седмицата"
-    if len(chart) < 3:
-      chart = READER.get_chart('month')
-      chart_name = "този месец"
+    chart_liked = [c for c in chart_today if c['l'] > 0]
+    chart_readed = [c for c in chart_today if c['r'] > 0]
+    text_liked = 'днес'
+    text_readed = 'днес'
 
-    self.liked_title.text(f'Най-харесвани {chart_name}')
-    self.readed_title.text(f'Най-четени {chart_name}')
+    if len(chart_liked) < 3 or len(chart_readed) < 3:
+      chart_week:list = READER.get_chart('week')
+
+    if len(chart_liked) < 3:
+      chart_liked = [c for c in chart_week if c['l'] > 0]
+      text_liked = 'през седмицата'
+
+
+    if len(chart_readed) < 3:
+      chart_readed = [c for c in chart_week if c['r'] > 0]
+      text_readed = 'през седмицата'
+
+
+    if len(chart_liked) < 3 or len(chart_readed) < 3:
+      chart_month:list = READER.get_chart('month')
+
+
+    if len(chart_liked) < 3:
+      chart_liked = [c for c in chart_month if c['l'] > 0]
+      text_liked = 'през месеца'
+
+
+    if len(chart_readed) < 3:
+      chart_readed = [c for c in chart_month if c['r'] > 0]
+      text_readed = 'през месеца'
+
+
+    chart_liked = sorted(chart_liked, key=lambda x: x['l'], reverse=True)
+    chart_readed = sorted(chart_readed, key=lambda x: x['r'], reverse=True)
+
+
+    self.liked_title.text(f'Най-харесвани {text_liked}')
+    self.readed_title.text(f'Най-четени {text_readed}')
 
     
-    chart_liked = sorted(chart, key=lambda x: x['l'], reverse=True)
-    chart_readed = sorted(chart, key=lambda x: x['r'], reverse=True)
-  
-
     fill_panel(panel_id='published', works=last[:10])
     fill_panel(panel_id='readed', works=chart_readed[:10])
     fill_panel(panel_id='liked', works=chart_liked[:10])
