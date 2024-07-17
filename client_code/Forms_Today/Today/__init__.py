@@ -41,29 +41,29 @@ class Today(TodayTemplate):
     text_liked = 'днес'
     text_readed = 'днес'
 
-    if len(chart_liked) < 1 or len(chart_readed) < 1:
+    if len(chart_liked) < 2 or len(chart_readed) < 2:
       chart_week:list = READER.get_chart('week')
 
-    if len(chart_liked) < 1:
+    if len(chart_liked) < 2:
       chart_liked = [c for c in chart_week if c['l'] > 0]
       text_liked = 'през седмицата'
 
 
-    if len(chart_readed) < 1:
+    if len(chart_readed) < 2:
       chart_readed = [c for c in chart_week if c['r'] > 0]
       text_readed = 'през седмицата'
 
 
-    if len(chart_liked) < 1 or len(chart_readed) < 1:
+    if len(chart_liked) < 2 or len(chart_readed) < 2:
       chart_month:list = READER.get_chart('month')
 
 
-    if len(chart_liked) < 1:
+    if len(chart_liked) < 2:
       chart_liked = [c for c in chart_month if c['l'] > 0]
       text_liked = 'през месеца'
 
 
-    if len(chart_readed) < 1:
+    if len(chart_readed) < 2:
       chart_readed = [c for c in chart_month if c['r'] > 0]
       text_readed = 'през месеца'
 
