@@ -11,10 +11,9 @@ NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket',
 #together with info if is
 #CACHE_LISTS = ['get_last', 'get_work_social', 'get_authors', 'get_chart']
 #CACHE_WORKS = ['get_work_data', 'get_work_content', 'get_work_social']
-CACHED = ['get_last', 'get_chart', 'get_authors', 'get_work_content'] #, 'get_work_social'
+CACHED = ['get_chart', 'get_authors', 'get_work_content'] #, 'get_work_social'
 
-CACHED_DELTA = {'get_last':900,
-                'get_chart':900,
+CACHED_DELTA = {'get_chart':900,
                 'get_authors':1800,
                 'get_work_content':1800,
                 'get_work_social':5
