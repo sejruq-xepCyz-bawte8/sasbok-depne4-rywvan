@@ -99,10 +99,13 @@ class Charts(ChartsTemplate):
     if 'публикувани' in self.filters:
       self.chart = sorted(self.chart, key=lambda x: x['ptime'], reverse=True)
     elif 'харесани' in self.filters:
+      self.chart = [c for c in self.chart if c['l'] > 0]
       self.chart = sorted(self.chart, key=lambda x: x['l'], reverse=True)
     elif 'четени' in self.filters:
+      self.chart = [c for c in self.chart if c['r'] > 0]
       self.chart = sorted(self.chart, key=lambda x: x['r'], reverse=True)
     elif 'коментирани' in self.filters:
+      self.chart = [c for c in self.chart if c['c'] > 0]
       self.chart = sorted(self.chart, key=lambda x: x['c'], reverse=True)
     
     
