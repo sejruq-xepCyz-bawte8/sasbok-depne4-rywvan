@@ -51,7 +51,12 @@ class ReaderClass:
 
 
     def get_last(self):
-        return self.parse_chart(api='get_last')
+        results, success = self.api(api='get_last')
+        if success:
+            return results
+        else:
+            return []
+        #return self.parse_chart(api='get_last')
 
 
     def get_authors(self):
