@@ -195,9 +195,9 @@ class ApiClass:
                 if response:
                     return response
                 else:
-                    del self.cache.get(url)
+                    del self.cache[url]
             else:
-                del self.cache.get(url)
+                del self.cache[url]
         
         return None
     
