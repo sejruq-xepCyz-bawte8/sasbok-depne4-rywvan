@@ -49,7 +49,6 @@ class Today(TodayTemplate):
     self.readed_title.text(f'Най-четени {chart_name}')
 
     
-    #o': 0, 'r': 0, 'l': 1, 'c': 0}]
     chart_liked = sorted(chart, key=lambda x: x['l'], reverse=True)
     chart_readed = sorted(chart, key=lambda x: x['r'], reverse=True)
     
