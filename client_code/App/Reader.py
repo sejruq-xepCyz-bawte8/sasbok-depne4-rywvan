@@ -31,8 +31,8 @@ class ReaderClass:
             'search': 3600,
         }
 
-        self.beats_update = non_blocking.repeat(self.update_charts, 60)
-        self.bookmarks_update = non_blocking.defer(self.update_bookmarks, 0)
+        #self.beats_update = non_blocking.repeat(self.update_charts, 60)
+        #self.bookmarks_update = non_blocking.defer(self.update_bookmarks, 0)
 
 
     def set_current(self, work_id):
@@ -63,6 +63,7 @@ class ReaderClass:
         return self.parse_chart(api='get_authors')
 
     def parse_chart(self, api, info=None, data=None):
+
         if not data and not info:
             chart_id = api
         elif not data and info:   
@@ -173,8 +174,13 @@ class ReaderClass:
 
     def get_chart(self, time):
         #check bookmarks for new vers
-        chart = self.parse_chart(api='get_chart', info=time)
-        return chart
+        #chart = self.parse_chart(api='get_chart', info=time)
+        results, success = self.api(api='get_chart', info=time)
+        if success:
+            return results
+        else:
+            return []
+        
 
     def update_charts(self):
      
