@@ -47,7 +47,7 @@ class Today(TodayTemplate):
     
     chart_liked = sorted(chart, key=lambda x: x['l'], reverse=True)
     chart_readed = sorted(chart, key=lambda x: x['r'], reverse=True)
-    
+  
 
     fill_panel(panel_id='published', works=last[:10])
     fill_panel(panel_id='readed', works=chart_readed[:10])
