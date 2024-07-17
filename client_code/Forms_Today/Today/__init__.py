@@ -33,6 +33,7 @@ class Today(TodayTemplate):
 
     last:list = READER.get_last()
     chart:list = READER.get_chart('today')
+    
     chart_name = "днес"
     if len(chart) < 3:
       chart = READER.get_chart('week')
