@@ -60,7 +60,12 @@ class ReaderClass:
 
 
     def get_authors(self):
-        return self.parse_chart(api='get_authors')
+        results, success = self.api(api='get_authors')
+        if success:
+            return results
+        else:
+            return []
+        #return self.parse_chart(api='get_authors')
 
     def parse_chart(self, api, info=None, data=None):
 
