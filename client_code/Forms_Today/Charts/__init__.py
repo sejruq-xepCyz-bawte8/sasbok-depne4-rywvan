@@ -3,6 +3,7 @@ from anvil import *
 from anvil.js.window import jQuery as jQ
 from ...App import NAVIGATION, READER
 from ...Covers_Builder import fill_panel
+from datetime import datetime, timedelta
 
 GENRES:set = {'фантастика',
 'фентъзи',
@@ -76,6 +77,12 @@ class Charts(ChartsTemplate):
   def make_chart(self):
     if 'публикувани' in self.filters:
       self.chart = READER.get_last()
+      if 'днес' in self.filters:
+            self.chart = [c for c in self.chart if c['ptime'] > self.unix_today()]
+      elif 'седмицата' in self.filters:
+            self.chart = [c for c in self.chart if c['ptime'] > self.unix_week()]
+      else:
+            self.chart = [c for c in self.chart if c['ptime'] > 0]
     elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
           
           if 'днес' in self.filters:
@@ -110,3 +117,18 @@ class Charts(ChartsTemplate):
     
     
     fill_panel(panel_id='charts-panel', works=self.chart)
+
+
+  def unix_today(self):
+      now = datetime.now()
+      beginning_of_today = datetime(now.year, now.month, now.day)
+      return beginning_of_today.timestamp()
+  
+
+
+  def unix_week(self):  
+
+    now = datetime.now()
+    beginning_of_week = now - timedelta(days=now.weekday())
+    beginning_of_week = datetime(beginning_of_week.year, beginning_of_week.month, beginning_of_week.day)
+    return beginning_of_week.timestamp()
