@@ -24,6 +24,7 @@ class ApiClass:
         self.origin = origin
         self.user = get_user
         self.store = indexed_db.create_store('cheteme-cache')
+        self.store.clear()
         self.version = str(version)
 
         user = self.user()
