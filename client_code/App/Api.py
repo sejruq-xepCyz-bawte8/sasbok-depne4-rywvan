@@ -142,13 +142,19 @@ class ApiClass:
 
     def http_request(self, api, info, data):
         headers = self.parse_headers(api=api, info=info)
+        
+        if api == 'get_work_data':
+            url = f'{self.origin}/wd-{info}'
+        else:
+            url = self.origin
+
         if data:
             headers['Content-Type'] = 'application/json'
             #payload = json.dumps(data) if data else ''
             payload = data
             try:
                 response = anvil.http.request(
-                                        url=self.origin,
+                                        url=url,
                                         headers = headers,
                                         method='POST',
                                         data=payload,
@@ -161,7 +167,7 @@ class ApiClass:
         else:
             try:
                 response = anvil.http.request(
-                                        url=self.origin,
+                                        url=url,
                                         headers = headers,
                                         method='GET',
                                         json=True
