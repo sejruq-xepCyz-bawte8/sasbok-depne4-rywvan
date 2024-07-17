@@ -15,10 +15,6 @@ class Today(TodayTemplate):
     READER.set_back("today")
 
 
-
-
-    
-
   def form_show(self, **event):
     self.uri = get_url_hash()
     
@@ -38,10 +34,10 @@ class Today(TodayTemplate):
     last:list = READER.get_last()
     chart:list = READER.get_chart('today')
     chart_name = "днес"
-    if len(chart) < 10:
+    if len(chart) < 3:
       chart = READER.get_chart('week')
       chart_name = "през седмицата"
-    if len(chart) < 10:
+    if len(chart) < 3:
       chart = READER.get_chart('month')
       chart_name = "този месец"
 
