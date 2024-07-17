@@ -32,6 +32,8 @@ class Today(TodayTemplate):
     self.readed_title = jQ('#readed_title')
 
     last:list = READER.get_last()
+    fill_panel(panel_id='published', works=last[:10])
+
     chart_today:list = READER.get_chart('today')
     
     chart_liked = [c for c in chart_today if c['l'] > 0]
@@ -39,29 +41,29 @@ class Today(TodayTemplate):
     text_liked = 'днес'
     text_readed = 'днес'
 
-    if len(chart_liked) < 3 or len(chart_readed) < 3:
+    if len(chart_liked) < 1 or len(chart_readed) < 1:
       chart_week:list = READER.get_chart('week')
 
-    if len(chart_liked) < 3:
+    if len(chart_liked) < 1:
       chart_liked = [c for c in chart_week if c['l'] > 0]
       text_liked = 'през седмицата'
 
 
-    if len(chart_readed) < 3:
+    if len(chart_readed) < 1:
       chart_readed = [c for c in chart_week if c['r'] > 0]
       text_readed = 'през седмицата'
 
 
-    if len(chart_liked) < 3 or len(chart_readed) < 3:
+    if len(chart_liked) < 1 or len(chart_readed) < 1:
       chart_month:list = READER.get_chart('month')
 
 
-    if len(chart_liked) < 3:
+    if len(chart_liked) < 1:
       chart_liked = [c for c in chart_month if c['l'] > 0]
       text_liked = 'през месеца'
 
 
-    if len(chart_readed) < 3:
+    if len(chart_readed) < 1:
       chart_readed = [c for c in chart_month if c['r'] > 0]
       text_readed = 'през месеца'
 
@@ -74,7 +76,7 @@ class Today(TodayTemplate):
     self.readed_title.text(f'Най-четени {text_readed}')
 
     
-    fill_panel(panel_id='published', works=last[:10])
+  
     fill_panel(panel_id='readed', works=chart_readed[:10])
     fill_panel(panel_id='liked', works=chart_liked[:10])
 
