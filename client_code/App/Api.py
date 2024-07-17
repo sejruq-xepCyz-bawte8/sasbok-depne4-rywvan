@@ -9,9 +9,9 @@ from time import sleep, time
 NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket', 'merge_users', 'engage_ostay', 'engage_readed', 'engage_liked', 'engage_comment']
 
 #together with info if is
-#CACHE_LISTS = ['get_last', 'get_work_social', 'get_authors', 'get_chart']
-#CACHE_WORKS = ['get_work_data', 'get_work_content', 'get_work_social']
-CACHED = ['get_authors', 'get_work_content'] #, 'get_work_social'
+REDO = ['get_last', 'get_work_social', 'get_authors', 'get_chart', 'get_work_data', 'get_work_content']
+
+CACHED = [] #, 'get_work_social'
 
 CACHED_DELTA = {'get_authors':1800,
                 'get_work_content':1800,
@@ -28,6 +28,8 @@ class ApiClass:
 
         user = self.user()
         self.age = user['age'] if user else '0'
+        self.user_id = user['user_id']
+        self.secret = user['secret']
 
     def parse_headers(self, api:str, info=None):
         user = self.user()
@@ -50,29 +52,16 @@ class ApiClass:
         return headers
         
     def request(self, api:str, data:dict=None, info:str=None):
-        response = None
-        status = None
         
-        #if not data and api and api in CACHE_APIS:
-        if api and api in CACHED:
-            response, status = self.check_cache(api=api, info=info)
-
-        if status != 200 :
-            response, status = self.http_request(api=api, info=info, data=data)
+        response, status = self.http_request(api=api, info=info, data=data)
 
         #try again :)
-        if status != 200 and api and api in CACHED:
-            
-            sleep(1)
+        if status != 200 and api in REDO:
+            sleep(0.2)
             response, status = self.http_request(api=api, info=info, data=data)
-        if status != 200 and api and api in CACHED:
-            
-            sleep(1)
+        if status != 200 and api in REDO:
+            sleep(0.5)
             response, status = self.http_request(api=api, info=info, data=data)
-
-        if response and status == 200 and api and api in CACHED:
-            self.save_cache(api=api, info=info, response=response)
-
 
 
         if isinstance(response, list):
