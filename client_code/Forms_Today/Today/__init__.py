@@ -48,20 +48,16 @@ class Today(TodayTemplate):
       chart_liked = [c for c in chart_week if c['l'] > 0]
       text_liked = 'през седмицата'
 
-
     if len(chart_readed) < 2:
       chart_readed = [c for c in chart_week if c['r'] > 0]
       text_readed = 'през седмицата'
 
-
     if len(chart_liked) < 2 or len(chart_readed) < 2:
       chart_month:list = READER.get_chart('month')
-
 
     if len(chart_liked) < 2:
       chart_liked = [c for c in chart_month if c['l'] > 0]
       text_liked = 'през месеца'
-
 
     if len(chart_readed) < 2:
       chart_readed = [c for c in chart_month if c['r'] > 0]
@@ -76,7 +72,6 @@ class Today(TodayTemplate):
     self.readed_title.text(f'Най-четени {text_readed}')
 
     
-  
     fill_panel(panel_id='readed', works=chart_readed[:10])
     fill_panel(panel_id='liked', works=chart_liked[:10])
 

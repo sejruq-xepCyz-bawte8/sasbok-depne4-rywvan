@@ -182,29 +182,6 @@ class ReaderClass:
             return []
         
 
-    def update_charts(self):
-     
-        self.parse_chart(api='get_last')
-        self.parse_chart(api='get_chart', info='month')
-        self.parse_chart(api='get_chart', info='week')
-        self.parse_chart(api='get_chart', info='today')
-       
-        
-    def update_bookmarks(self):
-        bookmark_ids = list(self.bookmarks)
-        for work_id in bookmark_ids:
-            work_b = self.bookmarks.get(work_id)
-            data, success_d = self.api(api='get_work_data', info=work_id)
-            if data and data['ver'] > work_b['data']['ver']:
-                work_b['data'] = data
-                content, success_c = self.api(api='get_work_content', info=work_id)
-                if content:
-                    work_b['content'] = content
-                work_b['timestamp'] = time()
-                self.bookmarks[work_id] = work_b
-
-            sleep(2)
-
 
     #memory for the filter
     def set_filters(self, filters:set):
@@ -236,3 +213,30 @@ class ReaderClass:
     
     def delete_bookmark(self, work_id):
         del self.bookmarks[work_id]
+
+
+
+"""
+    def update_charts(self):
+     
+        self.parse_chart(api='get_last')
+        self.parse_chart(api='get_chart', info='month')
+        self.parse_chart(api='get_chart', info='week')
+        self.parse_chart(api='get_chart', info='today')
+       
+        
+    def update_bookmarks(self):
+        bookmark_ids = list(self.bookmarks)
+        for work_id in bookmark_ids:
+            work_b = self.bookmarks.get(work_id)
+            data, success_d = self.api(api='get_work_data', info=work_id)
+            if data and data['ver'] > work_b['data']['ver']:
+                work_b['data'] = data
+                content, success_c = self.api(api='get_work_content', info=work_id)
+                if content:
+                    work_b['content'] = content
+                work_b['timestamp'] = time()
+                self.bookmarks[work_id] = work_b
+
+            sleep(2)
+"""
