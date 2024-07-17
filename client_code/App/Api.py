@@ -11,7 +11,7 @@ NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket',
 #together with info if is
 REDO = ['get_last', 'get_work_social', 'get_authors', 'get_chart', 'get_work_data', 'get_work_content']
 
-CACHED = [] #, 'get_work_social'
+CACHE = ['get_last', 'get_chart', 'get_work_data'] #, 'get_work_social'
 
 CACHED_DELTA = {'get_authors':1800,
                 'get_work_content':1800,
@@ -30,6 +30,7 @@ class ApiClass:
         self.age = user['age'] if user else '0'
         self.user_id = user['user_id']
         self.secret = user['secret']
+        self.cache = {}
 
     def parse_headers(self, api:str, info=None):
         user = self.user()
@@ -78,7 +79,7 @@ class ApiClass:
     
 
     
-    def check_cache(self, api:str, info:str=None):
+    def check_cache_(self, api:str, info:str=None):
         
         cache_id = f'{api}_{info}' if info else api
         cache = self.store.get(cache_id)
@@ -103,7 +104,7 @@ class ApiClass:
 
     
 
-    def save_cache(self, api:str, info:str, response):
+    def save_cache_(self, api:str, info:str, response):
         cache_id = f'{api}_{info}' if info else api
 
         cache = {
@@ -121,7 +122,7 @@ class ApiClass:
                 del self.store[id]
 
         
-    def delete_cashe_work(self, work_id):
+    def delete_cashe_work_(self, work_id):
         cache_data_id = f'get_work_data_{work_id}'
         cache_content_id = f'get_work_content_{work_id}'
         if cache_data_id in self.store:
@@ -141,6 +142,12 @@ class ApiClass:
             url = f'{self.origin}/chart-{info}-age-{self.age}'
         else:
             url = self.origin
+
+        if api in CACHE:
+            response = self.fetch_cache(url=url)
+            if response:
+                return response, 200
+
 
         if data:
             headers['Content-Type'] = 'application/json'
@@ -171,4 +178,34 @@ class ApiClass:
                 response = None
                 status = e.status
 
+        if api in CACHE and status == 200:
+            self.update_cache(url=url, response=response)
+
         return response, status
+    
+
+    def fetch_cache(self, url):
+
+        cache = self.cache.get(url)
+        
+        if cache:
+            timestamp = cache.get('timestamp')
+            if time() - timestamp < 600:
+                response = cache.get('response')
+                if response:
+                    return response
+                else:
+                    del self.cache.get(url)
+            else:
+                del self.cache.get(url)
+        
+        return None
+    
+    def update_cache(self, url, response):
+        cache = {
+            'response':response,
+            'timestamp':time()
+        }
+        self.cache[url] = cache
+                    
+            
