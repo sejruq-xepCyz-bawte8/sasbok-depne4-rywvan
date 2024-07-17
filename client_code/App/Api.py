@@ -27,6 +27,9 @@ class ApiClass:
         self.store = indexed_db.create_store('cheteme-cache')
         self.version = str(version)
 
+        user = self.user()
+        self.age = user['age'] if user else '0'
+
     def parse_headers(self, api:str, info=None):
         user = self.user()
         user_id = user['user_id'] if user else 'new_user'
@@ -144,6 +147,8 @@ class ApiClass:
         
         if api == 'get_work_data':
             url = f'{self.origin}/wd-{info}'
+        elif api == 'get_last':
+            url = f'{self.origin}/chart-last-age-{self.age}'          
         else:
             url = self.origin
 
