@@ -136,6 +136,8 @@ class ApiClass:
         
         if api == 'get_work_data':
             url = f'{self.origin}/wd-{info}'
+        elif api == 'get_work_content':
+            url = f'{self.origin}/wc-{info}'
         elif api == 'get_last': #https://get-last.chete.me/
             url = f'{self.origin}/chart-last-age-{self.age}'
         elif api == 'get_chart':
