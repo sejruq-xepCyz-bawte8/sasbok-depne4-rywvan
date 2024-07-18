@@ -78,58 +78,6 @@ class ApiClass:
     
     
 
-    
-    def check_cache_(self, api:str, info:str=None):
-        
-        cache_id = f'{api}_{info}' if info else api
-        cache = self.store.get(cache_id)
-        if not cache:
-            return False, False
-        else:
-            response = cache.get('response')
-            timestamp = cache.get('timestamp')
-        
-        if not response or not timestamp:
-            return False, False
-        
-        delta = time() - timestamp
-
-        if delta > CACHED_DELTA[api]: #one hour 3600s
-            del self.store[cache_id]
-            return False, False
-        else:
-            
-            return response, 200
-
-
-    
-
-    def save_cache_(self, api:str, info:str, response):
-        cache_id = f'{api}_{info}' if info else api
-
-        cache = {
-            'response':response,
-            'timestamp':time()
-        }
-
-        self.store[cache_id] = cache
-
-        
-        if len(self.store) > 5:
-            cached_ids = list(self.store)
-            ids_to_delete = cached_ids[50:] #[:-10] [5:]
-            for id in ids_to_delete:
-                del self.store[id]
-
-        
-    def delete_cashe_work_(self, work_id):
-        cache_data_id = f'get_work_data_{work_id}'
-        cache_content_id = f'get_work_content_{work_id}'
-        if cache_data_id in self.store:
-            del self.store[cache_data_id]
-        if cache_content_id in self.store:
-            del self.store[cache_content_id]
-
 
     def http_request(self, api, info, data):
         headers = self.parse_headers(api=api, info=info)
