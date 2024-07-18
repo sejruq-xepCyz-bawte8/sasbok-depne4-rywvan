@@ -64,6 +64,7 @@ class Charts(ChartsTemplate):
    
    
     READER.set_filters(self.filters)
+
     self.make_chart()
 
 

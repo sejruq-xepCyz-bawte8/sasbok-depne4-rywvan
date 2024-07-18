@@ -59,7 +59,7 @@ class ReaderClass:
         #return self.parse_chart(api='get_last')
 
     def get_today(self):
-        results, success = self.api(api='get_today')
+        results, success = self.api(api='get_home')
         if success:
             return results
         else:
