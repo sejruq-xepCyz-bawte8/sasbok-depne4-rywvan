@@ -39,7 +39,7 @@ def request_home(age):
         'Cheteme':'get_home',
         'Cheteme-Age':age
     }
-        url = f'https://api.chete.me/chart-home-age-{age}'
+        url = f'https://chete.me/api/chart-home-age-{age}'
 
         try:
                 response = anvil.http.request(
