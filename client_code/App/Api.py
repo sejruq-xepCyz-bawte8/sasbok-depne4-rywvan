@@ -140,6 +140,8 @@ class ApiClass:
             url = f'{self.origin}/chart-last-age-{self.age}'
         elif api == 'get_chart':
             url = f'{self.origin}/chart-{info}-age-{self.age}'
+        elif api == 'get_today':
+            url = f'{self.origin}/chart-today-age-{self.age}'
         else:
             url = self.origin
 

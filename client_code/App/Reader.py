@@ -58,6 +58,13 @@ class ReaderClass:
             return []
         #return self.parse_chart(api='get_last')
 
+    def get_today(self):
+        results, success = self.api(api='get_today')
+        if success:
+            return results
+        else:
+            return []
+        
 
     def get_authors(self):
         results, success = self.api(api='get_authors')

@@ -31,49 +31,25 @@ class Today(TodayTemplate):
     self.liked_title = jQ('#liked_title')
     self.readed_title = jQ('#readed_title')
 
-    last:list = READER.get_last()
-    fill_panel(panel_id='published', works=last[:10])
+    today:list = READER.get_today()
+    last_10 = today.get('last_10')
+    chart_liked = today.get('chart_liked')
+    chart_readed = today.get('chart_readed')
+    text_liked = today.get('text_liked')
+    text_readed = today.get('text_readed')
+  
 
-    chart_today:list = READER.get_chart('today')
+
+    fill_panel(panel_id='published', works=last_10)
+    fill_panel(panel_id='readed', works=chart_readed)
+    fill_panel(panel_id='liked', works=chart_liked)
+
     
-    chart_liked = [c for c in chart_today if c['l'] > 0]
-    chart_readed = [c for c in chart_today if c['r'] > 0]
-    text_liked = 'днес'
-    text_readed = 'днес'
-
-    if len(chart_liked) < 2 or len(chart_readed) < 2:
-      chart_week:list = READER.get_chart('week')
-
-    if len(chart_liked) < 2:
-      chart_liked = [c for c in chart_week if c['l'] > 0]
-      text_liked = 'през седмицата'
-
-    if len(chart_readed) < 2:
-      chart_readed = [c for c in chart_week if c['r'] > 0]
-      text_readed = 'през седмицата'
-
-    if len(chart_liked) < 2 or len(chart_readed) < 2:
-      chart_month:list = READER.get_chart('month')
-
-    if len(chart_liked) < 2:
-      chart_liked = [c for c in chart_month if c['l'] > 0]
-      text_liked = 'през месеца'
-
-    if len(chart_readed) < 2:
-      chart_readed = [c for c in chart_month if c['r'] > 0]
-      text_readed = 'през месеца'
-
-
-    chart_liked = sorted(chart_liked, key=lambda x: x['l'], reverse=True)
-    chart_readed = sorted(chart_readed, key=lambda x: x['r'], reverse=True)
-
-
     self.liked_title.text(f'Най-харесвани {text_liked}')
     self.readed_title.text(f'Най-четени {text_readed}')
 
     
-    fill_panel(panel_id='readed', works=chart_readed[:10])
-    fill_panel(panel_id='liked', works=chart_liked[:10])
+
 
 
 
