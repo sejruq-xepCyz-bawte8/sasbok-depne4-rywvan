@@ -5,12 +5,12 @@ container:
   event_bindings: {show: form_show}
 components:
 - name: slider_text_size
-  properties: {max: 4, min: 1, start: 2, step: 0.25}
+  properties: {max: 4, min: 1, start: 2, step: 0.1}
   type: form:dep_p86ky6m5lr9fp:Slider
   event_bindings: {change: gui_settings_change}
   layout_properties: {slot: text}
 - name: slider_words_distance
-  properties: {max: 40, min: 1, start: 10, step: 2}
+  properties: {max: 40, min: 1, start: 10, step: 1}
   type: form:dep_p86ky6m5lr9fp:Slider
   event_bindings: {change: gui_settings_change}
   layout_properties: {slot: words}
@@ -25,7 +25,7 @@ components:
   event_bindings: {change: gui_settings_change}
   layout_properties: {slot: navigation}
 - name: slider_cover_size
-  properties: {max: 300, min: 75, start: 150, step: 25}
+  properties: {max: 300, min: 75, start: 150, step: 5}
   type: form:dep_p86ky6m5lr9fp:Slider
   event_bindings: {change: gui_settings_change}
   layout_properties: {slot: cover}
