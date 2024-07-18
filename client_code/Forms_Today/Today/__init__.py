@@ -33,6 +33,9 @@ class Today(TodayTemplate):
     self.readed_title = jQ('#readed_title')
 
     today:list = READER.get_today()
+    if not today:
+       today:list = READER.get_today()
+       
     self.last_10 = today.get('last_10')
     self.chart_liked = today.get('chart_liked')
     self.chart_readed = today.get('chart_readed')
