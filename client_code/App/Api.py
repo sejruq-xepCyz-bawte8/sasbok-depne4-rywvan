@@ -92,7 +92,7 @@ class ApiClass:
         elif api == 'get_authors':
             url = f'{self.origin}/list-authors-age-{self.age}'
         else:
-            url = self.origin
+            url = f'{self.origin}/ch'
 
         if api in CACHE:
             response = self.fetch_cache(url=url)
