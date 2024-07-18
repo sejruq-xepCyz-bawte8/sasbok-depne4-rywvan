@@ -4,6 +4,7 @@ from ...App import NAVIGATION, READER
 from ...Covers_Builder import fill_panel
 from anvil.js.window import jQuery as jQ
 from anvil.js import window
+from anvil_extras import non_blocking
 
 class Today(TodayTemplate):
   def __init__(self, **properties):
@@ -32,25 +33,30 @@ class Today(TodayTemplate):
     self.readed_title = jQ('#readed_title')
 
     today:list = READER.get_today()
-    last_10 = today.get('last_10')
-    chart_liked = today.get('chart_liked')
-    chart_readed = today.get('chart_readed')
-    text_liked = today.get('text_liked')
-    text_readed = today.get('text_readed')
+    self.last_10 = today.get('last_10')
+    self.chart_liked = today.get('chart_liked')
+    self.chart_readed = today.get('chart_readed')
+    self.text_liked = today.get('text_liked')
+    self.text_readed = today.get('text_readed')
   
 
+    self.liked_title.text(f'Най-харесвани {self.text_liked}')
+    self.readed_title.text(f'Най-четени {self.text_readed}')
 
-    fill_panel(panel_id='published', works=last_10)
-    fill_panel(panel_id='readed', works=chart_readed)
-    fill_panel(panel_id='liked', works=chart_liked)
-
-    
-    self.liked_title.text(f'Най-харесвани {text_liked}')
-    self.readed_title.text(f'Най-четени {text_readed}')
+    self.deferred_last = non_blocking.defer(self.fill_last, 0)
+    self.deferred_readed = non_blocking.defer(self.fill_readed, 0)
+    self.deferred_liked = non_blocking.defer(self.fill_liked, 0)   
 
     
 
+  def fill_last(self):
+      fill_panel(panel_id='published', works=self.last_10)
 
+  def fill_readed(self):
+      fill_panel(panel_id='readed', works=self.chart_readed)
+
+  def fill_liked(self):
+      fill_panel(panel_id='liked', works=self.chart_liked)
 
 
   def b_work_click(self, **event):
