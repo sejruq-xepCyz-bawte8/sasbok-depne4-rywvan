@@ -20,10 +20,14 @@ def no_user():
 
 
 def online():
+    headers:dict = {
+        'Cheteme':'Online',
+    }
     try:
             response = anvil.http.request(
-                                        url='https://app.chete.me',
+                                        url='https://app.chete.me/',
                                         method='GET',
+                                        headers = headers
                                         )
             print('Online')
     except anvil.http.HttpError as e:
