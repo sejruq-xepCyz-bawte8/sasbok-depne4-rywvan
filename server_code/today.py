@@ -11,6 +11,7 @@ def make_today_request():
 def request_home():
         headers:dict = {
         'Cheteme':'get_home',
+        'Cheteme-Age':1
     }
         url1 = f'https://api.chete.me/chart-home-age-1'
         url0 = f'https://api.chete.me/chart-home-age-0'
