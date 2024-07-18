@@ -36,7 +36,7 @@
   font-weight: 400;
   font-style: normal;
   font-size: calc(var(--cover-size) / 8);
-  letter-spacing : -4px;
+  letter-spacing : -6px;
   line-height: calc(var(--cover-size) / 8);
   }
   
@@ -243,7 +243,7 @@
   
   .GreatVibes {
   font-family: "Great Vibes";
-  font-weight: 500;
+  font-weight: 550;
   font-style: normal;
   font-size: calc(var(--cover-size) / 6);
   line-height: calc(var(--cover-size) / 6);
