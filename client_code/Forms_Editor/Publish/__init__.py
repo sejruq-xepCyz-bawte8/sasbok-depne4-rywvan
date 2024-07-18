@@ -30,7 +30,7 @@ class Publish(PublishTemplate):
       self.work_uri.visible = False
 
     #del cache
-    API.delete_cashe_work(EDITOR.data['work_id'])
+    #API.delete_cashe_work(EDITOR.data['work_id'])
 
     self.title.text = EDITOR.data['title']
 
