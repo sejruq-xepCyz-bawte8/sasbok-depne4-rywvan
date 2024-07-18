@@ -243,10 +243,10 @@
   
   .GreatVibes {
   font-family: "Great Vibes";
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 7);
-  line-height: calc(var(--cover-size) / 7);
+  font-size: calc(var(--cover-size) / 6);
+  line-height: calc(var(--cover-size) / 6);
   }
   
   .Caveat {
