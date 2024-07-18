@@ -40,9 +40,11 @@ class Published(PublishedTemplate):
     results, _ = API.request(api=api, info=work_id)
     stats = results[0]
     panel = LinearPanel()
+    readed = Label(text=f"общо прочетени: {stats['readed']}")
     liked = Label(text=f"общо харесани: {stats['liked']}")
     comment = Label(text=f"общо коментари: {stats['comment']}")
     countries = Label(text=f"държави: {stats['countries']}")
+    panel.add_component(readed)
     panel.add_component(liked)
     panel.add_component(comment)
     panel.add_component(countries)
