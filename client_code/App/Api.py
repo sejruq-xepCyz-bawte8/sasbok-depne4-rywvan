@@ -9,7 +9,7 @@ from time import sleep, time
 NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket', 'merge_users', 'engage_ostay', 'engage_readed', 'engage_liked', 'engage_comment']
 
 #together with info if is
-REDO = ['get_last', 'get_work_social', 'get_authors', 'get_chart', 'get_work_data', 'get_work_content']
+REDO = ['get_last', 'get_work_social', 'get_authors', 'get_chart', 'get_work_data', 'get_work_content', 'get_home']
 
 CACHE = ['get_last', 'get_chart', 'get_work_data', 'get_home'] #, 'get_work_social'
 
@@ -58,7 +58,7 @@ class ApiClass:
             sleep(0.1)
             response, status = self.http_request(api=api, info=info, data=data)
         if status != 200 and api in REDO:
-            sleep(0.2)
+            sleep(0.1)
             response, status = self.http_request(api=api, info=info, data=data)
 
 
