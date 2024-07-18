@@ -252,10 +252,10 @@
   .Caveat {
   font-family: "Caveat";
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 7);
-  line-height: calc(var(--cover-size) / 7);
+  font-size: calc(var(--cover-size) / 6);
+  line-height: calc(var(--cover-size) / 6);
   }
   .Pacifico {
   font-family: "Pacifico";
