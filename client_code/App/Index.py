@@ -11,7 +11,7 @@ def has_user():
 
 def main():
     init_app()
-    online_defer = non_blocking.defer(online, 0)
+    #online_defer = non_blocking.defer(online, 0)
     open_form('Forms_Today.Today')
 
 def no_user():
