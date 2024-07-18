@@ -55,7 +55,6 @@ class ApiClass:
 
         #try again :)
         if status != 200 and api in REDO:
-            sleep(0.05)
             response, status = self.http_request(api=api, info=info, data=data)
         if status != 200 and api in REDO:
             sleep(0.1)
