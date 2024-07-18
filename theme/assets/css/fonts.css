@@ -270,8 +270,8 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 8);
-  line-height: calc(var(--cover-size) / 8);
+  font-size: calc(var(--cover-size) / 7);
+  line-height: calc(var(--cover-size) / 7);
   }
   
   
@@ -280,8 +280,8 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 8);
-  line-height: calc(var(--cover-size) / 8);
+  font-size: calc(var(--cover-size) / 7);
+  line-height: calc(var(--cover-size) / 7);
   }
   
   .Comfortaa {
