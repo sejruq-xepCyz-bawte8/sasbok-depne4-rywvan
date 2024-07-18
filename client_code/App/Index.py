@@ -1,14 +1,8 @@
 #Cheteme Index Module
 from anvil import *
-import anvil.server
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.users
 from anvil_extras.storage import indexed_db
 from . import init_app
+from anvil_extras import non_blocking
 
 def has_user():
     store = indexed_db.create_store('cheteme-user')
@@ -16,10 +10,27 @@ def has_user():
 
 def main():
     init_app()
+    online_defer = non_blocking.defer(online, 0)
     open_form('Forms_Today.Today')
 
 def no_user():
     open_form('Form_Welcome')
+
+
+
+def online():
+    try:
+            response = anvil.http.request(
+                                        url='https://app.chete.me',
+                                        method='GET',
+                                        )
+            print('Online')
+    except anvil.http.HttpError as e:
+            print('Offline')
+
+
+
+
 
 if __name__ == '__main__':
     if has_user():
