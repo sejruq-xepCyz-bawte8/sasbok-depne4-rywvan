@@ -8,7 +8,7 @@ def make_today_request():
   response = request_home()
   print(response)
         
-def request_home(api:str, url:str, data:dict=None, info:str=None):
+def request_home():
         headers:dict = {
         'Cheteme':'get_home',
     }
