@@ -14,7 +14,7 @@ components:
   layout_properties: {slot: social}
   components:
   - name: tb_comment
-    properties: {placeholder: 'коментар...'}
+    properties: {placeholder: коментар...}
     type: TextArea
     layout_properties: {}
   - name: flow_panel_1
