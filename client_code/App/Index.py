@@ -25,7 +25,7 @@ def online():
     }
     try:
             response = anvil.http.request(
-                                        url='https://app.chete.me/',
+                                        url='https://api.chete.me/',
                                         method='GET',
                                         headers = headers
                                         )
