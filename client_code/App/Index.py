@@ -3,6 +3,7 @@ from anvil import *
 from anvil_extras.storage import indexed_db
 from . import init_app
 from anvil_extras import non_blocking
+import anvil.http
 
 def has_user():
     store = indexed_db.create_store('cheteme-user')
