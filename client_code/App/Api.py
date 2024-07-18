@@ -11,12 +11,9 @@ NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket',
 #together with info if is
 REDO = ['get_last', 'get_work_social', 'get_authors', 'get_chart', 'get_work_data', 'get_work_content']
 
-CACHE = ['get_last', 'get_chart', 'get_work_data'] #, 'get_work_social'
+CACHE = ['get_last', 'get_chart', 'get_work_data', 'get_home'] #, 'get_work_social'
 
-CACHED_DELTA = {'get_authors':1800,
-                'get_work_content':1800,
-                'get_work_social':5
-                }
+
 
 class ApiClass:
     def __init__(self, get_user, version, origin:str):
@@ -58,10 +55,10 @@ class ApiClass:
 
         #try again :)
         if status != 200 and api in REDO:
-            sleep(0.2)
+            sleep(0.1)
             response, status = self.http_request(api=api, info=info, data=data)
         if status != 200 and api in REDO:
-            sleep(0.5)
+            sleep(0.2)
             response, status = self.http_request(api=api, info=info, data=data)
 
 

@@ -1,6 +1,7 @@
 from .App import READER, WORKS
 from anvil.js.window import jQuery as jQ
 
+
 def fill_panel(panel_id, works:list):
     
     panel = jQ(f'#{panel_id}')
@@ -11,3 +12,5 @@ def fill_panel(panel_id, works:list):
       data = READER.get_work_data(work_id)
       cover = WORKS.make_cover(data)
       panel.append(cover)
+    
+
