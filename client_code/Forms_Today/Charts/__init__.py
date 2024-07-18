@@ -75,6 +75,7 @@ class Charts(ChartsTemplate):
 
 
   def make_chart(self):
+
     if 'публикувани' in self.filters:
       self.chart = READER.get_last()
       if 'днес' in self.filters:
@@ -83,29 +84,26 @@ class Charts(ChartsTemplate):
             self.chart = [c for c in self.chart if c['ptime'] > self.unix_week()]
       else:
             self.chart = [c for c in self.chart if c['ptime'] > 0]
-    elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
-          
-          if 'днес' in self.filters:
-            self.chart = READER.get_chart('today')
-          elif 'седмицата' in self.filters:
-            self.chart = READER.get_chart('week')
-          else:
-            self.chart = READER.get_chart('month')
-    else:
-      self.chart = READER.get_last()
+      
+      self.chart = sorted(self.chart, key=lambda x: x['ptime'], reverse=True)
 
+    else:
+      if 'днес' in self.filters:
+            self.chart = READER.get_chart('today')
+      elif 'седмицата' in self.filters:
+            self.chart = READER.get_chart('week')
+      else:
+            self.chart = READER.get_chart('month')
+
+#elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
     
     genres =  GENRES & self.filters
-
 
     if genres:
       self.chart = [c for c in self.chart if c['g'] in genres]
 
 
-
-    if 'публикувани' in self.filters:
-      self.chart = sorted(self.chart, key=lambda x: x['ptime'], reverse=True)
-    elif 'харесани' in self.filters:
+    if 'харесани' in self.filters:
       self.chart = [c for c in self.chart if c['l'] > 0]
       self.chart = sorted(self.chart, key=lambda x: x['l'], reverse=True)
     elif 'четени' in self.filters:
