@@ -261,8 +261,8 @@
   font-family: "Pacifico";
   font-weight: 400;
   font-style: normal;
-  font-size: calc(var(--cover-size) / 9);
-  line-height: calc(var(--cover-size) / 9);
+  font-size: calc(var(--cover-size) / 8);
+  line-height: calc(var(--cover-size) / 8);
   }
   
   .SofiaSansExtraCondensed {
