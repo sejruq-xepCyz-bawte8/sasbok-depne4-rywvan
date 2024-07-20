@@ -88,7 +88,7 @@ db_schema:
 scheduled_tasks:
 - task_name: make_today_request
   time_spec:
-    n: 5
+    n: 30
     every: minute
     at: {}
   job_id: CANLHLAS
