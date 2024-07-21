@@ -2,6 +2,7 @@ from ._anvil_designer import AuthorsTemplate
 from anvil import *
 from ...App import NAVIGATION, READER
 from ...Covers_Builder import fill_panel
+from time import sleep
 
 class Authors(AuthorsTemplate):
   def __init__(self, **properties):
@@ -13,7 +14,12 @@ class Authors(AuthorsTemplate):
     
 
   def form_show(self, **event):
-    fill_panel(panel_id='authors-panel', works=READER.get_authors())
+    authors = READER.get_authors()
+    if not authors:
+      sleep(0.1)
+      authors = READER.get_authors()
+      
+    fill_panel(panel_id='authors-panel', works=authors)
 
   def open_work(self, sender, **event):
 

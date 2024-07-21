@@ -43,3 +43,5 @@ class Settings(SettingsTemplate):
     }
     SETTINGS.set(data=settings)
 
+  def open_work(self, sender, **event):
+    pass

@@ -1,10 +1,12 @@
 from ._anvil_designer import TodayTemplate
 from anvil import *
-from ...App import NAVIGATION, READER
+from ...App import NAVIGATION, READER, USER
 from ...Covers_Builder import fill_panel
 from anvil.js.window import jQuery as jQ
 from anvil.js import window
 from anvil_extras import non_blocking
+import anvil.server
+
 
 class Today(TodayTemplate):
   def __init__(self, **properties):
@@ -34,7 +36,9 @@ class Today(TodayTemplate):
 
     today:list = READER.get_today()
     if not today:
-       today:list = READER.get_today()
+      user = USER.get_user()
+      age = user['age']
+      today = anvil.server.call('get_home_chart', age=age)
     
        
     self.last_10 = today.get('last_10')
