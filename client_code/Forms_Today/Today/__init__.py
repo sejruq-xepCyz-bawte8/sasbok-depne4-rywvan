@@ -35,6 +35,7 @@ class Today(TodayTemplate):
     today:list = READER.get_today()
     if not today:
        today:list = READER.get_today()
+    
        
     self.last_10 = today.get('last_10')
     self.chart_liked = today.get('chart_liked')
