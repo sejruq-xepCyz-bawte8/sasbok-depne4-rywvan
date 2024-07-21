@@ -38,9 +38,9 @@ class Charts(ChartsTemplate):
 
   def form_show(self, **event):
     
-    self.chart_name = jQ('#chart_name')
+    #self.chart_name = jQ('#chart_name')
     self.filter_toggle(sender=None)
-    self.chart_name.text("Последни 100 публикувани ")
+    #self.chart_name.text("Последни 100 публикувани ")
 
 
 
