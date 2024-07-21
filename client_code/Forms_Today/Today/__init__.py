@@ -35,8 +35,8 @@ class Today(TodayTemplate):
     self.readed_title = jQ('#readed_title')
 
     today, success = API.request(api='get_home')
-    if not today:
-      today = READER.get_today()
+    if not success:
+      today, success = API.request(api='get_home')
       
     if not today:
       user = USER.get_user()
