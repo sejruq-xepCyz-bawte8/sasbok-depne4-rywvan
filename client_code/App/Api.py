@@ -84,9 +84,9 @@ class ApiClass:
         elif api == 'get_work_content':
             url = f'{self.origin}/wc-{info}'
         elif api == 'get_last': #https://get-last.chete.me/
-            url = f'{self.origin}/chart-last-age-{self.age}'
+            url = f'{self.origin}/chart_last_age_{self.age}'
         elif api == 'get_chart':
-            url = f'{self.origin}/chart-{info}-age-{self.age}'
+            url = f'{self.origin}/chart_{info}_age_{self.age}'
         elif api == 'get_home': #separate
             url = f'{self.origin}/chart_home_age_{self.age}'
         elif api == 'get_authors':
