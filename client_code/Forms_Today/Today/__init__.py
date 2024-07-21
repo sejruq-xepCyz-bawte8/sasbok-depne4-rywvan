@@ -36,6 +36,9 @@ class Today(TodayTemplate):
 
     today:list = READER.get_today()
     if not today:
+      today = READER.get_today()
+      
+    if not today:
       user = USER.get_user()
       age = user['age']
       today = anvil.server.call('get_home_chart', age=age)
