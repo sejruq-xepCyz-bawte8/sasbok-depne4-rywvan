@@ -88,7 +88,7 @@ class ApiClass:
         elif api == 'get_chart':
             url = f'{self.origin}/chart-{info}-age-{self.age}'
         elif api == 'get_home':
-            url = f'{self.origin}/chart-home-age-{self.age}'
+            url = f'{self.origin}/chart_home_age_{self.age}'
         elif api == 'get_authors':
             url = f'{self.origin}/list-authors-age-{self.age}'
         else:
