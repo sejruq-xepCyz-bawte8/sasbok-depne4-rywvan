@@ -34,7 +34,7 @@ class Today(TodayTemplate):
     self.liked_title = jQ('#liked_title')
     self.readed_title = jQ('#readed_title')
 
-    today:list = API.request(api='get_today')
+    today:list = API.request(api='get_home')
     if not today:
       today = READER.get_today()
       
