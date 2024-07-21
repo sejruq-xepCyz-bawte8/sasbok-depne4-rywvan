@@ -1,6 +1,6 @@
 from ._anvil_designer import TodayTemplate
 from anvil import *
-from ...App import NAVIGATION, READER, USER
+from ...App import NAVIGATION, READER, USER, API
 from ...Covers_Builder import fill_panel
 from anvil.js.window import jQuery as jQ
 from anvil.js import window
@@ -34,7 +34,7 @@ class Today(TodayTemplate):
     self.liked_title = jQ('#liked_title')
     self.readed_title = jQ('#readed_title')
 
-    today:list = READER.get_today()
+    today:list = API.request(api='get_today')
     if not today:
       today = READER.get_today()
       
