@@ -22,7 +22,7 @@ class Publish(PublishTemplate):
 
     is_registred = self.user.get('is_registred')
     if is_registred != 1 and self.anvil_user:
-      self.anvil_user = anvil.users.logout()
+      self.b_logout_click()
     
 
     self.prelink.text = f"chete.me/{self.user['author_uri']}/"
@@ -177,9 +177,9 @@ class Publish(PublishTemplate):
     
 
   def b_login_click(self, **event_args):
-    user = anvil.users.login_with_form()
+    anvil_user = anvil.users.login_with_form()
     cheteme_user = USER.get_user()
-    if user and cheteme_user:
+    if anvil_user and cheteme_user:
       message = anvil.server.call('parse_user_author', cheteme_user)
       if message:
         message_new = message.get('new')
@@ -194,10 +194,11 @@ class Publish(PublishTemplate):
           self.b_logout.visible = True
           
           self.check_conditions()
-        
+          self.anvil_user = anvil.users.get_user()
           self.anvil_email.text = "Успешен вход"
           Notification("Успешен вход :)").show()
       else:
+        self.b_logout_click()
         Notification("Неуспешенa връзка със сървъра", style='danger').show()
     else:
       Notification("Няма потребител", style='danger').show()
