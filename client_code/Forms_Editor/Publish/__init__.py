@@ -177,7 +177,7 @@ class Publish(PublishTemplate):
           self.b_logout.visible = True
           self.anvil_user = anvil.users.get_user()
           self.check_conditions()
-          
+        
       
       self.anvil_email.text = "Успешен вход"
       Notification("Успешен вход :)").show()
