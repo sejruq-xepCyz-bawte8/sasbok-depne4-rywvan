@@ -34,8 +34,7 @@ class Charts(ChartsTemplate):
     self.chart:list = []
     self.open_form = NAVIGATION.nav_open_form
     READER.set_back("charts")
-    user = USER.get_user()
-    self.age = user['age']
+
 
   def form_show(self, **event):
     
@@ -79,7 +78,7 @@ class Charts(ChartsTemplate):
   def make_chart(self):
 
     if 'публикувани' in self.filters:
-      self.chart, success = API.request(api=f'get_chart_last_{self.age}')
+      self.chart, success = API.request(api=f'get_last')
       #self.chart = READER.get_last()
       if 'днес' in self.filters:
             self.chart = [c for c in self.chart if c['ptime'] > self.unix_today()]
@@ -92,11 +91,11 @@ class Charts(ChartsTemplate):
 
     else:
       if 'днес' in self.filters:
-            self.chart, success = API.request(api=f'get_chart_today_{self.age}')
+            self.chart, success = API.request(api=f'get_chart', info = 'today')
       elif 'седмицата' in self.filters:
-            self.chart, success = API.request(api=f'get_chart_week_{self.age}')
+            self.chart, success = API.request(api=f'get_chart', info = 'week')
       else:
-            self.chart, success = API.request(api=f'get_chart_month_{self.age}')
+            self.chart, success = API.request(api=f'get_chart', info = 'month')
 
 #elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
     
