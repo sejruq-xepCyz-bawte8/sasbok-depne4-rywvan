@@ -185,6 +185,7 @@ class Publish(PublishTemplate):
         message_new = message.get('new')
         print('logged new', message_new)
         message_data = message.get('data')
+        print(message_data)
         is_registred = message_data.get('is_registred') if message_data else 0
         if is_registred == 1:
           USER.set_user(message_data)
