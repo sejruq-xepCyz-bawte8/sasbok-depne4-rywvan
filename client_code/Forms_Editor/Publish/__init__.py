@@ -172,8 +172,9 @@ class Publish(PublishTemplate):
 
   def b_login_click(self, **event_args):
     user = anvil.users.login_with_form()
-    if user:
-      message = anvil.server.call('parse_user_author', self.user)
+    cheteme_user = USER.get_user()
+    if user and cheteme_user:
+      message = anvil.server.call('parse_user_author', cheteme_user)
       if message:
         message_new = message.get('new')
         print('logged new', message_new)
