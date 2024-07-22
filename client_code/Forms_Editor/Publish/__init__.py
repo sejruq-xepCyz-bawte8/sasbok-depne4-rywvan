@@ -186,9 +186,9 @@ class Publish(PublishTemplate):
       message = anvil.server.call('parse_user_author', cheteme_user)
       if message:
         message_new = message.get('new')
-        print('logged new', message_new)
+
         message_data = message.get('data')
-        print(message_data)
+        
         is_registred = message_data.get('is_registred') if message_data else 0
         if is_registred == 1:
           USER.set_user(message_data)
@@ -196,11 +196,11 @@ class Publish(PublishTemplate):
           self.author_uri.text = message_data['author_uri']
           self.b_login.visible = False
           self.b_logout.visible = True
-          
-          self.check_conditions()
           self.anvil_user = anvil.users.get_user()
           self.anvil_email.text = "Успешен вход"
           Notification("Успешен вход :)").show()
+          self.check_conditions()
+          
       else:
         self.b_logout_click()
         Notification("Неуспешенa връзка със сървъра", style='danger').show()
