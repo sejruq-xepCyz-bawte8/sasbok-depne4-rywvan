@@ -90,9 +90,9 @@ class Publish(PublishTemplate):
     if len(EDITOR.data['uri']) > 40:
       conditions += "прекалено дълъг линк (макс 40)"
 
-    user = USER.get_user()
-    if user:
-      is_registred = user.get('is_registred')
+    self.user = USER.get_user()
+    if self.user:
+      is_registred = self.user.get('is_registred')
     else:
       is_registred = 0
 
