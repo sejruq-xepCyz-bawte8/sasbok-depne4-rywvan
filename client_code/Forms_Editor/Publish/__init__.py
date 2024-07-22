@@ -86,11 +86,11 @@ class Publish(PublishTemplate):
 
     user = USER.get_user()
     if user:
-      is_registered = user.get('is_registred')
+      is_registred = user.get('is_registred')
     else:
-      is_registered = 0
+      is_registred = 0
 
-    if is_registered != 1:
+    if is_registred != 1:
       conditions += "няма успешен логин"
     
     if not conditions:
