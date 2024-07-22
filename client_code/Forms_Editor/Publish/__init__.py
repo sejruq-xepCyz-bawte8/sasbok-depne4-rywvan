@@ -84,6 +84,15 @@ class Publish(PublishTemplate):
     if len(EDITOR.data['uri']) > 40:
       conditions += "прекалено дълъг линк (макс 40)"
 
+    user = USER.get_user()
+    if user:
+      is_registered = user.get('is_registered')
+    else:
+      is_registered = 0
+
+    if is_registered != 1:
+      conditions += "няма успешен логин"
+    
     if not conditions:
       self.publish.enabled = True
       self.info_text.text = conditions
@@ -178,10 +187,12 @@ class Publish(PublishTemplate):
           self.anvil_user = anvil.users.get_user()
           self.check_conditions()
         
-      
-      self.anvil_email.text = "Успешен вход"
-      Notification("Успешен вход :)").show()
-
+          self.anvil_email.text = "Успешен вход"
+          Notification("Успешен вход :)").show()
+      else:
+        Notification("Неуспешенa връзка със сървъра", style='danger').show()
+    else:
+      Notification("Няма потребител", style='danger').show()
       
     
 
