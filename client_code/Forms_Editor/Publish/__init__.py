@@ -86,7 +86,7 @@ class Publish(PublishTemplate):
 
     user = USER.get_user()
     if user:
-      is_registered = user.get('is_registered')
+      is_registered = user.get('is_registred')
     else:
       is_registered = 0
 
