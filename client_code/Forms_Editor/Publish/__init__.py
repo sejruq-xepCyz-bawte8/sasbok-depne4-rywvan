@@ -30,8 +30,6 @@ class Publish(PublishTemplate):
     if EDITOR.data['work_id'] == EDITOR.data['author_id']:
       self.work_uri.visible = False
 
-    #del cache
-    #API.delete_cashe_work(EDITOR.data['work_id'])
 
     self.title.text = EDITOR.data['title']
 
@@ -84,7 +82,7 @@ class Publish(PublishTemplate):
       conditions += 'няма жанрове, '
     if not self.work_uri.valid:
       conditions += 'грешен пермалинк, '
-    if not self.content:
+    if not EDITOR.content:
       conditions += 'няма текст, '
     if EDITOR.data['size'] > 5_000:
       conditions += f"много голям файл {EDITOR.data['size']}kb, "
