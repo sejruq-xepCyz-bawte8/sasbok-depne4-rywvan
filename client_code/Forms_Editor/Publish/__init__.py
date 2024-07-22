@@ -18,6 +18,11 @@ class Publish(PublishTemplate):
     
     self.open_form = NAVIGATION.nav_open_form
     self.user = USER.get_user()
+    self.anvil_user = anvil.users.get_user()
+
+    is_registred = self.user.get('is_registred')
+    if is_registred != 1 and self.anvil_user:
+      self.anvil_user = anvil.users.logout()
     
 
     self.prelink.text = f"chete.me/{self.user['author_uri']}/"
@@ -38,7 +43,7 @@ class Publish(PublishTemplate):
     
     
 
-    self.anvil_user = anvil.users.get_user()
+   
     if self.anvil_user:
       self.b_login.visible = False
       self.anvil_email.text = self.anvil_user['email']
