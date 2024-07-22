@@ -54,10 +54,13 @@ class Today(TodayTemplate):
     self.liked_title.text(f'Най-харесвани {self.text_liked}')
     self.readed_title.text(f'Най-четени {self.text_readed}')
 
-    self.deferred_last = non_blocking.defer(self.fill_last, 0)
-    self.deferred_readed = non_blocking.defer(self.fill_readed, 0)
-    self.deferred_liked = non_blocking.defer(self.fill_liked, 0)   
+    #self.deferred_last = non_blocking.defer(self.fill_last, 0)
+    #self.deferred_readed = non_blocking.defer(self.fill_readed, 0)
+    #self.deferred_liked = non_blocking.defer(self.fill_liked, 0)   
 
+    fill_panel(panel_id='published', works=self.last_10)
+    fill_panel(panel_id='readed', works=self.chart_readed)
+    fill_panel(panel_id='liked', works=self.chart_liked)
     
 
   def fill_last(self):
