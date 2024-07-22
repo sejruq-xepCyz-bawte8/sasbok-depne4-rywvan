@@ -16,6 +16,7 @@ class UserClass:
 
         
     def get_user(self):
+        self.user = self.store.get('user')
         return self.user
     
 

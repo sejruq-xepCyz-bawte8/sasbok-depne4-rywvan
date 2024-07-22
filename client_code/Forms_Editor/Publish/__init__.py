@@ -191,7 +191,7 @@ class Publish(PublishTemplate):
         
         is_registred = message_data.get('is_registred') if message_data else 0
         if is_registred == 1:
-          USER.set_user(message_data)
+          update_user = USER.set_user(message_data)
           self.prelink.text = f"chete.me/{message_data['author_uri']}/"
           self.author_uri.text = message_data['author_uri']
           self.b_login.visible = False
