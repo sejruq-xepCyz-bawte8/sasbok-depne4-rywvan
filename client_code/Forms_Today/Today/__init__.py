@@ -37,12 +37,6 @@ class Today(TodayTemplate):
     today, success = API.request(api='get_home')
     if not success:
       today, success = API.request(api='get_home')
-      
-    if not today:
-      user = USER.get_user()
-      age = user['age']
-      today = anvil.server.call('get_home_chart', age=age)
-    
        
     self.last_10 = today.get('last_10')
     self.chart_liked = today.get('chart_liked')
