@@ -1,7 +1,7 @@
 from ._anvil_designer import ChartsTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
-from ...App import NAVIGATION, READER
+from ...App import NAVIGATION, READER, API, USER
 from ...Covers_Builder import fill_panel
 from datetime import datetime, timedelta
 
@@ -34,7 +34,8 @@ class Charts(ChartsTemplate):
     self.chart:list = []
     self.open_form = NAVIGATION.nav_open_form
     READER.set_back("charts")
-    
+    user = USER.get_user()
+    self.age = user['age']
 
   def form_show(self, **event):
     
@@ -78,7 +79,8 @@ class Charts(ChartsTemplate):
   def make_chart(self):
 
     if 'публикувани' in self.filters:
-      self.chart = READER.get_last()
+      self.chart, success = API.request(api=f'get_chart_last_{self.age}')
+      #self.chart = READER.get_last()
       if 'днес' in self.filters:
             self.chart = [c for c in self.chart if c['ptime'] > self.unix_today()]
       elif 'седмицата' in self.filters:
@@ -90,11 +92,11 @@ class Charts(ChartsTemplate):
 
     else:
       if 'днес' in self.filters:
-            self.chart = READER.get_chart('today')
+            self.chart, success = API.request(api=f'get_chart_today_{self.age}')
       elif 'седмицата' in self.filters:
-            self.chart = READER.get_chart('week')
+            self.chart, success = API.request(api=f'get_chart_week_{self.age}')
       else:
-            self.chart = READER.get_chart('month')
+            self.chart, success = API.request(api=f'get_chart_month_{self.age}')
 
 #elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
     
