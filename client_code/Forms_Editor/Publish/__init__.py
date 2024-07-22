@@ -65,6 +65,7 @@ class Publish(PublishTemplate):
 
   def check_conditions(self):
     conditions = ''
+    self.anvil_user = anvil.users.get_user()
     if not self.anvil_user:
       conditions += 'няма логин, '
     if not EDITOR.data['uri']:
@@ -186,7 +187,7 @@ class Publish(PublishTemplate):
           self.author_uri.text = message_data['author_uri']
           self.b_login.visible = False
           self.b_logout.visible = True
-          self.anvil_user = anvil.users.get_user()
+          
           self.check_conditions()
         
           self.anvil_email.text = "Успешен вход"
