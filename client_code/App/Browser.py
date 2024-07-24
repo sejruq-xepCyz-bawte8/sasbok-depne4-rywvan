@@ -12,6 +12,7 @@ class BrowserClass:
         self.protocol = window.location.protocol
         self.host = window.location.host
         self.hostname = window.location.hostname
+        print(self.hostname)
         self.touch = False
         if 'maxTouchPoints' in window.navigator and window.navigator.maxTouchPoints > 0:
             self.touch = True

@@ -11,28 +11,10 @@ def has_user():
 
 def main():
     init_app()
-    #online_defer = non_blocking.defer(online, 0)
     open_form('Forms_Today.Today')
 
 def no_user():
     open_form('Form_Welcome')
-
-
-
-def online():
-    headers:dict = {
-        'Cheteme':'Online',
-    }
-    try:
-            response = anvil.http.request(
-                                        url='https://api.chete.me/',
-                                        method='GET',
-                                        headers = headers
-                                        )
-            print('Online')
-    except anvil.http.HttpError as e:
-            print('Offline')
-
 
 
 

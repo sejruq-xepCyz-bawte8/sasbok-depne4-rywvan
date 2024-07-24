@@ -51,9 +51,20 @@ def init_app():
     BROWSER = BrowserClass()
     SETTINGS = SettingsClass()
 
-    ORIGIN_API = 'https://chete.me/api' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:8787'
-    ORIGIN_APP = 'https://chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:3030'
+    if BROWSER.hostname == "chete.me":
+      ORIGIN_API = 'https://chete.me/api'
+      ORIGIN_APP = 'https://chete.me'
+    elif 'anvil.app' in BROWSER.hostname:
+      ORIGIN_API = 'https://chete.me/api'
+      ORIGIN_APP = ''
+    else:
+      ORIGIN_API = 'http://192.168.0.101:8787'
+      ORIGIN_APP = 'http://192.168.0.101:3030'    
+  
+    #ORIGIN_API = 'https://chete.me/api' if BROWSER.hostname == "chete.me" else 'https://192.168.0.101:8787'
+    #ORIGIN_APP = 'https://chete.me' if BROWSER.hostname == "chete.me" else 'http://192.168.0.101:3030'
 
+  
     USER = UserClass()
     ASSETS = AssetsClass(origin=ORIGIN_APP, version=VERSION)
     NAVIGATION = NavigationClass(fn_asset_get=ASSETS.get, is_author=USER.is_author)
