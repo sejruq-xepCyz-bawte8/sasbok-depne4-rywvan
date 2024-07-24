@@ -73,8 +73,6 @@ class ApiClass:
         else:
             return response, status
     
-    
-
 
     def http_request(self, api, info, data):
         headers = self.parse_headers(api=api, info=info)
@@ -159,4 +157,5 @@ class ApiClass:
         }
         self.cache[url] = cache
                     
-            
+    def get_work_data(self, work_id):
+      pass
