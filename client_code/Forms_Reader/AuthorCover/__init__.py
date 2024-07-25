@@ -18,12 +18,12 @@ class AuthorCover(AuthorCoverTemplate):
     self.open_form = NAVIGATION.nav_open_form
 
     api = 'get_author_published'
-    self.author_id = READER.data['author_id']
+    self.work_id = READER.current_id
+    self.work_data =  WORKS.get_work_data(self.work_id)
+    self.author_id = self.work_data['author_id']
+    
     self.published_works, _ = API.request(api=api, info=self.author_id)
     
- 
-
-
     self.bookmark = READER.get_bookmark(READER.current_id)
 
 
@@ -38,14 +38,21 @@ class AuthorCover(AuthorCoverTemplate):
     self.panel.html('')
     for work in self.published_works:
       work_id = work['work_id']
-      data = READER.get_work_data(work_id=work_id)
+      data = WORKS.get_work_data(work_id=work_id)
       if data:
         cover = WORKS.make_cover(data)
         self.panel.append(cover)
 
   def form_show(self, **event):
+    #Sidebars
+    self.toc = []
+    self.sidebar_toc = jQ('#reader-sidebar-toc')
+    self.sidebar_toc.toggle()
+    self.sidebar_social = jQ('#reader-sidebar-social')
+    self.sidebar_social.toggle()
+    
     self.panel = jQ('#published-panel')
-    jQ('#title').text(READER.data['title'])
+    jQ('#title').text(self.work_data['title'])
     self.parse_works()
 
     #back = jQ('#today')
@@ -58,12 +65,7 @@ class AuthorCover(AuthorCoverTemplate):
     self.scroling_pages_info = None
 
 
-    #Sidebars
-    self.toc = []
-    self.sidebar_toc = jQ('#reader-sidebar-toc')
-    self.sidebar_toc.toggle()
-    self.sidebar_social = jQ('#reader-sidebar-social')
-    self.sidebar_social.toggle()
+
 
     #build panels
     toc = non_blocking.defer(self.build_toc, 0)
@@ -102,7 +104,7 @@ class AuthorCover(AuthorCoverTemplate):
       self.add_component(link, slot='toc')
 
     self.add_component(Spacer(), slot='toc')
-    words = Label(text=f"{READER.data['words']} думи")
+    words = Label(text=f"{self.work_data['words']} думи")
     words.font = 'Courier New, monospace'
     self.add_component(words, slot='toc')
 
@@ -112,8 +114,8 @@ class AuthorCover(AuthorCoverTemplate):
 
 
   def build_social(self):
-    social = READER.get_work_social(READER.current_id)
-    if social:
+    social, success = API.request(api='get_work_social', info=self.work_id)
+    if social and success:
       for comment in social['comments']:
         label = Label(text=comment)
         self.add_component(label, slot='social-comments')

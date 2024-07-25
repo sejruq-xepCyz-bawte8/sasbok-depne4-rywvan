@@ -9,6 +9,8 @@ class WorksClass:
     def __init__(self, fn_asset_get, fn_awesome_get):
         self.age = 1
         self.store = indexed_db.create_store('cheteme-works')
+        self.contents_store = indexed_db.create_store('cheteme-content')
+
         
         self.get_asset = fn_asset_get
         self.get_icon = fn_awesome_get
@@ -16,17 +18,17 @@ class WorksClass:
         self.cover_template = fn_asset_get('html/work_cover.html')
 
         self.works_data = self.store.get('data')
-        self.works_content = self.store.get('content')
         self.charts = self.store.get('charts')
+ 
+
       
         if not self.works_data:
           self.works_data:dict = {}
         
-        if not self.works_content:
-            self.works_content:dict = {}
         
         if not self.charts:
               self.charts:dict = {}
+
 
         #update non blocking
         home = non_blocking.defer(self.update_home, 0)
@@ -36,6 +38,12 @@ class WorksClass:
         week = non_blocking.defer(self.update_week, 0)
         month = non_blocking.defer(self.update_month, 0)
 
+        home_u = non_blocking.repeat(self.update_home, 300)
+        authors_u = non_blocking.repeat(self.update_authors, 1800)
+        last_u = non_blocking.repeat(self.update_last, 900)
+        today_u = non_blocking.repeat(self.update_today, 900)
+        week_u = non_blocking.repeat(self.update_week, 1800)
+        month_u = non_blocking.repeat(self.update_month, 1800)
 
   
     def get_cover(self, work_id:str)->str:
@@ -144,11 +152,11 @@ class WorksClass:
 
 
     def get_work_content(self, work_id:str):
-      if work_id in self.works_content:
-        work_content = self.works_content[work_id]['content']
-        self.works_content[work_id]['timestamp'] = time()
-        self.store['content'] = self.works_content
-        return work_content
+      if work_id in self.contents_store:
+        work = self.contents_store[work_id]
+        work['timestamp'] = time()
+        self.contents_store[work_id] = work
+        return work['content']
       else:
         work_content = self.fetch_work_content(work_id)
         return work_content
@@ -163,8 +171,8 @@ class WorksClass:
 
           if response and 'message' in response:
             content = response['message']
-            self.works_content[work_id] = {'content':content, 'timestamp':time()}
-            self.update_works_content()
+            self.contents_store[work_id] = {'content':content, 'timestamp':time()}
+            self.clean_works_content()
             
           return content
 
@@ -177,13 +185,13 @@ class WorksClass:
         else:
           self.store['data'] = self.works_data
 
-    def update_works_content(self):
-        if len(self.works_content) > 20:
-          sorted_items = sorted(self.works_content.items(), key=lambda item: item[1]['timestamp'])
-          self.works_content = {k: v for k, v in sorted_items[-15:]}
-          self.store['content'] = self.works_content
-        else:
-          self.store['content'] = self.works_content
+    def clean_works_content(self):
+        if len(self.contents_store) > 20:
+          sorted_items = sorted(self.contents_store.items(), key=lambda item: item[1]['timestamp'])
+          to_clean = [k for k, v in sorted_items[:5]]
+          for k in to_clean:
+            del self.contents_store[k]
+
 
 
 ## charts
@@ -214,6 +222,7 @@ class WorksClass:
     def update_home(self):
       self.fetch_chart_data(chart_id = 'home')
 
+
     def update_authors(self):
       authors = self.fetch_chart_data(chart_id = 'authors')
       for work in authors:
@@ -241,6 +250,7 @@ class WorksClass:
 
     def update_today(self):
       self.fetch_chart_data(chart_id = 'today')
+
 
     def update_week(self):
       self.fetch_chart_data(chart_id = 'week')

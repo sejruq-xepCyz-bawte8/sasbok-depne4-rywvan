@@ -80,34 +80,32 @@ class Charts(ChartsTemplate):
 
 
   def make_chart(self):
+    genres =  GENRES & self.filters
 
     if 'публикувани' in self.filters:
-      #self.chart, success = API.request(api=f'get_last')
       self.chart = self.last
-      #self.chart = READER.get_last()
+
       if 'днес' in self.filters:
             self.chart = [c for c in self.chart if c['ptime'] > self.unix_today()]
       elif 'седмицата' in self.filters:
             self.chart = [c for c in self.chart if c['ptime'] > self.unix_week()]
+      elif 'месеца' in self.filters:
+            self.chart = [c for c in self.chart if c['ptime'] > self.unix_month()]
       else:
             self.chart = [c for c in self.chart if c['ptime'] > 0]
-      
-      self.chart = sorted(self.chart, key=lambda x: x['ptime'], reverse=True)
 
-    else:
+      self.chart = sorted(self.chart, key=lambda x: x['ptime'], reverse=True)
+      
+    elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
       if 'днес' in self.filters:
             self.chart = self.today
       elif 'седмицата' in self.filters:
             self.chart = self.week
       else:
             self.chart = self.month
-
-#elif 'харесани' in self.filters or 'четени' in self.filters or 'коментирани' in self.filters:
-    
-    genres =  GENRES & self.filters
-
-    if genres:
-      self.chart = [c for c in self.chart if c['g'] in genres]
+    else:
+      self.chart = self.last
+      self.chart = sorted(self.chart, key=lambda x: x['ptime'], reverse=True)
 
 
     if 'харесани' in self.filters:
@@ -119,7 +117,11 @@ class Charts(ChartsTemplate):
     elif 'коментирани' in self.filters:
       self.chart = [c for c in self.chart if c['c'] > 0]
       self.chart = sorted(self.chart, key=lambda x: x['c'], reverse=True)
-    
+
+
+
+    if genres:
+      self.chart = [c for c in self.chart if c['g'] in genres]
     
     fill_panel(panel_id='charts-panel', works=self.chart)
 
@@ -137,3 +139,9 @@ class Charts(ChartsTemplate):
     beginning_of_week = now - timedelta(days=now.weekday())
     beginning_of_week = datetime(beginning_of_week.year, beginning_of_week.month, beginning_of_week.day)
     return beginning_of_week.timestamp()
+
+  def unix_month(self):
+      from datetime import datetime
+      now = datetime.now()
+      beginning_of_month = datetime(now.year, now.month, 1)
+      return beginning_of_month.timestamp()

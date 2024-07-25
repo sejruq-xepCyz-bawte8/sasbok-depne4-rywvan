@@ -12,67 +12,55 @@ class Today(TodayTemplate):
   def __init__(self, **properties):
     super().__init__(**properties)
     self.init_components(**properties)
-
+    self.today = []
     self.open_form = NAVIGATION.nav_open_form
 
     READER.set_back("today")
 
 
   def form_show(self, **event):
+    #open with link
     self.uri = get_url_hash()
-    
     if self.uri and len(self.uri) > 3:
       window.history.replaceState('null', '', '/')
-      work = READER.get_work_data(work_id=self.uri)
+      work = WORKS.get_work_data(work_id=self.uri)
       if work:
         current = READER.set_current(work['work_id'])
         if current:
             open_form('Forms_Reader.Reader')
 
-            
-
+    #make today page      
     self.liked_title = jQ('#liked_title')
     self.readed_title = jQ('#readed_title')
 
-    #today, success = API.request(api='get_home')
-
-    today = WORKS.get_chart_data(chart_id = 'home')
-
-    
-    #if not success:
-    #  today, success = API.request(api='get_home')
-       
-    self.last_10 = today.get('last_10')
-    self.chart_liked = today.get('chart_liked')
-    self.chart_readed = today.get('chart_readed')
-    self.text_liked = today.get('text_liked')
-    self.text_readed = today.get('text_readed')
+    self.paint_today()
+    today_first_update = non_blocking.defer(self.paint_today, 1)
+    today_second_update = non_blocking.defer(self.paint_today, 3)
+    today_next_updates = non_blocking.repeat(self.paint_today, 30)
   
-
-    self.liked_title.text(f'Най-харесвани {self.text_liked}')
-    self.readed_title.text(f'Най-четени {self.text_readed}')
-
-    #self.deferred_last = non_blocking.defer(self.fill_last, 0)
-    #self.deferred_readed = non_blocking.defer(self.fill_readed, 0)
-    #self.deferred_liked = non_blocking.defer(self.fill_liked, 0)   
-
-    fill_panel(panel_id='published', works=self.last_10)
-    fill_panel(panel_id='readed', works=self.chart_readed)
-    fill_panel(panel_id='liked', works=self.chart_liked)
-    
+  def paint_today(self):
+    new_today = WORKS.get_chart_data(chart_id = 'home')
+    if new_today != self.today:
+      self.today = new_today
+      last = non_blocking.defer(self.fill_last, 0)
+      readed = non_blocking.defer(self.fill_readed, 0)
+      liked = non_blocking.defer(self.fill_liked, 0)   
 
   def fill_last(self):
-      fill_panel(panel_id='published', works=self.last_10)
+      last = self.today.get('last_10')
+      fill_panel(panel_id='published', works=last)
 
   def fill_readed(self):
-      fill_panel(panel_id='readed', works=self.chart_readed)
+      text_readed = self.today.get('text_readed')
+      self.readed_title.text(f'Най-четени {text_readed}')
+      chart_readed = self.today.get('chart_readed')
+      fill_panel(panel_id='readed', works=chart_readed)
 
   def fill_liked(self):
-      fill_panel(panel_id='liked', works=self.chart_liked)
-
-
-  def b_work_click(self, **event):
-      open_form('Forms_Reader.Reader')
+      text_liked = self.today.get('text_liked')
+      self.liked_title.text(f'Най-харесвани {text_liked}')
+      liked = self.today.get('chart_liked')
+      fill_panel(panel_id='liked', works=liked)
 
 
   def open_work(self, sender, **event):

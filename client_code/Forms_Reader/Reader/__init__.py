@@ -18,6 +18,15 @@ class Reader(ReaderTemplate):
 
 
   def form_show(self, **event):
+    #Sidebars
+    self.sidebar_toc = jQ('#reader-sidebar-toc')
+    self.sidebar_toc.toggle()
+    self.sidebar_social = jQ('#reader-sidebar-social')
+    self.sidebar_social.toggle()
+    self.sidebar_cover = jQ('#reader-sidebar-cover')
+    self.sidebar_cover.toggle()
+
+    
     #get data
     self.work_id = READER.current_id
     self.work_data = WORKS.get_work_data(self.work_id)
@@ -37,10 +46,10 @@ class Reader(ReaderTemplate):
     #prep reader
     self.scroling_pages_info = None
     self.source = document.createElement("div")
-    #self.source.innerHTML = READER.content
     self.source.innerHTML = self.work_content
     self.reader =  document.getElementById("cheteme_reader")
     self.targetHeigth = self.reader.offsetHeight
+    self.targetWidth = self.reader.offsetWidth
 
     self.work_link = document.getElementById('reader')
     self.pagesLabel = self.work_link.querySelectorAll('.nav-text')[0]
@@ -54,13 +63,7 @@ class Reader(ReaderTemplate):
     self.pageNumber = 0
     self.headingsCount = 0
 
-    #Sidebars
-    self.sidebar_toc = jQ('#reader-sidebar-toc')
-    self.sidebar_toc.toggle()
-    self.sidebar_social = jQ('#reader-sidebar-social')
-    self.sidebar_social.toggle()
-    self.sidebar_cover = jQ('#reader-sidebar-cover')
-    self.sidebar_cover.toggle()
+
 
 
     #back button
@@ -224,7 +227,7 @@ class Reader(ReaderTemplate):
 
 
   def bookmark_click(self, sender, *event):
-    READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
+    READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages, data=self.work_data, content=self.work_content)
     self.bookmark_icon.toggleClass('active')
     if self.bookmark:
       READER.delete_bookmark(READER.current_id)
@@ -272,8 +275,9 @@ class Reader(ReaderTemplate):
 
 
   def build_social(self):
-    social = READER.get_work_social(READER.current_id)
-    if social:
+    #social = READER.get_work_social(READER.current_id)
+    social, success = API.request(api='get_work_social', info=self.work_id)
+    if social and success:
       for comment in social['comments']:
         if len(comment) > 0:
           label = Label(text=comment)
@@ -322,10 +326,10 @@ class Reader(ReaderTemplate):
 
 
      data = {
-        'genre':READER.data['genres'][2],
+        'genre':self.work_data['genres'][2],
         'comment':self.tb_comment.text,
-        'author_id': READER.data['author_id'],
-        'age': READER.data['age']
+        'author_id': self.work_data['author_id'],
+        'age': self.work_data['age']
      }
      eresult, success = API.request(api=engage, info=READER.current_id, data=data)
      
@@ -378,9 +382,6 @@ class Reader(ReaderTemplate):
         jQ('#cover').find('.nav-fa').attr('class', 'nav-fa fa-duotone fa-books')
         jQ('#cover').attr('id', "author_cover")
         
-        
-
-
   
   def cover_click(self, sender, *event):
     if READER.current_id:
@@ -389,9 +390,6 @@ class Reader(ReaderTemplate):
         self.sidebar_cover.toggle()
 
 
-
-
-    
   def open_work(self, sender, **event):
     current = READER.set_current(sender.attr('id'))
     if current:
