@@ -99,6 +99,7 @@ class ApiClass:
 
 
         if data:
+            #print('POST')
             headers['Content-Type'] = 'application/json'
             #payload = json.dumps(data) if data else ''
             payload = data
@@ -116,6 +117,7 @@ class ApiClass:
                 status = e.status
         else:
             try:
+                #print('GET')
                 response = anvil.http.request(
                                         url=url,
                                         headers = headers,
