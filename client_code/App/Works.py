@@ -1,9 +1,13 @@
 from anvil_extras.storage import indexed_db
+from anvil_extras import non_blocking
 import anvil.http
 from time import time
 
+CHARTS = ['home', 'last', 'week', 'month', 'authors']
+
 class WorksClass:
     def __init__(self, fn_asset_get, fn_awesome_get):
+        self.age = 1
         self.store = indexed_db.create_store('cheteme-works')
         
         self.get_asset = fn_asset_get
@@ -13,12 +17,26 @@ class WorksClass:
 
         self.works_data = self.store.get('data')
         self.works_content = self.store.get('content')
+        self.charts = self.store.get('charts')
       
         if not self.works_data:
           self.works_data:dict = {}
         
         if not self.works_content:
             self.works_content:dict = {}
+        
+        if not self.charts:
+              self.charts:dict = {}
+
+        #update non blocking
+        home = non_blocking.defer(self.update_home, 0)
+        authors = non_blocking.defer(self.update_authors, 0)
+        last = non_blocking.defer(self.update_last, 0)
+        today = non_blocking.defer(self.update_today, 0)
+        week = non_blocking.defer(self.update_week, 0)
+        month = non_blocking.defer(self.update_month, 0)
+
+
   
     def get_cover(self, work_id:str)->str:
         pass
@@ -106,27 +124,22 @@ class WorksClass:
       if work_id in self.works_data:
         work_data = self.works_data[work_id]
         self.works_data[work_id]['timestamp'] = time()
-        self.clean_works_data()
+        self.store['data'] = self.works_data
         return work_data
       else:
         work_data = self.fetch_work_data(work_id)
         return work_data
 
-
-
-  
     def fetch_work_data(self, work_id):
           url = f'https://chete.me/api/wd-{work_id}'
           try:
                 response = anvil.http.request(url=url,method='GET',json=True)
           except anvil.http.HttpError as e:
                 response = None
-
           if response:
             self.works_data[work_id] = response
             self.works_data[work_id]['timestamp'] = time()
-            self.clean_works_data()
-            
+            self.update_works_data()
           return response
 
 
@@ -134,8 +147,7 @@ class WorksClass:
       if work_id in self.works_content:
         work_content = self.works_content[work_id]['content']
         self.works_content[work_id]['timestamp'] = time()
-        #self.store['content'] = self.works_content
-        self.clean_works_content()
+        self.store['content'] = self.works_content
         return work_content
       else:
         work_content = self.fetch_work_content(work_id)
@@ -152,19 +164,87 @@ class WorksClass:
           if response and 'message' in response:
             content = response['message']
             self.works_content[work_id] = {'content':content, 'timestamp':time()}
-            self.clean_works_content()
+            self.update_works_content()
             
           return content
 
 
-    def clean_works_data(self):
-        if len(self.works_data) > 50:
+    def update_works_data(self):
+        if len(self.works_data) > 100:
           sorted_items = sorted(self.works_data.items(), key=lambda item: item[1]['timestamp'])
-          self.works_data = {k: v for k, v in sorted_items[-40:]}
+          self.works_data = {k: v for k, v in sorted_items[-90:]}
+          self.store['data'] = self.works_data
+        else:
           self.store['data'] = self.works_data
 
-    def clean_works_content(self):
+    def update_works_content(self):
         if len(self.works_content) > 20:
           sorted_items = sorted(self.works_content.items(), key=lambda item: item[1]['timestamp'])
           self.works_content = {k: v for k, v in sorted_items[-15:]}
           self.store['content'] = self.works_content
+        else:
+          self.store['content'] = self.works_content
+
+
+## charts
+    def get_chart_data(self, chart_id):
+        if chart_id in self.charts:
+          chart = self.charts[chart_id]
+          chart_data = chart['data']
+
+        else:
+          chart_data = self.fetch_chart_data(chart_id)
+
+        return chart_data
+
+          
+    def fetch_chart_data(self, chart_id):
+          url = f'https://chete.me/api/chart_{chart_id}_age_{self.age}'
+          try:
+                response = anvil.http.request(url=url,method='GET',json=True)
+          except anvil.http.HttpError as e:
+                response = None
+          if response:
+            self.charts[chart_id] = {'data':response, 'timestamp':time()}
+            self.store['charts'] = self.charts   
+          return response
+
+
+
+    def update_home(self):
+      self.fetch_chart_data(chart_id = 'home')
+
+    def update_authors(self):
+      authors = self.fetch_chart_data(chart_id = 'authors')
+      for work in authors:
+        work_id = work['work_id']
+        if work_id in self.works_data:
+          new_ver = work['ver']
+          old_ver = self.works_data[work_id]['ver']
+          if new_ver != old_ver:
+            self.fetch_work_data(work_id)
+            if work_id in self.works_content:
+              self.fetch_work_content(work_id=work_id)
+
+    def update_last(self):
+      last = self.fetch_chart_data(chart_id = 'last')
+      for work in last:
+        work_id = work['work_id']
+        if work_id in self.works_data:
+          new_ver = work['ver']
+          old_ver = self.works_data[work_id]['ver']
+          if new_ver != old_ver:
+            self.fetch_work_data(work_id)
+            if work_id in self.works_content:
+              self.fetch_work_content(work_id=work_id)
+
+
+    def update_today(self):
+      self.fetch_chart_data(chart_id = 'today')
+
+    def update_week(self):
+      self.fetch_chart_data(chart_id = 'week')
+
+    def update_month(self):
+      self.fetch_chart_data(chart_id = 'month')
+      

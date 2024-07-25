@@ -1,6 +1,6 @@
 from ._anvil_designer import TodayTemplate
 from anvil import *
-from ...App import NAVIGATION, READER, USER, API
+from ...App import NAVIGATION, READER, USER, API, WORKS
 from ...Covers_Builder import fill_panel
 from anvil.js.window import jQuery as jQ
 from anvil.js import window
@@ -34,9 +34,13 @@ class Today(TodayTemplate):
     self.liked_title = jQ('#liked_title')
     self.readed_title = jQ('#readed_title')
 
-    today, success = API.request(api='get_home')
-    if not success:
-      today, success = API.request(api='get_home')
+    #today, success = API.request(api='get_home')
+
+    today = WORKS.get_chart_data(chart_id = 'home')
+
+    
+    #if not success:
+    #  today, success = API.request(api='get_home')
        
     self.last_10 = today.get('last_10')
     self.chart_liked = today.get('chart_liked')
