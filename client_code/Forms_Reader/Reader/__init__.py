@@ -75,8 +75,11 @@ class Reader(ReaderTemplate):
     self.bookmark_icon = jQ('#bookmark')
     if self.bookmark:
       self.bookmark_icon.addClass('active')
-      READER.update_bookmark(data=self.work_data, self.wor)
-        
+      if self.work_data and self.work_content:
+        READER.update_bookmark(data=self.work_data, content = self.work_content)
+      else:
+        self.work_data = self.bookmark['data']
+        self.work_content = self.bookmark['content']
     
     #build panels
     toc = non_blocking.defer(self.build_toc, 0)
@@ -235,16 +238,19 @@ class Reader(ReaderTemplate):
         non_blocking.cancel(self.scroling_pages_info)
         self.scroling_pages_info = non_blocking.defer(self.parse_most_visible, 0.2)
         if self.bookmark:
-           READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
+            READER.update_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
+       
 
 
   def bookmark_click(self, sender, *event):
-    READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages, data=self.work_data, content=self.work_content)
     self.bookmark_icon.toggleClass('active')
     if self.bookmark:
       READER.delete_bookmark(READER.current_id)
-    
-
+      self.bookmark = None
+    else:
+      READER.save_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages, data=self.work_data, content=self.work_content)
+      self.bookmark = READER.get_bookmark(READER.current_id)
+      
   def toc_click(self, sender, *event):
     self.sidebar_social.hide()
     self.sidebar_cover.hide()
