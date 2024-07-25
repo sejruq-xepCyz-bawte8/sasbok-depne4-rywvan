@@ -19,7 +19,7 @@ class Settings(SettingsTemplate):
 
     self.settings = SETTINGS.get()
     
-    
+
 
   def form_show(self, **event):
     self.cover_panel = jQ('#cover')

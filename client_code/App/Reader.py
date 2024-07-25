@@ -24,14 +24,6 @@ class ReaderClass:
 
 
 
-    def get_work_social_(self, work_id):
-        social, success = self.api(api='get_work_social', info=work_id)
-        if success:
-            return social
-        else:
-            return None
-          
-
     #memory for the filter
     def set_filters(self, filters:set):
         self.filters = filters
@@ -47,6 +39,7 @@ class ReaderClass:
     
 
     def save_bookmark(self, page:int, time_reading:float=0, readed:bool=False, readed_pages:bool=False, data=None, content=None):
+        
         self.bookmarks[self.current_id] = {
             'data':data,
             'content':content,
@@ -57,6 +50,24 @@ class ReaderClass:
             'timestamp': time()
         }
 
+    def update_bookmark(self, page:int=None, time_reading:float=None, readed:bool=False, readed_pages:bool=False, data=None, content=None):
+        bookmark = self.bookmarks[self.current_id]
+        if page:
+          bookmark['page'] = page
+        if time_reading:
+          bookmark['time_reading'] = time_reading
+        if readed:
+          bookmark['readed'] = readed
+        if readed_pages:
+          bookmark['readed_pages'] = readed_pages
+        if data:
+          bookmark['data'] = data
+        if content:
+          bookmark['content'] = content
+          
+        self.bookmarks[self.current_id] = bookmark
+
+  
     def get_bookmark(self, work_id):
         return self.bookmarks.get(work_id)
     
@@ -64,4 +75,25 @@ class ReaderClass:
         del self.bookmarks[work_id]
 
 
+    def get_work_render(self, work_id, width, heigth):
+      if work_id in self.renders_store:
+        render = self.renders_store[work_id]
+        if render['width'] == width and render['heigth'] == heigth:
+          return render
+        else:
+          return None
+    def set_work_render(self, work_id, width, heigth, paginated, pages):
+      render = {
+        'width':width,
+        'heigth':heigth,
+        'paginated':paginated,
+        'pages':pages,
+        'timestamp': time()
+      }
+      if len(self.renders_store) > 20:
+          sorted_items = sorted(self.renders_store.items(), key=lambda item: item[1]['timestamp'])
+          to_clean = [k for k, v in sorted_items[:5]]
+          for k in to_clean:
+            del self.contents_store[k]
 
+      self.renders_store[work_id] = render

@@ -74,7 +74,9 @@ class Reader(ReaderTemplate):
     #bookmark
     self.bookmark_icon = jQ('#bookmark')
     if self.bookmark:
-       self.bookmark_icon.addClass('active')
+      self.bookmark_icon.addClass('active')
+      READER.update_bookmark(data=self.work_data, self.wor)
+        
     
     #build panels
     toc = non_blocking.defer(self.build_toc, 0)
@@ -82,13 +84,23 @@ class Reader(ReaderTemplate):
     cover = non_blocking.defer(self.build_cover, 0)
 
     jQ('.fa-book-open').addClass('fa-beat')
-    self.distribute()
+    render = READER.get_work_render(work_id=self.work_id, width=self.targetWidth, heigth=self.targetHeigth)
+    if render:
+
+      self.pageNumber = render['pages']
+      self.pagesLabel.textContent = f"{self.mostVisible}/{self.pageNumber}"
+      self.reader.innerHTML = render['paginated']
+      
+    else:
+      self.distribute()
+      READER.set_work_render(work_id=self.work_id, width=self.targetWidth, heigth=self.targetHeigth, paginated=self.reader.innerHTML, pages = self.pageNumber)
     jQ('.fa-book-open').removeClass('fa-beat')
     
     
   def distribute(self):
         sleep(0.1)
         self.targetHeigth = self.reader.offsetHeight
+        self.targetWidth = self.reader.offsetWidth
         #self.imagesHeigth:int = int(self.targetHeigth / 3)
         self.reader.innerHTML = ''
         #self.last_scroll = time()

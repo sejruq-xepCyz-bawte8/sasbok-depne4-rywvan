@@ -12,6 +12,7 @@ from anvil_extras.storage import indexed_db
 class SettingsClass:
     def __init__(self):
         self.store = indexed_db.create_store('cheteme-user')
+        self.renders_store = indexed_db.create_store('cheteme-renders')
         settings = self.store.get('settings')
         self.settings = settings if settings and settings.get('line') else {
             'navigation':5,
@@ -51,3 +52,4 @@ class SettingsClass:
         self.store['settings'] = data
         self.settings = data
         self.apply()
+        self.renders_store.clear()
