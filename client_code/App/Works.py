@@ -166,5 +166,5 @@ class WorksClass:
     def clean_works_content(self):
         if len(self.works_content) > 20:
           sorted_items = sorted(self.works_content.items(), key=lambda item: item[1]['timestamp'])
-          self.works_content = {k: v for k, v in sorted_items[-1:]}
+          self.works_content = {k: v for k, v in sorted_items[-15:]}
           self.store['content'] = self.works_content
