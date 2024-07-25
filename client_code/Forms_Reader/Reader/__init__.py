@@ -16,23 +16,29 @@ class Reader(ReaderTemplate):
 
     self.open_form = NAVIGATION.nav_open_form
 
+
+  def form_show(self, **event):
+    #get data
+    self.work_id = READER.current_id
+    self.work_data = WORKS.get_work_data(self.work_id)
+    self.work_content = WORKS.get_work_content(self.work_id)
+
+    #prep data
     self.open_time = time()
     self.bookmark = READER.get_bookmark(READER.current_id)
     self.time_reading = 0.0 if not self.bookmark else self.bookmark['time_reading']
     self.readed_pages = False if not self.bookmark else self.bookmark['readed_pages']
     self.readed = False if not self.bookmark else self.bookmark['readed']
-    self.min_time = 1 + READER.data['words'] / 100
-    
-  
-    
-    
+    self.min_time = 1 + self.work_data['words'] / 100
 
-  def form_show(self, **event):
 
+
+    
     #prep reader
     self.scroling_pages_info = None
     self.source = document.createElement("div")
-    self.source.innerHTML = READER.content
+    #self.source.innerHTML = READER.content
+    self.source.innerHTML = self.work_content
     self.reader =  document.getElementById("cheteme_reader")
     self.targetHeigth = self.reader.offsetHeight
 
@@ -254,7 +260,7 @@ class Reader(ReaderTemplate):
       self.add_component(link, slot='toc')
 
     self.add_component(Spacer(), slot='toc')
-    words = Label(text=f"{READER.data['words']} думи")
+    words = Label(text=f"{self.work_data['words']} думи")
     words.font = 'Courier New, monospace'
     self.add_component(words, slot='toc')
 
@@ -332,18 +338,18 @@ class Reader(ReaderTemplate):
 
 
   def build_cover(self):
-    data_work = READER.data
+    data_work = self.work_data
     work_id = READER.current_id
-    data_uri = data_work['uri']
-    author_id = data_work['author_id']
-    data_author = READER.get_work_data(author_id)
+    data_uri = self.work_data['uri']
+    author_id = self.work_data['author_id']
+    data_author = WORKS.get_work_data(author_id)
 
     if work_id != author_id:
 
       jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
       if data_work['genres'][0]:
-        jQ('#reader-cover-genres').text(data_work['genres'])
-      jQ('#reader-cover-description').text(data_work['descr'])
+        jQ('#reader-cover-genres').text(self.work_data['genres'])
+      jQ('#reader-cover-description').text(self.work_data['descr'])
     
       if data_author:
         author_uri = data_author['uri']

@@ -9,7 +9,7 @@ def fill_panel(panel_id, works:list):
     
     for work in works:
       work_id = work['work_id']
-      data = READER.get_work_data(work_id)
+      data = WORKS.get_work_data(work_id=work_id)
       cover = WORKS.make_cover(data)
       panel.append(cover)
     

@@ -36,6 +36,10 @@ class ReaderClass:
 
 
     def set_current(self, work_id):
+        self.current_id = work_id
+        return work_id
+        ###
+      
         data = self.get_work_data(work_id)
         content = self.get_work_content(work_id)
         if data and content:
