@@ -28,6 +28,7 @@
 .ch-work-title{
     z-index: 20;
     padding: calc(var(--cover-size) / 30);
+    padding-top: calc(var(--cover-size) / 15);
     width: 100%;
 }
 
