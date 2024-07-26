@@ -63,9 +63,10 @@ class WorksClass:
         color = data["color"]
         bg_color = data["bg_color"]
         image = data['image'] if data['image'] else ''
-        #mask = self.parse_mask_bg(data)
+        
         mask_title = self.parse_mask_title(data)
         mask_icons = self.parse_mask_icons(data)
+        
         fonts = data["font"].split(' ')
         font = fonts[0]
 
@@ -75,15 +76,13 @@ class WorksClass:
         else:
             cover_style = f"""style="background-color: {bg_color};" """ 
         
-        #mask_style = f"""style="background-image:{mask};" """
+        
         mask_style = ''
 
         if len(fonts) == 1:
-            #title_style = f"""style="color:{color};" """
             title_style = f"""style="color:{color}; background-image:{mask_title};" """
         else:
             text_shadow = f"1px 1px 1px {bg_color}, -1px -1px 1px {bg_color}, -1px 1px 1px {bg_color}, 1px -1px 1px {bg_color}"
-            #title_style = f"""style="color:{color}; text-shadow:{text_shadow};" """
             title_style = f"""style="color:{color}; text-shadow:{text_shadow}; background-image:{mask_title};" """
 
         icons_style = f"""style="background-image:{mask_icons};" """
