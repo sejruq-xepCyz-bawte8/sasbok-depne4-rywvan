@@ -1,14 +1,8 @@
+#Form Settings
 from ._anvil_designer import SettingsTemplate
 from anvil import *
-import anvil.server
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.users
 from anvil.js.window import jQuery as jQ
-from ...App import NAVIGATION, SETTINGS, ASSETS, WORKS
+from ...App import NAVIGATION, SETTINGS, WORKS
 
 
 class Settings(SettingsTemplate):
