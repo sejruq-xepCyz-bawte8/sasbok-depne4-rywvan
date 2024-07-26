@@ -1,7 +1,8 @@
+#Cheteme Charts Form
 from ._anvil_designer import ChartsTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
-from ...App import NAVIGATION, READER, API, USER, WORKS
+from ...App import NAVIGATION, READER, WORKS
 from ...Covers_Builder import fill_panel
 from datetime import datetime, timedelta
 
@@ -42,9 +43,8 @@ class Charts(ChartsTemplate):
 
   def form_show(self, **event):
     
-    #self.chart_name = jQ('#chart_name')
     self.filter_toggle(sender=None)
-    #self.chart_name.text("Последни 100 публикувани ")
+  
 
 
 

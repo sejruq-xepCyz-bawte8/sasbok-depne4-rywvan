@@ -1,3 +1,4 @@
+#Cheteme Bookmarks Form
 from ._anvil_designer import BookmarksTemplate
 from anvil import *
 from anvil.js.window import jQuery as jQ
@@ -20,8 +21,6 @@ class Bookmarks(BookmarksTemplate):
     bookmarks_ids = list(READER.bookmarks)
 
     for work_id in bookmarks_ids:
-    
-      #work = READER.bookmarks.get(work_id)
       cover = WORKS.make_cover(work_id=work_id)
       panel.append(cover)
 
