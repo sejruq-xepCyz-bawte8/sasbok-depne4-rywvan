@@ -83,12 +83,13 @@ class ReaderClass:
           return render
         else:
           return None
-    def set_work_render(self, work_id, width, heigth, paginated, pages):
+    def set_work_render(self, work_id, width, heigth, paginated, pages, toc):
       render = {
         'width':width,
         'heigth':heigth,
         'paginated':paginated,
         'pages':pages,
+        'toc':toc,
         'timestamp': time()
       }
       if len(self.renders_store) > 20:

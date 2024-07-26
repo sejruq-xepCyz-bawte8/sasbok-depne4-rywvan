@@ -94,10 +94,11 @@ class Reader(ReaderTemplate):
       self.pageNumber = render['pages']
       self.pagesLabel.textContent = f"{self.mostVisible}/{self.pageNumber}"
       self.reader.innerHTML = render['paginated']
+      self.toc = render['toc']
       
     else:
       self.distribute()
-      READER.set_work_render(work_id=self.work_id, width=self.targetWidth, heigth=self.targetHeigth, paginated=self.reader.innerHTML, pages = self.pageNumber)
+      READER.set_work_render(work_id=self.work_id, width=self.targetWidth, heigth=self.targetHeigth, paginated=self.reader.innerHTML, pages = self.pageNumber, toc=self.toc)
     jQ('.fa-book-open').removeClass('fa-beat')
     
     
