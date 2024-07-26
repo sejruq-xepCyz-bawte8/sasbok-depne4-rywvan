@@ -29,10 +29,12 @@ class Published(PublishedTemplate):
     self.panel.html('')
     for work in self.published_works:
       work_id = work['work_id']
-      data = READER.get_work_data(work_id=work_id)
-      if data:
-        cover = WORKS.make_cover(data)
-        self.panel.append(cover)
+      cover = WORKS.make_cover(work_id)
+      self.panel.append(cover)
+      #data = READER.get_work_data(work_id=work_id)
+      #if data:
+      #  cover = WORKS.make_cover(work_id)
+      #  self.panel.append(cover)
 
   def open_work(self, sender, **event):
     work_id = sender.attr('id')

@@ -29,9 +29,9 @@ class Search(SearchTemplate):
             'search':search,
             'is_author':is_author
         }
-      works, success = API.request(api='search', data=data)
-      if works and success:
-        fill_panel(panel_id='charts-panel', works=works)
+      found_works, success = API.request(api='search', data=data)
+      if found_works and success:
+        fill_panel(panel_id='charts-panel', work_ids=found_works)
     
 
 

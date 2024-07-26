@@ -123,7 +123,7 @@ class Charts(ChartsTemplate):
     if genres:
       self.chart = [c for c in self.chart if c['g'] in genres]
     
-    fill_panel(panel_id='charts-panel', works=self.chart)
+    fill_panel(panel_id='charts-panel', work_ids=self.chart)
 
 
   def unix_today(self):

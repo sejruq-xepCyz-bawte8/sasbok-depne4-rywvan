@@ -20,7 +20,7 @@ class Drafts(DraftsTemplate):
     for work_id in EDITOR.get_draft_ids():
       data = EDITOR.get_work_data(work_id=work_id)
       if data:
-        cover = WORKS.make_cover(data)
+        cover = WORKS.make_cover(work_data=data)
         self.drafts_panel.append(cover)
 
 

@@ -52,10 +52,13 @@ class WorksClass:
         return html
     
     
-    def make_cover(self, work_id:str)->str:
-        data = self.get_work_data(work_id=work_id)
-        if not data:
-            return None
+    def make_cover(self, work_id:str=None, work_data:dict=None)->str:
+        if work_id:
+          data = self.get_work_data(work_id=work_id)
+        elif work_data:
+           data = work_data
+        else:
+            data = self.get_asset('json/work_data_example.json')
 
         color = data["color"]
         bg_color = data["bg_color"]

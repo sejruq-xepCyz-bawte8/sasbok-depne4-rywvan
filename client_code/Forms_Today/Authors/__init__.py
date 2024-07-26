@@ -14,13 +14,10 @@ class Authors(AuthorsTemplate):
     
 
   def form_show(self, **event):
-    #authors = READER.get_authors()
+    
     authors = WORKS.get_chart_data(chart_id = 'authors')
-    #if not authors:
-    #  sleep(0.1)
-    #  authors = READER.get_authors()
       
-    fill_panel(panel_id='authors-panel', works=authors)
+    fill_panel(panel_id='authors-panel', work_ids=authors)
 
   def open_work(self, sender, **event):
 

@@ -21,8 +21,8 @@ class Bookmarks(BookmarksTemplate):
 
     for work_id in bookmarks_ids:
     
-      work = READER.bookmarks.get(work_id)
-      cover = WORKS.make_cover(work['data'])
+      #work = READER.bookmarks.get(work_id)
+      cover = WORKS.make_cover(work_id=work_id)
       panel.append(cover)
 
   def open_work(self, sender, **event):
