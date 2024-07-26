@@ -46,3 +46,7 @@ input{
   padding: 2rem;
   gap: 1rem;
 }
+
+.cover-pane-genre{
+  font-size: 12px;
+}

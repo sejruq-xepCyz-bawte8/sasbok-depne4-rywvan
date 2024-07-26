@@ -1,3 +1,4 @@
+#Cheteme Form Reader
 from ._anvil_designer import ReaderTemplate
 from anvil import *
 from ...App import NAVIGATION, API, READER, WORKS
@@ -104,9 +105,7 @@ class Reader(ReaderTemplate):
         sleep(0.1)
         self.targetHeigth = self.reader.offsetHeight
         self.targetWidth = self.reader.offsetWidth
-        #self.imagesHeigth:int = int(self.targetHeigth / 3)
         self.reader.innerHTML = ''
-        #self.last_scroll = time()
         self.pages = []
         self.currentPage = None
         self.currentParagraph = None
@@ -369,8 +368,13 @@ class Reader(ReaderTemplate):
     if work_id != author_id:
 
       jQ('#reader-cover-image').html(WORKS.make_cover(work_id))
-      if data_work['genres'][0]:
-        jQ('#reader-cover-genres').text(self.work_data['genres'])
+      cover_genres = ''
+      for genre in self.work_data['genres']:
+         if genre:
+            cover_genres += f'<span class="cover-pane-genre">{genre} </span>'
+      #if data_work['genres'][0]:
+      #  jQ('#reader-cover-genres').text(self.work_data['genres'])
+      jQ('#reader-cover-genres').html(cover_genres)
       jQ('#reader-cover-description').text(self.work_data['descr'])
     
       if data_author:
