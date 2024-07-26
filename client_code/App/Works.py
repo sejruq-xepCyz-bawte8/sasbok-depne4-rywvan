@@ -48,7 +48,7 @@ class WorksClass:
 
     def get_example_cover(self):
         example_data = self.get_asset('json/work_data_example.json')
-        html = self.make_cover(example_data)
+        html = self.make_cover(work_data=example_data)
         return html
     
     
