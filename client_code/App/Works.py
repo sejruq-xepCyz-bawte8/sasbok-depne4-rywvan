@@ -141,7 +141,7 @@ class WorksClass:
         opacity = int(data['m_opacity']) / 100
         hex_shadow = data['m_color'].lstrip('#')
         rgb = tuple(int(hex_shadow[i:i+2], 16) for i in (0, 2, 4))
-        background_image = f'linear-gradient(to top, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 0%, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 85%, rgba({rgb[0]},{rgb[1]},{rgb[2]}, 0) 100%)'
+        background_image = f'linear-gradient(to top, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 0%, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 80%, rgba({rgb[0]},{rgb[1]},{rgb[2]}, 0) 100%)'
         return background_image
 
     @staticmethod
