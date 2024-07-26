@@ -83,8 +83,8 @@ class WorksClass:
             title_style = f"""style="color:{color}; background-image:{mask_title};" """
         else:
             text_shadow = f"1px 1px 1px {bg_color}, -1px -1px 1px {bg_color}, -1px 1px 1px {bg_color}, 1px -1px 1px {bg_color}"
-            title_style = f"""style="color:{color}; text-shadow:{text_shadow};" """
-        
+            #title_style = f"""style="color:{color}; text-shadow:{text_shadow};" """
+            title_style = f"""style="color:{color}; text-shadow:{text_shadow}; background-image:{mask_title};" """
 
         icons_style = f"""style="color:{color};" """
 
