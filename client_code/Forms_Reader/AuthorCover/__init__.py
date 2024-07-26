@@ -40,7 +40,7 @@ class AuthorCover(AuthorCoverTemplate):
       work_id = work['work_id']
       data = WORKS.get_work_data(work_id=work_id)
       if data:
-        cover = WORKS.make_cover(data)
+        cover = WORKS.make_cover(work_id)
         self.panel.append(cover)
 
   def form_show(self, **event):

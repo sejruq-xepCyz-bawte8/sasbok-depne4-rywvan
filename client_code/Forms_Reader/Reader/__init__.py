@@ -368,7 +368,7 @@ class Reader(ReaderTemplate):
 
     if work_id != author_id:
 
-      jQ('#reader-cover-image').html(WORKS.make_cover(data_work))
+      jQ('#reader-cover-image').html(WORKS.make_cover(work_id))
       if data_work['genres'][0]:
         jQ('#reader-cover-genres').text(self.work_data['genres'])
       jQ('#reader-cover-description').text(self.work_data['descr'])
