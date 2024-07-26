@@ -63,7 +63,9 @@ class WorksClass:
         color = data["color"]
         bg_color = data["bg_color"]
         image = data['image'] if data['image'] else ''
-        mask = self.parse_mask_bg(data)
+        #mask = self.parse_mask_bg(data)
+        mask_title = self.parse_mask_title(data)
+        mask_icons = self.parse_mask_icons(data)
         fonts = data["font"].split(' ')
         font = fonts[0]
 
@@ -73,15 +75,20 @@ class WorksClass:
         else:
             cover_style = f"""style="background-color: {bg_color};" """ 
         
-        mask_style = f"""style="background-image:{mask};" """
+        #mask_style = f"""style="background-image:{mask};" """
+        mask_style = ''
 
         if len(fonts) == 1:
-            title_style = f"""style="color:{color};" """
+            #title_style = f"""style="color:{color};" """
+            title_style = f"""style="color:{color}; background-image:{mask_title};" """
         else:
             text_shadow = f"1px 1px 1px {bg_color}, -1px -1px 1px {bg_color}, -1px 1px 1px {bg_color}, 1px -1px 1px {bg_color}"
             title_style = f"""style="color:{color}; text-shadow:{text_shadow};" """
         
+
         icons_style = f"""style="color:{color};" """
+
+        icon_style = f"""style="color:{color};" """
 
 
         html_data = {
@@ -92,6 +99,7 @@ class WorksClass:
             "title_style":title_style,
             "title":data["title"],
             "icons_style":icons_style,
+            "icon_style":icon_style,
             "icons":['', '', '', '', '', '']
         }
 
@@ -128,6 +136,21 @@ class WorksClass:
         return background_image
     
 
+    @staticmethod
+    def parse_mask_title(data:dict)->str:
+        opacity = int(data['m_opacity']) / 100
+        hex_shadow = data['m_color'].lstrip('#')
+        rgb = tuple(int(hex_shadow[i:i+2], 16) for i in (0, 2, 4))
+        background_image = f'linear-gradient(to top, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 0%, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 85%, rgba({rgb[0]},{rgb[1]},{rgb[2]}, 0) 100%)'
+        return background_image
+
+    @staticmethod
+    def parse_mask_icons(data:dict)->str:
+        opacity = int(data['m_opacity']) / 100
+        hex_shadow = data['m_color'].lstrip('#')
+        rgb = tuple(int(hex_shadow[i:i+2], 16) for i in (0, 2, 4))
+        background_image = f'linear-gradient(to top, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 0%, rgba({rgb[0]},{rgb[1]},{rgb[2]},{opacity}) 100%)'
+        return background_image
 
     def get_work_data(self, work_id:str):
       if work_id in self.works_data:
