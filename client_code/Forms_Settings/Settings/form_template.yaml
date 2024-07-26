@@ -16,11 +16,12 @@ components:
     properties: {text: Шрифт, font_size: 12, font: ''}
     type: Label
     layout_properties: {grid_position: 'TNAITH,LDGFGO'}
-  - name: drop_down_1
+  - name: dd_font
     properties:
       items: [Adys, Times, 'Calibri,', 'Arial,', Tahoma, Verdana, Trebuchet, CenturyGotic]
     type: DropDown
     layout_properties: {grid_position: 'TNAITH,JRBQUD'}
+    event_bindings: {change: gui_settings_change}
   layout_properties: {slot: default}
 - name: column_panel_2
   properties: {col_widths: '{"EXKEMQ":5,"IRKRCK":55}', col_spacing: tiny, spacing_above: none, spacing_below: none, wrap_on: never}

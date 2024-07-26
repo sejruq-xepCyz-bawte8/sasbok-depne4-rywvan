@@ -14,7 +14,11 @@ class SettingsClass:
             'cover': 150,
             'line':1.1,
             'words':10,
+            'font':'Adys'
             }
+
+        if not 'font' in self.settings:
+          self.settings['font'] = 'Adys'
         self.apply()
 
     def get(self):
@@ -30,6 +34,7 @@ class SettingsClass:
     --nav-size: {self.settings['navigation']}rem;
     --cover-size: {self.settings['cover']}px;
     --words-distance: {self.settings['words']}px;
+    --reader-font: '{self.settings['font']}';
 }}
 """
         element = document.getElementById('user-settings')
