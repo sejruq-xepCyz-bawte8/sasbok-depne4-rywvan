@@ -22,9 +22,10 @@ class AssetsClass:
           
 
     def fetch(self, file_path:str):
-        is_json = True if file_path.endswith('.json') else False      
-        url = f'{self.origin}/_/theme/{file_path}' if self.origin else f'_/theme/{file_path}'
-
+        is_json = True if file_path.endswith('.json') else False
+        #url = f'{self.origin}_/theme/{file_path}'
+        url = f'_/theme/{file_path}'
+        
         try:
             response = anvil.http.request(url=url,method='GET',json=is_json)
         except:
@@ -55,7 +56,8 @@ class AssetsClass:
           self.store[file_path] = asset
           self.assets[file_path] = asset
           return asset
-        return None
+        else:
+          return None
 
 
     
