@@ -37,7 +37,7 @@ class Cover(CoverTemplate):
 
   def paint_cover(self):
     self.cover.html('')
-    cover = WORKS.make_cover(EDITOR.data)
+    cover = WORKS.make_cover(work_data=EDITOR.data)
  
     self.cover.append(cover)
     self.title = jQ('.ch-work-title')

@@ -30,12 +30,20 @@ components:
     properties: {text: 'Пермалинк автор:', bold: false, align: center}
     type: Label
     layout_properties: {}
-  - name: label_3
-    properties: {text: chete.me/}
-    type: Label
-  - name: author_uri
-    properties: {role: outlined, text: '', placeholder: частта след chete.me, align: left}
-    type: TextBox
+  - name: flow_panel_3
+    properties: {spacing: none}
+    type: FlowPanel
+    components:
+    - name: label_3
+      properties: {text: chete.me/, font_size: 12, bold: false, font: Oswald, foreground: blue}
+      type: Label
+      layout_properties: {}
+    - name: author_uri
+      properties: {role: outlined, text: '', placeholder: частта след chete.me, align: left, font_size: 12, bold: false, font: Oswald, foreground: blue}
+      type: TextBox
+      layout_properties: {expand: true}
+      event_bindings: {change: author_uri_change}
+    layout_properties: {}
   - name: b_author_uri
     properties: {text: Запиши, role: outlined-button, align: center, icon: 'fa:save'}
     type: Button
@@ -48,22 +56,24 @@ components:
   properties: {}
   type: Label
   layout_properties: {slot: default}
+- name: label_2
+  properties: {text: 'Пермалинк:'}
+  type: Label
+  layout_properties: {slot: default}
 - name: flow_panel_1
   properties: {spacing: none}
   type: FlowPanel
   layout_properties: {slot: default}
   components:
-  - name: label_2
-    properties: {text: 'Пермалинк:'}
-    type: Label
   - name: prelink
     type: Label
     layout_properties: {}
-- name: work_uri
-  properties: {role: outlined, text: '', placeholder: частта накрая на линка}
-  type: TextBox
-  layout_properties: {slot: default}
-  event_bindings: {change: work_uri_change}
+    properties: {align: right, bold: false, font_size: 12, font: Oswald, foreground: blue}
+  - name: work_uri
+    properties: {role: outlined, text: '', placeholder: частта накрая на линка, font_size: 12, bold: false, font: Oswald, foreground: blue}
+    type: TextBox
+    layout_properties: {expand: true}
+    event_bindings: {change: work_uri_change}
 - name: age
   properties: {checked_color: 'theme:Error', text_post: Неподходящо за непълнолетни}
   type: form:dep_p86ky6m5lr9fp:Switch

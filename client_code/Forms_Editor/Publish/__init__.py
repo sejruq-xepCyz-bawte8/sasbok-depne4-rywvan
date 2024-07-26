@@ -224,6 +224,11 @@ class Publish(PublishTemplate):
     EDITOR.data['age'] = 1 if self.age.checked else 0
     EDITOR.save_work()
 
+  def author_uri_change(self, sender, **event_args):
+    zod_uri(sender)
+    self.b_author_uri.enabled = sender.valid
+    
+
 
 
 
