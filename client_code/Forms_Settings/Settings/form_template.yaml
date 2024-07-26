@@ -18,7 +18,7 @@ components:
     layout_properties: {grid_position: 'TNAITH,LDGFGO'}
   - name: dd_font
     properties:
-      items: [Adys, Times, 'Calibri,', 'Arial,', Tahoma, Verdana, Trebuchet, CenturyGotic]
+      items: []
     type: DropDown
     layout_properties: {grid_position: 'TNAITH,JRBQUD'}
     event_bindings: {change: gui_settings_change}

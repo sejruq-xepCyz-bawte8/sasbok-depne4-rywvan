@@ -25,6 +25,10 @@ class SettingsClass:
         return self.settings
 
     def apply(self):
+        if self.settings['font'] in FONTS:
+          font = FONTS[self.settings['font']]
+        else:
+          font = 'Adys'
         style = f"""
         :root {{
     --h1-size: {self.settings['text'] * 1.2}rem;
@@ -34,7 +38,7 @@ class SettingsClass:
     --nav-size: {self.settings['navigation']}rem;
     --cover-size: {self.settings['cover']}px;
     --words-distance: {self.settings['words']}px;
-    --reader-font: '{self.settings['font']}';
+    --reader-font: {font};
 }}
 """
         element = document.getElementById('user-settings')
@@ -52,3 +56,19 @@ class SettingsClass:
         self.settings = data
         self.apply()
         self.renders_store.clear()
+
+
+
+
+
+FONTS = {
+  'Adys':'Adys',
+  'Arial':"'Arial', sans-serif",
+  'Calibri':"'Calibri', sans-serif",
+  'Century Gothic':"'Century Gothic', sans-serif",
+  'Courier':"'Courier New CYR', 'Courier New', monospace",
+  'Tahoma':"'Tahoma', sans-serif",
+  'Trebuchet':"'Trebuchet MS', sans-serif",
+  'Times New Roman':"'Times New Roman', serif",
+  'Verdana':"'Verdana', sans-serif"
+}

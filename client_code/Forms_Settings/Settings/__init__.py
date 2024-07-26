@@ -13,7 +13,7 @@ class Settings(SettingsTemplate):
 
     self.settings = SETTINGS.get()
     
-
+    self.dd_font.items = FONTS
 
   def form_show(self, **event):
     self.cover_panel = jQ('#cover')
@@ -40,3 +40,18 @@ class Settings(SettingsTemplate):
 
   def open_work(self, sender, **event):
     pass
+
+
+
+FONTS = [
+    'Adys',
+  'Arial',
+  'Calibri',
+  'Century Gothic',
+  'Courier',
+  'Tahoma',
+  'Trebuchet',
+  'Times New Roman',
+  'Verdana'
+]
+
