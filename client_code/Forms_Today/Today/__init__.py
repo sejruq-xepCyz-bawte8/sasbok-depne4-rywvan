@@ -1,12 +1,12 @@
 #Cheteme Today Form
 from ._anvil_designer import TodayTemplate
 from anvil import *
-from ...App import NAVIGATION, READER, USER, API, WORKS
+from ...App import NAVIGATION, READER, WORKS
 from ...Covers_Builder import fill_panel
 from anvil.js.window import jQuery as jQ
 from anvil.js import window
 from anvil_extras import non_blocking
-import anvil.server
+
 
 
 class Today(TodayTemplate):
@@ -15,7 +15,6 @@ class Today(TodayTemplate):
     self.init_components(**properties)
     self.today = []
     self.open_form = NAVIGATION.nav_open_form
-
     READER.set_back("today")
 
 
@@ -33,11 +32,10 @@ class Today(TodayTemplate):
     #make today page      
     self.liked_title = jQ('#liked_title')
     self.readed_title = jQ('#readed_title')
-
     self.paint_today()
-    today_first_update = non_blocking.defer(self.paint_today, 1)
-    today_second_update = non_blocking.defer(self.paint_today, 3)
-    today_next_updates = non_blocking.repeat(self.paint_today, 30)
+    #make page with updates
+    today_defer_update = non_blocking.defer(self.paint_today, 2)
+    today_repeat_updates = non_blocking.repeat(self.paint_today, 30)
   
   def paint_today(self):
     new_today = WORKS.get_chart_data(chart_id = 'home')
