@@ -4,28 +4,91 @@ container:
   properties: {html: '@theme:html/settings/visuals.html'}
   event_bindings: {show: form_show}
 components:
-- name: slider_text_size
-  properties: {max: 4, min: 1, start: 2, step: 0.1}
-  type: form:dep_p86ky6m5lr9fp:Slider
-  event_bindings: {change: gui_settings_change}
-  layout_properties: {slot: text}
-- name: slider_words_distance
-  properties: {max: 40, min: 1, start: 10, step: 1}
-  type: form:dep_p86ky6m5lr9fp:Slider
-  event_bindings: {change: gui_settings_change}
-  layout_properties: {slot: words}
-- name: slider_line_size
-  properties: {max: 2, min: 1, start: 1.1, step: 0.1}
-  type: form:dep_p86ky6m5lr9fp:Slider
-  event_bindings: {change: gui_settings_change}
-  layout_properties: {slot: line}
-- name: slider_nav_size
-  properties: {max: 8, min: 3, start: 5, step: 0.25}
-  type: form:dep_p86ky6m5lr9fp:Slider
-  event_bindings: {change: gui_settings_change}
-  layout_properties: {slot: navigation}
-- name: slider_cover_size
-  properties: {max: 300, min: 75, start: 150, step: 5}
-  type: form:dep_p86ky6m5lr9fp:Slider
-  event_bindings: {change: gui_settings_change}
-  layout_properties: {slot: cover}
+- name: linear_panel_1
+  properties: {}
+  type: LinearPanel
+  layout_properties: {slot: default}
+  components:
+  - name: flow_panel_6
+    properties: {}
+    type: FlowPanel
+    components:
+    - name: l_reader_font
+      properties: {text: Шрифт Четец}
+      type: Label
+      layout_properties: {}
+    - name: drop_down_1
+      properties:
+        items: [Adys, 'Times,', 'Calibri,', 'Arial,', 'Tahoma,', 'Verdana,']
+      type: DropDown
+      layout_properties: {}
+  - name: flow_panel_1
+    properties: {spacing: tiny}
+    type: FlowPanel
+    components:
+    - name: l_text_size
+      properties: {text: 'Разм. Текст '}
+      type: Label
+      layout_properties: {width: null, expand: false}
+    - name: slider_text_size
+      properties: {max: 4, min: 1, start: 2, step: 0.1}
+      type: form:dep_p86ky6m5lr9fp:Slider
+      event_bindings: {change: gui_settings_change}
+      layout_properties: {expand: true}
+    layout_properties: {}
+  - name: flow_panel_2
+    properties: {spacing: tiny}
+    type: FlowPanel
+    components:
+    - name: l_words_distance
+      properties: {text: Разст. Думи}
+      type: Label
+      layout_properties: {width: 20}
+    - name: slider_words_distance
+      properties: {max: 40, min: 1, start: 10, step: 1}
+      type: form:dep_p86ky6m5lr9fp:Slider
+      event_bindings: {change: gui_settings_change}
+      layout_properties: {expand: true}
+    layout_properties: {}
+  - name: flow_panel_3
+    properties: {spacing: tiny}
+    type: FlowPanel
+    components:
+    - name: l_line_size
+      properties: {text: Междуредие}
+      type: Label
+      layout_properties: {width: 300}
+    - name: slider_line_size
+      properties: {max: 2, min: 1, start: 1.1, step: 0.1}
+      type: form:dep_p86ky6m5lr9fp:Slider
+      event_bindings: {change: gui_settings_change}
+      layout_properties: {expand: true}
+    layout_properties: {}
+  - name: flow_panel_4
+    properties: {spacing: tiny}
+    type: FlowPanel
+    components:
+    - name: l_nav_size
+      properties: {text: 'Навигация    '}
+      type: Label
+      layout_properties: {}
+    - name: slider_nav_size
+      properties: {max: 8, min: 3, start: 5, step: 0.25}
+      type: form:dep_p86ky6m5lr9fp:Slider
+      event_bindings: {change: gui_settings_change}
+      layout_properties: {expand: true}
+    layout_properties: {}
+  - name: flow_panel_5
+    properties: {align: left, spacing: tiny}
+    type: FlowPanel
+    components:
+    - name: l_cover_size
+      properties: {text: Разм.Корици}
+      type: Label
+      layout_properties: {}
+    - name: slider_cover_size
+      properties: {max: 300, min: 75, start: 150, step: 5}
+      type: form:dep_p86ky6m5lr9fp:Slider
+      event_bindings: {change: gui_settings_change}
+      layout_properties: {expand: true, width: null}
+    layout_properties: {}
