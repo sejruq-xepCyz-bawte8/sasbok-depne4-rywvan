@@ -86,7 +86,7 @@ class WorksClass:
             #title_style = f"""style="color:{color}; text-shadow:{text_shadow};" """
             title_style = f"""style="color:{color}; text-shadow:{text_shadow}; background-image:{mask_title};" """
 
-        icons_style = f"""style="color:{color};" """
+        icons_style = f"""style="background-image:{mask_icons};" """
 
         icon_style = f"""style="color:{color};" """
 
