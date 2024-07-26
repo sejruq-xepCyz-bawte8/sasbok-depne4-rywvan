@@ -47,19 +47,19 @@ class Today(TodayTemplate):
 
   def fill_last(self):
       last = self.today.get('last_10')
-      fill_panel(panel_id='published', work_ids=last)
+      fill_panel(panel_id='published', works=last)
 
   def fill_readed(self):
       text_readed = self.today.get('text_readed')
       self.readed_title.text(f'Най-четени {text_readed}')
       chart_readed = self.today.get('chart_readed')
-      fill_panel(panel_id='readed', work_ids=chart_readed)
+      fill_panel(panel_id='readed', works=chart_readed)
 
   def fill_liked(self):
       text_liked = self.today.get('text_liked')
       self.liked_title.text(f'Най-харесвани {text_liked}')
       liked = self.today.get('chart_liked')
-      fill_panel(panel_id='liked', work_ids=liked)
+      fill_panel(panel_id='liked', works=liked)
 
 
   def open_work(self, sender, **event):

@@ -31,7 +31,7 @@ class Search(SearchTemplate):
         }
       found_works, success = API.request(api='search', data=data)
       if found_works and success:
-        fill_panel(panel_id='charts-panel', work_ids=found_works)
+        fill_panel(panel_id='charts-panel', works=found_works)
     
 
 

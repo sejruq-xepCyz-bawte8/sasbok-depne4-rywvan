@@ -17,7 +17,7 @@ class Authors(AuthorsTemplate):
     
     authors = WORKS.get_chart_data(chart_id = 'authors')
       
-    fill_panel(panel_id='authors-panel', work_ids=authors)
+    fill_panel(panel_id='authors-panel', works=authors)
 
   def open_work(self, sender, **event):
 
