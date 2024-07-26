@@ -5,7 +5,7 @@ container:
   event_bindings: {show: form_show}
 components:
 - name: search_for
-  properties: {role: outlined, placeholder: +/- за И/Не; за автор -->}
+  properties: {role: outlined}
   type: TextBox
   layout_properties: {expand: true}
   event_bindings: {pressed_enter: b_search_click}

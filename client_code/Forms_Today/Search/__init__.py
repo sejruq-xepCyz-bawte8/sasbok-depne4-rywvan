@@ -19,7 +19,7 @@ class Search(SearchTemplate):
 
   def form_show(self, **event):
     self.chart_panel = jQ('#charts-panel')
-    self.chart_panel.text('+/- за И/Не; за автор -->')
+    self.chart_panel.html(HELP)
 
   def b_search_click(self, sender, **event):
     search = self.search_for.text
@@ -43,3 +43,10 @@ class Search(SearchTemplate):
       open_form('Forms_Reader.Reader')
 
     
+HELP = """
+<p>въведете ключови думи за търсене с интервал между тях</p>
+<p>търсенето е за някоя от въведените думи, ако желаете го ограничите:</p>
+<p>-минус пред дума ще търси резултати изключващи я</p>
+<p>+плюс пред дума ще търси резултати задължително с нея</p>
+<p>за да търсите автори активирайте ключа до текстовото поле</p>
+"""
