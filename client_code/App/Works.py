@@ -1,3 +1,4 @@
+#Cheteme Works
 from anvil_extras.storage import indexed_db
 from anvil_extras import non_blocking
 import anvil.http
@@ -11,7 +12,6 @@ class WorksClass:
         self.store = indexed_db.create_store('cheteme-works')
         self.contents_store = indexed_db.create_store('cheteme-content')
 
-        
         self.get_asset = fn_asset_get
         self.get_icon = fn_awesome_get
         self.data_template = fn_asset_get('json/work_data.json')
@@ -20,12 +20,9 @@ class WorksClass:
         self.works_data = self.store.get('data')
         self.charts = self.store.get('charts')
  
-
-      
         if not self.works_data:
           self.works_data:dict = {}
-        
-        
+   
         if not self.charts:
               self.charts:dict = {}
 
@@ -55,7 +52,8 @@ class WorksClass:
         return html
     
     
-    def make_cover(self, data:dict)->str:
+    def make_cover(self, work_id:str)->str:
+        data = self.get_work_data(work_id=work_id)
         if not data:
             return None
 

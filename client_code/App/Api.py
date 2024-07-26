@@ -1,26 +1,11 @@
+#Cheteme API
 import anvil.http
 import json
-from ..Helpers import hash_args
-from anvil_extras.storage import indexed_db
-from time import sleep, time
-
-
-
-NO_CACHE_APIS = ['new_user', 'author_uri', 'publish_work', 'merge_users_ticket', 'merge_users', 'engage_ostay', 'engage_readed', 'engage_liked', 'engage_comment']
-
-#together with info if is
-REDO = ['get_last', 'get_work_social', 'get_authors', 'get_chart', 'get_work_data', 'get_work_content', 'get_home']
-
-CACHE = ['get_last', 'get_chart', 'get_work_data', 'get_home'] #, 'get_work_social'
-
-
 
 class ApiClass:
     def __init__(self, get_user, version, origin:str):
         self.origin = origin
         self.user = get_user
-        self.store = indexed_db.create_store('cheteme-cache')
-        self.store.clear()
         self.version = str(version)
 
         user = self.user()
@@ -50,17 +35,7 @@ class ApiClass:
         return headers
         
     def request(self, api:str, data:dict=None, info:str=None):
-        
         response, status = self.http_request(api=api, info=info, data=data)
-
-        #try again :)
-        if status != 200 and api in REDO:
-            sleep(0.1)
-            response, status = self.http_request(api=api, info=info, data=data)
-        if status != 200 and api in REDO:
-            sleep(0.1)
-            response, status = self.http_request(api=api, info=info, data=data)
-
 
         if isinstance(response, list):
             return response, status
@@ -76,32 +51,10 @@ class ApiClass:
 
     def http_request(self, api, info, data):
         headers = self.parse_headers(api=api, info=info)
-        
-        if api == 'get_work_data':
-            url = f'{self.origin}/wd-{info}'
-        elif api == 'get_work_content':
-            url = f'{self.origin}/wc-{info}'
-        elif api == 'get_last': #https://get-last.chete.me/
-            url = f'{self.origin}/chart_last_age_{self.age}'
-        elif api == 'get_chart':
-            url = f'{self.origin}/chart_{info}_age_{self.age}'
-        elif api == 'get_home': #separate
-            url = f'{self.origin}/chart_home_age_{self.age}'
-        elif api == 'get_authors':
-            url = f'{self.origin}/chart_authors_age_{self.age}'
-        else:
-            url = f'{self.origin}/ch'
-
-        if api in CACHE:
-            response = self.fetch_cache(url=url)
-            if response:
-                return response, 200
-
+        url = f'{self.origin}/ch'
 
         if data:
-            #print('POST')
             headers['Content-Type'] = 'application/json'
-            #payload = json.dumps(data) if data else ''
             payload = data
             try:
                 response = anvil.http.request(
@@ -117,7 +70,6 @@ class ApiClass:
                 status = e.status
         else:
             try:
-                #print('GET')
                 response = anvil.http.request(
                                         url=url,
                                         headers = headers,
@@ -129,35 +81,7 @@ class ApiClass:
                 response = None
                 status = e.status
 
-        if api in CACHE and status == 200:
-            self.update_cache(url=url, response=response)
-
         return response, status
     
 
-    def fetch_cache(self, url):
 
-        cache = self.cache.get(url)
-        
-        if cache:
-            timestamp = cache.get('timestamp')
-            if time() - timestamp < 600:
-                response = cache.get('response')
-                if response:
-                    return response
-                else:
-                    del self.cache[url]
-            else:
-                del self.cache[url]
-        
-        return None
-    
-    def update_cache(self, url, response):
-        cache = {
-            'response':response,
-            'timestamp':time()
-        }
-        self.cache[url] = cache
-                    
-    def get_work_data(self, work_id):
-      pass

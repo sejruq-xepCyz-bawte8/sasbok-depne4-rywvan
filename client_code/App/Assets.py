@@ -1,13 +1,7 @@
-import anvil.server
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.users
+#Cheteme Assets
 import anvil.http
 from anvil_extras.storage import indexed_db
-from time import time
+from time import time, sleep
 
 
 class AssetsClass:
@@ -16,10 +10,21 @@ class AssetsClass:
         self.assets:dict = {}
         self.store = indexed_db.create_store('cheteme-assets')
         self.version = version
+        old_version = self.store.get('assets-version')
+        if old_version and old_version != self.version:
+          self.store.clear()
+          while len(self.store) != 0:
+            sleep(0.1)
+          self.store['assets-version'] = self.version
+          
+        elif not old_version:
+          self.store['assets-version'] = self.version
+          
 
     def fetch(self, file_path:str):
         is_json = True if file_path.endswith('.json') else False      
-        url = f'{self.origin}/_/theme/{file_path}'
+        #url = f'{self.origin}/_/theme/{file_path}'
+        url = f'_/theme/{file_path}'
         if not self.origin:
           url = f'_/theme/{file_path}'
         try:
@@ -38,27 +43,23 @@ class AssetsClass:
 
     def get(self, file_path:str):
         asset = self.assets.get(file_path)
-        if asset: return asset
-        asset = self.get_cache(file_path)
-        if asset: return asset
-        asset = self.fetch(file_path=file_path)
-        self.save_cache(file_path=file_path, response=asset)
-        return asset
-
-    def get_cache(self, file_path:str):
+        if asset:
+          return asset
+        
         asset = self.store.get(file_path)
         if asset:
-            asset_version = asset['version']
-            if asset_version == self.version:
-                self.assets[file_path] = asset['response']
-                return asset['response']
+          self.assets[file_path] = asset
+          return asset
+          
+        asset = self.fetch(file_path=file_path)
+
+        if asset:
+          self.store[file_path] = asset
+          self.assets[file_path] = asset
+          return asset
         return None
+
+
     
-    def save_cache(self, file_path:str, response):
-        self.store[file_path] = {
-            'response':response,
-            'version':self.version,
-            'ctime':time()
-        }
-        self.assets[file_path] = response
+
     

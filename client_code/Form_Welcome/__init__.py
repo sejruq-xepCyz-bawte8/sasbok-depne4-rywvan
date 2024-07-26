@@ -1,3 +1,4 @@
+#Cheteme Welcome Form
 from ._anvil_designer import Form_WelcomeTemplate
 from anvil import *
 import anvil.http
@@ -14,7 +15,7 @@ class Form_Welcome(Form_WelcomeTemplate):
     super().__init__(**properties)
     self.init_components(**properties)
     self.hostname = window.location.hostname
-    print(self.hostname)
+    
     if self.hostname == "chete.me":
       self.api = 'https://chete.me/api/'
     elif self.hostname == "vwr5aszhyruvl4sa.anvil.app":

@@ -1,16 +1,12 @@
-from .App import READER, WORKS
+#Cheteme Covers Builder
+from .App import WORKS
 from anvil.js.window import jQuery as jQ
 
-
 def fill_panel(panel_id, works:list):
-    
     panel = jQ(f'#{panel_id}')
     panel.html('')
-    
     for work in works:
-      work_id = work['work_id']
-      data = WORKS.get_work_data(work_id=work_id)
-      cover = WORKS.make_cover(data)
+      cover = WORKS.make_cover(work_id=work['work_id'])
       panel.append(cover)
     
 

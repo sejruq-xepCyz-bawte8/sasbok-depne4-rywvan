@@ -1,10 +1,3 @@
-import anvil.server
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.users
 #Cheteme App
 from .Browser import BrowserClass
 from .Navigation import NavigationClass
@@ -19,7 +12,7 @@ from .Reader import ReaderClass
 
 print('ЧетеМе')
 
-VERSION = 14
+VERSION = 15
 
 BROWSER:BrowserClass = None
 ASSETS:AssetsClass = None
