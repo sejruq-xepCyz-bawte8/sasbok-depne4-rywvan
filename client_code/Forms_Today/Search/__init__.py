@@ -22,6 +22,7 @@ class Search(SearchTemplate):
     self.chart_panel.html(HELP)
 
   def b_search_click(self, sender, **event):
+    self.chart_panel.text('търсене...')
     search = self.search_for.text
     is_author = 1 if self.switch_1.checked else 0
     self.chart_panel.html('')
