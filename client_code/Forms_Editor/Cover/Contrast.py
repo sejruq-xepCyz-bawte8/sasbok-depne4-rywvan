@@ -71,4 +71,4 @@ if __name__ == "__main__":
     target_contrast = 6
 
     adjusted_color = adjust_color_for_contrast(base_color, second_color, target_contrast)
-    print("Adjusted Color:", adjusted_color)
+    

@@ -15,18 +15,17 @@ client is None when executing in the browser, or when executing on an Uplink but
 
 @anvil.server.callable
 def execute_ticket(ticket:str):
-  print('execute_ticket')
-  
+
   client = anvil.server.context.client
   ip = client.ip #192.168.65.1
   type = client.type #browser
 
   if type == "browser" and ip != "192.168.65.1":
-    print("production")
+
     url = 'https://chete.me/api/anvil'
     request(api='ticket', info=ticket, url=url)
   else:
-    print("dev")
+   
     url = 'http://192.168.0.101:8787'
     request(api='ticket', info=ticket, url=url)
 

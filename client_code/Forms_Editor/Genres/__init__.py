@@ -173,7 +173,7 @@ class Genres(GenresTemplate):
 
   def click_keyword(self, sender, *event):
     keyword = sender.attr('keyword')
-    print(keyword)
+    
     sender.text = ''
     EDITOR.data['keywords'].append(keyword)
     EDITOR.save_work()
