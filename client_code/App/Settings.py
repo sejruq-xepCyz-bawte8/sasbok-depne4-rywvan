@@ -14,7 +14,11 @@ class SettingsClass:
             'cover': 150,
             'line':1.1,
             'words':10,
+            'font':'Adys'
             }
+
+        if not 'font' in self.settings:
+          self.settings['font'] = 'Adys'
         self.apply()
 
     def get(self):
@@ -30,6 +34,7 @@ class SettingsClass:
     --nav-size: {self.settings['navigation']}rem;
     --cover-size: {self.settings['cover']}px;
     --words-distance: {self.settings['words']}px;
+    --reader-font: {FONTS[self.settings['font']]};
 }}
 """
         element = document.getElementById('user-settings')
@@ -47,3 +52,19 @@ class SettingsClass:
         self.settings = data
         self.apply()
         self.renders_store.clear()
+
+
+
+
+
+FONTS = {
+  'Adys':'Adys',
+  'Arial':"'Arial', sans-serif",
+  'Calibri':"'Calibri', sans-serif",
+  'Century Gothic':"'Century Gothic', sans-serif",
+  'Courier':"'Courier New CYR', 'Courier New', monospace",
+  'Tahoma':"'Tahoma', sans-serif",
+  'Trebuchet':"'Trebuchet MS', sans-serif",
+  'Times New Roman':"'Times New Roman', serif",
+  'Verdana':"'Verdana', sans-serif"
+}

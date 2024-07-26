@@ -13,7 +13,7 @@ class Settings(SettingsTemplate):
 
     self.settings = SETTINGS.get()
     
-
+    self.dd_font.items = FONTS
 
   def form_show(self, **event):
     self.cover_panel = jQ('#cover')
@@ -25,17 +25,33 @@ class Settings(SettingsTemplate):
     self.slider_nav_size.value = self.settings['navigation']
     self.slider_cover_size.value = self.settings['cover']
     self.slider_words_distance.value = self.settings['words']
+    self.dd_font.selected_value = self.settings['font']
 
-
-  def gui_settings_change(self, handle, **event_args):
+  def gui_settings_change(self, handle=None, **event_args):
     settings = {
       'text':self.slider_text_size.value,
       'line':self.slider_line_size.value,
       'navigation':self.slider_nav_size.value,
       'cover':self.slider_cover_size.value,
-      'words':int(self.slider_words_distance.value)
+      'words':int(self.slider_words_distance.value),
+      'font':self.dd_font.selected_value
     }
     SETTINGS.set(data=settings)
 
   def open_work(self, sender, **event):
     pass
+
+
+
+FONTS = [
+    'Adys',
+  'Arial',
+  'Calibri',
+  'Century Gothic',
+  'Courier',
+  'Tahoma',
+  'Trebuchet',
+  'Times New Roman',
+  'Verdana'
+]
+
