@@ -38,3 +38,10 @@ input{
     border-color: %color:On Disabled%;
     background-color: transparent;
   }
+
+
+.help {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
