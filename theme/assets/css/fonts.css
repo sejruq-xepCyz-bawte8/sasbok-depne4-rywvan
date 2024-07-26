@@ -33,7 +33,7 @@
   font-weight: 400;
   font-style: normal;
   font-size: calc(var(--cover-size) / 8);
-  letter-spacing : -5px;
+  letter-spacing : -6px;
   line-height: calc(var(--cover-size) / 8);
   }
   
