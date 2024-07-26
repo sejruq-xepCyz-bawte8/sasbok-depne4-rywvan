@@ -88,7 +88,7 @@ class WorksClass:
 
         icons_style = f"""style="background-image:{mask_icons};" """
 
-        icon_style = f"""style="color:{color};" """
+        icon_style = f"""style="color:{color}; background-image:none;" """
 
 
         html_data = {
