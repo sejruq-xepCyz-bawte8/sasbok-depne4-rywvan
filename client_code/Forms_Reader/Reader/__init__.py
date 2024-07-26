@@ -369,13 +369,13 @@ class Reader(ReaderTemplate):
 
       jQ('#reader-cover-image').html(WORKS.make_cover(work_id))
       cover_genres = ''
+      cover_descr = f'<div class="cover-pane-genre">{self.work_data['descr']}</div>'
       for genre in self.work_data['genres']:
          if genre:
             cover_genres += f'<span class="cover-pane-genre">{genre} </span>'
-      #if data_work['genres'][0]:
-      #  jQ('#reader-cover-genres').text(self.work_data['genres'])
+
       jQ('#reader-cover-genres').html(cover_genres)
-      jQ('#reader-cover-description').text(self.work_data['descr'])
+      jQ('#reader-cover-description').html(cover_descr)
     
       if data_author:
         author_uri = data_author['uri']
