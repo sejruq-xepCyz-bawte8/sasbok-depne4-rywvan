@@ -12,7 +12,7 @@ from .Reader import ReaderClass
 
 print('ЧетеМе')
 
-VERSION = 16
+VERSION = 17
 
 BROWSER:BrowserClass = None
 ASSETS:AssetsClass = None
