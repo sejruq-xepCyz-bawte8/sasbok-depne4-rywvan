@@ -47,7 +47,7 @@ def init_app():
   
     ORIGIN_API = 'https://chete.me/api'
     #ORIGIN_APP = 'https://chete.me/' #if BROWSER.hostname == "chete.me" else ''
-    ORIGIN_APP = './'
+    ORIGIN_APP = ''
   
     USER = UserClass()
     ASSETS = AssetsClass(origin=ORIGIN_APP, version=VERSION)
