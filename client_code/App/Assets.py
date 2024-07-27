@@ -11,7 +11,7 @@ class AssetsClass:
         self.store = indexed_db.create_store('cheteme-assets')
         self.version = version
         old_version = self.store.get('assets-version')
-        if old_version and old_version != self.version:
+        if not old_version or old_version != self.version:
           self.store.clear()
           while len(self.store) != 0:
             sleep(0.1)
