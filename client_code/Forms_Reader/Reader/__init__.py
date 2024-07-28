@@ -286,8 +286,9 @@ class Reader(ReaderTemplate):
     words = Label(text=f"{self.work_data['words']} думи")
     words.font = 'Courier New, monospace'
     self.add_component(words, slot='toc')
-
-
+    if self.bookmark:
+       page = self.bookmark['page']
+       self.scroll_reader(page=page)
   def toc_h1_click(self, **event):
     sender = event['sender']
     document.getElementById(sender.page).scrollIntoView({ 'behavior': 'smooth', 'block': 'start' })
