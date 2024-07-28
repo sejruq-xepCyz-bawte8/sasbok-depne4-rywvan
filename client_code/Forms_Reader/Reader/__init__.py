@@ -289,6 +289,9 @@ class Reader(ReaderTemplate):
     if self.bookmark:
        page = self.bookmark['page']
        self.scroll_reader(page=page)
+       print(page)
+
+       
   def toc_h1_click(self, **event):
     sender = event['sender']
     document.getElementById(sender.page).scrollIntoView({ 'behavior': 'smooth', 'block': 'start' })
