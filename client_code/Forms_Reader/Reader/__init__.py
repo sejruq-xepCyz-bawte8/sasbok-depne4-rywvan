@@ -218,6 +218,8 @@ class Reader(ReaderTemplate):
               
       self.pagesLabel.textContent = f"{self.mostVisible}/{self.pageNumber}"
       self.check_readed()
+      if self.bookmark:
+            READER.update_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
 
   def check_readed(self):
       self.time_reading = time() - self.open_time
@@ -239,8 +241,7 @@ class Reader(ReaderTemplate):
   def scroll_reader(self, page, *event):
         non_blocking.cancel(self.scroling_pages_info)
         self.scroling_pages_info = non_blocking.defer(self.parse_most_visible, 0.2)
-        if self.bookmark:
-            READER.update_bookmark(page=self.mostVisible, time_reading=self.time_reading, readed=self.readed, readed_pages=self.readed_pages)
+        
        
 
 
@@ -291,7 +292,7 @@ class Reader(ReaderTemplate):
        self.scroll_reader(page=page)
        print(page)
 
-       
+
   def toc_h1_click(self, **event):
     sender = event['sender']
     document.getElementById(sender.page).scrollIntoView({ 'behavior': 'smooth', 'block': 'start' })
