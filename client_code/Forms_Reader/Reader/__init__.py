@@ -98,6 +98,9 @@ class Reader(ReaderTemplate):
     else:
       self.distribute()
       READER.set_work_render(work_id=self.work_id, width=self.targetWidth, heigth=self.targetHeigth, paginated=self.reader.innerHTML, pages = self.pageNumber, toc=self.toc)
+    
+    jQ('.fa-book-open').removeClass('fa-beat')
+    sleep(0.1)
     jQ('.fa-book-open').removeClass('fa-beat')
     
     #build toc
