@@ -290,7 +290,7 @@ class Reader(ReaderTemplate):
     if self.bookmark:
        page = self.bookmark['page']
        document.getElementById(page).scrollIntoView({ 'behavior': 'smooth', 'block': 'start' })
-       print(page)
+     
 
 
   def toc_h1_click(self, **event):
