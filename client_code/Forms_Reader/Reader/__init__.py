@@ -82,8 +82,7 @@ class Reader(ReaderTemplate):
         self.work_data = self.bookmark['data']
         self.work_content = self.bookmark['content']
     
-    #build panels
-    toc = non_blocking.defer(self.build_toc, 0)
+    #build social and cover
     social = non_blocking.defer(self.build_social, 0)
     cover = non_blocking.defer(self.build_cover, 0)
 
@@ -101,6 +100,9 @@ class Reader(ReaderTemplate):
       READER.set_work_render(work_id=self.work_id, width=self.targetWidth, heigth=self.targetHeigth, paginated=self.reader.innerHTML, pages = self.pageNumber, toc=self.toc)
     jQ('.fa-book-open').removeClass('fa-beat')
     
+    #build toc
+    toc = non_blocking.defer(self.build_toc, 0)
+
     
   def distribute(self):
         sleep(0.1)
