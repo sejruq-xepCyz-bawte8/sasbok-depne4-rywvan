@@ -23,13 +23,13 @@ class AssetsClass:
 
     def fetch(self, file_path:str):
         is_json = True if file_path.endswith('.json') else False
-        url = f'{self.origin}_/theme/{file_path}'
+        #url = f'{self.origin}_/theme/{file_path}'
         #if self.origin == "chete.me":
-        #  url = f'https://chete.me/_/theme/{file_path}'
+        url = f'https://chete.me/_/theme/{file_path}'
         #else:
         #  url = f'_/theme/{file_path}'
-        
-
+        if 'anvil.app' in self.origin:
+          url = f'_/theme/{file_path}'
 
         try:
             response = anvil.http.request(url=url,method='GET',json=is_json)
