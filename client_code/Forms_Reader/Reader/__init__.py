@@ -289,7 +289,7 @@ class Reader(ReaderTemplate):
     self.add_component(words, slot='toc')
     if self.bookmark:
        page = self.bookmark['page']
-       self.scroll_reader(page=page)
+       document.getElementById(page).scrollIntoView({ 'behavior': 'smooth', 'block': 'start' })
        print(page)
 
 
