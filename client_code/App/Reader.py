@@ -96,6 +96,6 @@ class ReaderClass:
           sorted_items = sorted(self.renders_store.items(), key=lambda item: item[1]['timestamp'])
           to_clean = [k for k, v in sorted_items[:5]]
           for k in to_clean:
-            del self.contents_store[k]
+            del self.renders_store[k]
 
       self.renders_store[work_id] = render
