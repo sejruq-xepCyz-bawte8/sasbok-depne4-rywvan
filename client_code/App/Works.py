@@ -255,7 +255,7 @@ class WorksClass:
           old_ver = self.works_data[work_id]['ver']
           if new_ver != old_ver:
             self.fetch_work_data(work_id)
-            if work_id in self.works_content:
+            if work_id in self.contents_store:
               self.fetch_work_content(work_id=work_id)
 
     def update_last(self):
@@ -267,7 +267,7 @@ class WorksClass:
           old_ver = self.works_data[work_id]['ver']
           if new_ver != old_ver:
             self.fetch_work_data(work_id)
-            if work_id in self.works_content:
+            if work_id in self.contents_store:
               self.fetch_work_content(work_id=work_id)
 
 
