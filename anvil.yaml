@@ -85,10 +85,4 @@ db_schema:
       admin_ui: {width: 200, order: 11}
       type: simpleObject
     title: Users
-scheduled_tasks:
-- task_name: make_today_request
-  time_spec:
-    n: 1
-    every: minute
-    at: {}
-  job_id: BHESATJA
+scheduled_tasks: []
